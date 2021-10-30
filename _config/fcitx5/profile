@@ -2,13 +2,13 @@
 # Group Name
 Name=デフォルト
 # Layout
-Default Layout=br
+Default Layout=br-nodeadkeys
 # Default Input Method
 DefaultIM=mozc
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-br
+Name=keyboard-br-nodeadkeys
 # Layout
 Layout=
 

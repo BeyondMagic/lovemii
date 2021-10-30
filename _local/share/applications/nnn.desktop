@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=nnn
+Comment=A simple file manager just for you!
+Exec=st -e 'dash' '-c' 'nnn -dDoxR %U'
+Icon=~/Base/icons/nnn.png
+Terminal=false
+Type=Application
+Categories=Utility
+MimeType=inode/directory

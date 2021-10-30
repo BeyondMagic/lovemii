@@ -38,10 +38,10 @@ unset origin config suckless barslash colorscheme set_background
 origin=$(cd -- "$(dirname "$0")" >/dev/null 2>&1 && pwd -P)
 
 # Config path
-config="$HOME/.config"
+config="$origin/_config"
 
 # Suckless path
-suckless="$HOME/github/external/suckless"
+suckless="$HOME/git/external/suckless"
 
 # Slash bar
 barslash='\'
@@ -61,8 +61,7 @@ barslash='\'
     gtk2_theme="$gtk3_theme"
 
   # nvim
-  colorscheme='one'
-  set_background='light'
+  nvim_background='light'
 
   # bars
   bar_theme='suun'
@@ -79,8 +78,7 @@ barslash='\'
     gtk2_theme="$gtk3_theme"
 
   # nvim
-  colorscheme='tender'
-  set_background='dark'
+  nvim_background='dark'
 
   # bars
   bar_theme='moon'
@@ -106,19 +104,18 @@ sed -ri \
 
 # nvim:
 sed -ri \
-  -e "s/^colorscheme .*/colorscheme $colorscheme/" \
-  -e "s/^set background=.*/set background=$set_background/" \
-  "$config/nvim/init.vim"
+  -e "s/^option\('background',[ ]'.*/option('background', '$nvim_background')/" \
+  "$config/nvim/lua/options.lua"
 
 # xinitrc:
 sed -ri \
   -e "s/ *XCURSOR_THEME='.*/       XCURSOR_THEME='$cursor_theme' $barslash\/" \
-  "$HOME/.xinitrc"
+  "$origin/_xinitrc"
 
 # bars:
 sed -ri \
   -e "s/^change_this_theme='.{4}'/change_this_theme='$bar_theme'/" \
-  "$HOME/desktop/colours"
+  "$HOME/git/scripts/bars/config/colours"
 
 
 #-----------------------------------------------------------------------------
@@ -126,8 +123,8 @@ sed -ri \
 #-----------------------------------------------------------------------------
 
 
-zsh -c '. ~/desktop/aliasesrc; clean_bars'
-nohup "$HOME/github/scripts/bars/bars" >/dev/null 2>&1 &
+zsh -c '. ~/Base/aliasesrc; clean_bars'
+nohup "$HOME/git/scripts/bars/bars" >/dev/null 2>&1 &
 
 
 #-----------------------------------------------------------------------------
@@ -138,7 +135,9 @@ nohup "$HOME/github/scripts/bars/bars" >/dev/null 2>&1 &
 # call < st dmenu dunst > scripts
 "$suckless/st/change_theme" $1
 "$suckless/dmenu/change_theme" $1
-"$config/dunst/change_theme" $1 
+"$suckless/91menu/change_theme" $1
+"$suckless/xnotify/change_theme" $1
+"$origin/_config/dunst/change_theme" $1 
 lxappearance
 
 

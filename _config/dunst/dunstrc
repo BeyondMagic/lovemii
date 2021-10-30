@@ -1,12 +1,38 @@
 #!/usr/bin/env sh
 
 [global]
+
+  ### Appereance ###
+
+  # Display Font
   font = Noto Sans CJK JP 10
-  geometry = "400x40-55+70"
+
+  ### Geometry ###
+
+  # dynamic width from 0 to 300
+  # width = (0, 300)
+  # constant width of 300
+  width = 300
+
+  # The maximum height of a single notification, excluding the frame.
+  height = 80
+
+  # Position the notification in the top right corner
+  origin = top-right
+
+  # Offset from the origin
+  offset = 45x60
+
+  # Scale factor. It is auto-detected if value is 0.
+  scale = 0
+
+  # Maximum number of notification (0 means no limit)
+  notification_limit = 0
+  
+  
   indicate_hidden = yes
   shrink = no
   transparency = 0
-  notification_height = 0
   separator_height = 2
   padding = 10
   horizontal_padding = 10
@@ -28,22 +54,19 @@
   show_indicators = yes
   icon_position = left
   max_icon_size = 64
-  icon_path = /usr/share/icons/BeautyLine/actions:/usr/share/icons/BeautyLine/places/16:/usr/share/icons/BeautyLine/devices/:/usr/share/icons/BeautyLine/apps
+#  icon_path = /usr/share/icons/BeautyLine/actions:/usr/share/icons/BeautyLine/places/16:/usr/share/icons/BeautyLine/devices/:/usr/share/icons/BeautyLine/apps
   sticky_history = yes
   history_length = 20
   always_run_script = true
-  startup_notification = false
-  verbosity = mesg
   corner_radius = 0
   force_xinerama = false
   mouse_left_click = close_current
   mouse_middle_click = do_action
   mouse_right_click = close_all
-  content_alignment = center
 
 
-[shortcuts]
-  close = ctrl+shift+space
+#[shortcuts]
+#  close = ctrl+shift+space
 #  close_all = ctrl+shift+space
 #  context = ctrl+shift+period
 

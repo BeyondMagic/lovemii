@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------------------
 
 # My toy :)
-dash /home/magic/github/nincat/nincat r
+dash $(which nincat) random
 
 # Load faster
 . ~/.config/zsh/zsh-plugins/instant-zsh.zsh
@@ -16,7 +16,7 @@ dash /home/magic/github/nincat/nincat r
 PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✝✜✟?!❥$-+§ØŦƆƩƪȹϮϨϞ߷࿗ლႿჄჯᐉᓬᗆᗇᗈᗎᗎᗓᗔᗘᗙᗠᗤᗦᘱᙄᯡᯢ᯾ᰉᰜᰞ᱃᱃†'
 PS1_SYMBOL=$(expr substr "$PS1_SYMBOLS" $(shuf -i 1-$(printf "$PS1_SYMBOLS" | wc -m) -n 1) 1)
 
-instant-zsh-pre "%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL%b%F{grey} " 
+instant-zsh-pre "%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}" 
 
 #zmodload zsh/zprof
 
@@ -188,7 +188,7 @@ zle -N forward-kill-word
 . $HOME/.config/zsh/zsh-plugins/screen 2>/dev/null
 
 # my own aliases
-. $HOME/desktop/aliasesrc
+. $HOME/Base/aliasesrc
 
 
 
@@ -202,7 +202,7 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=''
 HISTFILE=~/.config/zsh/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
-PS1="%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL%b%F{grey} "
+PS1="%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}"
 _comp_options+=(globdots)
 
 
@@ -225,6 +225,7 @@ setopt share_history          # share command history data
 # -------------------------------------------------------------------------------------------
 
 
+bindkey '^[[Z' do-nothing
 bindkey '^[[4h' do-nothing
 bindkey '^[[5~' forward-word 
 bindkey '^[[6~' backward-word 

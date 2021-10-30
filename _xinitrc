@@ -10,64 +10,60 @@
 #-------------------------------------------------------------------------------
 
 export NO_AT_BRIDGE=1 \
+       LIMIT_WALLPAPERS=50 \
+       TRASH="$HOME/.local/trash" \
+       XWALLPAPERS_FOLDER="$HOME/Images/wallpapers" \
+       XWALLPAPER_HISTORY="$HOME/Base/xwallpapers_history" \
+       XNOTIFY_FIFO="$HOME/.cache/xnotify.fifo" \
        NOTMUCH_CONFIG="$HOME/.config/nt/" \
        PASSWORD_STORE_DIR="$HOME/.config/nt" \
-       XMODIFIERS='@im=fcitx5' \
        GTK_IM_MODULE='fcitx5' \
+       SDL_IM_MODULE=fcitx \
        QT_IM_MODULE='fcitx5' \
-       ZDOTDIR="$HOME/.config/zsh/" \
-       LESSHISTFILE='/dev/null' \
-       XDG_CONFIG_HOME="$HOME/.config/" \
        XMODIFIERS="@im=fcitx5" \
+       PARU_CONF="$HOME/.config/paru/paru.conf" \
+       XDG_CONFIG_HOME="$HOME/.config/" \
        EDITOR="nvim" "VISUAL=nvim" \
-       BROWSER='vieb' \
-       GNUPGHOME="$HOME/.config/gnupg" \
-       CARGO_HOME="$HOME/.config/cargo" \
+       BROWSER='firefox' \
+       XDG_CONFIG_HOME="$HOME/.config" \
+       GNUPGHOME="${XDG_CONFIG_HOME}/gnupg" \
+       CARGO_HOME="${XDG_CONFIG_HOME}/cargo" \
        READER='zathura' \
        FILE='nnn' \
+       EDITOR='nvim' \
+       VISUAL='nvim' \
        GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0" \
        ZDOTDIR="$HOME/.config/zsh" \
        LESSHISTFILE='/dev/null' \
-       XDG_CONFIG_HOME="$HOME/.config/" \
-       XCURSOR_THEME='Breeze-Snow (left)' \
-       PATH="$HOME/.config/.cargo/bin:$HOME/github/scripts/fetch:$HOME/.local/bin:$HOME/github/scripts/root:$HOME/github/scripts/system:$HOME/github/scripts/screenshot:$HOME/github/scripts/colour:$HOME/github/scripts/quotes:$PATH"
-
+       PATH="$HOME/.config/.cargo/bin:$HOME/git/scripts/colour:$HOME/git/scripts/mpd:$HOME/git/scripts/quotes:$HOME/git/scripts/root:$HOME/git/scripts/screenshot:$HOME/.local/bin:$PATH"
 
 
 #-------------------------------------------------------------------------------
-# Start shit
+# Start shit (Important session)
 #-------------------------------------------------------------------------------
 
-#   Choose wallpaper with FEH
-feh --no-fehbg --bg-scale "$(fcat desktop/wallpapers_history | tail -n1)" &
+#   Start keyboard manager
+dwm &
+
+# Choose wallpaper with FEH
+feh --no-fehbg --bg-scale "$(tail -n1 ~/Base/xwallpapers_history)"
+
+# Picom as compositor
+picom --experimental-backends --blur-method dual_kawase --blur-strength 3 &
+
+#-------------------------------------------------------------------------------
+# Start shit (Not so important session)
+#-------------------------------------------------------------------------------
+
+#  Notifications per tag change
+xnotify -o 0<>"$XNOTIFY_FIFO" &
 
 #   Start xbindkeys for keybinds
-xbindkeys -f "$HOME/desktop/xbindkeysrc" &
+xbindkeys -f "$HOME/Base/xbindkeysrc" &
 
 #   Start MPD and MPD Scrible to Lastfm and Music
 mpd "$HOME/.config/mpd/mpd.conf" &
 mpdscribble --conf "$HOME/.config/mpdscribble/mpdscribble.conf" &
-
-#   Picom as compositor
-picom &
-
-#   Start downloading some music :)
-zsh -c '. ~/desktop/aliasesrc; mdemonde' &
-
-#   Japanese Keyboard
-fcitx5 &
-
-#   Start Pulseaudio for sound
-pulseaudio &
-
-#   Start unclutter to make mouse disappear after one second
-unclutter --timeout 1 &
-
-#   Start Lemonbar (bottom and top bars)
-$HOME/github/scripts/bars/start_bars &
-
-#   Set Keyboard to Portuguese ABNT 2
-setxkbmap -model abnt2 -layout br -variant abnt2 &
 
 #   Set Keyboard speed typing
 xset r rate 170 60 & 
@@ -78,26 +74,27 @@ xinput --set-prop 11 277 0.5 &
 #   Set Left Handed Mouse
 xmodmap -e 'pointer = 3 2 1' &
 
-#   Remove shit
-rm -rf \
-  "$HOME/.zlogin" \
-  "$HOME/.xsession-errors" \
-  "$HOME/.xsession" \
-  "$HOME/.lyrics" &
+#   Start unclutter to make mouse disappear after one second
+unclutter --timeout 1 &
 
-#   Lock screen because yes
-eval "sleep 8; lock" & 
+#   Open new terminal and todoncli7
+# st -g 76x30+830+57 -t 'todoncli' -e 'dash' '-c' 'cd ~/github/tdtd && node todoncli.js' &
 
 #   Sleep after 12 minutes of inactivity
-xautolock -time 5 -locker "lock" &
-
-#   Reset xbindkeys ??? a few keybinds only work with this
-#killall xbindkeys; xbindkeys -f "$HOME/desktop/xbindkeysrc" &
+xautolock -time 7 -locker "lock" &
 
 #   Start SSH-AGENT
-ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+eval $(ssh-agent) &
 
-#   Start Window Manager
-exec dwm
+#   Start Lemonbar (bottom and top bars)
+$HOME/git/scripts/bars/bars &
 
+#   Remove shit
+# rm -rf \
+#  "$HOME/.zlogin" \
+#  "$HOME/.xsession-errors" \
+#  "$HOME/.xsession" <
+#  "$HOME/.lyrics" &
+
+#   Japanese Keyboard
+exec fcitx5

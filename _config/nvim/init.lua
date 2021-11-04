@@ -19,10 +19,13 @@ require('nvim-compe')
 require('lsp.lua-ls')
 
 -- C++ and C Language Server
--- require('lsp.ccls')
+require('lsp.ccls')
 
 -- Typescript + Javascript Language Server
 require('lspconfig').tsserver.setup{}
+
+-- CSS + Less + SASS Language Server
+require('lsp.cssls')
 
 -- Autocmd commands from Vimscript
 require('autocg')

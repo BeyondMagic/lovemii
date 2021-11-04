@@ -91,10 +91,6 @@ vim.bo.spelllang = 'en_gb'
 vim.o.completeopt = 'menuone,longest,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
--- Set theme
-
---vim.g.colors_name = "one-nvim"
-
 --------------------Variables-----------------
 
 
@@ -127,4 +123,4 @@ option('fileformat', 'unix')
 
 -- Setting our theme set
 option('background', 'dark')
-vim.api.nvim_exec('colorscheme one-nvim', false)
+vim.api.nvim_exec('colorscheme arcoiris-nvim', false)

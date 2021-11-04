@@ -17,10 +17,6 @@ export NO_AT_BRIDGE=1 \
        XNOTIFY_FIFO="$HOME/.cache/xnotify.fifo" \
        NOTMUCH_CONFIG="$HOME/.config/nt/" \
        PASSWORD_STORE_DIR="$HOME/.config/nt" \
-       GTK_IM_MODULE='fcitx5' \
-       SDL_IM_MODULE=fcitx \
-       QT_IM_MODULE='fcitx5' \
-       XMODIFIERS="@im=fcitx5" \
        PARU_CONF="$HOME/.config/paru/paru.conf" \
        XDG_CONFIG_HOME="$HOME/.config/" \
        EDITOR="nvim" "VISUAL=nvim" \
@@ -44,6 +40,9 @@ export NO_AT_BRIDGE=1 \
 
 #   Start keyboard manager
 dwm &
+
+#   Japanese Keyboard
+/usr/bin/fcitx5 &
 
 # Choose wallpaper with FEH
 feh --no-fehbg --bg-scale "$(tail -n1 ~/Base/xwallpapers_history)"
@@ -69,7 +68,7 @@ mpdscribble --conf "$HOME/.config/mpdscribble/mpdscribble.conf" &
 xset r rate 170 60 & 
 
 #   Set Mouse speed
-xinput --set-prop 11 277 0.5 &
+xinput --set-prop 12 310 -0.75 &
 
 #   Set Left Handed Mouse
 xmodmap -e 'pointer = 3 2 1' &
@@ -78,23 +77,16 @@ xmodmap -e 'pointer = 3 2 1' &
 unclutter --timeout 1 &
 
 #   Open new terminal and todoncli7
-# st -g 76x30+830+57 -t 'todoncli' -e 'dash' '-c' 'cd ~/github/tdtd && node todoncli.js' &
-
-#   Sleep after 12 minutes of inactivity
-xautolock -time 7 -locker "lock" &
+st -g 76x30+830+57 -t 'todoncli' -e 'dash' '-c' 'cd ~/git/tdtd && node todoncli.js' &
 
 #   Start SSH-AGENT
 eval $(ssh-agent) &
 
+#   Set Keyboard to Portuguese ABNT 2 (I know it shouldn't be here, but whatever)
+setxkbmap -model abnt2 -layout br -variant abnt2 &
+
 #   Start Lemonbar (bottom and top bars)
 $HOME/git/scripts/bars/bars &
 
-#   Remove shit
-# rm -rf \
-#  "$HOME/.zlogin" \
-#  "$HOME/.xsession-errors" \
-#  "$HOME/.xsession" <
-#  "$HOME/.lyrics" &
-
-#   Japanese Keyboard
-exec fcitx5
+#   Sleep after 12 minutes of inactivity
+xautolock -time 7 -locker "lock"

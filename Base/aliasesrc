@@ -21,7 +21,6 @@ export EDITOR=nvim VISUAL=nvim
 
 
 alias        ls="exa"
-alias     clear="clear; dash $HOME/git/nincat/nincat random see"
 alias   new_key="xbindkeys -f $HOME/Base/xbindkeysrc -mk"
 alias        nt='neomutt'
 alias    pacman='doas -- pacman'
@@ -353,7 +352,7 @@ wallpaper() {
     
     # Force new link to startpage
     #   github.com/beyondmagic/startpage
-    ln -sf "$clean_wallpaper" ~/git/startpage/background
+    ln -sf "$clean_wallpaper" ~/git/startpage/data/background
     
   }
 

@@ -21,6 +21,11 @@ return require('packer').startup(function(use)
     config = require('git-signs')
   }
 
+  -- Indent lines without conceal!!!
+  use { "lukas-reineke/indent-blankline.nvim",
+    config = require('indent')
+  }
+
   -- Alpha (dashboard) for neovim
   use { 'goolord/alpha-nvim',
     config = function ()
@@ -66,6 +71,5 @@ return require('packer').startup(function(use)
 
   -- Theme (dark and light)
   use 'BeyondMagic/arcoiris-nvim-theme'
-
 
 end)

@@ -31,7 +31,9 @@ key('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<cr>', { n
 
 
 -- Do nothing on CTRL + Home
+key('i', '<C-End>', '<End>', { noremap = true, silent = true })
 key('n', '<C-End>', '<End>', { noremap = true, silent = true })
+key('i', '<C-Home>','<End>', { noremap = true, silent = true })
 
 
 ---------------------------Window Movement----------------------------

@@ -45,7 +45,7 @@ dwm &
 /usr/bin/fcitx5 &
 
 # Choose wallpaper with FEH
-feh --no-fehbg --bg-scale "$(tail -n1 ~/Base/xwallpapers_history)"
+xwallpaper --stretch "$(tail -n1 ~/Base/xwallpapers_history)"
 
 # Picom as compositor
 picom --experimental-backends --blur-method dual_kawase --blur-strength 3 &

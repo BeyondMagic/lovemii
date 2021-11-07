@@ -22,7 +22,7 @@ Programs:
 + xdo, xdotool : To handle windows independently of dwm.
 + imagemagick : To modify images and as lib for programs.
 + exa : Colourful ls.
-+ lemonbar (special fonts support)
++ [lemonbar](https://github.com/PH111P/bar) (special fonts support)
 + nnn : File manager.
 + nsxiv : Image viewer.
 + feh : Wallpaper setter.

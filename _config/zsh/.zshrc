@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------------------
 
 # My toy :)
-dash $(which nincat) random
+dash "$HOME"/git/ninecath-nincat/nincat --random
 
 # Load faster
 . ~/.config/zsh/zsh-plugins/instant-zsh.zsh
@@ -13,7 +13,7 @@ dash $(which nincat) random
 
 
 
-PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✝✜✟?!❥$-+§ØŦƆƩƪȹϮϨϞ߷࿗ლႿჄჯᐉᓬᗆᗇᗈᗎᗎᗓᗔᗘᗙᗠᗤᗦᘱᙄᯡᯢ᯾ᰉᰜᰞ᱃᱃†'
+PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✜✟?!❥$-+§ØŦƆƩƪȹϮϨϞ߷࿗ლႿჄჯᐉᓬᗆᗇᗈᗎᗎᗓᗔᗘᗙᗠᗤᗦᘱᙄᯡᯢ᯾ᰉᰜᰞ᱃᱃†'
 PS1_SYMBOL=$(expr substr "$PS1_SYMBOLS" $(shuf -i 1-$(printf "$PS1_SYMBOLS" | wc -m) -n 1) 1)
 
 instant-zsh-pre "%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}" 
@@ -179,10 +179,17 @@ zle -N forward-kill-word
 
 
 # zsh-syntax-highlighting ; use pacman
+#. $HOME/.config/zsh/zsh-plugins/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# zsh-autosuggestions ; use pacman
+#. $HOME/.config/zsh/zsh-plugins/zsh-autosuggestions.zsh 2>/dev/null
+
+# zsh-syntax-highlighting ; use pacman
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # zsh-autosuggestions ; use pacman
 . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+
 
 # screen plugin from oh my zsh ; just download
 . $HOME/.config/zsh/zsh-plugins/screen 2>/dev/null

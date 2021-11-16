@@ -1,4 +1,4 @@
--- CSS + Less + SASS Language Server
+-- C++ and C language server
 require'lspconfig'.ccls.setup {
   init_options = {
     compilationDatabaseDirectory = "build";

@@ -90,7 +90,6 @@ vim.bo.spelllang = 'en_gb'
 -- vim.o.path = vim.o.path .. '**'
 
 -- Complete options
--- vim.o.complete = vim.o.complete .. 'k'
 vim.o.completeopt = 'menuone,longest,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
@@ -113,7 +112,7 @@ option('foldcolumn', '1')
 option('dictionary', '/usr/share/dict/words')
 
 -- Wildignore for when opening files :0
--- option('wildignore', '*/tmp*/,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*,*/.vim$,\~$,*/.log')
+option('wildignore', '*/tmp*/,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*,*/.vim$,~$,*/.log')
 
 -- Folding
 option('foldmethod', 'expr')

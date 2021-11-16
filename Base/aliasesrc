@@ -19,7 +19,7 @@ export EDITOR=nvim VISUAL=nvim
 # Aliases
 #--------------------------------------------------------------------------------
 
-
+alias  f_cache="sudo SOURCE_DATE_EPOCH=$(date +%s) fc-cache -rs" # Temporary solution to fc-cache failing
 alias        ls="exa"
 alias   new_key="xbindkeys -f $HOME/Base/xbindkeysrc -mk"
 alias        nt='neomutt'
@@ -30,16 +30,21 @@ alias        lu='ls -la --color=always'
 alias      wget="wget --hsts-file '$HOME/.config/wget/wget-history'"
 alias      grep='grep --colour'
 alias     build='doas -- make clean install'
-alias  pendrive='doas -- mount -o umask=0,uid=nobody,gid=nobody /dev/sdc1 /mnt/pendrive'
-alias upendrive='doas -- umount /dev/sdc1'
-alias        cp='cp -g' # Patch for cp by jarun https://github.com/jarun/advcpmv
-alias        mv='mv -g' # Patch for mv by jarun https://github.com/jarun/advcpmv
+alias upendrive='doas -- umount /mnt/pendrive'
+alias        cpv='cp -g' # Patch for cp by jarun https://github.com/jarun/advcpmv
+alias        mvv='mv -g' # Patch for mv by jarun https://github.com/jarun/advcpmv
+alias   wiki.md="v $HOME/git/config/wiki.md"
 
 
 #--------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------
 
+
+# Load pendrive
+pendrive() {
+  doas -- mount -o umask=0,uid=nobody,gid=nobody "$1" /mnt/pendrive
+}
 
 # Find cover images from Google (opening a new tab on your browser)
 findimage() {
@@ -66,9 +71,11 @@ coverfrom() {
 }
 
 # Function to transform clipboard into an image
-toimage() {
+topng() {
 
-  xclip -selection clipboard -t image/png -o > "$1.png"
+  all="$@"
+  
+  xclip -selection clipboard -t image/png -o > "$all.png"
 
 }
 
@@ -127,12 +134,12 @@ update_nincat() {
 
 	makepkg -si \
 		&& makepkg --printsrcinfo > .SRCINFO \
-		&& cp .SRCINFO PKGBUILD -t ~/git/nincat-git \
-		&& cd ~/git/nincat-git \
+		&& cp .SRCINFO PKGBUILD -t ~/git/nincat-aur \
+		&& cd ~/git/nincat-aur \
 		&& git add . \
 		&& git commit -m "Updated to $(date +%m%d)" \
 		&& git push origin master \
-		&& cd ~/git/nincat
+		&& cd ~/git/ninecath-nincat
 }
 
 # Get current PATH and copy it to system
@@ -146,17 +153,17 @@ qq() { "$@" & disown; exit; }
 
 # Clean lemonbar scripts
 #   scripts (github.com/beyondMagic/scripts)
-clean_bars() {
+#clean_bars() {
   
-  pkill -9 -f "lemonbar -H "
+#  pkill -9 -f "lemonbar -H "
 
-  pgrep -f "sh $HOME/git/scripts/bars/" | \
-    while read -r id; do
-      pkill -9 -P "$id"
-      kill -9 "$id"
-    done
+#  pgrep -f "sh $HOME/git/scripts/bars/" | \
+#    while read -r id; do
+#      pkill -9 -P "$id"
+#      kill -9 "$id"
+#    done
 
-}
+#}
 
 #   mpv see video
 see() {
@@ -171,6 +178,129 @@ seeytb() {
 #   mpv see video from youtube from medium quality
 seeytm() {
   exec mpv "$@" --save-position-on-quit --hwdec --vo=xv --ytdl-format=18
+}
+
+# Update XResources and apps
+up_xr() {
+
+  [ "$1" ] || exit
+
+  # Old xthem type (black or white)
+  xtheme_file="$HOME/.config/xorg/theme-linked/theme.x"
+  old_xtheme=$(grep -oP "theme\.type[ ]*:[ ]*\K.*" "$xtheme_file")
+
+  # Change theme by name
+  ln -sf /home/iris/.config/xorg/themes/"$1"/* /home/iris/.config/xorg/theme-linked/
+
+  # Load XResources
+  xrdb ~/.config/xorg/XResources
+
+  # Update Apps despite type of the theme
+  {
+    pkill -URG 'xnotify'
+    kill -USR1 $(pidof st)
+    
+    # Lemonbar(s)
+    clean_bars
+    $SCRIPTS_FOLDER/bars/bars & disown
+    
+    # Dunst
+    {
+      kill -9 $(pidof dunst)
+
+      export \
+                      font="$(xgetres dunst.font)" \
+                     width="$(xgetres dunst.geometry.width)" \
+                    height="$(xgetres dunst.geometry.height)" \
+                         x="$(xgetres dunst.geometry.x)" \
+                         y="$(xgetres dunst.geometry.y)" \
+          separator_height="$(xgetres dunst.separator_height)" \
+                   padding="$(xgetres dunst.padding)" \
+        horizontal_padding="$(xgetres dunst.horizontal_padding)" \
+             max_icon_size="$(xgetres dunst.max_icon_size)" \
+               frame_width="$(xgetres dunst.frame_width)" \
+            low_background="$(xgetres dunst.low.background)" \
+            low_foreground="$(xgetres dunst.low.foreground)" \
+           low_frame_color="$(xgetres dunst.low.frame_colour)" \
+         normal_background="$(xgetres dunst.normal.background)" \
+         normal_foreground="$(xgetres dunst.normal.foreground)" \
+        normal_frame_color="$(xgetres dunst.normal.frame_colour)" \
+       critical_background="$(xgetres dunst.critical.background)" \
+       critical_foreground="$(xgetres dunst.critical.foreground)" \
+      critical_frame_color="$(xgetres dunst.critical.frame_colour)"
+      
+      envsubst < "$HOME/.config/dunst/dunstrc.template" > "$HOME/.config/dunst/dunstrc"
+
+      dunst -s -follow keyboard & disown
+
+    }
+
+    # Zathura
+    {
+      # No live reload for zathura, nor hacks, no idea...
+      #kill -9 zathurja
+      
+      export \
+                  adjust_open="$(xgetres zathura.adjust-open)" \
+                      recolor="$(xgetres zathura.recolor)" \
+               title_basename="$(xgetres zathura.title.basename)" \
+          selection_clipboard="$(xgetres zathura.selection.clipboard)" \
+                       render="$(xgetres zathura.render)" \
+        notification_error_bg="$(xgetres zathura.notification.error.bg)" \
+        notification_error_fg="$(xgetres zathura.notification.error.fg)" \
+      notification_warning_bg="$(xgetres zathura.notification.warning.bg)" \
+      notification_warning_fg="$(xgetres zathura.notification.warning.fg)" \
+              notification_bg="$(xgetres zathura.notification.bg)" \
+              notification_fg="$(xgetres zathura.notification.fg)" \
+                completion_bg="$(xgetres zathura.completion.bg)" \
+                completion_fg="$(xgetres zathura.completion.fg)" \
+          completion_group_bg="$(xgetres zathura.completion.group.bg)" \
+          completion_group_fg="$(xgetres zathura.completion.group.fg)" \
+      completion_highlight_bg="$(xgetres zathura.completion.highlight.bg)" \
+      completion_highlight_fg="$(xgetres zathura.completion.highlight.fg)" \
+                     index_bg="$(xgetres zathura.index.bg)" \
+                     index_fg="$(xgetres zathura.index.fg)" \
+              index_active_bg="$(xgetres zathura.index.active.bg)" \
+              index_active_fg="$(xgetres zathura.index.active.fg)" \
+                     input_bg="$(xgetres zathura.input.bg)" \
+                     input_fg="$(xgetres zathura.input.fg)" \
+                    status_bg="$(xgetres zathura.status.bg)" \
+                    status_fg="$(xgetres zathura.status.fg)" \
+                 highlight_fg="$(xgetres zathura.highlight.active.fg)" \
+          highlight_active_fg="$(xgetres zathura.highlight.fg)" \
+                   default_bg="$(xgetres zathura.default.bg)" \
+                   default_fg="$(xgetres zathura.default.fg)" \
+                    render_bg="$(xgetres zathura.render.bg)" \
+                    render_fg="$(xgetres zathura.render.fg)" \
+                   zathura_bg="$(xgetres zathura.bg)" \
+                   zathura_fg="$(xgetres zathura.fg)"
+
+      envsubst < "$HOME/.config/zathura/zathurarc.template" > "$HOME/.config/zathura/zathurarc"
+
+    }
+  
+  }
+
+  # Update apps with different type of the theme
+  [ "$(grep -oP "theme\.type[ ]*:[ ]*\K.*" "$xtheme_file")" != "$old_xtheme" ] && {
+ 
+    # NVim
+    {
+      theme_file_lua="$HOME/.config/nvim/lua/options.lua"
+      now_nvim_theme="$(grep -oP "background',[ ]'\K.*" "$theme_file_lua" | sed "s/')//")"
+
+      [ "$now_nvim_theme" = 'dark' ] \
+        && sed -i "s/^option('background',.*/option('background', 'light')/" "$theme_file_lua"
+
+      [ "$now_nvim_theme" = 'light' ] \
+        && sed -i "s/^option('background',.*/option('background', 'dark')/" "$theme_file_lua"
+
+    }
+
+    kill -USR1 $(pidof nvim)
+  
+  }
+
 }
 
 # Load a song that you found from a playlist
@@ -357,7 +487,7 @@ wallpaper() {
     echo "$clean_wallpaper" >> "$XWALLPAPER_HISTORY"
     
     # Force new link to startpage
-    #   github.com/beyondmagic/startpage
+    #   github.com/beyondmagic/mod-startpage
     ln -sf "$clean_wallpaper" ~/git/startpage/data/background
     
   }
@@ -381,7 +511,7 @@ set_wallpaper() {
 delete_wallpaper() {
 
   # Get latest wallpaper of path
-  latest_wallpaper=$(cat "$XWALLPAPER_HISTORY" | tail -n 1)
+  latest_wallpaper=$(cat "$XWALLPAPER_HISTORY" | tail -n1)
 
 	# Move wallpaper file to trash
 	mv "$latest_wallpaper" "$TRASH"
@@ -403,13 +533,13 @@ previous_wallpaper() {
   sed -i '$d' "$XWALLPAPER_HISTORY"
 
   # Get latest wallpaper of path
-  latest_wallpaper=$(cat "$XWALLPAPER_HISTORY" | tail -n 1)
+  latest_wallpaper=$(cat "$XWALLPAPER_HISTORY" | tail -n1)
 
   # Verify if there's a latest wallpaper
   [ "$latest_wallpaper" ] && {
 
     # Set wallpaper with feh || If it fails, set a random
-    feh --no-fehbg --bg-scale "$latest_wallpaper" || random_wallpaper
+    wallpaper "$latest_wallpaper" || random_wallpaper
 
   # If there's not a wallpaper, then just set a random
   } || random_wallpaper

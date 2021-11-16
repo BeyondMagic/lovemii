@@ -13,7 +13,7 @@ export NO_AT_BRIDGE=1 \
        LIMIT_WALLPAPERS=50 \
        TRASH="$HOME/.local/trash" \
        XWALLPAPERS_FOLDER="$HOME/Images/wallpapers" \
-       XWALLPAPER_HISTORY="$HOME/Base/xwallpapers_history" \
+       XWALLPAPER_HISTORY="$HOME/.cache/xwallpapers_history" \
        XNOTIFY_FIFO="$HOME/.cache/xnotify.fifo" \
        NOTMUCH_CONFIG="$HOME/.config/nt/" \
        PASSWORD_STORE_DIR="$HOME/.config/nt" \
@@ -21,10 +21,16 @@ export NO_AT_BRIDGE=1 \
        XDG_CONFIG_HOME="$HOME/.config/" \
        EDITOR="nvim" "VISUAL=nvim" \
        BROWSER='firefox' \
+       XMODIFIERS='@im=fcitx5' \
+       GTK_IM_MODULE='fcitx5' \
+       QT_IM_MODULE='fcitx5' \
        XDG_CONFIG_HOME="$HOME/.config" \
        GNUPGHOME="${XDG_CONFIG_HOME}/gnupg" \
        CARGO_HOME="${XDG_CONFIG_HOME}/cargo" \
+       SCRIPTS_FOLDER="${HOME}/git/scripts" \
        READER='zathura' \
+       BARS_TOP_FIFO='/tmp/top.fifo' \
+       BARS_BOTTOM_FIFO='/tmp/bottom.fifo' \
        FILE='nnn' \
        EDITOR='nvim' \
        VISUAL='nvim' \
@@ -38,21 +44,28 @@ export NO_AT_BRIDGE=1 \
 # Start shit (Important session)
 #-------------------------------------------------------------------------------
 
+#   Just get colours
+xrdb ~/.config/xorg/XResources
+
 #   Start keyboard manager
 dwm &
 
-#   Japanese Keyboard
-/usr/bin/fcitx5 &
+#   Start SSH-AGENT and dbus
+eval $(ssh-agent) &
+export $(dbus-launch) &
 
 # Choose wallpaper with FEH
-xwallpaper --stretch "$(tail -n1 ~/Base/xwallpapers_history)"
+xwallpaper --stretch "$(tail -n1 ~/Base/xwallpapers_history)" &
 
 # Picom as compositor
-picom --experimental-backends --blur-method dual_kawase --blur-strength 3 &
+picom --experimental-backends --blur-method dual_kawase --blur-strength 3 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25 &
 
 #-------------------------------------------------------------------------------
 # Start shit (Not so important session)
 #-------------------------------------------------------------------------------
+
+#  Load a new null module to set when recording
+pactl load-module module-null-sink sink_name=null
 
 #  Notifications per tag change
 xnotify -o 0<>"$XNOTIFY_FIFO" &
@@ -79,14 +92,17 @@ unclutter --timeout 1 &
 #   Open new terminal and todoncli7
 st -g 76x30+830+57 -t 'todoncli' -e 'dash' '-c' 'cd ~/git/tdtd && node todoncli.js' &
 
-#   Start SSH-AGENT
-eval $(ssh-agent) &
+#   Notification server
+dunst -s -follow keyboard &
+
+#   Start Lemonbar (bottom and top bars)
+$SCRIPTS_FOLDER/bars/bars &
+
+#   Japanese Keyboard
+/usr/bin/fcitx5 &
 
 #   Set Keyboard to Portuguese ABNT 2 (I know it shouldn't be here, but whatever)
 setxkbmap -model abnt2 -layout br -variant abnt2 &
-
-#   Start Lemonbar (bottom and top bars)
-$HOME/git/scripts/bars/bars &
 
 #   Sleep after 12 minutes of inactivity
 xautolock -time 7 -locker "lock"

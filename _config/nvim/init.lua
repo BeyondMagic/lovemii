@@ -1,3 +1,6 @@
+-- Personal global, windows options of neovim:
+require('options')
+
 -- Packer Plugin to adminstrate packages:
 --   git clone https://github.com/wbthomason/packer.nvim\
 --   ~/.local/share/nvim/site/pack/paker/start/packer.nvim
@@ -5,12 +8,6 @@ require('plugins')
 
 -- Personal Keymaps of neovim:
 require('keymappings')
-
--- Personal global, windows options of neovim:
-require('options')
-
--- Autocompletion LSP
-require('nvim-compe')
 
 -- LSP Lua (build from source without telemetry (use grep to find config)
 -- 	https://github.com/sumneko/lua-language-server

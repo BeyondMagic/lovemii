@@ -1,0 +1,9 @@
+dunst.critical.background   : #13171aAA
+dunst.critical.foreground   : #fe2d3b
+dunst.critical.frame_colour : #141e24
+dunst.normal.background     : #13171aAA
+dunst.normal.foreground     : #ffffff
+dunst.normal.frame_colour   : #000000
+dunst.low.background        : #000000AA
+dunst.low.foreground        : #A8A8A8
+dunst.low.frame_colour      : #111111

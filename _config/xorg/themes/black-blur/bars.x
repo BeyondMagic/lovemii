@@ -1,0 +1,45 @@
+bars.bg : #990A0C11
+bars.fg : #ffffff
+
+bars.bottom.nickname                 : iris %{T3}%{F#7EABF8}%{T2}%{F#FFFFFF} arcoiris
+bars.bottom.recording.fg             : #FFFfff
+bars.bottom.tags.bg                  : #0A0C11
+bars.bottom.tags.selected.fg         : #ffffff
+bars.bottom.tags.selected.occupied   : #ffffff
+bars.bottom.tags.unselected.fg       : #696969
+bars.bottom.tags.unselected.occupied : #82CDD2
+bars.bottom.tags.unselected.all      : #444444
+bars.bottom.layout.fg                : #0A0C11
+bars.bottom.layout.bg                : #ffffff
+bars.bottom.titles.title             : #ffffff
+bars.bottom.titles.icon              : #698B2F
+bars.bottom.memory.colour            : #ffffff
+bars.bottom.memory.bar               : #666666
+
+bars.top.sound.icon.on     : #ffffff
+bars.top.sound.icon.off    : #525659
+bars.top.sound.bar.on      : #ffffff
+bars.top.sound.bar.off     : #000000
+bars.top.clock.fg          : #123456
+bars.top.clock.bg          : #ecf3fa
+bars.top.clock.fbg         : #ffffff
+bars.top.clock.ffg         : #bdcdd7
+bars.top.sensors.affix.fg  : #FFFFFF
+bars.top.sensors.affix.bg  : #2B2B2B
+bars.top.sensors.low.fg    : #0D2331
+bars.top.sensors.low.bg    : #87C7E4
+bars.top.sensors.normal.fg : #0D2331
+bars.top.sensors.normal.bg : #BDCDD7
+bars.top.sensors.medium.fg : #340010
+bars.top.sensors.medium.bg : #FAFBC2
+bars.top.sensors.high.fg   : #0D2331
+bars.top.sensors.high.bg   : #FF4464
+bars.top.songs.before      : #2b2b2b
+bars.top.songs.icon        : #000000
+bars.top.songs.song        : #000000
+bars.top.songs.song.first  : #FE4656
+bars.top.songs.song.second : #E4F2FF
+bars.top.songs.icon.name   : #FFFFFF
+bars.top.songs.neighbours  : #666666
+bars.top.power.fg          : #fafafa
+bars.top.power.bg          : #c92430

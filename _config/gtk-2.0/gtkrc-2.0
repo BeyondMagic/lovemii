@@ -3,7 +3,7 @@
 
 include "/home/iris/.gtkrc-2.0.mine"
 gtk-theme-name="trollwut-pink-dark"
-gtk-icon-theme-name="hicolor"
+gtk-icon-theme-name="Grade-black-dark"
 gtk-font-name="Sans 10"
 gtk-cursor-theme-name="Breeze-Obsidian"
 gtk-cursor-theme-size=0

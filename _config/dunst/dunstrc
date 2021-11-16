@@ -2,42 +2,17 @@
 
 [global]
 
-  ### Appereance ###
-
-  # Display Font
-  font = Noto Sans CJK JP 10
-
-  ### Geometry ###
-
-  # dynamic width from 0 to 300
-  # width = (0, 300)
-  # constant width of 300
-  width = 300
-
-  # The maximum height of a single notification, excluding the frame.
-  height = 80
-
   # Position the notification in the top right corner
   origin = top-right
-
-  # Offset from the origin
-  offset = 45x60
 
   # Scale factor. It is auto-detected if value is 0.
   scale = 0
 
   # Maximum number of notification (0 means no limit)
   notification_limit = 0
-  
-  
   indicate_hidden = yes
   shrink = no
   transparency = 0
-  separator_height = 2
-  padding = 10
-  horizontal_padding = 10
-  frame_width = 2
-  frame_color = "#x"
   separator_color = frame
   sort = yes
   idle_threshold = 120
@@ -53,8 +28,6 @@
   hide_duplicate_count = false
   show_indicators = yes
   icon_position = left
-  max_icon_size = 64
-#  icon_path = /usr/share/icons/BeautyLine/actions:/usr/share/icons/BeautyLine/places/16:/usr/share/icons/BeautyLine/devices/:/usr/share/icons/BeautyLine/apps
   sticky_history = yes
   history_length = 20
   always_run_script = true
@@ -64,26 +37,30 @@
   mouse_middle_click = do_action, close_current
   mouse_right_click = close_all
 
-
-#[shortcuts]
-#  close = ctrl+shift+space
-#  close_all = ctrl+shift+space
-#  context = ctrl+shift+period
+  font = Noto Sans CJK JP 10
+  width = 300
+  height = 80
+  offset = 45x60
+  separator_height = 2
+  padding = 10
+  horizontal_padding = 10
+  frame_width = 2
+  max_icon_size = 64
 
 [urgency_low]
-  background = "#000000" # BACKGROUND_LOW
-  foreground = "#A8A8A8" # FOREGROUND_LOW
-  frame_color = "#111111" # FRAMECOLOR_LOW
+  background = "#000000AA"
+  foreground = "#A8A8A8"
+  frame_color = "#111111"
   timeout = 5
 
 [urgency_normal]
-  background = "#13171a" # BACKGROUND_NORMAL
-  foreground = "#ffffff" # FOREGROUND_NORMAL
-  frame_color = "#000000" # FRAMECOLOR_NORMAL
+  background = "#13171aAA"
+  foreground = "#ffffff"
+  frame_color = "#000000"
   timeout = 10
 
 [urgency_critical]
-  background = "#13171a" # BACKGROUND_CRITICAL
-  foreground = "#Fe2d3b" # FOREGROUND_CRITICAL
-  frame_color = "#141e24" # FRAMECOLOR_CRITICAL
+  background = "#13171aAA"
+  foreground = "#fe2d3b"
+  frame_color = "#141e24"
   timeout = 0

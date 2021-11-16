@@ -17,6 +17,8 @@ key('n', '<Leader>v', 'vv<C-v>', { noremap = true, silent = true })
 
 ---------------------------Telescope (fuzzy finder fil)-------------------------
 
+-- Find all TODOs and comments
+key('n', '<Leader>l', ':TodoTelescope<CR>', { noremap = true, silent = true })
 -- Using lua functions
 key('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<cr>', { noremap = true, silent = true })
 -- key('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<cr>', { noremap = true, silent = true })
@@ -28,7 +30,6 @@ key('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<cr>', { n
 -- key('i', '<TAB>', '<C-n>', { noremap = true, silent = true })
 -- key('i', '<S-TAB>', '<C-p>', { noremap = true, silent = true })
 -- key('i', '<CR>', 'pumvisible() ? "\\<C-y>" : "\\<CR>"', { expr = true, noremap = true, silent = true })
-
 
 -- Do nothing on CTRL + Home
 key('i', '<C-End>', '<End>', { noremap = true, silent = true })
@@ -50,7 +51,6 @@ key('n', '<C-d>', ':bd<CR>', { noremap = true, silent = true })
 
 
 key('n', '<Leader>qq', ':q<CR>', { noremap = true, silent = true })
---
 key('n', '<Leader>h', ':set hlsearch!<CR>', { noremap = true, silent = true })
 
 -- Set '<Leader>e' as 'explorer' command, open and close
@@ -77,14 +77,18 @@ key('n', '<Down>', 'gj', { noremap = true, silent = true  })
 key('n', '<Up>', 'gk', { noremap = true, silent = true  })
 
 -- Delete character and go to Insert mode when BACKSPACE on Normal Mode
-key('n', '<BS>', 'i<BS>', { noremap = true, silent = true })
--- Createw new line and go to Insert mode when ENTER on Normal Mode
-key('n', '<CR>', 'i<CR>', { noremap = true, silent = true })
+--key('n', '<BS>', 'i<BS>', { noremap = true, silent = true })
+-- Create new line and go to Insert mode when ENTER on Normal Mode
+--key('n', '<CR>', 'i<CR>', { noremap = true, silent = true })
 
 ---------------------------------Search-----------------------------------
 
 -- Disable or enable highlight by pressing 'CTRL + c'
 key('n', '<C-c>', ':if (&hlsearch == 1) | set nohlsearch | else | set hlsearch | endif<cr>', { noremap = true, silent = true  })
+
+---------------------------Insert normal tab------------------------
+
+--key('i', '<C-i>', '		', { noremap = true, silent = true  })
 
 ---------------------------Paste, Copy, Select------------------------
 
@@ -93,11 +97,8 @@ key('n', '<C-c>', ':if (&hlsearch == 1) | set nohlsearch | else | set hlsearch |
 key('i', '<C-v>', '<Esc>mapa', { noremap = true, silent = true  })
 key('v', '<C-v>', '"_dPi', { noremap = true, silent = true  })
 
--- vnoremap <leader>p "_dP
-
-
 -- Set 'CTRL + x' as 'cut'
-key('v', '<C-x>', 'mad`ai<Right>', { noremap = true, silent = true  })
+key('v', '<C-x>', 'mad`ai<Right>', {  silent = true  })
 
 -- Set 'CTRL + c' as 'copier'
 key('v', '<C-c>', 'may`ai', { noremap = true, silent = true  })
@@ -126,12 +127,14 @@ key('i', '<S-Right>', '<Esc>v<Right>', { noremap = true, silent = true  })
 -- Set 'SHIFT + special-keys' as 'select'
 key('i', '<S-Home>', '<Esc>v<Home>', { noremap = true, silent = true  })
 key('i', '<S-End>', '<Esc>v<End>', { noremap = true, silent = true  })
-key('i', '<S-PageUp>', '<Esc>v<PageUp>', { noremap = true, silent = true  })
-key('i', '<S-PageDown>', '<Esc>v<PageDown>', { noremap = true, silent = true  })
 key('n', '<S-Home>', '<Esc>v<Home>', { noremap = true, silent = true  })
 key('n', '<S-End>', '<Esc>v<End><Left>', { noremap = true, silent = true  })
-key('n', '<S-PagiUp>', '<Esc>v<PageUp>', { noremap = true, silent = true  })
-key('n', '<S-PageDown>', '<Esc>v<PageDown>', { noremap = true, silent = true  })
+key('n', '<S-PageUp>', '<Esc>:call Visual_Scroll_Up()<CR>i<Right><Left>', { noremap = true, silent = true  })
+key('n', '<S-PageDown>', '<Esc>:call Visual_Scroll_Down()<CR>i<Right><Left>', { noremap = true, silent = true  })
+key('i', '<PageUp>', '<Esc>:call Insert_Scroll_Up()<CR>i', { noremap = true, silent = true  })
+key('i', '<PageDown>', '<Esc>:call Insert_Scroll_Down()<CR>i', { noremap = true, silent = true  })
+key('i', '<S-PageUp>', '<Esc>:call Visual_Scroll_Up()<CR>i<Right><Left>', { noremap = true, silent = true  })
+key('i', '<S-PageDown>', '<Esc>:call Visual_Scroll_Down()<CR>i<Right><Left>', { noremap = true, silent = true  })
 
 -- Special seleect for visual mode
 key('v', '<', '<gv', { noremap = true, silent = true  })
@@ -139,7 +142,7 @@ key('v', '>', '>gv', { noremap = true, silent = true  })
 
 
 -- Set 'Backspace' as 'delete selection' in Visual mode
-key('v', '<BS>', 'di', { noremap = true, silent = true  })
+key('v', '<BS>', '"_di', { noremap = true, silent = true  })
 
 -- Set 'F36 + F35' as 'delete word' in Insert mode, specific for my build of Simple Terminal (suckless)
 key('i', '<F36><F35>', '<C-w>', { noremap = true, silent = true  })

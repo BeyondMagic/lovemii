@@ -233,6 +233,7 @@ local footer = {
   type = "text",
   -- Change 'rdn' to any program that gives you a random quote.
   -- https://github.com/BeyondMagic/scripts/blob/master/quotes/rdn
+  -- Which returns one to three lines, being each divided by a line break.
   -- Or just an array: { "I see you:", "Above you." }
   val = split(capture('rdn')),
   opts = {

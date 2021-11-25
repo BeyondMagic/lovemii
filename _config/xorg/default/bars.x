@@ -4,6 +4,8 @@ bars.font.emoji              : NotoEmoji Nerd Font:antialias=true:size=10.3
 bars.font.material           : Material\\-Design\\-Iconic\\-Font:style=Design-Iconic-Font
 bars.top.geometry            : 1400x19+20+10
 bars.bottom.geometry         : 1400x19+20+10
+bars.preview.geometry        : 260x164+60+688
+bars.preview.title           : preview_dwm
 bars.name0                   : 狐 🦊 Kitsune
 bars.name1                   : なんでも
 bars.name2                   : ターミナル

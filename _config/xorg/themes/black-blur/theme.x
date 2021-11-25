@@ -1,1 +1,3 @@
-theme.type : black
+theme.type    : black
+Xcursor.theme : Breeze-Snow
+Xcursor.size  : 16

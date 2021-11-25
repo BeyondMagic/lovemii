@@ -13,7 +13,7 @@ dash "$HOME"/git/ninecath-nincat/nincat --random
 
 
 
-PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✜✟?!❥$-+§ØŦƆƩƪȹϮϨϞ߷࿗ლႿჄჯᐉᓬᗆᗇᗈᗎᗎᗓᗔᗘᗙᗠᗤᗦᘱᙄᯡᯢ᯾ᰉᰜᰞ᱃᱃†'
+PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✜✟?!❥$-+§ØŦƆƩƪȹϮϨϞ߷ლႿჄჯᐉᓬᗆᗇᗈᗎᗎᗓᗔᗘᗙᗠᗤᗦᘱᙄᯡᯢ᯾ᰉᰜᰞ᱃᱃†'
 PS1_SYMBOL=$(expr substr "$PS1_SYMBOLS" $(shuf -i 1-$(printf "$PS1_SYMBOLS" | wc -m) -n 1) 1)
 
 instant-zsh-pre "%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}" 

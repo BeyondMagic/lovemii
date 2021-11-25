@@ -6,16 +6,16 @@
 
 **Essential:**
 + coreutils.
++ + [advcpmv](https://github.com/jarun/advcpmv) : cp and mv with progress bar.
 + libxft-bgra.
 + fcitx5-configtool, fcitx5-gtk, fcitx5-material-color, fcitx5-qt, fcitx5-mozc-ut : Input in Japanese.
 + zsh : Main shell.
 + xbindkeys : Keybinds.
 + pulseaudio + alsa-card-profiles + alsa-firmware + alsa-lib + alsa-plugins + alsa-utils + pulseaudio-alsa : Sound and output.
-+ [advcpmv](https://github.com/jarun/advcpmv) : cp and mv with progress bar.
-+ [xorg-xrdb] : For XResources.
-+ [polkit-dumb-agent-git] : For polkit...
++ xorg-xrdb : For XResources.
++ polkit-dumb-agent-git : For polkit...
 + neovim-nightly-bin : Editor of text.
-+ lightdm + lightdm-gtk-greeter2 : It's something like that.
++ sddm + sddm-runit : It's something like that.
 + xsettingsd : Simple X11 GTK server.
 
 **Language Servers:**
@@ -48,7 +48,6 @@
 + mpd : Music server.
 + mpdscribble : Connect MPD to last.fm.
 + dash, dashbinsh : Faster shell.
-+ 91menu : Menu for X11.
 + dmenu : Submenu for X11.
 + st : Terminal.
 + unclutter : Make cursor disappear in a few seconds.
@@ -68,41 +67,34 @@
 + ttf-joypixels : For dmenu.
 + unifont-jp : For special characters.
 
+**Builds:**
++ [st](https://github.com/beyondmagic/st) : Terminal;
++ [dwm](https://github.com/beyondmagic/dwm) : Window Manager;
++ [colorpicker](https://github.com/BeyondMagic/mod-colorpicker) : Pick colour from the screen;
++ [xnotify](https://github.com/beyondmagic/mod-xnotify) : FIFO notification server.
++ [91menu](https://github.com/beyondmagic/91menu) : Plan9-inspired menu.
++ [slock](https://github.com/beyondmagic/slock) : Lock Screen.
++ [dmenu](https://github.com/beyondmagic/dmenu) : Dynamic Menu for X11.
+
 ---
 
 <h3 align="center">POST-INSTALLATION ARTIX RUNIT</h3>
 
-#### Auto-login:
+##### sddm
 
-Each virtual console has its own config `/etc/runit/sv/agetty-ttyX/conf`, where **X** is between **1** and **5**.
-
-Choose one (or create another one, at least between 1 to 9 shouldn't be a problem and add `--autologin USERNAME` to the `config` string. This will make **agetty** to `autologin **USERNAME**` on virtual console X.
-
-##### startx
-
-Now, open `~/.zshrc` and add after the `shebang` (remember to replace X in `ttyX`):
+Run this to link the `xsessions` folder and add `lovemii` executable, then pass all the configuration of sddm to the current system.
 
 ```zsh
-[ $(tty) = "/dev/ttyX" ] && exec startx
+# cp "$HOME/git/config/lovemii" /usr/bin/
+# mkdir -p /usr/share/xsessions
+# cp -rf "$HOME/git/config/usr/share/xsessions/*" /usr/share/
+# cp -rf "$HOME/git/config/usr/share/sddm/themes/*" /usr/share/sddm/themes/
+# cp -rf "$HOME/git/config/etc/sddm.conf" /etc/sddm.conf
 ```
-
-This will start X when logged in on console X.
-
-##### lightdm
-
-TODO: switch from startx to lightdm.
 
 ---
 
 <h2 align=-"center">SPECIAL PROGRAMS</h2>
-
-+ [st](https://github.com/beyondmagic/st);
-+ [dwm](https://github.com/beyondmagic/dwm);
-+ [colorpicker](https://github.com/BeyondMagic/mod-colorpicker).
-+ [xnotify](https://github.com/beyondmagic/mod-xnotify);
-+ [91menu](https://github.com/beyondmagic/91menu);
-+ [slock](https://github.com/beyondmagic/slock);
-+ [dmenu](https://github.com/beyondmagic/dmenu);
 
 ### NeoVim
 
@@ -112,7 +104,7 @@ TODO: switch from startx to lightdm.
 
 First, copy the configuration of NeoVim to its config folder.
 
-`cp -rf ~/git/config/_config/nvim ~/.config/nvim/`
+`$ cp -rf ~/git/config/_config/nvim ~/.config/nvim/`
 
 Run **nvim** and then, `:PackerSync`.
 

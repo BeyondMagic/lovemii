@@ -29,11 +29,13 @@ alias      ....='cd ../..'
 alias        lu='ls -la --color=always'
 alias      wget="wget --hsts-file '$HOME/.config/wget/wget-history'"
 alias      grep='grep --colour'
+alias     links="v $HOME/git/startpage/data/links.json"
+alias    quotes="v $HOME/git/startpage/data/quotes.json"
 alias     build='doas -- make clean install'
 alias upendrive='doas -- umount /mnt/pendrive'
 alias        cpv='cp -g' # Patch for cp by jarun https://github.com/jarun/advcpmv
 alias        mvv='mv -g' # Patch for mv by jarun https://github.com/jarun/advcpmv
-alias   wiki.md="v $HOME/git/config/wiki.md"
+alias       wiki="v $HOME/git/config/README.md"
 
 
 #--------------------------------------------------------------------------------
@@ -43,7 +45,7 @@ alias   wiki.md="v $HOME/git/config/wiki.md"
 
 # Load pendrive
 pendrive() {
-  doas -- mount -o umask=0,uid=nobody,gid=nobody "$1" /mnt/pendrive
+  doas -- mount -o umask=0,uid=nobody,gid=nobody "$1" /mnt/pendrive && cd /mnt/pendrive && n
 }
 
 # Find cover images from Google (opening a new tab on your browser)
@@ -67,6 +69,15 @@ coverfrom() {
     -metadata:s:v title='Album cover' \
     -metadata:s:v comment='Cover (front)' \
     new-"$2"
+
+}
+
+# Run todoncli
+tdtd() {
+
+  current_dir="$PWD"
+  cd "$HOME/git/tdtd/" && node todoncli.js
+  cd "$current_dir"
 
 }
 
@@ -180,6 +191,81 @@ seeytm() {
   exec mpv "$@" --save-position-on-quit --hwdec --vo=xv --ytdl-format=18
 }
 
+up_dunst() {
+
+  kill -9 $(pidof dunst)
+
+  export \
+                  font="$(xgetres dunst.font)" \
+                 width="$(xgetres dunst.geometry.width)" \
+                height="$(xgetres dunst.geometry.height)" \
+                     x="$(xgetres dunst.geometry.x)" \
+                     y="$(xgetres dunst.geometry.y)" \
+      separator_height="$(xgetres dunst.separator_height)" \
+               padding="$(xgetres dunst.padding)" \
+    horizontal_padding="$(xgetres dunst.horizontal_padding)" \
+         max_icon_size="$(xgetres dunst.max_icon_size)" \
+           frame_width="$(xgetres dunst.frame_width)" \
+        low_background="$(xgetres dunst.low.background)" \
+        low_foreground="$(xgetres dunst.low.foreground)" \
+       low_frame_color="$(xgetres dunst.low.frame_colour)" \
+     normal_background="$(xgetres dunst.normal.background)" \
+     normal_foreground="$(xgetres dunst.normal.foreground)" \
+    normal_frame_color="$(xgetres dunst.normal.frame_colour)" \
+   critical_background="$(xgetres dunst.critical.background)" \
+   critical_foreground="$(xgetres dunst.critical.foreground)" \
+  critical_frame_color="$(xgetres dunst.critical.frame_colour)"
+  
+  envsubst < "$HOME/.config/dunst/dunstrc.template" > "$HOME/.config/dunst/dunstrc"
+
+  dunst -s -follow keyboard & disown
+
+}
+
+up_zathura() {
+
+  # No live reload for zathura, nor hacks, no idea...
+  #kill -9 zathurja
+  
+  export \
+              adjust_open="$(xgetres zathura.adjust-open)" \
+                  recolor="$(xgetres zathura.recolor)" \
+           title_basename="$(xgetres zathura.title.basename)" \
+      selection_clipboard="$(xgetres zathura.selection.clipboard)" \
+                   render="$(xgetres zathura.render)" \
+    notification_error_bg="$(xgetres zathura.notification.error.bg)" \
+    notification_error_fg="$(xgetres zathura.notification.error.fg)" \
+  notification_warning_bg="$(xgetres zathura.notification.warning.bg)" \
+  notification_warning_fg="$(xgetres zathura.notification.warning.fg)" \
+          notification_bg="$(xgetres zathura.notification.bg)" \
+          notification_fg="$(xgetres zathura.notification.fg)" \
+            completion_bg="$(xgetres zathura.completion.bg)" \
+            completion_fg="$(xgetres zathura.completion.fg)" \
+      completion_group_bg="$(xgetres zathura.completion.group.bg)" \
+      completion_group_fg="$(xgetres zathura.completion.group.fg)" \
+  completion_highlight_bg="$(xgetres zathura.completion.highlight.bg)" \
+  completion_highlight_fg="$(xgetres zathura.completion.highlight.fg)" \
+                 index_bg="$(xgetres zathura.index.bg)" \
+                 index_fg="$(xgetres zathura.index.fg)" \
+          index_active_bg="$(xgetres zathura.index.active.bg)" \
+          index_active_fg="$(xgetres zathura.index.active.fg)" \
+                 input_bg="$(xgetres zathura.input.bg)" \
+                 input_fg="$(xgetres zathura.input.fg)" \
+                status_bg="$(xgetres zathura.status.bg)" \
+                status_fg="$(xgetres zathura.status.fg)" \
+             highlight_fg="$(xgetres zathura.highlight.active.fg)" \
+      highlight_active_fg="$(xgetres zathura.highlight.fg)" \
+               default_bg="$(xgetres zathura.default.bg)" \
+               default_fg="$(xgetres zathura.default.fg)" \
+                render_bg="$(xgetres zathura.render.bg)" \
+                render_fg="$(xgetres zathura.render.fg)" \
+               zathura_bg="$(xgetres zathura.bg)" \
+               zathura_fg="$(xgetres zathura.fg)"
+
+  envsubst < "$HOME/.config/zathura/zathurarc.template" > "$HOME/.config/zathura/zathurarc"
+
+}
+
 # Update XResources and apps
 up_xr() {
 
@@ -205,79 +291,10 @@ up_xr() {
     $SCRIPTS_FOLDER/bars/bars & disown
     
     # Dunst
-    {
-      kill -9 $(pidof dunst)
+    up_dunst
 
-      export \
-                      font="$(xgetres dunst.font)" \
-                     width="$(xgetres dunst.geometry.width)" \
-                    height="$(xgetres dunst.geometry.height)" \
-                         x="$(xgetres dunst.geometry.x)" \
-                         y="$(xgetres dunst.geometry.y)" \
-          separator_height="$(xgetres dunst.separator_height)" \
-                   padding="$(xgetres dunst.padding)" \
-        horizontal_padding="$(xgetres dunst.horizontal_padding)" \
-             max_icon_size="$(xgetres dunst.max_icon_size)" \
-               frame_width="$(xgetres dunst.frame_width)" \
-            low_background="$(xgetres dunst.low.background)" \
-            low_foreground="$(xgetres dunst.low.foreground)" \
-           low_frame_color="$(xgetres dunst.low.frame_colour)" \
-         normal_background="$(xgetres dunst.normal.background)" \
-         normal_foreground="$(xgetres dunst.normal.foreground)" \
-        normal_frame_color="$(xgetres dunst.normal.frame_colour)" \
-       critical_background="$(xgetres dunst.critical.background)" \
-       critical_foreground="$(xgetres dunst.critical.foreground)" \
-      critical_frame_color="$(xgetres dunst.critical.frame_colour)"
-      
-      envsubst < "$HOME/.config/dunst/dunstrc.template" > "$HOME/.config/dunst/dunstrc"
-
-      dunst -s -follow keyboard & disown
-
-    }
-
-    # Zathura
-    {
-      # No live reload for zathura, nor hacks, no idea...
-      #kill -9 zathurja
-      
-      export \
-                  adjust_open="$(xgetres zathura.adjust-open)" \
-                      recolor="$(xgetres zathura.recolor)" \
-               title_basename="$(xgetres zathura.title.basename)" \
-          selection_clipboard="$(xgetres zathura.selection.clipboard)" \
-                       render="$(xgetres zathura.render)" \
-        notification_error_bg="$(xgetres zathura.notification.error.bg)" \
-        notification_error_fg="$(xgetres zathura.notification.error.fg)" \
-      notification_warning_bg="$(xgetres zathura.notification.warning.bg)" \
-      notification_warning_fg="$(xgetres zathura.notification.warning.fg)" \
-              notification_bg="$(xgetres zathura.notification.bg)" \
-              notification_fg="$(xgetres zathura.notification.fg)" \
-                completion_bg="$(xgetres zathura.completion.bg)" \
-                completion_fg="$(xgetres zathura.completion.fg)" \
-          completion_group_bg="$(xgetres zathura.completion.group.bg)" \
-          completion_group_fg="$(xgetres zathura.completion.group.fg)" \
-      completion_highlight_bg="$(xgetres zathura.completion.highlight.bg)" \
-      completion_highlight_fg="$(xgetres zathura.completion.highlight.fg)" \
-                     index_bg="$(xgetres zathura.index.bg)" \
-                     index_fg="$(xgetres zathura.index.fg)" \
-              index_active_bg="$(xgetres zathura.index.active.bg)" \
-              index_active_fg="$(xgetres zathura.index.active.fg)" \
-                     input_bg="$(xgetres zathura.input.bg)" \
-                     input_fg="$(xgetres zathura.input.fg)" \
-                    status_bg="$(xgetres zathura.status.bg)" \
-                    status_fg="$(xgetres zathura.status.fg)" \
-                 highlight_fg="$(xgetres zathura.highlight.active.fg)" \
-          highlight_active_fg="$(xgetres zathura.highlight.fg)" \
-                   default_bg="$(xgetres zathura.default.bg)" \
-                   default_fg="$(xgetres zathura.default.fg)" \
-                    render_bg="$(xgetres zathura.render.bg)" \
-                    render_fg="$(xgetres zathura.render.fg)" \
-                   zathura_bg="$(xgetres zathura.bg)" \
-                   zathura_fg="$(xgetres zathura.fg)"
-
-      envsubst < "$HOME/.config/zathura/zathurarc.template" > "$HOME/.config/zathura/zathurarc"
-
-    }
+    # zathura
+    up_zathura
   
   }
 
@@ -462,7 +479,7 @@ rickrollrc() {
 wallpaper() {
 
   # If there's a wallpaper, then set it
-  [ "$1" ] && {
+  [ -f "$1" ] && {
 
 		# Wallpaper to set
 		clean_wallpaper="$(echo "$1" | sed 's/^- File: //')"
@@ -470,7 +487,7 @@ wallpaper() {
     # Set wallpaper with feh
     xwallpaper --stretch "$clean_wallpaper"
 
-    # Get how many lives our temp file has
+    # Get how many lines our temp file has
     total_lines_temp=$(cat "$XWALLPAPER_HISTORY" | wc -l)
 
     # Verify how many wallpapers we saved already - limit: 50
@@ -497,7 +514,7 @@ wallpaper() {
 random_wallpaper() {
 
   # This will get a new random wallpaper based on a directory
-  wallpaper "$XWALLPAPERS_FOLDER/$(ls $XWALLPAPERS_FOLDER | shuf -n 1)" 
+  wallpaper "$XWALLPAPERS_FOLDER/$(ls -R $XWALLPAPERS_FOLDER | shuf -n 1)" 
 
 }
 
@@ -517,30 +534,37 @@ delete_wallpaper() {
 	mv "$latest_wallpaper" "$TRASH"
 
   # Delete all wallpapers entries from history
-	sed -i "s/$latest_wallpaper//gm" "$XWALLPAPER_HISTORY"
+	sed -i "s*$latest_wallpaper**gm" "$XWALLPAPER_HISTORY"
 
 	# Select wallpaper before that, or if there isn't any, then set a random
 	previous_wallpaper || random_wallpaper
 
 }
 
-previous_wallpaper() {
+to_gif() {
 
-  # Path of a file to set the new wallpaper in history  
-  #temp_wallpaper_file="$HOME/desktop/wallpapers_history"
+  palette="/tmp/palette.png"
+  filters="fps=25,scale=500:-1:flags=lanczos"
+
+  ffmpeg -i "$1" -vf "$filters,palettegen" -y $palette
+  ffmpeg -i "$1" -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y "$1".gif
+
+}
+
+previous_wallpaper() {
 
   # Remove last line of the file
   sed -i '$d' "$XWALLPAPER_HISTORY"
 
   # Get latest wallpaper of path
   latest_wallpaper=$(cat "$XWALLPAPER_HISTORY" | tail -n1)
-
+  
   # Verify if there's a latest wallpaper
-  [ "$latest_wallpaper" ] && {
+  [ -f "$latest_wallpaper" ] && {
 
-    # Set wallpaper with feh || If it fails, set a random
-    wallpaper "$latest_wallpaper" || random_wallpaper
-
+    # Set wallpaper with xwallpaper
+    wallpaper "$latest_wallpaper"
+  
   # If there's not a wallpaper, then just set a random
   } || random_wallpaper
 

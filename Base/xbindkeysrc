@@ -1,5 +1,6 @@
 #/usr/bin/xbindkeys rc
 #
+# DESCRIPTION: 
 # If you edit this file, do not forget to uncomment any lines
 # that you change.
 # The pound(#) symbol may be used anywhere for comments.
@@ -11,7 +12,8 @@
 #    "command to start"
 #       associated key
 #
-# BeyondMagic © 2021
+# MAINTAINER: (s)
+# BeyondMagic © 2021-
 
 #------------------------------------------------------------------------------
 # music player deamon (mpd) calls with mpc
@@ -78,7 +80,6 @@
   m:0x10 + c:179
     Mod2 + XF86Tools
 
-
 # Delete the current song from database :)
 "zsh -c '. ~/Base/aliasesrc; del_cursong'"
   m:0x50 + c:179
@@ -106,10 +107,15 @@
 # Extra Keybinds
 #------------------------------------------------------------------------------
 
-# See all windows
-"skippy-xd"
+# Reset Picom (fork is a little bugged
+"killall picom; picom --experimental-backends --blur-method dual_kawase --blur-strength 3 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25 & disown"
   m:0x50 + c:33
     Super + P
+
+# See all windows
+"skippy-xd"
+  m:0x50 + c:135
+    Super + Menu
 
 #------------------------------------------------------------------------------
 # POSIX-complaint scripts

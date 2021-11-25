@@ -40,6 +40,8 @@ key('i', '<C-Home>','<End>', { noremap = true, silent = true })
 ---------------------------Window Movement----------------------------
 
 -- Set '<Leader>h' as 'help search' command
+key('i', '<A-TAB>', '<ESC>:tabNext<CR>', { noremap = true, silent = true  })
+key('n', '<A-TAB>', ':tabNext<CR>', { noremap = true, silent = true  })
 key('n', '<TAB>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 key('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 key('n', '<Leader>x', ':bd<CR>', { noremap = true, silent = true })
@@ -67,8 +69,6 @@ key('n', '<F5>', ':setlocal spell!<CR>', { noremap = true, silent = true  })
 
 
 ---------------------------Better Movement-----------------------------
-
-
 
 -- Move lines normally like an IDE when line wraps
 key('i', '<Down>', '<c-\\><c-o>gj', { noremap = true, silent = true  })

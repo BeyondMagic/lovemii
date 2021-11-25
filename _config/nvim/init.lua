@@ -27,6 +27,9 @@ require('lsp.cssls')
 -- Autocmd commands from Vimscript
 require('autocg')
 
+-- Global function
+require('default.functions')
+
 -- Themes for my neovim
 -- require('theme')
 

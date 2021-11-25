@@ -3,7 +3,8 @@
 # DESCRIPTION:
 #   Execute magic's desktop :)
 #
-# Executed by startx (run your window manager from here)
+# MAINTAINER: (s)
+#   BeyondMagic © 2021-
 
 #-------------------------------------------------------------------------------
 # Environment Variables
@@ -21,9 +22,6 @@ export NO_AT_BRIDGE=1 \
        XDG_CONFIG_HOME="$HOME/.config/" \
        EDITOR="nvim" "VISUAL=nvim" \
        BROWSER='firefox' \
-       XMODIFIERS='@im=fcitx5' \
-       GTK_IM_MODULE='fcitx5' \
-       QT_IM_MODULE='fcitx5' \
        XDG_CONFIG_HOME="$HOME/.config" \
        GNUPGHOME="${XDG_CONFIG_HOME}/gnupg" \
        CARGO_HOME="${XDG_CONFIG_HOME}/cargo" \
@@ -47,15 +45,20 @@ export NO_AT_BRIDGE=1 \
 #   Just get colours
 xrdb ~/.config/xorg/XResources
 
+#   Input method
+fcitx5 & disown
+
 #   Start keyboard manager
 dwm &
 
-#   Start SSH-AGENT and dbus
-eval $(ssh-agent) &
-export $(dbus-launch) &
+# Pokit agent
+polkit-dumb-agent &
+
+#   Start Lemonbar (bottom and top bars)
+"$SCRIPTS_FOLDER"/bars/lemonbars &
 
 # Choose wallpaper with FEH
-xwallpaper --stretch "$(tail -n1 ~/Base/xwallpapers_history)" &
+xwallpaper --stretch "$(tail -n1 "$XWALLPAPER_HISTORY")" &
 
 # Picom as compositor
 picom --experimental-backends --blur-method dual_kawase --blur-strength 3 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25 &
@@ -90,19 +93,23 @@ xmodmap -e 'pointer = 3 2 1' &
 unclutter --timeout 1 &
 
 #   Open new terminal and todoncli7
-st -g 76x30+830+57 -t 'todoncli' -e 'dash' '-c' 'cd ~/git/tdtd && node todoncli.js' &
+st -g '76x30+830+57' -t 'todoncli' -e 'dash' '-c' 'cd ~/git/tdtd && node todoncli.js' &
 
 #   Notification server
 dunst -s -follow keyboard &
 
-#   Start Lemonbar (bottom and top bars)
-$SCRIPTS_FOLDER/bars/bars &
+#   Start modules for lemonbars (bottom and top bars)
+"$SCRIPTS_FOLDER"/bars/modules &
 
-#   Japanese Keyboard
-/usr/bin/fcitx5 &
+#   Set cursor
+gsettings set org.gnome.desktop.interface cursor-theme "$(xgetres Xcursor.theme)"
 
-#   Set Keyboard to Portuguese ABNT 2 (I know it shouldn't be here, but whatever)
+#   Start SSH-AGENT and dbus
+eval $(ssh-agent) &
+export $(dbus-launch) &
+
+#   Set keyboard to ABNT2 PT-BR
 setxkbmap -model abnt2 -layout br -variant abnt2 &
 
-#   Sleep after 12 minutes of inactivity
+#   Sleep after 7 minutes of inactivity
 xautolock -time 7 -locker "lock"

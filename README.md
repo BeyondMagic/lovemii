@@ -80,7 +80,17 @@
 
 <h3 align="center">POST-INSTALLATION ARTIX RUNIT</h3>
 
-##### sddm
+...
+
+---
+
+<h2 align=-"center">SPECIAL PROGRAMS</h2>
+
+### sddm
+
+<p align="center">
+  <img src="/.github/sddm.png" alt="Preview of the lock screen manager, sddm.">
+</p>
 
 Run this to link the `xsessions` folder and add `lovemii` executable, then pass all the configuration of sddm to the current system.
 
@@ -91,10 +101,6 @@ Run this to link the `xsessions` folder and add `lovemii` executable, then pass 
 # cp -rf "$HOME/git/config/usr/share/sddm/themes/*" /usr/share/sddm/themes/
 # cp -rf "$HOME/git/config/etc/sddm.conf" /etc/sddm.conf
 ```
-
----
-
-<h2 align=-"center">SPECIAL PROGRAMS</h2>
 
 ### NeoVim
 

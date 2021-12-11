@@ -31,12 +31,16 @@ alias      wget="wget --hsts-file '$HOME/.config/wget/wget-history'"
 alias      grep='grep --colour'
 alias     links="v $HOME/git/startpage/data/links.json"
 alias    quotes="v $HOME/git/startpage/data/quotes.json"
+alias favorites="v $HOME/git/favorites.json"
+alias   frasial="v $HOME/git/parafrasial.json"
 alias     build='doas -- make clean install'
 alias upendrive='doas -- umount /mnt/pendrive'
-alias        cpv='cp -g' # Patch for cp by jarun https://github.com/jarun/advcpmv
-alias        mvv='mv -g' # Patch for mv by jarun https://github.com/jarun/advcpmv
+alias        cpv='cpv -g' # Patch for cp by jarun https://github.com/jarun/advcpmv
+alias        mvv='mvv -g' # Patch for mv by jarun https://github.com/jarun/advcpmv
 alias       wiki="v $HOME/git/config/README.md"
-
+alias  seeimages='nsxiv * & disown'
+alias  processes='ps fux -u iris'
+alias     nincat="dash $HOME/git/ninecath-nincat/nincat"
 
 #--------------------------------------------------------------------------------
 # Functions
@@ -215,11 +219,28 @@ up_dunst() {
    critical_background="$(xgetres dunst.critical.background)" \
    critical_foreground="$(xgetres dunst.critical.foreground)" \
   critical_frame_color="$(xgetres dunst.critical.frame_colour)"
-  
+
   envsubst < "$HOME/.config/dunst/dunstrc.template" > "$HOME/.config/dunst/dunstrc"
 
   dunst -s -follow keyboard & disown
 
+}
+
+up_gtk() {
+
+  export \
+    gtk_cursor="$(xgetres Xcursor.theme)" \
+     gtk_theme="$(xgetres theme.gtk.theme)" \
+      gtk_icon="$(xgetres theme.gtk.icon)"
+
+  envsubst < "$HOME/.config/xsettingsd/xsettingsrc.template" > "$HOME/.config/xsettingsd/xsettingsdrc"
+
+  gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
+  gsettings set org.gnome.desktop.interface cursor-theme "$gtk_cursor"
+  gsettings set org.gnome.desktop.interface icon-theme "$gtk_icon"
+ 
+  pkill -f xsettingsd
+  xsettingsd -c "$HOME/.config/xsettingsd/xsettingsdrc" & disown
 }
 
 up_zathura() {
@@ -295,6 +316,9 @@ up_xr() {
 
     # zathura
     up_zathura
+
+    # gtk server
+    up_gtk
   
   }
 
@@ -502,19 +526,34 @@ wallpaper() {
 
     # Add new's wallpaper's path to temp file
     echo "$clean_wallpaper" >> "$XWALLPAPER_HISTORY"
-    
-    # Force new link to startpage
-    #   github.com/beyondmagic/mod-startpage
-    ln -sf "$clean_wallpaper" ~/git/startpage/data/background
-    
+
   }
 
 }
 
 random_wallpaper() {
 
-  # This will get a new random wallpaper based on a directory
-  wallpaper "$XWALLPAPERS_FOLDER/$(ls -R $XWALLPAPERS_FOLDER | shuf -n 1)" 
+  [ "$1" = 'sddm' ] && {
+
+    # This will get a new random wallpaper based on a directory
+    new_wallpaper="$(find "$XWALLPAPERS_FOLDER/sddm/" -type f -size +0 | shuf -n 1)"
+
+    # This will create a link to the sddm theme wallpaper
+    cp -rf "$new_wallpaper" /usr/share/sddm/themes/sugar-candy/Backgrounds/auto
+
+    # Force new link to startpage
+    #   github.com/beyondmagic/mod-startpage
+    ln -sf "$new_wallpaper" ~/git/startpage/data/background
+
+  } || {
+
+    # This will get a new random wallpaper based on a directory
+    new_wallpaper="$(find "$XWALLPAPERS_FOLDER/$(xgetres theme.type)" -type f -size +0 | shuf -n 1)"
+
+    # This will just set it
+    wallpaper "$new_wallpaper"
+
+  }
 
 }
 

@@ -103,12 +103,17 @@
     m:0x10 + c:76
       Super + F10
 
+# create a new task to be shown at the top bar.
+"$SCRIPTS_FOLDER/bars/module/top/_tasks add"
+    m:0x50 + c:110
+      Super + Home
+      
 #------------------------------------------------------------------------------
 # Extra Keybinds
 #------------------------------------------------------------------------------
 
 # Reset Picom (fork is a little bugged
-"killall picom; picom --experimental-backends --blur-method dual_kawase --blur-strength 3 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25 & disown"
+"pkill picom; picom --experimental-backends --blur-method dual_kawase --blur-strength 10 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25"
   m:0x50 + c:33
     Super + P
 
@@ -123,14 +128,14 @@
 
 
 # Start/Stop sample recording
-"$HOME/git/scripts/record/record_size"
-   m:0x10 + c:73
-    F7
+#"$HOME/git/scripts/record/record_size"
+#   m:0x10 + c:73
+#    F7
     
 # Start/Stop fullscreen recording
-"$HOME/git/scripts/record/record_fullscreen"
-   m:0x10 + c:74
-    F8
+#"$HOME/git/scripts/record/record_fullscreen"
+#   m:0x10 + c:74
+#    F8
 
 # Take screenshot, duh
 "$HOME/git/scripts/screenshot/screen"

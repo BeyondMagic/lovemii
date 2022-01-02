@@ -2,29 +2,32 @@ local cmp = require("cmp")
 
 -- nvim-cmp setup
 cmp.setup {
- snippet = {
-  expand = function(args)
-   require("luasnip").lsp_expand(args.body)
-  end,
- },
- formatting = {
-   format = function(entry, vim_item)
-   -- load lspkind icons
-   vim_item.kind = string.format(
-     "%s %s",
-     require("default.lspkind_icons").icons[vim_item.kind],
-     vim_item.kind
-   )
-
-   vim_item.menu = ({
-     nvim_lsp = "[LSP]",
-     nvim_lua = "[Lua]",
-     buffer = "[BUF]",
-   })[entry.source.name]
-
-    return vim_item
-  end,
+  snippet = {
+   expand = function(args)
+    require("luasnip").lsp_expand(args.body)
+   end,
   },
+
+  formatting = {
+    format = function(entry, vim_item)
+      -- load lspkind icons
+      vim_item.kind = string.format(
+        "%s %s",
+        require("default.lspkind_icons").icons[vim_item.kind],
+        vim_item.kind
+      )
+
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Lua]",
+        buffer = "[BUF]",
+        path = "[Path]",
+      })[entry.source.name]
+
+       return vim_item
+   end,
+   },
+
  mapping = {
     ["<TAB>"] = cmp.mapping.select_next_item(),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -56,6 +59,7 @@ cmp.setup {
        end
     end,
  },
+
  sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },

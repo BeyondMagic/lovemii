@@ -17,6 +17,7 @@
 + neovim-nightly-bin : Editor of text.
 + sddm + sddm-runit : It's something like that.
 + xsettingsd : Simple X11 GTK server.
++ 915resolution : For grub resolution.
 
 **Language Servers:**
 + clang + llvm-libs + llvm : To build ccls.
@@ -135,6 +136,15 @@ gfx.webrender.enabled
 toolkit.legacyUserProfileCustomizations.stylesheets
 layout.css.backdrop-filter.enabled
 layout.css.color-mix.enabled
+browser.tabs.loadBookmarksInTabs
+browser.urlbar.maxRichResults 25
+```
+
+Disable the following in `about:config`:
+
+```
+strict_origin_policy
+extensions.htmlaboutaddons.recommendations.enabled
 ```
 
 On `about:support` click on `Open Directory` for **Local Directory**:

@@ -1,3 +1,4 @@
-theme.type : white
-Xcursor.theme : Breeze-Obsidian
-Xcursor.size  : 16
+theme.type      : white
+Xcursor.theme   : Breeze-Obsidian
+theme.gtk.theme : Adwaita
+theme.gtk.icon  : Adwaita

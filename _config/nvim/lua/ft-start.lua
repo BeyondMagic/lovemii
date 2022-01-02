@@ -1,19 +1,6 @@
 -- In init.lua or filetype.nvim's config file
 require('filetype').setup({
   overrides = {
-    --    extensions = {
-    -- Set the filetype of *.pn files to potion
-    -- md = 'markdown'
-    --    },
-    --    literal = {
-    -- Set the filetype of files named "MyBackupFile" to lua
-    -- MyBackupFile = 'lua',
-    --    },
-    --    complex = {
-    -- Set the filetype of any of XResource themes
-    -- Set the filetype of any full filename matching the regex to gitconfig
-    -- [".*git/config"] = "gitconfig",  -- Included in the plugin
-    --    },
 
     -- The same as the ones above except the keys map to functions
     function_extensions = {
@@ -41,11 +28,30 @@ require('filetype').setup({
       end
     },
 
-    function_complex = {
+    complex = {
       [".*config/xorg/*"] = function()
         vim.bo.filetype = 'xdefaults'
         vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_XResources()')
       end,
+      [".*config/nvim/*"] = function()
+        vim.api.nvim_command('cd ~/git/config/_config/nvim/')
+      end,
+      [".*git/iris/_personal/beyondmagic.space/ts"] = function()
+        vim.bo.filetype = 'xdefaults'
+      end,
+      [".*git/iris/_personal/beyondmagic.space/templates/*"] = function()
+        vim.bo.filetype = 'xdefaults'
+        print('lol')
+      end,
+      [".*git/iris/source/*"] = function()
+        vim.api.nvim_command('cd ~/git/iris/')
+        --vim.api.nvim_command('set colorcolumn=100')
+      end,
     },
+
+--    shebang = {
+      -- Set the filetype of files with a dash shebang to sh
+--      node = 'js',
+--    },
   }
 })

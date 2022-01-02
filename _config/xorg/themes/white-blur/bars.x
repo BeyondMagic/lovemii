@@ -1,7 +1,7 @@
-bars.bg : #99f0f0f0
+bars.bg : #CCf0f0f0
 bars.fg : #1b1b1b
 
-bars.bottom.nickname                 : iris %{T3}%{F#D59FB1}%{T2}%{F-} arcoiris  
+bars.bottom.nickname                 : iris %{F#24c45e}=F%{F-} arcoiris  
 bars.bottom.recording.fg             : #000000
 bars.bottom.tags.bg                  : #ffffff
 bars.bottom.tags.selected.fg         : #14181b
@@ -12,6 +12,7 @@ bars.bottom.tags.unselected.all      : #13171a
 bars.bottom.layout.fg                : #def1e4
 bars.bottom.layout.bg                : #14181b
 bars.bottom.titles.title             : #12171c
+bars.bottom.titles.etc               : #788888
 bars.bottom.titles.icon              : #246898
 bars.bottom.memory.colour            : #12171c
 bars.bottom.memory.bar               : #444444
@@ -20,12 +21,11 @@ bars.top.sound.icon.on     : #2C55A4
 bars.top.sound.icon.off    : #525659
 bars.top.sound.bar.on      : #2C55A4
 bars.top.sound.bar.off     : #392d4d
-bars.top.clock.fg          : #FA9370
-bars.top.clock.bg          : #1E1E20
-bars.top.clock.fbg         : #616164
-bars.top.clock.ffg         : #CC5044
-bars.top.sensors.affix.fg  : #616164
-bars.top.sensors.affix.bg  : #616164
+bars.top.clock.fg          : #1E1E20
+bars.top.clock.bg          : #FA9370
+bars.top.clock.fbg         : #CC5044
+bars.top.clock.ffg         : #616164
+bars.top.sensors.affix.bg  : #000000
 bars.top.sensors.low.fg    : #0D2331
 bars.top.sensors.low.bg    : #87C7E4
 bars.top.sensors.normal.fg : #0D2331

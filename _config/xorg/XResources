@@ -1,3 +1,4 @@
+#include "/home/iris/.config/xorg/default/theme.x"
 #include "/home/iris/.config/xorg/default/xnotify.x"
 #include "/home/iris/.config/xorg/default/st.x"
 #include "/home/iris/.config/xorg/default/dunst.x"
@@ -15,3 +16,4 @@
 #include "/home/iris/.config/xorg/theme-linked/zathura.x"
 #include "/home/iris/.config/xorg/theme-linked/bars.x"
 #include "/home/iris/.config/xorg/theme-linked/91menu.x"
+#include "/home/iris/.config/xorg/theme-linked/nnn.x"

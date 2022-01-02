@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------------------
 
 # My toy :)
-dash "$HOME"/git/ninecath-nincat/nincat --random
+NINCAT_ROOT=$HOME/git/ninecath/nincat dash $HOME/git/ninecath/nincat/nincat --random --center
 
 # Load faster
 . ~/.config/zsh/zsh-plugins/instant-zsh.zsh

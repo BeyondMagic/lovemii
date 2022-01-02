@@ -13,5 +13,5 @@ function Restart_XBindKeys()
 end
 
 function Restart_XResources()
-  os.execute([[xrdb ~/.config/xorg/XResources]])
+  os.execute[[xrdb ~/.config/xorg/XResources]]
 end

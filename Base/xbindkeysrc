@@ -113,9 +113,9 @@
 #------------------------------------------------------------------------------
 
 # Reset Picom (fork is a little bugged
-"pkill picom; picom --experimental-backends --blur-method dual_kawase --blur-strength 10 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25"
-  m:0x50 + c:33
-    Super + P
+#"pkill picom; picom --experimental-backends --blur-method dual_kawase --blur-strength 8 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25"
+#  m:0x50 + c:33
+#   Super + P
 
 # See all windows
 "skippy-xd"

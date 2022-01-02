@@ -28,8 +28,18 @@ function! Insert_Scroll_Down()
   exe "normal \<PageDown>"
 endfunction
 
+function! Reset_FileType()
+  
+endfunction
+
 autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-autocmd! VimLeave * :mksession! ~/.config/nvim/session.vim
+autocmd! VimLeavePre * :mksession! ~/.config/nvim/session.vim
 autocmd! Signal SIGUSR1 :call Switch_Theme()
+
+" For some reason ?? this do not work with neovim lua builtin comands.
+nmap <C-Down> z%
+nmap <C-Up> g%
+imap <C-Down> <Esc>z%i
+imap <C-Up> <Esc>g%i
 
 ]], false)

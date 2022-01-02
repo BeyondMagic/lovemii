@@ -21,9 +21,11 @@ key('n', '<Leader>v', 'vv<C-v>', { noremap = true, silent = true })
 key('n', '<Leader>l', ':TodoTelescope<CR>', { noremap = true, silent = true })
 -- Using lua functions
 key('n', '<Leader>ff', ':lua require("telescope.builtin").find_files()<cr>', { noremap = true, silent = true })
--- key('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<cr>', { noremap = true, silent = true })
--- key('n', '<Leader>fb', ':lua require("telescope.builtin").buffers()<cr>', { noremap = true, silent = true })
--- key('n', '<Leader>fh', ':lua require("telescope.builtin").help_tags()<cr>', { noremap = true, silent = true })
+key('n', '<Leader>fg', ':lua require("telescope.builtin").live_grep()<cr>', { noremap = true, silent = true })
+key('n', '-', ':-', { noremap = true, silent = true })
+key('n', '+', ':+', { noremap = true, silent = true })
+key('n', '<C-Down>', 'g%', { noremap = true, silent = true })
+key('n', '<C-Up>', 'z%', { noremap = true, silent = true })
 
 ---------------------------Tab auto-complete-------------------------
 
@@ -47,6 +49,8 @@ key('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true 
 key('n', '<Leader>x', ':bd<CR>', { noremap = true, silent = true })
 key('n', '<Leader>X', ':bd<CR>', { noremap = true, silent = true })
 key('n', '<C-d>', ':bd<CR>', { noremap = true, silent = true })
+key('i', '<C-r>', '<ESC>ui', { noremap = true, silent = true })
+key('n', '<C-r>', 'u', { noremap = true, silent = true })
 
 ---------------------------Explorer Keys-------------------------
 
@@ -73,8 +77,6 @@ key('n', '<F5>', ':setlocal spell!<CR>', { noremap = true, silent = true  })
 -- Move lines normally like an IDE when line wraps
 key('i', '<Down>', '<c-\\><c-o>gj', { noremap = true, silent = true  })
 key('i', '<Up>', '<c-\\><c-o>gk', { noremap = true, silent = true  })
-key('n', '<Down>', 'gj', { noremap = true, silent = true  })
-key('n', '<Up>', 'gk', { noremap = true, silent = true  })
 
 -- Delete character and go to Insert mode when BACKSPACE on Normal Mode
 --key('n', '<BS>', 'i<BS>', { noremap = true, silent = true })

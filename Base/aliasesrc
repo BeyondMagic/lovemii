@@ -40,7 +40,9 @@ alias        mvv='mvv -g' # Patch for mv by jarun https://github.com/jarun/advcp
 alias       wiki="v $HOME/git/config/README.md"
 alias  seeimages='nsxiv * & disown'
 alias  processes='ps fux -u iris'
-alias     nincat="dash $HOME/git/ninecath-nincat/nincat"
+alias      c++20='g++ -c -fmodules-ts -std=c++20'
+alias     nincat="NINCAT_ROOT=$HOME/git/ninecath/nincat dash $HOME/git/ninecath/nincat/nincat"
+alias        dev='./make.sh'
 
 #--------------------------------------------------------------------------------
 # Functions
@@ -124,6 +126,11 @@ v() {
   nvim "$@"
 }
 
+# Run nvim with the last session :Z
+vs() {
+  nvim -S ~/.config/nvim/session.vim "$@"
+}
+
 # Run ncmpcpp :|
 song() {
   ncmpcpp -c "$HOME/.config/ncmpcpp/config" --ignore-config-errors
@@ -149,12 +156,12 @@ update_nincat() {
 
 	makepkg -si \
 		&& makepkg --printsrcinfo > .SRCINFO \
-		&& cp .SRCINFO PKGBUILD -t ~/git/nincat-aur \
-		&& cd ~/git/nincat-aur \
+		&& cp .SRCINFO PKGBUILD -t ~/git/ninecath/nincat-aur \
+		&& cd ~/git/ninecath/nincat-aur \
 		&& git add . \
-		&& git commit -m "Updated to $(date +%m%d)" \
+		&& git commit \
 		&& git push origin master \
-		&& cd ~/git/ninecath-nincat
+		&& cd ~/git/ninecath/nincat
 }
 
 # Get current PATH and copy it to system

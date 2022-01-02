@@ -1,3 +1,4 @@
+
 -- Personal global, windows options of neovim:
 require('options')
 
@@ -15,11 +16,25 @@ require('keymappings')
 -- Then change the path to your 'lua-language-server' build
 require('lsp.lua-ls')
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- C++ and C Language Server
 require('lsp.ccls')
 
+-- Bash Language Server
+require('lspconfig').bashls.setup{}
+
+
 -- Typescript + Javascript Language Server
 require('lspconfig').tsserver.setup{}
+
+-- HTML Language Server
+--Enable (broadcasting) snippet capability for completion
+
+require('lspconfig').html.setup {
+  capabilities = capabilities,
+}
 
 -- CSS + Less + SASS Language Server
 require('lsp.cssls')

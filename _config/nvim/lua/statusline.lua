@@ -2,7 +2,8 @@ local gl = require('galaxyline')
 -- get my theme in galaxyline reo
 -- local colors = require('galaxyline.theme').default
 local colors = {
-    bg = '#111318',
+    bg = 'none',
+    fg = '#1B1615',
     yellow = '#DCDCAA',
     dark_yellow = '#D7BA7D',
     cyan = '#4EC9B0',
@@ -50,10 +51,10 @@ gls.left[1] = {
                 ['!'] = { 'Shell', colors.blue },
                 t = { 'Terminal', colors.blue }
             }
-            vim.cmd('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()][2])
-            return '▊ ' .. mode_color[vim.fn.mode()][1]
+            vim.cmd('hi GalaxyViMode guifg=' .. colors.fg .. ' guibg=' .. mode_color[vim.fn.mode()][2] .. ' gui=bold')
+            return '  ' .. mode_color[vim.fn.mode()][1] .. ' '
         end,
-        highlight = {colors.red, colors.bg}
+--        highlight = {colors.red, colors.bg}
     }
 }
 print(vim.fn.getbufvar(0, 'ts'))
@@ -157,7 +158,7 @@ gls.right[7] = {
         provider = 'LinePercent',
         separator = ' ',
 	separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+        highlight = {colors.blue, colors.bg}
     }
 }
 
@@ -169,7 +170,7 @@ gls.right[8] = {
         condition = condition.hide_in_width,
         separator = ' ',
 	separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+        highlight = {colors.light_green, colors.bg}
     }
 }
 
@@ -179,7 +180,7 @@ gls.right[9] = {
         condition = condition.hide_in_width,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+        highlight = {colors.green, colors.bg}
     }
 }
 
@@ -189,18 +190,18 @@ gls.right[10] = {
         condition = condition.hide_in_width,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+        highlight = {colors.cyan, colors.bg}
     }
 }
 
 gls.right[11] = {
     Space = {
         provider = function()
-            return ' '
+            return '=F'
         end,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.orange, colors.bg}
+        highlight = {colors.cyan, colors.bg}
     }
 }
 

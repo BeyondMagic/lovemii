@@ -7,6 +7,9 @@ require('options')
 --   ~/.local/share/nvim/site/pack/paker/start/packer.nvim
 require('plugins')
 
+-- Inner map for editing.
+--require('innermap')
+
 -- Personal Keymaps of neovim:
 require('keymappings')
 
@@ -29,6 +32,12 @@ require('lspconfig').bashls.setup{}
 -- Typescript + Javascript Language Server
 require('lspconfig').tsserver.setup{}
 
+-- SASS Language Server
+require('lspconfig').tailwindcss.setup{}
+
+-- Parse English
+--require('lint-nv')
+
 -- HTML Language Server
 --Enable (broadcasting) snippet capability for completion
 
@@ -40,13 +49,11 @@ require('lspconfig').html.setup {
 require('lsp.cssls')
 
 -- Autocmd commands from Vimscript
-require('autocg')
+require('autocmd')
 
 -- Global function
-require('default.functions')
+require('functions')
 
--- Themes for my neovim
--- require('theme')
 
 -- Hai there!
 print('-- Welcome my fellow friend :)')

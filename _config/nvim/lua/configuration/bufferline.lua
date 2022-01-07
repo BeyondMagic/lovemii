@@ -1,4 +1,18 @@
 require('bufferline').setup {
+  highlights = {
+    fill = {
+--      guifg = '<color-value-here>',
+      guibg = '#222222',
+    },
+    background = {
+      guifg = '#AAAAAA',
+      guibg = '#333333',
+    },
+--    tab = {
+--      guifg = '<color-value-here>',
+--      guibg = '#fffff0',
+--    },
+  },
   options = {
     numbers = "both",
     -- numbers = { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
@@ -6,10 +20,10 @@ require('bufferline').setup {
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
-    indicator_icon = '█ ',
+    indicator_icon = '█ ',
     buffer_close_icon = '',
     modified_icon = '●',
-    close_icon = ' ',
+    close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
     max_name_length = 18,
@@ -49,25 +63,39 @@ require('bufferline').setup {
     custom_areas = {
       right = function()
         local result = {}
-        local error = vim.lsp.diagnostic.get_count(0, [[Error]])
-        local warning = vim.lsp.diagnostic.get_count(0, [[Warning]])
-        local info = vim.lsp.diagnostic.get_count(0, [[Information]])
-        local hint = vim.lsp.diagnostic.get_count(0, [[Hint]])
+        -- local error = vim.diagnostic.get(0, [[Error]])
+        -- local warning = vim.diagnostic.get(0, [[Warning]])
+        -- local info = vim.diagnostic.get(0, [[Information]])
+        -- local hint = vim.diagnostic.get(0, [[Hint]])
 
-        if error ~= 0 then
-        result[1] = {text = "  " .. error, guifg = "#EC5241"}
+        local nvim_diagnostic = function()
+          local diagnostics = vim.diagnostic.get(0)
+          local count = { 0, 0, 0, 0 }
+          for _, diagnostic in ipairs(diagnostics) do
+            count[diagnostic.severity] = count[diagnostic.severity] + 1
+          end
+          return count[vim.diagnostic.severity.ERROR],
+            count[vim.diagnostic.severity.WARN],
+            count[vim.diagnostic.severity.INFO],
+            count[vim.diagnostic.severity.HINT]
         end
 
-        if warning ~= 0 then
-        result[2] = {text = "  " .. warning, guifg = "#EFB839"}
+        local data = nvim_diagnostic()
+
+        if data.error ~= 0 then
+        result[1] = {text = "  " .. data[0], guifg = "#EC5241"}
         end
 
-        if hint ~= 0 then
-        result[3] = {text = "  " .. hint, guifg = "#A3BA5E"}
+        if data.warning ~= 0 then
+        result[2] = {text = "  " .. data[1], guifg = "#EFB839"}
         end
 
-        if info ~= 0 then
-        result[4] = {text = "  " .. info, guifg = "#7EA9A7"}
+        if data.hint ~= 0 then
+        result[3] = {text = "  " .. data[2], guifg = "#A3BA5E"}
+        end
+
+        if data.info ~= 0 then
+        result[4] = {text = "  " .. data[3], guifg = "#7EA9A7"}
       end
       return result
     end

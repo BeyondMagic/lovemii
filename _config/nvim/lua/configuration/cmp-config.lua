@@ -1,5 +1,34 @@
 local cmp = require("cmp")
 
+local icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+  Book = ""
+}
+
 -- nvim-cmp setup
 cmp.setup {
   snippet = {
@@ -13,15 +42,16 @@ cmp.setup {
       -- load lspkind icons
       vim_item.kind = string.format(
         "%s %s",
-        require("default.lspkind_icons").icons[vim_item.kind],
+        icons[vim_item.kind],
         vim_item.kind
       )
 
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Lua]",
-        buffer = "[BUF]",
-        path = "[Path]",
+        nvim_lsp = "力",
+        nvim_lua = "",
+        buffer = "﬘",
+        path = "﫶",
+        look = icons.Book,
       })[entry.source.name]
 
        return vim_item
@@ -63,6 +93,7 @@ cmp.setup {
  sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
+    { name = "look", keyword_length = 4, option = { convert_case = true, loud = true } },
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },

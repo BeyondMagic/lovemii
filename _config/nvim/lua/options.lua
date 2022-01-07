@@ -7,6 +7,9 @@ local option = vim.api.nvim_set_option
 -- Fix moving through lines 'gk' and 'gj'
 vim.wo.linebreak = true
 
+-- Use the new FileType system of Neovim.
+-- let g:do_filetype_lua = 1
+
 -- Show lines number (hybrid)
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -95,10 +98,9 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 
 --------------------Variables-----------------
 
-
--- Variables of vim
-vim.g.one_allow_italics = 1
-
+vim.api.nvim_set_var('one_allow_italics', 1)
+vim.api.nvim_set_var('nnn#command', 'nnn -dDoxR')
+vim.api.nvim_set_var('do_filetype_lua', 1)
 
 --------------------API------------------------
 

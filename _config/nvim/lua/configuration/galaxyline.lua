@@ -1,8 +1,22 @@
+local function getWords()
+  if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" then
+    if vim.fn.wordcount().visual_words == 1 then
+      return tostring(vim.fn.wordcount().visual_words) .. " word"
+    elseif not (vim.fn.wordcount().visual_words == nil) then
+      return tostring(vim.fn.wordcount().visual_words) .. " words"
+    else
+      return tostring(vim.fn.wordcount().words) .. " words"
+    end
+  else
+    return ""
+  end
+end
+
 local gl = require('galaxyline')
 -- get my theme in galaxyline reo
 -- local colors = require('galaxyline.theme').default
 local colors = {
-    bg = 'none',
+    bg = '#222222',
     fg = '#1B1615',
     yellow = '#DCDCAA',
     dark_yellow = '#D7BA7D',
@@ -120,40 +134,29 @@ gls.left[7] = {
     }
 }
 
-gls.right[1] = {
-    DiagnosticError = {provider = 'DiagnosticError', icon = '    '}
-}
-gls.right[2] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '    '}}
+--gls.right[1] = {
+--    DiagnosticError = {provider = 'DiagnosticError', icon = '    '}
+--}
+--gls.right[2] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '    '}}
 
-gls.right[3] = {
-    DiagnosticHint = {provider = 'DiagnosticHint', icon = '    '}
-}
+--gls.right[3] = {
+--    DiagnosticHint = {provider = 'DiagnosticHint', icon = '    '}
+--}
 
-gls.right[4] = {DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '    '}}
+--gls.right[4] = {DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '    '}}
+
+local lsp_provider = require('galaxyline.provider_lsp')
 
 gls.right[5] = {
-    ShowLspClient = {
-        provider = 'GetLspClient',
-        condition = function()
-            local tbl = {['dashboard'] = true, [' '] = true}
-            if tbl[vim.bo.filetype] then return false end
-            return true
-        end,
-        icon = '  ',
-        highlight = {colors.grey, colors.bg}
-    }
-}
-
-gls.right[6] = {
     LineInfo = {
         provider = 'LineColumn',
-        separator = '  ',
+        separator = ' ',
         separator_highlight = {'NONE', colors.bg},
         highlight = {colors.grey, colors.bg}
     }
 }
 
-gls.right[7] = {
+gls.right[6] = {
     PerCent = {
         provider = 'LinePercent',
         separator = ' ',
@@ -162,15 +165,41 @@ gls.right[7] = {
     }
 }
 
+gls.right[7] = {
+  GetLspClient = {
+    provider = 'GetLspClient',
+    condition = function()
+      local tbl = {['dashboard'] = true, [' '] = true}
+      if tbl[vim.bo.filetype] then return false end
+      return true
+    end,
+    icon = ' ',
+    highlight = {colors.grey, colors.bg},
+    separator = ' ',
+    separator_highlight = {'#0F6AC0', colors.bg},
+  }
+}
+
+--gls.right[8] = {
+--    Tabstop = {
+--        provider = function()
+--            return "  " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
+--        end,
+--        condition = condition.hide_in_width,
+--        separator = ' ',
+--	separator_highlight = {'NONE', colors.bg},
+--        highlight = {colors.light_green, colors.bg}
+--    }
+--}
+
 gls.right[8] = {
-    Tabstop = {
+    Space = {
         provider = function()
-            return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
+            return '  ' .. getWords() .. ' '
         end,
-        condition = condition.hide_in_width,
         separator = ' ',
-	separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.light_green, colors.bg}
+        separator_highlight = {'NONE', colors.bg},
+        highlight = {"#E57CC1", colors.bg}
     }
 }
 
@@ -178,30 +207,9 @@ gls.right[9] = {
     BufferType = {
         provider = 'FileTypeName',
         condition = condition.hide_in_width,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.green, colors.bg}
-    }
-}
-
-gls.right[10] = {
-    FileEncode = {
-        provider = 'FileEncode',
-        condition = condition.hide_in_width,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.cyan, colors.bg}
-    }
-}
-
-gls.right[11] = {
-    Space = {
-        provider = function()
-            return '=F'
-        end,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.cyan, colors.bg}
+        separator = '  ',
+        separator_highlight = { '#C3C8FD', colors.bg},
+        highlight = { '#C3C8FD', colors.bg}
     }
 }
 
@@ -219,4 +227,14 @@ gls.short_line_left[2] = {
 }
 
 gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon'}}
+
+-- gls.right[10] = {
+--     FileEncode = {
+--         provider = 'FileEncode',
+--         condition = condition.hide_in_width,
+--         separator = ' ',
+--         separator_highlight = {'NONE', colors.bg},
+--         highlight = {colors.cyan, colors.bg}
+--     }
+-- }
 

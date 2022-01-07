@@ -26,6 +26,7 @@
 + + `doas -- npm i -g`
 + + + `vscode-langservers-extracted` : CSS + SCSS.
 + + + `typescript typescript-language-server` : Javascript + Typescript.
++ vale : Parse English...
 
 **Programs:**
 + [colorpicker](ihttps://github.com/BeyondMagic/colorpicker) : To print random colouring from input.

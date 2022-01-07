@@ -7,5 +7,5 @@ st.padding       : 16
 st.cursorshape   : 5
 st.cwscale       : 0.876
 st.chscale       : 0.925
-st.opacity       : 0.85
+st.opacity       : 1
 st.ligatures     : 1

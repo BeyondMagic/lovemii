@@ -28,11 +28,8 @@ function! Insert_Scroll_Down()
   exe "normal \<PageDown>"
 endfunction
 
-function! Reset_FileType()
-  
-endfunction
-
-autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+" autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd! BufReadPost * :setlocal foldmethod=manual
 autocmd! VimLeavePre * :mksession! ~/.config/nvim/session.vim
 autocmd! Signal SIGUSR1 :call Switch_Theme()
 

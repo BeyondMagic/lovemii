@@ -19,6 +19,6 @@ st.color256       : #111111
 st.color257       : #ffffff
 st.color258       : #0A0C11
 st.foreground     : #FDFCFD
-st.background     : #141414
+st.background     : #1A1A1B
 st.cursorfg       : #111111
 st.reverse-cursor : #ffffff

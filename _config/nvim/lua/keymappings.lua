@@ -61,8 +61,9 @@ key('n', '<Leader>h', ':set hlsearch!<CR>', { noremap = true, silent = true })
 
 -- Set '<Leader>e' as 'explorer' command, open and close
 key('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-key('n', '<Leader>E', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
+key('n', '<Leader>z', ':ZenMode<CR>', { noremap = true, silent = true })
+key('n', '<Leader>t', ':Twilight<CR>', { noremap = true, silent = true })
+key('n', '<Leader>n', ':NnnPicker %:p:h<CR>', { noremap = true, silent = true })
 
 
 -------------------------------Spell--------------------------------

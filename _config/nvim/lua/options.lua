@@ -42,8 +42,11 @@ vim.o.showcmd = true
 vim.o.showmatch = true
 
 -- Cursor line
+---- Curosr column
 vim.o.cursorline = true
 vim.wo.cursorline = true
+vim.o.cursorcolumn = true
+vim.wo.cursorcolumn = true
 
 -- Off scroll when moving through the buffer
 vim.o.scrolloff = 40
@@ -98,7 +101,7 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 
 --------------------Variables-----------------
 
-vim.api.nvim_set_var('one_allow_italics', 1)
+vim.api.nvim_set_var('one_allow_itali:set cursorlinec:set cursorlines', 1)
 vim.api.nvim_set_var('nnn#command', 'nnn -dDoxR')
 vim.api.nvim_set_var('do_filetype_lua', 1)
 

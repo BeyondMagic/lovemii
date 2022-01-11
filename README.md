@@ -62,6 +62,9 @@
 + zsh-syntax-highlighting zsh-autosuggestions : ZSH plugins.
 + xgetres : To get XResources definitions.
 + zathura zathura-pdf-poppler zathura-cb : To read pdf and such<F5>.
++ tokei : Read source-code.
++ light-server : For WEB development.
++ glava : Audio visualizer.
 
 **Fonts:**
 + ttf-fira-code : For terminals.

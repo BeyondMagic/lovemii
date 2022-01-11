@@ -68,7 +68,7 @@ require('filetype').setup({
       [".*_personal/beyondmagic.space/sass/*"] = function()
         vim.bo.filetype = 'sass'
         vim.api.nvim_command('cd ~/git/_personal/beyondmagic.space/')
-        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('./make.sh --sass')")
+        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('./make.sh --silent-sass')")
       end,
       [".*_personal/beyondmagic.space/data/*"] = function()
         vim.bo.filetype = 'json5'

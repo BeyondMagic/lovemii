@@ -83,16 +83,28 @@ return require('packer').startup(function(use)
     config = require('configuration.cmp-config'),
     requires = {
       { "octaltree/cmp-look" },
+      --
       { "hrsh7th/cmp-nvim-lsp" },
+      --
       { "hrsh7th/cmp-nvim-lua" },
+      -- Buffer words.
       { "hrsh7th/cmp-buffer" },
+      -- Path autocompletion.
       { "hrsh7th/cmp-path" },
+      --
       { "hrsh7th/cmp-cmdline" },
+      --
       { "saadparwaiz1/cmp_luasnip" },
+      --
       { "hrsh7th/vim-vsnip" },
+      --
       { "hrsh7th/cmp-vsnip" },
+      --
       { "hrsh7th/vim-vsnip-integ" },
-      { "f3fora/cmp-spell", { "hrsh7th/cmp-calc" }, { "hrsh7th/cmp-emoji" } },
+      -- FIXIT: Fork to calculate simple arithmetic expressions and show on the menu.
+      { "gabrielbdsantos/cmp-calc" },
+      -- Emoji
+      { "hrsh7th/cmp-emoji" },
     },
   }
 
@@ -111,7 +123,7 @@ return require('packer').startup(function(use)
   -- Show signs of GIT written in lua
   use { 'lewis6991/gitsigns.nvim',
     requires = {
-      'nvim-lua/plenary.nvim'
+      'nvim-lua/plenary.nvim',
     },
     config = require('configuration.git-signs')
   }
@@ -119,6 +131,9 @@ return require('packer').startup(function(use)
   --
   -- Movement
   --
+
+  -- List registers to open.
+  use 'tversteeg/registers.nvim'
 
   -- Restore folds and cursor position
   use 'senderle/restoreview'

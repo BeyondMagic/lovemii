@@ -6,9 +6,9 @@ require("hlslens").setup({
     end,
 })
 
-vim.cmd([[
-    augroup scrollbar_search_hide
-        autocmd!
-        autocmd CmdlineLeave : lua require('scrollbar').search_handler.hide()
-    augroup END
-]])
+-- vim.cmd([[
+--     augroup scrollbar_search_hide
+--         autocmd!
+--         autocmd CmdlineLeave : lua require('scrollbar').search_handler.hide()
+--     augroup END
+-- ]])

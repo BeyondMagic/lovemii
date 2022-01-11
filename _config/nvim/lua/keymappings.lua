@@ -29,14 +29,25 @@ key('n', '<C-Up>', 'z%', { noremap = true, silent = true })
 
 ---------------------------Tab auto-complete-------------------------
 
--- key('i', '<TAB>', '<C-n>', { noremap = true, silent = true })
--- key('i', '<S-TAB>', '<C-p>', { noremap = true, silent = true })
--- key('i', '<CR>', 'pumvisible() ? "\\<C-y>" : "\\<CR>"', { expr = true, noremap = true, silent = true })
-
 -- Do nothing on CTRL + Home
 key('i', '<C-End>', '<End>', { noremap = true, silent = true })
 key('n', '<C-End>', '<End>', { noremap = true, silent = true })
 key('i', '<C-Home>','<End>', { noremap = true, silent = true })
+
+-- Highlight the word after pressing enter on Normal Mode.
+key('n', '<CR>',
+  [[:let searchTerm = '\v<'.expand("<cword>").'>' <bar> let @/ = searchTerm <bar> echo '/'.@/ <bar> call histadd("search", searchTerm) <bar> set hls<cr>]],
+  { noremap = true, silent = true })
+
+-- Highlight the visual selection after pressing enter.
+key('v', '<CR>',
+[["*y:silent! let searchTerm = '\V'.substitute(escape(@*, '\/'), "\n", '\\n', "g") <bar> let @/ = searchTerm <bar> echo '/'.@/ <bar> call histadd("search", searchTerm) <bar> set hls<cr>]],
+{ noremap = true, silent = true })
+
+-- Highlight the visual selection after pressing '.
+-- key('v', "'",
+-- [[y/\V<C-R>=escape(@",'\\')<CR><CR>]],
+-- { noremap = true, silent = true })
 
 
 ---------------------------Window Movement----------------------------
@@ -71,13 +82,13 @@ key('n', '<Leader>n', ':NnnPicker %:p:h<CR>', { noremap = true, silent = true })
 
 key('i', '<C-b>', 'ea<C-x><C-s>', { noremap = true, silent = true  })
 key('n', '<F5>', ':setlocal spell!<CR>', { noremap = true, silent = true  })
-
-
----------------------------Better Movement-----------------------------
+---------------------------Better Movement-----------------------------
 
 -- Move lines normally like an IDE when line wraps
-key('i', '<Down>', '<c-\\><c-o>gj', { noremap = true, silent = true  })
-key('i', '<Up>', '<c-\\><c-o>gk', { noremap = true, silent = true  })
+key('i', '<Down>', [[v:count ? '<Down>' : '<c-o>gj']], { expr = true, noremap = true, silent = true  })
+key('i', '<Up>', [[v:count ? '<Up>' : '<c-o>gk']], { expr = true, noremap = true, silent = true  })
+key('n', '<Down>', [[v:count ? 'j' : 'gj']], { expr = true, noremap = true, silent = true  })
+key('n', '<Up>', [[v:count ? 'k' : 'gk']], { expr = true, noremap = true, silent = true  })
 
 -- Delete character and go to Insert mode when BACKSPACE on Normal Mode
 --key('n', '<BS>', 'i<BS>', { noremap = true, silent = true })
@@ -95,9 +106,10 @@ key('n', '<C-c>', ':if (&hlsearch == 1) | set nohlsearch | else | set hlsearch |
 
 ---------------------------Paste, Copy, Select------------------------
 
+
+
 -- Set 'CTRL + v' as 'paster'
 -- key('', '<C-v>', 'map"_d<Esc>i', { noremap = true, silent = true  })
-key('i', '<C-v>', '<Esc>mapa', { noremap = true, silent = true  })
 key('v', '<C-v>', '"_dPi', { noremap = true, silent = true  })
 
 -- Set 'CTRL + x' as 'cut'
@@ -105,7 +117,9 @@ key('v', '<C-x>', 'mad`ai<Right>', {  silent = true  })
 
 -- Set 'CTRL + c' as 'copier'
 key('v', '<C-c>', 'may`ai', { noremap = true, silent = true  })
-key('i', '<C-v>', '<Esc>mapa', { noremap = true, silent = true  })
+key('i', '<C-v>', '<Esc>:Registers<CR>', { noremap = true, silent = true  })
+
+
 
 -- Set 'CTRL + z' as 'undo'
 key('i', '<C-z>', '<Esc>ui', { noremap = true, silent = true  })

@@ -31,32 +31,12 @@ local icons = {
 
 -- nvim-cmp setup
 cmp.setup {
+
   snippet = {
    expand = function(args)
     require("luasnip").lsp_expand(args.body)
    end,
   },
-
-  formatting = {
-    format = function(entry, vim_item)
-      -- load lspkind icons
-      vim_item.kind = string.format(
-        "%s %s",
-        icons[vim_item.kind],
-        vim_item.kind
-      )
-
-      vim_item.menu = ({
-        nvim_lsp = "力",
-        nvim_lua = "",
-        buffer = "﬘",
-        path = "﫶",
-        look = icons.Book,
-      })[entry.source.name]
-
-       return vim_item
-   end,
-   },
 
  mapping = {
     ["<TAB>"] = cmp.mapping.select_next_item(),
@@ -90,12 +70,36 @@ cmp.setup {
     end,
  },
 
+  formatting = {
+    format = function(entry, vim_item)
+      -- load lspkind icons
+      vim_item.kind = string.format(
+        "%s %s",
+        icons[vim_item.kind],
+        vim_item.kind
+      )
+
+      vim_item.menu = ({
+        nvim_lsp = "力",
+        nvim_lua = "",
+        luasnip = icons.Color,
+        path = "﫶",
+        buffer = "﬘",
+        look = icons.Book,
+        emoji = "😎",
+      })[entry.source.name]
+
+       return vim_item
+   end,
+   },
+
  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "look", keyword_length = 4, option = { convert_case = true, loud = true } },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "path" },
+    { name = "nvim_lua", priority = 8 },
+    { name = "nvim_lsp", priority = 7 },
+    { name = "luasnip", priority = 6 },
+    { name = "path", priority = 5 },
+    { name = "buffer", priority = 4 },
+    { name = "look", priority = 2, keyword_length = 4, option = { convert_case = true, loud = true } },
+    { name = "emoji", priority = 1, option = { insert = true } },
  },
 }

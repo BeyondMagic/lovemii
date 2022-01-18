@@ -10,7 +10,8 @@ function title {
 		esac
 		
     print -Pn "\e[5 q\e]2;$2\a\e]1;$1\a" #set window name
-			# (will override window name on broken terminal)
+
+		# (will override window name on broken terminal)
 
 }
 
@@ -39,6 +40,6 @@ function preexec {
 
   local -a cmd; cmd=(${(z)1}) # the command string
 
-  title "$cmd" "%100>...>$2%<<"
+  title "$CMD" "%100>...>${2:gs/%/%%}%<<"
 
 }

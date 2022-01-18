@@ -1,0 +1,373 @@
+;
+; Variables reading.
+;
+
+( defvar reveal-volume    false )
+( defvar reveal-songnames false )
+( defvar reveal-title     true  ) ( defvar title-literal "" )
+( defvar reveal-logo      false )
+
+( defvar tag-one true   ) ( defvar tag-class-one "not-chosen"   )
+( defvar tag-two true   ) ( defvar tag-class-two "not-chosen"   )
+( defvar tag-three true ) ( defvar tag-class-three "not-chosen" )
+( defvar tag-four true  ) ( defvar tag-class-four "not-chosen"  )
+( defvar tag-five true  ) ( defvar tag-class-five "not-chosen"  )
+( defvar tag-six true   ) ( defvar tag-class-six "not-chosen"   )
+( defvar tag-seven true ) ( defvar tag-class-seven "not-chosen" )
+( defvar tag-eight true ) ( defvar tag-class-eight "not-chosen" )
+( defvar tag-nine true  ) ( defvar tag-class-nine "not-chosen"  )
+( defvar tag-add true   )
+
+( defvar reveal-windows false )
+( defvar windows-literal "" )
+
+( defvar layout "=Ç" )
+
+;
+; Scripts reading.
+;
+
+( defpoll time
+               :interval "1s"
+               "sh ./bars/top/time.sh"
+)
+
+( defpoll cpu
+              :interval "3s"
+              "sh ./bars/top/cpu.sh"
+)
+
+( defpoll song
+               :interval  "1s"
+               :run-while reveal-songnames
+               "sh ./bars/top/song.sh"
+)
+
+;
+; Revealer widgets.
+;
+
+; Revealer on hover, using children
+( defwidget revealer-on-hover [var varname ?class ?duration ?transition]
+            ( box
+                  :class        "${class} revealer-on-hover"
+                  :orientation  "h"
+                  :space-evenly false
+                  ( eventbox
+                             :class       "eventbox"
+                             :onhover     "eww update ${varname}=true"
+                             :onhoverlost "eww update ${varname}=false"
+                             ( box
+                                   :space-evenly false
+                                   ( revealer
+                                              :reveal var
+                                              :transition { transition ?: "slideright" }
+                                              :duration   { duration   ?: "500ms" }
+                                              ( children :nth 0)
+                                   )
+                                   ( children :nth 1 )
+                             )
+                  )
+            )
+)
+
+( defwidget hover-module [vara varname icon ?class ?click]
+            ( box
+                  :space-evenly false
+                  :class "hover-module ${class}"
+                         ( revealer-on-hover
+                                             :var        vara
+                                             :varname    "${varname}"
+                                             :icon       icon
+                                             :transition "slideleft"
+                                             ( scale
+                                                     ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
+                                                     :onchange "amixer -D pulse sset Master {}%"
+                                                     ;:timeout "2s"
+                                                     :value    75
+                                                     :min       0
+                                                     :max     100
+                                                     ;:draw-value true
+                                             )
+                                             ( button
+                                                     :class   "icon"
+                                                     :onclick click
+                                                     icon
+                                             )
+                         )
+            )
+)
+
+;
+; Bar at the top.
+;
+
+( defwindow top-bar
+            :monitor 0
+            :geometry ( geometry
+                                 :x      "0px"
+                                 :y      "5px"
+                                 :width  "1420px"
+                                 :height "20px"
+                                 :anchor "top center")
+            :stacking   "bg"
+            :windowtype "dock"
+            :wm-ignore  true
+            ( top-widget )
+)
+
+(defwidget top-widget []
+           ( centerbox
+                       :orientation "h"
+                       :class       "top-bar"
+                       ; Left.
+                       ( box
+                             :orientation  "horizontal"
+                             :halign       "start"
+                             :space-evenly false
+                             ( literal
+                                       :class   'time-handler'
+                                      ;:onclick "eww open-many powermenu"
+                                       :content "( box
+                                                       :space-evenly false
+                                                       :class 'time'
+                                                       :spacing 0
+                                                       :orientation 'horizontal'
+                                                       :vexpand true
+                                                       :hexpand true
+                                                       :width 145
+                                                       ${time}
+                                                 )"
+                             )
+                             ( literal
+                                       :class   "cpu-handler"
+                                       :content "( box
+                                                      :space-evenly false
+                                                      :class 'cpu'
+                                                      :spacing 0
+                                                      :orientation 'horizontal'
+                                                      :vexpand true
+                                                      :hexpand true
+                                                      ${cpu}
+                                                )"
+                             )
+                        )
+                        ; Center.
+                        ( box
+                              :orientation  "horizontal"
+                              :class        "bar center"
+                              :space-evenly false
+                              :hexpand      false
+                              ( revealer
+                                         :reveal reveal-songnames
+                                         :transition "slideright"
+                                         :duration   "500ms"
+                                         ( literal
+                                               :class   "song-handler"
+                                               :content "( box
+                                                               :space-evenly false
+                                                               :class 'song'
+                                                               :spacing 0
+                                                               :orientation 'horizontal'
+                                                               :vexpand true
+                                                               :hexpand true
+                                                               ${song}
+                                                         )"
+                                         )
+                              )
+                        )
+                        ; Right.
+                        ( box
+                              :orientation  "horizontal"
+                              :halign       "end"
+                              :space-evenly false
+                              :hexpand      false
+                              ( hover-module
+                                             :vara    reveal-volume
+                                             :varname "reveal-volume"
+                                             :class   "volume-handler"
+                                             :click   "pavucontrol &"
+                                             :icon    ""
+                              )
+                              ( button
+                                       :class        "power-handler"
+                                       :onclick      "eww open powermenu"
+                                       :onrightclick "eww close powermenu"
+                                       ""
+                              )
+                        )
+           )
+)
+
+;
+; Bar at the bottom.
+;
+
+( defwindow bot-bar
+            :monitor 0
+            :geometry ( geometry
+                                 :x      "0px"
+                                 :y      "-5px"
+                                 :width  "1420px"
+                                 :height "20px"
+                                 :anchor "bottom center")
+            :stacking   "bg"
+            :windowtype "dock"
+            :wm-ignore  true
+            ( bot-widget )
+)
+
+(defwidget bot-widget []
+           ( centerbox
+                       :orientation "h"
+                       :class       "bot-bar"
+                       ; Left.
+                       ( box
+                             :orientation  "horizontal"
+                             :halign       "start"
+                             :space-evenly false
+                            ( label :width 45 :class "layout" :text layout )
+                             ( box
+                                   :space-evenly false
+                                   :class 'tag-list'
+                                   ( revealer :reveal tag-one :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-one :onclick 'dwm-msg run_command view 1' ' 1') ) )
+                                   ( revealer :reveal tag-two :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-two :onclick 'dwm-msg run_command view 2' ' 2') ) )
+                                   ( revealer :reveal tag-three :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-three :onclick 'dwm-msg run_command view 4' ' 3') ) )
+                                   ( revealer :reveal tag-four :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-four :onclick 'dwm-msg run_command view 8' ' 4') ) )
+                                   ( revealer :reveal tag-five :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-five :onclick 'dwm-msg run_command view 16' ' 5') ) )
+                                   ( revealer :reveal tag-six :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-six :onclick 'dwm-msg run_command view 32' ' 6') ) )
+                                   ( revealer :reveal tag-seven :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-seven :onclick 'dwm-msg run_command view 64' ' 7') ) )
+                                   ( revealer :reveal tag-eight :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-eight :onclick 'dwm-msg run_command view 128' ' 8') ) )
+                                   ( revealer :reveal tag-nine :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class tag-class-nine :onclick 'dwm-msg run_command view 256' ' 9') ) )
+                                   ( revealer :reveal tag-add :transition "slideleft" :duration "500ms"
+                                    ( eventbox ( button :class 'add' :onclick 'sh ./bars/bottom/dwm_next_tag.sh' '+') ) )
+                            )
+
+                        )
+                        ; Center.
+                        ( box
+                              :orientation  "horizontal"
+                              :class        "bar center"
+                              :space-evenly false
+                              :hexpand      false
+                              ( revealer
+                                         :reveal reveal-title
+                                         :transition "slideright"
+                                         :duration   "500ms"
+                                         ( literal
+                                               :content "( box
+                                                               :space-evenly false
+                                                               :class 'title-handler'
+                                                               :spacing 0
+                                                               :orientation 'horizontal'
+                                                               :vexpand true
+                                                               :hexpand true
+                                                               ${title-literal}
+                                                         )"
+                                         )
+                              )
+                        )
+                        ; Right.
+                        ( box
+                              :orientation  "horizontal"
+                              :halign       "end"
+                              :space-evenly false
+                              :hexpand      false
+                              ( box
+                                    :class "memory"
+                                    :space-evenly false
+                                    :hexpand false
+                                    ( label :text "" )
+                                    ( label :text "${round(EWW_RAM.used_mem_perc, 0)}%" )
+                              )
+                              ( eventbox
+                                         :class "name-logo"
+                                         :onhover     "eww update reveal-logo=true"
+                                         :onhoverlost "eww update reveal-logo=false"
+                                         ( box
+                                               :space-evenly false
+                                               ( revealer
+                                                          :reveal reveal-logo
+                                                          :transition "slideright"
+                                                          :duration   "500ms"
+                                                          ( label :text "SDPP" )
+                                               )
+                                               ( label :text "M" )
+                                               ( label :text "a" )
+                                               ( label :text "G" )
+                                               ( label :text "i" )
+                                               ( label :text "C" )
+                                               ( label :text "K" )
+
+                                         )
+                              )
+                              ( revealer
+                                         :reveal reveal-windows
+                                         :class "windows-handler"
+                                         :duration "500ms"
+                                         :transition "slideleft"
+                                         ( eventbox
+                                                    ( literal
+                                                              :class   "windows-list"
+                                                              :content "( box
+                                                                              :space-evenly false
+                                                                              :class 'song'
+                                                                              :spacing 0
+                                                                              :orientation 'horizontal'
+                                                                              :vexpand true
+                                                                              :hexpand true
+                                                                              ${windows-literal}
+                                                                        )"
+                                                    )
+                                         )
+
+                              )
+                        )
+           )
+)
+
+;
+; Floating Widgets
+;
+
+
+; Power-menu on the center.
+(defwidget powermenu []
+           ( box
+                 :space-evenly false
+                 :spacing      20
+                 :orientation  "h"
+                 :class        "powermenu"
+                 :halign       "center"
+                 :valign       "center"
+                 ( button :style "color: #A3E048;" :class "shutdown"       :onclick "doas halt" ""               )
+                 ( button :style "color: #49DA9A;" :class "restart"        :onclick "doas -- shutdown -r now" "" )
+                 ( button :style "color: #34BBE6;" :class "sleep"          :onclick "doas -- zzz" "⏾"             )
+                 ( button :style "color: #4355DB;" :class "logout"         :onclick "exec unlovemii" ""          )
+                 ( button :style "color: #D23BE7;" :class "dwm"            :onclick "pkill -1 dwm" "缾"           )
+                 ( button :style "color: #9E223A;" :class "closepowermenu" :onclick "eww close powermenu" "-"     )
+           )
+)
+
+(defwindow powermenu
+           :wm-ignore  true
+           :monitor    0
+           :windowtype "dock"
+           :geometry   ( geometry
+                                  :x      "0px"
+                                  :y      "0%"
+                                  :width  "15%"
+                                  :height "5%"
+                                  :anchor "center center"
+                       )
+                       ( powermenu )
+)

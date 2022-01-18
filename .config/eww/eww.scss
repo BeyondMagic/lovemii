@@ -1,0 +1,381 @@
+* {
+
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  all: unset;
+}
+
+
+/*
+ * The menu where we shutdown things.
+ */
+
+window {
+
+  background: transparent;
+  padding: 0;
+  margin: 0;
+
+}
+
+.bot-bar {
+
+  background-color: rgba(0,0,0,0.5);
+  font-size: 13.75px;
+
+  .windows-handler {
+
+    * {
+
+      transition: all 500ms ease-in-out;
+
+    }
+
+    *:hover {
+
+      button {
+
+        background-color: #e7f4ff;
+
+      }
+
+    }
+
+    .windows-list {
+
+      background-color: #B4DEFF;
+      color: black;
+
+      * > button {
+
+        padding: 0 0.5rem;
+
+        &.selected {
+
+          color: black;
+          background-color: #e7f4ff;
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .layout {
+
+    background-color: rgba(0,0,0,0.4);
+
+  }
+
+  .tag-list {
+
+    padding: 0 .5rem;
+    background-color: rgba(0,0,0,0.2);
+
+    button {
+
+      padding: 0 .225rem;
+
+      &.chosen-occupied {
+
+        color: white;
+
+      }
+
+      &.chosen {
+
+        color: rgba(255,255,255,0.75);
+
+      }
+
+      &.not-chosen {
+
+         color: rgba(255,255,255,0.4);
+
+      }
+
+    }
+
+    *:hover {
+
+      button {
+
+        color: white;
+
+      }
+
+    }
+
+  }
+
+  .memory {
+
+    font-size: 13px;
+    font-weight: bold;
+
+    label:first-child {
+
+      padding-right: 0.4rem;
+      padding-top: 1px;
+      color: #D66D6B;
+
+    }
+
+    label:last-child {
+
+      padding-right: 0.5rem;
+
+    }
+
+  }
+
+  .title-handler {
+
+    font-weight: bolder;
+
+    .icon {
+
+      color: #EEDB63;
+      padding-right: 0.5rem;
+
+    }
+
+  }
+
+  .name-logo {
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+
+    label {
+
+      transition: 250ms linear color;
+      padding-top: 2px;
+
+      &:last-child {
+        padding-right: 0.5rem;
+      }
+
+    }
+
+    &:hover {
+
+      label:nth-child(1) { color: #4BA579; }
+      label:nth-child(2) { color: #CC99C9; }
+      label:nth-child(3) { color: #9EC1CF; }
+      label:nth-child(4) { color: #9EE09E; }
+      label:nth-child(5) { color: #FDFD97; }
+      label:nth-child(6) { color: #FEB144; }
+      label:nth-child(7) { color: #FF6663; }
+
+    }
+
+  }
+
+}
+
+
+.top-bar {
+
+  font-size: 13.75px;
+  font-weight: bold;
+  background-color: rgba(0,0,0,0.5);
+
+  .song-handler {
+
+    .song {
+
+
+      .highlight {
+
+        color: #29C590;
+
+      }
+
+      .normal {
+
+        color: white;
+
+      }
+
+      .aside {
+
+        color: rgba(255,255,255,0.5);
+        padding: 0 0.5rem; 
+
+        &:hover {
+
+          color: rgba(255,255,255,0.75);
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .volume-handler {
+
+    color: #FBD599;
+
+    .icon {
+
+      padding: 0 0.5rem;
+      background-color: rgba(0,0,0,0.4);
+
+    }
+
+    scale {
+
+      background-color: rgba(0,0,0,0.25);
+
+      trough {
+
+        background-color: #271f16;
+        border-radius: 50px;
+        min-height: 5px;
+        min-width: 100px;
+        margin: 0 10px 0 10px;
+
+        highlight {
+
+          all: unset;
+          background-color: #FBD599;
+          border-radius: 10px;
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .cpu-handler {
+
+    .cpu {
+
+      background-color: rgba(0,0,0,0.2);
+
+      .number {
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin: 0;
+        margin-top: 1px;
+
+      }
+
+      .icon {
+
+        background-color: rgba(0,0,0,0.3);
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 2px;
+
+      }
+
+      .one   { color: #87C7E4; }
+      .two   { color: #BDCDD7; }
+      .three { color: #FAFBC2; }
+      .four  { color: #FF4464; }
+
+    }
+
+  }
+
+  .time-handler {
+
+    padding: 0; margin: 0;
+
+    background-color: red;
+
+    .time {
+
+      background-color: #FFFFFF;
+      color: #414141;
+
+      font-weight: bold;
+
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+
+      // .first {
+
+      //   background-color: blue;
+
+      // }
+
+      .normal {
+
+        margin-top: 2px;
+
+      }
+
+      .special {
+
+        color: #AAAAAA;
+        margin-top: 2px;
+
+      }
+
+    }
+  }
+
+  .power-handler {
+
+    background-color: #C92430;
+
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+
+    &:hover {
+
+      background-color: #E91E63;
+
+    }
+
+  }
+
+}
+
+
+
+
+.powermenu {
+
+  background: rgba(0, 0, 0, 0.55);
+  padding: 0rem;
+  margin: 0;
+  padding: 0.3rem 2.5rem;
+
+  * {
+
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+
+    * {
+
+      font-size: 30px;
+
+    }
+
+  }
+
+  button:hover * {
+
+    color: white;
+    transition: color 250ms linear;
+
+  }
+
+}

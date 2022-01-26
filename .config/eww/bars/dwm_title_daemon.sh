@@ -19,8 +19,16 @@ get_title_window_change () {
 }
 
 # EWW .yuck literal transformers.
-eww_title () { echo "( label :limit-width 75  :class 'title' :text \`$1\` )"; }
-eww_icon  () { echo "( label                  :class 'icon'  :text \`$1\` )"; }
+eww_title () {
+
+  echo "( label :limit-width 75 :text \`$1\` )";
+
+}
+eww_icon  () { 
+
+  echo ":style \`background-image: url(\"$HOME/.local/share/icons/$1\");\`";
+
+}
 
 # Give the window icons of the current tag.
 get_windows_icons () {
@@ -41,21 +49,37 @@ get_windows_icons () {
     eww update reveal-windows=true
     windows=""
 
+    set last_one
+
     # Tags Windows 
     for selected in $(echo "$tags_windows_id"); do
 
       set class_window
 
-      [ "$selected" = "$selected_window" ] && class_window="selected" \
-                                           || class_window="not-selected"
+      [ "$selected" = "$selected_window" ] && class_window="selected" || class_window="not-selected"
 
-      icon_of_this_window="$(format_active_window "$selected" "get_icon")"
+      icon_of_this_window="$(eww_icon $(format_active_window "$selected" 'get_icon') )"
 
-      [ $icon_of_this_window ] && windows="$windows( button :class '$class_window' :onclick 'xdotool windowactivate $selected' '$icon_of_this_window' )"
+      [ "$icon_of_this_window" ] && {
+
+        this_window="( eventbox
+                                :class '$class_window'
+                                ( button
+                                         :onclick 'xdotool windowactivate $selected'
+                                         :width 16
+                                         :height 16
+                                         :class 'icon'
+                                         $icon_of_this_window
+                                )
+                     )"
+
+        [ "$class_window" = 'selected' ] && last_one="$this_window" || windows="$windows $this_window"
+
+      }
 
     done
 
-    eww update windows-literal="$windows"
+    eww update windows-literal="$windows $last_one"
 
   }
 }
@@ -66,14 +90,15 @@ format_active_window() {
   unset icon icon_display
 
   selected_window_id="$1"
-  total="$(xprop -id $selected_window_id | grep "_NET_WM_NAME" | sed -r 's/(_NET_WM_NAME\(UTF8_STRING\) = ")|"$//g')"
+  information="$(xprop -id $selected_window_id)"
+  total="$(echo "$information" | grep -oP '((?<=_NET_WM_NAME\(UTF8_STRING\) = ").*(?="))')"
   name="$(cat /proc/"$(xdotool getwindowpid $selected_window_id)"/comm)"
 
   # st
   case "$name" in
 
-    st)
-      icon=""
+    'st' | 'flarity' )
+      icon="flarity.svg"
       title_program=$(echo "$total" | sed -r 's/ .*//')
       total=$(echo "$total" | sed -r 's/\w* //')
 
@@ -81,7 +106,7 @@ format_active_window() {
 
       case "$total" in
 
-        'floatst' | 'st' )
+        'float' | 'flarity' )
 
           unset name
 
@@ -90,16 +115,20 @@ format_active_window() {
         * )
 
           case "$title_program" in
-            'v' )
-              icon=""
+
+            'v' | 'nvim' )
+              icon="neovim.png"
             ;;
+
             'mpd' )
-              icon=""
-              total=$(echo "$total" | sed -r "s/» *//g")
+              icon="ncmpcpp.svg"
+              total="$(echo "$total" | sed -r "s/» *//g")"
             ;;
-            'nnn' )
-              icon=""
+
+            'nnn' | 'n' | '~' )
+              icon="nnn.png"
             ;;
+
           esac
 
         ;;
@@ -108,72 +137,71 @@ format_active_window() {
 
     ;;
 
-    brave)
+    'brave')
 
-      icon=""
+      icon="brave.svg"
       total="$(echo "$total" | sed -re 's/ - Brave$//')"
 
     ;;
 
     # Firefox-Developer-Edition
-    GeckoMain)
+    'GeckoMain' | 'firefox' )
 
-      icon=""
+      icon="firefox.svg"
       total=$(echo "$total" | sed -re 's/\\"/"/g' -e 's/(\[Sidebery\] )|(Mozilla Firefox)|(— Mozilla Firefox)//g')
 
     ;;
 
-    # gcolor2
-    gcolor2)
-
-      icon=""
-
-    ;;
-
     # nsxiv
-    nsxiv)
+    'nsxiv')
 
-      icon=""
+      icon="nsxiv.svg"
 
     ;;
 
     # gimp
-    gimp)
+    'gimp' | 'Gimp' | 'GIMP' | 'gimp-2.10' )
 
-      icon=""
+      icon="gimp.svg"
 
     ;;
 
     # mpv
-    mpv)
+    'mpv')
 
-      icon=""
+      icon="mpv.svg"
       total="$(echo "$total" | sed -r 's/ - mpv$//')"
 
     ;;
 
     # qbittorrent
-    qbittorrent)
+    'qbittorrent')
 
-      icon=""
-
-    ;;
-
-    visualboyadvanc)
-
-      icon=""
+      icon="qbittorrent.svg"
 
     ;;
 
-    zathura)
+    'visualboyadvanc')
 
-      icon=""
+      icon="visualboyadvanced.svg"
 
     ;;
 
-    telegram-deskto)
+    'zathura')
 
-      icon=""
+      icon="zathura.svg"
+
+    ;;
+
+    'telegram-deskto')
+
+      icon="telegram.svg"
+
+    ;;
+
+    'ymuse')
+
+      icon="ymuse.svg"
 
     ;;
 
@@ -185,7 +213,7 @@ format_active_window() {
     [ -n "$icon" ] && icon="$icon" || icon="$name"
 
       [ "$2" = "get_icon" ] && echo "$icon" \
-                            || echo "$(eww_icon "$icon")$(eww_title "$total")"
+                            || echo "$(eww_title "$total")"
 
   }
 
@@ -221,8 +249,18 @@ get_title_window_change | while IFS=$'\n' read -r winid; do
 
 done
 
-# If dwm-msg or dwm is killed.
-open="$(dunstify -u 2 "title: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+# Delay waiting dwm get back to life.
+sleep 0.5s
 
-# Executes this script itself if action handler is received.
-[ "$open" = "A" ] && exec "$HOME/.config/eww/bars/bottom/dwm_title_daemon.sh"
+# Try to get this back working.
+dwm-msg get_monitors || {
+
+  # If dwm-msg or dwm is killed.
+  open="$(dunstify -u 2 "title: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+
+  [ "$open" = "A" ] || exit 0
+
+}
+
+# Executes this script itself if action handler is received or dwm is alive.
+exec "$HOME/.config/eww/bars/dwm_title_daemon.sh"

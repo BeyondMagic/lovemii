@@ -1,0 +1,110 @@
+; Variables to be used here.
+
+; ; FFMEPG recording script.
+( defvar record_menu      false )
+
+; ; MPD & MPC song names.
+( defvar reveal-songnames false )
+
+; Timers.
+
+( defpoll cpu
+              :interval "3s"
+              "sh ./bars/cpu.sh"
+)
+
+( defpoll song
+               :interval  "1s"
+               :run-while reveal-songnames
+               "sh ./bars/song.sh"
+)
+
+; Bar at the top.
+
+( defwindow top-bar
+            :monitor 0
+            :geometry ( geometry
+                                 :x      "0px"
+                                 :y      "5px"
+                                 :width  "1420px"
+                                 :height "20px"
+                                 :anchor "top center")
+            :stacking   "bg"
+            :windowtype "dock"
+            :wm-ignore  true
+            ( top-widget )
+)
+
+(defwidget top-widget []
+           ( centerbox
+                       :orientation "h"
+                       :class       "top-bar"
+                       ; Left.
+                       ( box
+                             :orientation  "horizontal"
+                             :halign       "start"
+                             :space-evenly false
+                             ( literal
+                                       :class   "cpu-handler"
+                                       :content "( box
+                                                      :space-evenly false
+                                                      :class 'cpu'
+                                                      :spacing 0
+                                                      :orientation 'horizontal'
+                                                      :vexpand true
+                                                      :hexpand true
+                                                      ${cpu}
+                                                )"
+                             )
+                        )
+                        ; Center.
+                        ( box
+                              :orientation  "horizontal"
+                              :class        "bar center"
+                              :space-evenly false
+                              :hexpand      false
+                              ( revealer
+                                         :reveal reveal-songnames
+                                         :transition "slideright"
+                                         :duration   "500ms"
+                                         ( literal
+                                               :class   "song-handler"
+                                               :content "( box
+                                                               :space-evenly false
+                                                               :class 'song'
+                                                               :spacing 0
+                                                               :orientation 'horizontal'
+                                                               :vexpand true
+                                                               :hexpand true
+                                                               ${song}
+                                                         )"
+                                         )
+                              )
+                        )
+                        ; Right.
+                        ( box
+                              :orientation  "horizontal"
+                              :halign       "end"
+                              :space-evenly false
+                              :hexpand      false
+                              ( revealer
+                                         :class "camera"
+                                         :reveal     record_menu
+                                         :duration   "500ms"
+                                         :transition "slideleft"
+                                         ( eventbox
+                                                    ( button
+                                                             :onclick "sh ./bars/record_menu.sh &"
+                                                             ""
+                                                    )
+                                         )
+                              )
+                              ( button
+                                       :class        "power-handler"
+                                       :onclick      "eww open powermenu"
+                                       :onrightclick "eww close powermenu"
+                                       ""
+                              )
+                        )
+           )
+)

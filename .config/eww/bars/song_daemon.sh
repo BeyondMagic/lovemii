@@ -73,4 +73,4 @@ done
 open="$(dunstify -u 2 "song: mpc is gone" "Perhaps it is because mpd died. To reset: middle click on this notification." -A "A,N")"
 
 # Executes this script itself if action handler is received.
-[ "$open" = "A" ] && exec "$HOME/.config/eww/bars/top/song_daemon.sh"
+[ "$open" = "A" ] && exec "$HOME/.config/eww/bars/song_daemon.sh"

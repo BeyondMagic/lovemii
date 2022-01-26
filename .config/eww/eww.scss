@@ -6,7 +6,37 @@
   border: none;
   border-radius: 0;
   all: unset;
+
 }
+
+
+.calendar {
+
+  font-family: "Noto Sans CJK JP";
+  font-size: 13px;
+
+  &:selected { 
+
+    background-color: rgba(0,0,0,0.);
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -26,37 +56,78 @@ window {
   background-color: rgba(0,0,0,0.5);
   font-size: 13.75px;
 
-  .windows-handler {
+  .more-up {
 
-    * {
+    font-size: 8px;
+    padding-right: 0.2rem;
+    padding-top: 1px;
+    color: rgba(255,255,255,0.5);
 
-      transition: all 500ms ease-in-out;
+  }
 
-    }
+  .time-handler {
 
-    *:hover {
+    padding: 0; margin: 0;
 
-      button {
+    .time {
 
-        background-color: #e7f4ff;
+      color: rgba(255,255,255,0.85);
+
+      font-weight: bold;
+      font-size: 13px;
+
+      padding-left: 0.8rem;
+      padding-right: 0.666rem;
+
+      .last {
+
+        //margin-bottom: 1px;
+        font-size: 12px;
+
+      }
+
+      .normal {
+
+        margin-top: 1px;
+
+      }
+
+      .special {
+
+        color: #AAAAAA;
+        margin-top: 1px;
 
       }
 
     }
+  }
 
-    .windows-list {
+  .volume-handler {
 
-      background-color: #B4DEFF;
-      color: black;
+    color: rgba(255,255,255,0.8);
 
-      * > button {
+    .icon {
 
-        padding: 0 0.5rem;
+      padding: 1px 0 0 0.5rem;
+      font-size: 14px;
 
-        &.selected {
+    }
 
-          color: black;
-          background-color: #e7f4ff;
+    scale {
+
+      trough {
+
+        background-color: #271f16;
+        border-radius: 50px;
+        min-height: 5px;
+        min-width: 100px;
+        margin: 0 10px 0 10px;
+
+        highlight {
+
+          all: unset;
+          background-color: #FBD599;
+          border-radius: 10px;
 
         }
 
@@ -68,18 +139,30 @@ window {
 
   .layout {
 
-    background-color: rgba(0,0,0,0.4);
+    button {
+
+      transition: all 200ms linear;
+
+    }
+
+    &:hover > button {
+
+      background-color: rgba(0,0,0,0.2);
+      color: #DC9AC8;
+
+    }
 
   }
 
   .tag-list {
 
     padding: 0 .5rem;
-    background-color: rgba(0,0,0,0.2);
 
     button {
 
-      padding: 0 .225rem;
+      padding: 0 .666rem;
+
+      transition: all 125ms linear;
 
       &.chosen-occupied {
 
@@ -95,7 +178,9 @@ window {
 
       &.not-chosen {
 
-         color: rgba(255,255,255,0.4);
+        color: rgba(255,255,255,0.5);
+        font-size: 12px;
+        padding-top: 1px;
 
       }
 
@@ -111,24 +196,9 @@ window {
 
     }
 
-  }
+    .add {
 
-  .memory {
-
-    font-size: 13px;
-    font-weight: bold;
-
-    label:first-child {
-
-      padding-right: 0.4rem;
-      padding-top: 1px;
-      color: #D66D6B;
-
-    }
-
-    label:last-child {
-
-      padding-right: 0.5rem;
+      color: rgba(255,255,255,0.18);
 
     }
 
@@ -140,8 +210,35 @@ window {
 
     .icon {
 
-      color: #EEDB63;
-      padding-right: 0.5rem;
+      background-size: 16px;
+      background-repeat: no-repeat;
+      background-position: center;
+
+    }
+
+    .title {
+
+      color: rgba(255,255,255,0.85);
+      transition: all 250ms linear;
+
+      &:hover {
+
+        color: white;
+
+      }
+
+    }
+
+    .not-selected {
+
+      opacity: 0.44;
+
+    }
+
+    *:hover,
+    .selected {
+
+      opacity: 1;
 
     }
 
@@ -187,6 +284,30 @@ window {
   font-weight: bold;
   background-color: rgba(0,0,0,0.5);
 
+  .camera {
+
+    * > * > * {
+
+      padding: 0 1rem 0 0.5rem;
+      background-color: rgba(0,0,0,0.2);
+      color: rgba(255,255,255,0.75);
+
+      font-family: 'JetBrainsMono Nerd Font';
+      font-size: 12px;
+
+      transition: color 500ms linear;
+
+    }
+
+    *:hover > * > * {
+
+      color: white;
+
+    }
+
+
+  }
+
   .song-handler {
 
     .song {
@@ -221,43 +342,7 @@ window {
 
   }
 
-  .volume-handler {
-
-    color: #FBD599;
-
-    .icon {
-
-      padding: 0 0.5rem;
-      background-color: rgba(0,0,0,0.4);
-
-    }
-
-    scale {
-
-      background-color: rgba(0,0,0,0.25);
-
-      trough {
-
-        background-color: #271f16;
-        border-radius: 50px;
-        min-height: 5px;
-        min-width: 100px;
-        margin: 0 10px 0 10px;
-
-        highlight {
-
-          all: unset;
-          background-color: #FBD599;
-          border-radius: 10px;
-
-        }
-
-      }
-
-    }
-
-  }
-
+  
   .cpu-handler {
 
     .cpu {
@@ -291,50 +376,15 @@ window {
 
   }
 
-  .time-handler {
-
-    padding: 0; margin: 0;
-
-    background-color: red;
-
-    .time {
-
-      background-color: #FFFFFF;
-      color: #414141;
-
-      font-weight: bold;
-
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-
-      // .first {
-
-      //   background-color: blue;
-
-      // }
-
-      .normal {
-
-        margin-top: 2px;
-
-      }
-
-      .special {
-
-        color: #AAAAAA;
-        margin-top: 2px;
-
-      }
-
-    }
-  }
-
+  
   .power-handler {
 
     background-color: #C92430;
 
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
+    padding-left: 0.5rem;
+    padding-right: 0.69rem;
+    font-family: 'JetBrainsMono Nerd Font';
+    font-size: 13px;
 
     &:hover {
 

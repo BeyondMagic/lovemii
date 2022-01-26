@@ -62,15 +62,33 @@ dwm_tag_change | while IFS=$'\n' read -r selected && read -r occupied; do
     # Name to use for EWW variables update.
     # Such as "tag-one".
     case $tag in
-      0) name="one"   ;;
-      1) name="two"   ;;
-      2) name="three" ;;
-      3) name="four"  ;;
-      4) name="five"  ;;
-      5) name="six"   ;;
-      6) name="seven" ;;
-      7) name="eight" ;;
-      8) name="nine"  ;;
+      0)
+          name="one"
+          ;;
+      1)
+          name="two"
+          ;;
+      2)
+          name="three"
+          ;;
+      3)
+          name="four"
+          ;;
+      4)
+          name="five"
+          ;;
+      5)
+          name="six"
+          ;;
+      6)
+          name="seven"
+          ;;
+      7)
+          name="eight"
+          ;;
+      8)
+          name="nine"
+          ;;
     esac
 
     # Move bits to match the TAG ID.
@@ -116,6 +134,9 @@ dwm_tag_change | while IFS=$'\n' read -r selected && read -r occupied; do
     # XNOTIFY notification.
     get_name_of_tag "$selected" &
 
+    # Send a screenshot of the current tag to preview later.
+    scrot --overwrite --file "/tmp/$selected.jpg" &
+
   }
 
   # Define last selected to be used on the next tag change so that we don't run this again unnecessarily.
@@ -123,8 +144,18 @@ dwm_tag_change | while IFS=$'\n' read -r selected && read -r occupied; do
 
 done
 
-# If dwm-msg or dwm is killed.
-open="$(dunstify -u 2 "tags: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+# Delay waiting dwm get back to life.
+sleep 0.5s
 
-# Executes this script itself if action handler is received.
-[ "$open" = "A" ] && exec "$HOME/.config/eww/bars/bottom/dwm_tags_daemon.sh"
+# Try to get this back working.
+dwm-msg get_monitors || {
+
+  # If dwm-msg or dwm is killed.
+  open="$(dunstify -u 2 "tags: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+
+  [ "$open" = "A" ] || exit 0
+
+}
+
+# Executes this script itself if action handler is received or dwm is alive.
+exec "$HOME/.config/eww/bars/dwm_tags_daemon.sh"

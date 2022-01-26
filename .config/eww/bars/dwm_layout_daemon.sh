@@ -26,8 +26,18 @@ dwm-msg --ignore-reply subscribe layout_change_event \
 
   done
 
-# If dwm-msg or dwm is killed.
-open="$(dunstify -u 2 "layout: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+# Delay waiting dwm get back to life.
+sleep 0.5s
 
-# Executes this script itself if action handler is received.
-[ "$open" = "A" ] && exec "$HOME/.config/eww/bars/bottom/dwm_layout_daemon.sh"
+# Try to get this back working.
+dwm-msg get_monitors || {
+
+  # If dwm-msg or dwm is killed.
+  open="$(dunstify -u 2 "layout: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+
+  [ "$open" = "A" ] || exit 0
+
+}
+
+# Executes this script itself if action handler is received or dwm is alive.
+exec "$HOME/.config/eww/bars/dwm_layout_daemon.sh"

@@ -4,6 +4,8 @@
 # Setting defaults
 set playlist before current after
 
+limit=35
+
 {
 
   playlist="$(mpc playlist)"
@@ -18,6 +20,10 @@ set playlist before current after
 
   # If this is the first song of the playlist, then just set nothing to before.
   [ "$current" = "$(echo "$playlist" | head -n1)" ] && before=""
+
+  [ ${#current} -gt $limit ] && current="$(echo "$current" | cut -c -"$limit")..."
+  [ ${#before} -gt $limit  ] && before="$(echo "$before" | cut -c -"$limit")..."
+  [ ${#after} -gt $limit   ] && after="$(echo "$after" | cut -c -"$limit")..."
 
 }
 

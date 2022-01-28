@@ -1,23 +1,15 @@
 <h1 align="center">Xorg</h1>
 <img align="center" url="./.github/new_desktop.png">
-
 ---
 
-<h3 align="center">PACKAGES</h3>
-
-```
-
-```
-
----
-
-<h3 align="center">POST-INSTALLATION ARTIX RUNIT</h3>
-
-...
-
----
-
-<h2 align=-"center">SPECIAL PROGRAMS</h2>
+<img align="center" url="./.github/sddp_lovemii.png">
+<img align="center" url="./.github/sddp_lovemii_menu.png">
+<img align="center" url="./.github/sdpp_lovemii_rofi.png">
+<img align="center" url="./.github/sdpp_lovemii_neovim.png">
+<img align="center" url="./.github/sdpp_lovemii_ncmpcpp.png">
+<img align="center" url="./.github/sdpp_lovemii_terminal.png">
+<img align="center" url="./.github/sdpp_lovemii_neovim_edit.png">
+<img align="center" url="./.github/sdpp_lovemii_tags_preview.png">
 
 ### sddm
 
@@ -41,11 +33,6 @@ Run this to link the `xsessions` folder and add `lovemii` executable, then pass 
   <img src="/.github/neovim.png" alt="Preview of NeoVim">
 </p>
 
-First, copy the configuration of NeoVim to its config folder.
-
-`$ cp -rf ~/git/config/_config/nvim ~/.config/nvim/`
-
-Run **nvim** and then, `:PackerSync`.
 
 ### Firefox (Beta)
 
@@ -53,13 +40,16 @@ Run **nvim** and then, `:PackerSync`.
   <img src="/.github/firefox.png" alt="Preview of home page of Firefox">
 </p>
 
-Install the following addons:
+Install the following add-ons:
 + [Stylus](https://addons.mozilla.org/en-US/firefox/addon/styl-us/)
 + [ClearURLs](https://addons.mozilla.org/en-US/firefox/addon/clearurls/)
 + [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/)
 + [Sidebery](https://addons.mozilla.org/en-US/firefox/addon/sidebery/)
 + [SponsorBlock for Youtube - Skip Sponsorships](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/)
 + [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
++ [Universal Bypass](https://addons.mozilla.org/en-US/firefox/addon/universal-bypass/)
++ [Bypass Paywalls Clean](https://addons.mozilla.org/en-US/firefox/addon/bypass-paywalls-clean/)
++ [GitHub Gloc](https://addons.mozilla.org/en-US/firefox/addon/bypass-paywalls-clean/)
 
 Enable the following in `about:config`:
 ```
@@ -81,11 +71,6 @@ extensions.htmlaboutaddons.recommendations.enabled
 
 On `about:support` click on `Open Directory` for **Local Directory**:
 
-TODO: fix to my current repository.
-```
-wget ....userChrome.css ...userContent.css
-```
-
 Set the homepage to [mod-startpage](https://github.com/BeyondMagic/mod-startpage).
 
 ### Keyboard
@@ -104,6 +89,4 @@ TODO:: new life
 + EFL
 + WayLand
 + (some window manager that is very modular and lightweight)
-+ (some bars that is very modular and lightweight)
 + ...
-

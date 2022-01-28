@@ -184,13 +184,11 @@ zle -N forward-kill-word
 # zsh-autosuggestions ; use pacman
 . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
-
-# screen plugin from oh my zsh ; just download
-. $HOME/.config/zsh/zsh-plugins/screen 2>/dev/null
-
 # my own aliases
 . $HOME/.config/zsh/aliasesrc
 
+# screen plugin from oh my zsh ; just download
+. $HOME/.config/zsh/zsh-plugins/screen 2>/dev/null
 
 
 # -------------------------------------------------------------------------------------------

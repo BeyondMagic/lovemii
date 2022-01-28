@@ -58,6 +58,42 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Signs for built-in marks.
+  use { 'chentau/marks.nvim',
+    config = require'marks'.setup {
+      -- whether to map keybinds or not. default true
+      default_mappings = true,
+      -- which builtin marks to show. default {}
+      builtin_marks = { ".", "<", ">", "^" },
+      -- whether movements cycle back to the beginning/end of buffer. default true
+      cyclic = true,
+      -- whether the shada file is updated after modifying uppercase marks. default false
+      force_write_shada = false,
+      -- how often (in ms) to redraw signs/recompute mark positions. 
+      -- higher values will have better performance but may cause visual lag, 
+      -- while lower values may cause performance penalties. default 150.
+      refresh_interval = 250,
+      -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+      -- marks, and bookmarks.
+      -- can be either a table with all/none of the keys, or a single number, in which case
+      -- the priority applies to all marks.
+      -- default 10.
+      sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+      -- disables mark tracking for specific filetypes. default {}
+      excluded_filetypes = {},
+      -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+      -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+      -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+      -- default virt_text is "".
+      bookmark_0 = {
+        sign = "⚑",
+        virt_text = "hello world"
+      },
+      mappings = {}
+    }
+
+  }
+
   -- Signature for LSP
   use { 'ray-x/lsp_signature.nvim',
     config = require('lsp_signature').setup({
@@ -183,6 +219,9 @@ return require('packer').startup(function(use)
 --  use { 'mg979/vim-visual-multi',
   --}
 
+  -- Start a * or # search from a visual block.
+
+
   -- Parse English
   use { 'jose-elias-alvarez/null-ls.nvim',
     config = require('configuration.null-ls')
@@ -229,6 +268,11 @@ return require('packer').startup(function(use)
   use { 'petertriho/nvim-scrollbar',
     config = require('configuration.nvim-scrollbar'),
     requires = 'kevinhwang91/nvim-hlslens'
+  }
+
+   -- Status information for LSP.
+  use { 'j-hui/fidget.nvim',
+    config = require('fidget').setup{}
   }
 
   -- Theme (dark and light)

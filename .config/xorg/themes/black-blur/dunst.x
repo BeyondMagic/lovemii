@@ -1,5 +1,5 @@
 dunst.critical.background   : #13171aAA
-dunst.critical.foreground   : #fe2d3b
+dunst.critical.foreground   : #D39B8D
 dunst.critical.frame_colour : #141e24
 dunst.normal.background     : #13171aAA
 dunst.normal.foreground     : #ffffff

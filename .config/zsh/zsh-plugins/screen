@@ -26,6 +26,7 @@ function precmd {
     elapsed=$(($now-$timer))
 
     export RPROMPT="%F{cyan}${elapsed}ms%{$reset_color%}"
+
     unset timer
   fi
 

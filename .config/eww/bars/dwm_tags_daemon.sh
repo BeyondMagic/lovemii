@@ -135,7 +135,10 @@ dwm_tag_change | while IFS=$'\n' read -r selected && read -r occupied; do
     get_name_of_tag "$selected" &
 
     # Send a screenshot of the current tag to preview later.
-    scrot --overwrite --file "/tmp/$selected.jpg" &
+    {
+      sleep 0.1s
+      scrot --overwrite --file "/tmp/$selected.jpg"
+    } &
 
   }
 

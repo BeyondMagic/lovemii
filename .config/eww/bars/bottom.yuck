@@ -19,9 +19,6 @@
 ; ; Logo.
 ( defvar reveal-logo      false )
 
-; ; Title.
-( defvar reveal-title     true  ) ( defvar title-literal "" )
-
 ; ; Windows.
 ( defvar windows-literal "" )
 
@@ -116,7 +113,7 @@
                              :orientation  "horizontal"
                              :halign       "start"
                              :space-evenly false
-                             ( eventbox :class "layout" ( button :onclick "dwm-msg run_command cyclelayout 1" :width 45 layout ) )
+                             ( eventbox :class "layout" ( button :onclick "preview_tag &" :onmiddleclick "dwm-msg run_command cyclelayout 1 &" :width 45 layout ) )
                              ( box
                                    :space-evenly false
                                    :class 'tag-list'
@@ -159,26 +156,32 @@
                               :class        "bar center"
                               :space-evenly false
                               :hexpand      false
+                              ( eventbox
+                                         :class "menu-window"
+                                         ( button
+                                                  :onclick "rofi -theme ~/.config/rofi/themes/launcher.rasi -show drun -hover-select -terminal flarity &"
+                                                  :class "menu"
+                                                  :width 20
+                                                  ""
+                                         )
+                              )
                               ( revealer
-                                         :reveal reveal-title
-                                         :transition "slideright"
-                                         :duration   "500ms"
+                                         :reveal       reveal-title
+                                         :transition   "slideright"
+                                         :duration     "500ms"
                                          :space-evenly false
-                                         :vexpand true
-                                         :hexpand true
+                                         :vexpand      true
+                                         :hexpand      true
                                          ( literal
-                                               :content "( box
-                                                               :space-evenly false
-                                                               :spacing 7
-                                                               :class 'title-handler'
-                                                               :orientation 'horizontal'
-                                                               :vexpand true
-                                                               :hexpand true
-                                                               ${windows-literal}
-                                                               ( eventbox :class 'title'
-                                                                 ${title-literal}
-                                                               )
-                                                         )"
+                                                   :content "( box
+                                                                   :space-evenly false
+                                                                   :spacing 7
+                                                                   :class 'title-handler'
+                                                                   :orientation 'horizontal'
+                                                                   :vexpand true
+                                                                   :hexpand true
+                                                                   ${windows-literal}
+                                                             )"
                                          )
                               )
                         )

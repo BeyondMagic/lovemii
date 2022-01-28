@@ -1,7 +1,6 @@
-dmenu.font             : Fira Code:style=Regular:size=9.5:antialias=true
 dmenu.background       : #000000
 dmenu.foreground       : #eeeeee
-dmenu.sel_background   : #1e1e1e
+dmenu.sel_background   : #619D97
 dmenu.sel_foreground   : #ffffff
 dmenu.out_background   : #123456
 dmenu.out_foreground   : #ffffff

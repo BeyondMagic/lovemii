@@ -90,18 +90,24 @@
 #------------------------------------------------------------------------------
 
 # Set a wallpaper from a folder
-"zsh -c '. ~/.config/zsh/aliasesrc; set_wallpaper'"
-   m:0x10 + c:68 
-      F2
+#"zsh -c '. ~/.config/zsh/aliasesrc; set_wallpaper'"
+#   m:0x10 + c:68 
+#      F2
 
 # Random Wallpaper
-"zsh -c '. ~/.config/zsh/aliasesrc; random_wallpaper'"
-    m:0x10 + c:69
-      F3
+#"zsh -c '. ~/.config/zsh/aliasesrc; random_wallpaper'"
+#    m:0x10 + c:69
+#      F3
 
-"zsh -c '. ~/.config/zsh/aliasesrc; see_fonts'"
-    m:0x10 + c:76
-      Super + F10
+#"zsh -c '. ~/.config/zsh/aliasesrc; see_fonts'"
+#    m:0x10 + c:76
+#      Super + F10
+
+# Zoom in.
+"boomer"
+    m:0x50 + c:52
+      Super + z
+
 
 # create a new task to be shown at the top bar.
 #"$SCRIPTS_FOLDER/bars/module/top/_tasks add"
@@ -153,17 +159,18 @@
       Ctrl + Printscr
 
 # Simple terminal
-"st"
+"flarity"
   m:0x50 + c:36
     Mod2+Mod4 + Return
 
 # Simple terminal with float status
-"st_float"
+"flarity -T 'float'"
     m:0x50 + c:22
       Super + Back
 
 # Run DMENU to open a program
-"dmenu_run -r -i"
+#"dmenu_run -r -i"
+"rofi -theme ~/.config/rofi/themes/launcher.rasi -show drun -hover-select -terminal flarity"
   m:0x50 + c:40
     Mod2+Mod4 + d
 

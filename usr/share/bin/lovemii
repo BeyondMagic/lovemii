@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 #
-# DESCRIPTION:
+# Description:
 #   Execute magic's desktop :)
 #
-# MAINTAINER: (s)
+# Maintainer: (s)
 #   BeyondMagic © 2021-
 
 #-------------------------------------------------------------------------------
@@ -108,12 +108,6 @@ setxkbmap -model abnt2 -layout br -variant abnt2 &
 #   Set mouse order
 xmodmap -e 'pointer = 3 2 1'
 
-#   Start Lemonbar (bottom and top bars)
-#"$SCRIPTS_FOLDER"/bars/lemonbars &
-
-#   Start modules for lemonbars (bottom and top bars)
-#"$SCRIPTS_FOLDER"/bars/modules &
-
 # Eww beauties
 eww daemon
 eww open top-bar
@@ -132,7 +126,5 @@ mpdscribble --conf "$HOME/.config/mpdscribble/mpdscribble.conf" &
 # Remove some folders
 #----------------------------------------------------
 
-#rm -rf "$HOME/ダウンロード"
-
-#   Sleep after 7 minutes of inactivity
+#   Sleep after 7 minutes of inactivity.
 xautolock -time 7 -locker "lock"

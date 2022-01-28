@@ -7,20 +7,11 @@ require('options')
 --   ~/.local/share/nvim/site/pack/paker/start/packer.nvim
 require('plugins')
 
--- Inner map for editing.
---require('innermap')
-
--- Personal Keymaps of neovim:
-require('keymappings')
-
 -- LSP Lua (build from source without telemetry (use grep to find config)
 -- 	https://github.com/sumneko/lua-language-server
 -- 	cd lua-language-server
 -- Then change the path to your 'lua-language-server' build
 require('lsp.lua-ls')
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- C++ and C Language Server
 require('lsp.ccls')
@@ -34,6 +25,9 @@ require('lspconfig').tsserver.setup{}
 
 -- SASS Language Server
 require('lspconfig').tailwindcss.setup{}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Parse English
 --require('lint-nv')
@@ -54,6 +48,8 @@ require('autocmd')
 -- Global function
 require('functions')
 
+-- Personal Keymaps of neovim:
+require('keymappings')
 
 -- Hai there!
 print('-- Welcome my fellow friend :)')

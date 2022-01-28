@@ -6,13 +6,13 @@
 ; ; MPD & MPC song names.
 ( defvar reveal-songnames false )
 
+; ; Title name.
+( defvar title-name "" )
+
+; ; Title.
+( defvar reveal-title false ) ( defvar title-literal "" )
+
 ; Timers.
-
-( defpoll cpu
-              :interval "3s"
-              "sh ./bars/cpu.sh"
-)
-
 ( defpoll song
                :interval  "1s"
                :run-while reveal-songnames
@@ -20,7 +20,6 @@
 )
 
 ; Bar at the top.
-
 ( defwindow top-bar
             :monitor 0
             :geometry ( geometry
@@ -37,74 +36,88 @@
 
 (defwidget top-widget []
            ( centerbox
-                       :orientation "h"
+                       :orientation "horizontal"
                        :class       "top-bar"
                        ; Left.
                        ( box
-                             :orientation  "horizontal"
-                             :halign       "start"
+                             :class        "left-part"
                              :space-evenly false
-                             ( literal
-                                       :class   "cpu-handler"
-                                       :content "( box
-                                                      :space-evenly false
-                                                      :class 'cpu'
-                                                      :spacing 0
-                                                      :orientation 'horizontal'
-                                                      :vexpand true
-                                                      :hexpand true
-                                                      ${cpu}
-                                                )"
+                             :hexpand      false
+                             :orientation "horizontal"
+                             :space-evenly false
+                             ( button
+                                      :class "logo"
+                                      :width 24
+                                      :style `background-image: url("/home/iris/.local/share/icons/artixlinux-logo.png");`
+                                      ""
                              )
-                        )
-                        ; Center.
-                        ( box
-                              :orientation  "horizontal"
-                              :class        "bar center"
-                              :space-evenly false
-                              :hexpand      false
-                              ( revealer
-                                         :reveal reveal-songnames
-                                         :transition "slideright"
-                                         :duration   "500ms"
-                                         ( literal
-                                               :class   "song-handler"
-                                               :content "( box
-                                                               :space-evenly false
-                                                               :class 'song'
-                                                               :spacing 0
-                                                               :orientation 'horizontal'
-                                                               :vexpand true
-                                                               :hexpand true
-                                                               ${song}
-                                                         )"
-                                         )
-                              )
-                        )
-                        ; Right.
-                        ( box
-                              :orientation  "horizontal"
-                              :halign       "end"
-                              :space-evenly false
-                              :hexpand      false
-                              ( revealer
-                                         :class "camera"
-                                         :reveal     record_menu
-                                         :duration   "500ms"
-                                         :transition "slideleft"
-                                         ( eventbox
-                                                    ( button
-                                                             :onclick "sh ./bars/record_menu.sh &"
-                                                             ""
-                                                    )
-                                         )
-                              )
-                              ( button
-                                       :class        "power-handler"
-                                       :onclick      "eww open powermenu"
-                                       :onrightclick "eww close powermenu"
-                                       ""
-                              )
-                        )
+                             ( revealer
+                                        :reveal       reveal-title
+                                        :transition   "slideright"
+                                        :duration     "500ms"
+                                        ( box
+                                              :space-evenly false
+                                              ( label
+                                                      :class "title"
+                                                      :text  title-name
+                                              )
+                                              ( label
+                                                      :class          "title-name"
+                                                      :limit-width    40
+                                                      :show_truncated true
+                                                      :text           title-literal
+                                              )
+                                        )
+                             )
+                       )
+                       ; Center.
+                       ( box
+                             :orientation  "horizontal"
+                             :class        "bar center"
+                             :space-evenly false
+                             :hexpand      false
+                             ( revealer
+                                        :reveal     reveal-songnames
+                                        :transition "slideright"
+                                        :duration   "500ms"
+                                        ( literal
+                                              :class   "song-handler"
+                                              :content "( box
+                                                              :space-evenly false
+                                                              :class        'song'
+                                                              :spacing      0
+                                                              :orientation  'horizontal'
+                                                              :vexpand      true
+                                                              :hexpand      true
+                                                              ${song}
+                                                        )"
+                                        )
+                             )
+                       )
+                       ; Right.
+                       ( box
+                             :orientation  "horizontal"
+                             :halign       "end"
+                             :space-evenly false
+                             :hexpand      false
+                             ( revealer
+                                        :class "camera"
+                                        :reveal     record_menu
+                                        :duration   "500ms"
+                                        :transition "slideleft"
+                                        ( eventbox
+                                                   ( button
+                                                            :onclick "sh ./bars/record_menu.sh &"
+                                                            ""
+                                                   )
+                                        )
+                             )
+                             ;( button
+                             ;         :class        "power-handler"
+                             ;         :onclick      "eww open powermenu"
+                             ;         :onrightclick "eww close powermenu"
+                             ;         ""
+                             ;)
+                       )
            )
 )

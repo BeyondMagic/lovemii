@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=nnn
 Comment=A simple file manager just for you!
-Exec=st -e 'dash' '-c' 'nnn -dDoxR %U'
+Exec=flarity -e 'dash' '-c' 'nnn -dDoxR %U'
 Icon=/home/iris/Base/icons/nnn.png
 Terminal=false
 Type=Application

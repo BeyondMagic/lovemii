@@ -19,7 +19,7 @@ export EDITOR=nvim VISUAL=nvim
 # Aliases
 #--------------------------------------------------------------------------------
 
-alias   f_cache='sudo SOURCE_DATE_EPOCH=$(date +%s) fc-cache -rs' # Temporary solution to fc-cache failing
+alias   f_cache='SOURCE_DATE_EPOCH=$(date +%s) doas -- fc-cache -rs' # Temporary solution to fc-cache failing
 alias        ls="exa"
 alias   new_key="xbindkeys -f $HOME/.config/xbindkeys/xbindkeysrc -mk"
 alias    pacman='doas -- pacman'
@@ -113,7 +113,7 @@ mdemonde() {
   youtube-dl -o "$HOME/Library/Music/Songs/%(title)s.%(ext)s" \
     --download-archive "$HOME/Library/Music/yt_archive.txt" --add-metadata \
     --metadata-from-title "(?P<artist>.+?) - (?P<title>.+)" \
-    --playlist-end 1000 -x -i \
+    --playlist-end 50 -x -i \
     -f bestaudio "https://www.youtube.com/playlist?list=$all_music_yt_playlist"
   mpc update --wait
 
@@ -155,12 +155,12 @@ update_nincat() {
 
 	makepkg -si \
 		&& makepkg --printsrcinfo > .SRCINFO \
-		&& cp .SRCINFO PKGBUILD -t ~/git/ninecath/nincat-aur \
-		&& cd ~/git/ninecath/nincat-aur \
+		&& cp .SRCINFO PKGBUILD -t ~/Git/Projects/ninecath/nincat-aur \
+		&& cd ~/Git/Projects/ninecath/nincat-aur \
 		&& git add . \
 		&& git commit \
 		&& git push origin master \
-		&& cd ~/git/ninecath/nincat
+		&& cd ~/Git/Projects/ninecath/nincat
 }
 
 # Get current PATH and copy it to system
@@ -311,7 +311,7 @@ up_xr() {
   # Update Apps despite type of the theme
   {
     pkill -URG 'xnotify'
-    kill -USR1 $(pidof st)
+    kill -USR1 $(pidof flarity)
     
     # Lemonbar(s)
     clean_bars
@@ -410,6 +410,9 @@ del_cursong() {
 # nnn with cd on exit
 n() {
 
+  # Config.
+  export NNN_PLUG='p:preview-tabbed'
+
   # Block nesting of nnn in subshells
   [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ] && {
     echo "nnn is already running"
@@ -429,7 +432,7 @@ n() {
   # stty lnext undef
 
   [ "$@" ] && cd "$@"
-  nnn -dDoxR "$@"
+  nnn -adDoxR -T t "$@"
 
   [ -f "$NNN_TMPFILE" ] && {
     . "$NNN_TMPFILE"
@@ -567,7 +570,7 @@ random_wallpaper() {
 set_wallpaper() {
 
   # Set wallpaper chosen by user
-  wallpaper "$(ls -d -1 "$XWALLPAPERS_FOLDER/"** | nsxiv -itob | tail -n1)" 
+  wallpaper "$(find "$XWALLPAPERS_FOLDER/$(xgetres theme.type)" -type f -size +0 | nsxiv -itob | tail -n1)"
 
 }
 

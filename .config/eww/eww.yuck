@@ -2,14 +2,23 @@
 ;
 ; BeyondMagic 2022
 
-; -- Bottom bar.
-( include "./bars/bottom.yuck" )
-
 ; -- Top bar.
 ( include "./bars/top.yuck" )
+
+; -- Bottom bar.
+( include "./bars/bottom.yuck" )
 
 ; -- Power menu.
 ( include "./floating/power.yuck" )
 
-; -- Calendary.
+;; -- Calendary.
 ( include "./floating/calendary.yuck" )
+
+;; -- Tag switcher.
+;; ( include "./floating/switch.yuck" )
+
+;; -- Menu.
+;( include "./floating/cpu.yuck" )
+
+;; -- Song viewer.
+( include "./floating/mpd.yuck" )

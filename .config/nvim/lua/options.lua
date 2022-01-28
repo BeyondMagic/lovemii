@@ -107,6 +107,9 @@ vim.api.nvim_set_var('do_filetype_lua', 1)
 
 --------------------API------------------------
 
+-- Change title accordingly.
+-- option('title', true)
+
 -- Set clipboard to be global across the system
 option('clipboard', 'unnamedplus')
 

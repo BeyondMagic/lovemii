@@ -1,0 +1,27 @@
+; Variables.
+
+; ; When to run cPU
+( defpoll cpu
+              :interval "3s"
+              :run-while reveal-songnames
+              "sh ./bars/cpu.sh"
+)
+
+; ; 
+( box
+      :orientation  "horizontal"
+      :halign       "start"
+      :space-evenly false
+      ( literal
+                :class   "cpu-handler"
+                :content "( box
+                               :space-evenly false
+                               :class 'cpu'
+                               :spacing 0
+                               :orientation 'horizontal'
+                               :vexpand true
+                               :hexpand true
+                               ${cpu}
+                         )"
+      )
+)

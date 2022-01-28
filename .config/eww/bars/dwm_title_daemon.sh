@@ -19,11 +19,11 @@ get_title_window_change () {
 }
 
 # EWW .yuck literal transformers.
-eww_title () {
-
-  echo "( label :limit-width 75 :text \`$1\` )";
-
-}
+#eww_title () {
+#
+#  echo "( label :limit-width 52 :text \`$1\` )";
+#
+#}
 eww_icon  () { 
 
   echo ":style \`background-image: url(\"$HOME/.local/share/icons/$1\");\`";
@@ -73,13 +73,14 @@ get_windows_icons () {
                                 )
                      )"
 
-        [ "$class_window" = 'selected' ] && last_one="$this_window" || windows="$windows $this_window"
+        #[ "$class_window" = 'selected' ] && last_one="$this_window" || 
+        windows="$windows $this_window"
 
       }
 
     done
 
-    eww update windows-literal="$windows $last_one"
+    eww update windows-literal="$windows"
 
   }
 }
@@ -106,11 +107,11 @@ format_active_window() {
 
       case "$total" in
 
-        'float' | 'flarity' )
+        #'float' | 'flarity' )
 
-          unset name
+        #  unset name
 
-        ;;
+        #;;
 
         * )
 
@@ -145,7 +146,7 @@ format_active_window() {
     ;;
 
     # Firefox-Developer-Edition
-    'GeckoMain' | 'firefox' )
+    'GeckoMain' | 'firefox' | 'firefox-bin' )
 
       icon="firefox.svg"
       total=$(echo "$total" | sed -re 's/\\"/"/g' -e 's/(\[Sidebery\] )|(Mozilla Firefox)|(— Mozilla Firefox)//g')
@@ -209,11 +210,17 @@ format_active_window() {
 
   [ "$name" ] && {
 
-    # If there's no icon, then just prints out the name
+    eww update title-name="$(echo "$name" | sed "s/^\b\(.\)/\u\1/g")"
+
+    # If there's no icon, then just prints out the name.
     [ -n "$icon" ] && icon="$icon" || icon="$name"
 
       [ "$2" = "get_icon" ] && echo "$icon" \
-                            || echo "$(eww_title "$total")"
+                            || {
+
+        echo "$total"
+
+      }
 
   }
 
@@ -226,6 +233,7 @@ get_title_window_change | while IFS=$'\n' read -r winid; do
   [ $winid = "null" ] && {
 
     eww update reveal-title=false
+    eww update title-name=""
 
   # When focused.
   } || {

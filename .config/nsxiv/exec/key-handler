@@ -24,7 +24,7 @@ while read file; do
 
         # Copy image to clipboard
         'C-t')
-            fcat "$file" | xclip -selection clipboard -t image/png ;;
+            cat "$file" | xclip -selection clipboard -t image/png ;;
 
         # 
         'C-m')
@@ -32,7 +32,7 @@ while read file; do
 
         # Set wallpaper
         'C-w')
-            zsh -c ". ~/Base/aliasesrc; wallpaper \"$file\"" ;;
+            zsh -c ". ~/.config/zsh/aliasesrc; wallpaper \"$file\"" ;;
 
         # 
         *)

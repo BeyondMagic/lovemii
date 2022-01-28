@@ -1,6 +1,5 @@
-
 /* center radius (pixels) */
-#define C_RADIUS 128
+#define C_RADIUS 40
 /* center line thickness (pixels) */
 #define C_LINE 2
 /* outline color */

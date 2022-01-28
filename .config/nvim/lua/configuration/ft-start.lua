@@ -18,7 +18,7 @@
 require('filetype').setup({
   overrides = {
 
-    -- The same as the ones above except the keys map to functions
+    -- The same as the ones above except the keys map to functions.
     function_extensions = {
       conf = function()
         vim.bo.filetype = 'gitconfig'
@@ -80,12 +80,12 @@ require('filetype').setup({
         vim.api.nvim_command('cd ~/Git/Projects/iris/')
         -- vim.api.nvim_command('set colorcolumn=100')
       end,
-      [".*Story/Scripts/*"] = function()
+      [".*Story/*"] = function()
         vim.bo.filetype = 'txt'
         vim.api.nvim_command('set colorcolumn=85')
         vim.api.nvim_command('set textwidth=84')
-        vim.api.nvim_set_keymap('i', '<Up>', [[k]], { expr = true, noremap = true, silent = true  })
-        vim.api.nvim_set_keymap('i', '<Down>', [[j]], { expr = true, noremap = true, silent = true  })
+        vim.api.nvim_set_keymap('i', '<Up>', '<Up>', { noremap = true, silent = true  })
+        vim.api.nvim_set_keymap('i', '<Down>', '<Down>', { noremap = true, silent = true  })
       end,
     },
 

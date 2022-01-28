@@ -1,0 +1,24 @@
+( defvar current_song_name "Good Girl" )
+( defvar current_song_artist "Koraii" )
+
+(defwindow mpd-viewer
+           :wm-ignore  false
+           :monitor    0
+           :windowtype "dialog"
+           ( box
+                 :class 'mpd'
+                 :space-evenly false
+
+                 ( button :width 112 :height 100 :class "mpd-image" :style `background-image: url("/tmp/cover.jpg");` '' )
+
+                 ( box
+                       :space-evenly false
+                       :class "names"
+                       :orientation "vertical"
+                       ( label :class "mpd-artist" :text "${current_song_artist}" )
+                       ( label :class "mpd-song" :text "${current_song_name}" )
+                 )
+           )
+
+
+)

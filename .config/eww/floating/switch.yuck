@@ -1,0 +1,20 @@
+(defwindow switcher
+           :wm-ignore  true
+           :monitor    0
+           :windowtype "dock"
+           :geometry   ( geometry
+                                  :x      "0%"
+                                  :y      "0%"
+                                  :width  "15%"
+                                  :height "100%"
+                                  :anchor "center right"
+                       )
+           ( box
+                 :class "switch"
+                 (image
+                        :image-width  180
+                        :image-height 112
+                        :path "/tmp/1.jpg"
+                 )
+           )
+)

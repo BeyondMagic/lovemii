@@ -43,6 +43,7 @@ function! DisableST()
 endfunction
 au BufEnter NvimTree setlocal statusline=%!DisableST()
 
+" autocmd BufEnter * let &titlestring = expand("%:t")
+
+
 ]], false)
-
-

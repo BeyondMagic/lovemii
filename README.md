@@ -1,15 +1,19 @@
 <h1 align="center">Xorg</h1>
-<img align="center" url="./.github/new_desktop.png">
+
 ---
 
-<img align="center" url="./.github/sddp_lovemii.png">
-<img align="center" url="./.github/sddp_lovemii_menu.png">
-<img align="center" url="./.github/sdpp_lovemii_rofi.png">
-<img align="center" url="./.github/sdpp_lovemii_neovim.png">
-<img align="center" url="./.github/sdpp_lovemii_ncmpcpp.png">
-<img align="center" url="./.github/sdpp_lovemii_terminal.png">
-<img align="center" url="./.github/sdpp_lovemii_neovim_edit.png">
-<img align="center" url="./.github/sdpp_lovemii_tags_preview.png">
+<h3 align="center">MaGiCK SDPP - Super Duper Party People</h3>
+
+---
+
+<img align="center" src="/.github/sdpp/lovemii.jpg">
+<img align="center" src="/.github/sdpp/lovemii_menu.jpg">
+<img align="center" src="/.github/sdpp/lovemii_rofi.jpg">
+<img align="center" src="/.github/sdpp/lovemii_neovim.jpg">
+<img align="center" src="/.github/sdpp/lovemii_ncmpcpp.jpg">
+<img align="center" src="/.github/sdpp/lovemii_terminal.jpg">
+<img align="center" src="/.github/sdpp/lovemii_neovim_edit.jpg">
+<img align="center" src="/.github/sdpp/lovemii_tags_preview.jpg">
 
 ### sddm
 

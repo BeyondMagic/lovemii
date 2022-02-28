@@ -9,6 +9,13 @@
 #
 # BeyondMagic UNLICENSE https://github.com/beyondmagic/magiCK/
 
+# Update overall EWW.
+eww_update () {
+
+  mpd_song
+
+}
+
 # To ge the current state of MPD.
 # Possible values are "playing" and "paused".
 mpd_state () { mpc status '%state%'; }
@@ -45,9 +52,8 @@ while : ; do
     [ "$last_name" != "$new_song" ] && {
 
       last_name="$new_song"
-
       # https://github.com/BeyondMagic/creamberry/blob/master/path/mpd_song
-      mpd_song &
+      eww_update &
 
     }
 
@@ -55,7 +61,7 @@ while : ; do
     [ "$last_state" = "paused" ] && {
 
       # https://github.com/BeyondMagic/creamberry/blob/master/path/mpd_song
-      mpd_song &
+      eww_update &
 
       last_state='playing'
 

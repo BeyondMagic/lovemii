@@ -1,5 +1,5 @@
-91menu.background          : #141e24
-91menu.foreground          : #f8f6fe
-91menu.border              : #a8a8a8
+91menu.background          : #f8f6fe
+91menu.foreground          : #141e24
+91menu.border              : #f8f6fe
 91menu.foreground.inverted : #ededed
-91menu.selection           : #961b24
+91menu.selection           : #C53F34

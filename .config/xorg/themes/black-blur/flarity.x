@@ -4,7 +4,7 @@ flarity.color2         : #389583
 flarity.color3         : #FDA65D
 flarity.color4         : #5AB8EB
 flarity.color5         : #EDC8B8
-flarity.color6         : #1572A1
+flarity.color6         : #33577D
 flarity.color7         : #FDFCFD
 
 flarity.color8         : #424043
@@ -13,7 +13,7 @@ flarity.color10        : #5CDB94
 flarity.color11        : #FFE699
 flarity.color12        : #84CEEB
 flarity.color13        : #EDE2DC
-flarity.color14        : #9AD0EC
+flarity.color14        : #1572A1
 flarity.color15        : #FFFFFF
 
 flarity.color255       : #0A0C11

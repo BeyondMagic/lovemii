@@ -1,0 +1,198 @@
+.mpd {
+
+  background-color: #0E0E10;
+
+  .sidebar {
+
+    background-color: rgba(black,0.15);
+    padding: 1.5rem 0.5rem 0;
+
+    .love {
+
+      background-image: url('/home/iris/.local/share/icons/heart_outline.svg');
+      background-size: cover;
+      background-position: center;
+
+      &:hover {
+
+        background-image: url('/home/iris/.local/share/icons/heart.svg');
+
+      }
+
+    }
+
+    .add {
+
+      font-size: 1.5rem;
+      font-weight: bolder;
+
+      &:hover {
+
+        color: #96BAB8;
+
+      }
+
+    }
+
+  }
+
+  .image-bg {
+
+    background-color: rgba(white,0.25);
+
+  }
+
+  .player {
+
+    padding: 1.5rem 1rem 1rem;
+
+    .artist {
+
+      font-weight: bolder;
+      font-size: 1.5rem;
+
+    }
+
+    .song {
+
+      margin-bottom: 1rem;
+
+    }
+
+    .progress {
+
+      min-width: 25rem;
+
+      trough {
+
+        background-color: rgba(white,0.15);
+        min-height: 4px;
+
+        highlight, slider {
+
+          background-color: #B2D8DB;
+
+        }
+
+        highlight {
+
+          border-top: 2px solid #0E0E10;
+          border-bottom: 2px solid #0E0E10;
+
+        }
+
+        slider {
+
+          min-height: 8px;
+          min-width: 8px;
+
+          border-radius: 50%;
+
+        }
+
+      }
+
+    }
+
+    .seek {
+
+      * {
+
+        color: rgba(white,0.8);
+
+      }
+
+    }
+
+    .current {
+
+      padding-left: 0.25rem;
+      font-weight: bold;
+
+    }
+
+    .total {
+
+      padding-right: 0.25rem;
+      font-weight: bold;
+
+    }
+
+    .control {
+
+      font-family: 'JetBrainsMono Nerd Font';
+
+      .button * {
+
+        transition: all 150ms linear;
+
+      }
+
+      .pause * {
+
+        color: #131315;
+        background-color: #B2D8DB;
+        box-shadow: 0 0 3px 0 #B2D8DB;
+        border-radius: 100%;
+        font-weight: bolder;
+        font-size: 13px;
+        padding-left: 1px;
+
+        text-shadow: -1px 0px 0 #131315;
+
+        margin: 0.68rem 1rem;
+
+      }
+
+      .forward *,
+      .rewind * {
+
+        margin: 0 0.75rem;
+
+        color: white;
+        letter-spacing: 1px;
+        font-weight: bolder;
+        font-family: 'JetBrainsMono Nerd Font';
+      	font-size: 1.5rem;
+
+      }
+
+      .rewind:hover *,
+      .forward:hover * {
+
+        color: #B2D8DB;
+
+      }
+
+    }
+
+  }
+
+}
+
+.lyrics {
+
+  background-color: #0E0E10;
+
+  .text {
+
+    color:  white;
+    font-family: 'Roboto Mono';
+
+    font-weight: bolder;
+    padding: 1.5rem 2rem;
+    background-color: rgba(black,0.25);
+    text-shadow: 0 0 5px rgba(black,0.151);
+
+  }
+
+  .index {
+
+    background-color: rgba(white,0.015);
+    color: rgba(white,0.15);
+    font-weight: bolder;
+    font-size: 1.15rem;
+
+  }
+
+}

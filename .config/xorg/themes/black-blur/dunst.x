@@ -1,3 +1,4 @@
+dunst.separator.colour      : #13171a66
 dunst.critical.background   : #13171aAA
 dunst.critical.foreground   : #D39B8D
 dunst.critical.frame_colour : #141e24

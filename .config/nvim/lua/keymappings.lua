@@ -78,7 +78,7 @@ key('n', '<Leader>z', ':ZenMode<CR>', remap )
 key('n', '<Leader>t', ':Twilight<CR>', remap )
 
 -- Open n³ file explorer.
-key('n', '<Leader>n', ':NnnPicker %:p:h<CR>', remap )
+-- key('n', '<Leader>n', ':NnnPicker %:p:h<CR>', remap )
 
 -- Try to correct the current word.
 key('i', '<C-b>', 'ea<C-x><C-s>', remap )

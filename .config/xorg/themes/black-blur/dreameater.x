@@ -1,6 +1,6 @@
 dmenu.background       : #000000
 dmenu.foreground       : #eeeeee
-dmenu.sel_background   : #619D97
+dmenu.sel_background   : #0E0E10
 dmenu.sel_foreground   : #ffffff
 dmenu.out_background   : #123456
 dmenu.out_foreground   : #ffffff

@@ -21,23 +21,23 @@
 
 # Seek more mpd
 "mpc -q seek +00:00:04"
-  m:0x50 + c:171
+  m:0x90 + c:171
     Mod2+Mod4 + XF86AudioNext
 
 
 # Seek less mpd
 "mpc -q seek -00:00:04"
-  m:0x50 + c:173
+  m:0x90 + c:173
     Mod2+Mod4 + XF86AudioPrev
 
 # Increase volume of mpc
 "mpc -q volume $(( $(mpc | grep --line-buffered -hoE '[0-9]{2,}' | tail -n 1) + 1 ))"
-  m:0x50 + c:123
+  m:0x90 + c:123
     Mod2+Mod4 + XF86AudioRaiseVolume
 
 # Decrease volume of mpc
 "mpc -q volume $(( $(mpc | grep --line-buffered -hoE '[0-9]{2,}' | tail -n 1) - 1 ))"
-  m:0x50 + c:122
+  m:0x90 + c:122
     Mod2+Mod4 + XF86AudioLowerVolume
 
 # Decrease volume of pulseaudio
@@ -67,12 +67,12 @@
 
 # Toggle repeat modes
 "mpc repeat"
-  m:0x50 + c:172
+  m:0x90 + c:172
     Mod2+Mod4 + XF86AudioPlay
 
 # Reset song (call notification, too)
 "mpc -q seek 00:00:00"
-    m:0x50 + c:174
+    m:0x90 + c:174
       Mod2+Mod4 + XF86AudioStop
 
 # Add a new song from database :)
@@ -82,7 +82,7 @@
 
 # Delete the current song from database :)
 "zsh -c '. ~/.config/zsh/aliasesrc; del_cursong'"
-  m:0x50 + c:179
+  m:0x90 + c:179
     Mod2+Mod4 + XF86Tools
 
 #------------------------------------------------------------------------------
@@ -105,13 +105,13 @@
 
 # Zoom in.
 "boomer"
-    m:0x50 + c:52
+    m:0x90 + c:52
       Super + z
 
 
 # create a new task to be shown at the top bar.
 #"$SCRIPTS_FOLDER/bars/module/top/_tasks add"
-#    m:0x50 + c:110
+#    m:0x90 + c:110
 #      Super + Home
       
 #------------------------------------------------------------------------------
@@ -120,12 +120,12 @@
 
 # Reset Picom (fork is a little bugged
 #"pkill picom; picom --experimental-backends --blur-method dual_kawase --blur-strength 8 --animations --animation-for-open-window 'zoom' --animation-stiffness 500 --animation-dampening 25"
-#  m:0x50 + c:33
+#  m:0x90 + c:33
 #   Super + P
 
 # See all windows
 "skippy-xd"
-  m:0x50 + c:135
+  m:0x90 + c:135
     Super + Menu
 
 #------------------------------------------------------------------------------
@@ -150,7 +150,7 @@
 
 # Take full screenshot, duh
 "fullscreen"
-    m:0x50 + c:107
+    m:0x90 + c:107
       Super + Printscr
 
 # Run colour picker of screen
@@ -160,23 +160,34 @@
 
 # Simple terminal
 "flarity"
-  m:0x50 + c:36
+  m:0x90 + c:36
     Mod2+Mod4 + Return
 
 # Simple terminal with float status
 "flarity -T 'float'"
-    m:0x50 + c:22
+    m:0x90 + c:22
       Super + Back
+
+# Switch tag.
+"preview_tag"
+    m:0x90 + c:60
+      Mod2+Mod4 + period
+
+# Choose song from current playlist.
+"rinse"
+    m:0x90 + c:33
+      Super + p
+
 
 # Run DMENU to open a program
 #"dmenu_run -r -i"
 "rofi -theme ~/.config/rofi/themes/launcher.rasi -show drun -hover-select -terminal flarity"
-  m:0x50 + c:40
+  m:0x90 + c:40
     Mod2+Mod4 + d
 
 # run emoji list dmenu
 "load_emoji"
-   m:0x50 + c:118
+   m:0x90 + c:118
      Super + Insert
 
 # Run colour picker of screen

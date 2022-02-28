@@ -29,7 +29,7 @@ function! Insert_Scroll_Down()
 endfunction
 
 autocmd! BufReadPost * :setlocal foldmethod=syntax
-autocmd! VimLeavePre * :mksession! ~/.config/nvim/session.vim
+autocmd! VimLeavePre * :mks! ~/.config/nvim/session.vim
 autocmd! Signal SIGUSR1 :call Switch_Theme()
 
 " For some reason ?? this do not work with neovim lua builtin comands.

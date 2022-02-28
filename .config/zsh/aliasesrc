@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env dash
 #
 # Description
 #   aliases to my magic's system
@@ -19,8 +19,11 @@ export EDITOR=nvim VISUAL=nvim
 # Aliases
 #--------------------------------------------------------------------------------
 
+alias     mkdir='mkdir -p'
+alias      iris='~/Git/Projects/iris-cli/iris/bin/iris'
+alias      game="PROTON_NO_ESYNC=1 PROTON_DUMP_DEBUG_COMMANDS=1 STEAM_COMPAT_DATA_PATH=$HOME/.config/proton/ proton run"
 alias   f_cache='SOURCE_DATE_EPOCH=$(date +%s) doas -- fc-cache -rs' # Temporary solution to fc-cache failing
-alias        ls="exa"
+alias        ls='exa'
 alias   new_key="xbindkeys -f $HOME/.config/xbindkeys/xbindkeysrc -mk"
 alias    pacman='doas -- pacman'
 alias        ..='cd ..'
@@ -60,6 +63,13 @@ findimage() {
 
 }
 
+# Use YT-DLP with normal format.
+dlp () {
+
+  yt-dlp $@ -o "%(id)s.%(ext)s"
+
+}
+
 # Get key_s name for dwm
 get_keyname() {
 
@@ -74,6 +84,13 @@ coverfrom() {
     -metadata:s:v title='Album cover' \
     -metadata:s:v comment='Cover (front)' \
     new-"$2"
+
+}
+
+# Grep recursively on the current directory with the match.
+find_here () {
+
+  grep -r $@ *
 
 }
 
@@ -212,6 +229,7 @@ up_dunst() {
                      x="$(xgetres dunst.geometry.x)" \
                      y="$(xgetres dunst.geometry.y)" \
       separator_height="$(xgetres dunst.separator_height)" \
+      separator_colour="$(xgetres dunst.separator.colour )" \
                padding="$(xgetres dunst.padding)" \
     horizontal_padding="$(xgetres dunst.horizontal_padding)" \
          max_icon_size="$(xgetres dunst.max_icon_size)" \
@@ -298,7 +316,7 @@ up_xr() {
 
   [ "$1" ] || exit
 
-  # Old xthem type (black or white)
+  # Old xtheme type.
   xtheme_file="$HOME/.config/xorg/theme-linked/theme.x"
   old_xtheme=$(grep -oP "theme\.type[ ]*:[ ]*\K.*" "$xtheme_file")
 
@@ -312,11 +330,7 @@ up_xr() {
   {
     pkill -URG 'xnotify'
     kill -USR1 $(pidof flarity)
-    
-    # Lemonbar(s)
-    clean_bars
-    $SCRIPTS_FOLDER/bars/bars & disown
-    
+
     # Dunst
     up_dunst
 
@@ -324,7 +338,7 @@ up_xr() {
     up_zathura
 
     # gtk server
-    up_gtk
+    #up_gtk
   
   }
 
@@ -345,7 +359,7 @@ up_xr() {
     }
 
     kill -USR1 $(pidof nvim)
-  
+
   }
 
 }
@@ -536,6 +550,9 @@ wallpaper() {
     # Add new's wallpaper's path to temp file
     path_wallpaper="$(readlink -f "$clean_wallpaper")"
     echo "$path_wallpaper" >> "$XWALLPAPER_HISTORY"
+
+    # Create symlink to wallpaper.
+    ln -sf "$path_wallpaper" "$HOME/.cache/xcurrent_wallpaper"
 
   }
 

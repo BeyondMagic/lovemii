@@ -1,0 +1,16 @@
+.calendar {
+
+  font-family: $font;
+  font-size: 13px;
+
+  background-color: $normal-bg;
+
+  &:selected {
+
+    background-color: $bg-calendar-selected;
+    color: #0F0F11;
+    border-radius: 15%;
+
+  }
+
+}

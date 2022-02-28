@@ -37,7 +37,18 @@ next      () { echo "( button :class 'aside' :onclick 'mpc next' \`$1\`)"; }
   song_length=${#current}
 
   # Parse the info to get the progress in %
-   run_percentage=$(mpc status '%percenttime%' | sed -r 's/^ |%$//g')
+   run_percentage=$(mpc status '%percenttime%' | sed -r 's/^ +|%$//g')
+
+  # C. EWW management.
+  {
+
+    eww update current_song_progress="$run_percentage"
+
+    eww update mpd_total="$(mpc status '%totaltime%')"
+    eww update mpd_current="$(mpc status '%currenttime%')"
+
+  }
+
   real_percentage=$(awk -v n="$song_length" -v m="$run_percentage" 'BEGIN{ print int( n*(m/100)) }')
 
   current="

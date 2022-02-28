@@ -38,10 +38,10 @@ require('filetype').setup({
         vim.bo.filetype = 'python'
         vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_Zathura()')
       end,
-      xbindkeysrc = function()
-        vim.bo.filetype = 'zsh'
-        vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_XBindKeys()')
-      end
+      --xbindkeysrc = function()
+      --  vim.bo.filetype = 'zsh'
+      --  vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_XBindKeys()')
+      --end
     },
 
     complex = {

@@ -13,7 +13,7 @@
   indicate_hidden = yes
   shrink = no
   transparency = 0
-  separator_color = frame
+  separator_color = "#13171a66"
   sort = yes
   idle_threshold = 120
   line_height = 0
@@ -44,7 +44,7 @@
   separator_height = 2
   padding = 10
   horizontal_padding = 10
-  frame_width = 2
+  frame_width = 0
   max_icon_size = 64
 
 [urgency_low]

@@ -7,4 +7,4 @@ dunst.separator_height   : 2
 dunst.padding            : 10
 dunst.horizontal_padding : 10
 dunst.max_icon_size      : 64
-dunst.frame_width        : 2
+dunst.frame_width        : 0

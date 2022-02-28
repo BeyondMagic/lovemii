@@ -1,0 +1,21 @@
+( defwindow menu-central
+            :wm-ignore true
+            :monitor   0
+            :geometry  ( geometry
+                                  :x      "0%"
+                                  :y      "0%"
+                                  :width  "100%"
+                                  :height "100%"
+                                  :anchor "center center"
+                       )
+            :windowtype "dialog"
+            ( box
+                  :class 'menu bg'
+                  :space-evenly true
+                  ( button
+                           :style   "background-color: transparent;"
+                           :onclick `sh ./overview/menu &`
+                    ""
+                  )
+            )
+)

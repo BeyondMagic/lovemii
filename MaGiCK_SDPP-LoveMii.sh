@@ -236,6 +236,9 @@ case $1 in
     section "song-rec"
     text    "Identify playing song."
 
+    section "steam-runtime-native"
+    text    "Play games."
+
   ;;
 
   dots)

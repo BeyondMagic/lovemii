@@ -1,31 +1,10 @@
-; Variables to be used here.
-
-; ; FFMEPG recording script.
-( defvar record_menu      false )
-
-; ; MPD & MPC song names.
-( defvar reveal-songnames false )
-
-; ; Title name.
-( defvar title-name "" )
-
-; ; Title.
-( defvar reveal-title false ) ( defvar title-literal "" )
-
-; Timers.
-( defpoll song
-               :interval  "1s"
-               :run-while reveal-songnames
-               "sh ./bars/song.sh"
-)
-
 ; Bar at the top.
 ( defwindow top-bar
             :monitor 0
             :geometry ( geometry
                                  :x      "0px"
-                                 :y      "5px"
-                                 :width  "1420px"
+                                 :y      "3px"
+                                 :width  "1434px"
                                  :height "20px"
                                  :anchor "top center")
             :stacking   "bg"

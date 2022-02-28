@@ -13,7 +13,7 @@
   indicate_hidden = yes
   shrink = no
   transparency = 0
-  separator_color = frame
+  separator_color = "${separator_colour}"
   sort = yes
   idle_threshold = 120
   line_height = 0

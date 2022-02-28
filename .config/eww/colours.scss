@@ -1,0 +1,26 @@
+$normal-bg-light: #2A2A2E;
+$normal-bg: #131315;
+
+$bg-base: black;
+$bg-color: rgba($bg-base, 0.5);
+$bg-coloring: rgba($bg-base, 0.2);
+$bg-calendar-selected: #DE8390;
+
+$fg-color-light: white;
+$fg-color-lightn: rgba($fg-color-light, 0.85);
+$fg-color-lighty: rgba($fg-color-light, 0.75);
+$fg-color-lighting: rgba($fg-color-light, 0.5);
+
+$fg-color-add-tag: rgba($fg-color-light, 0.18);
+$fg-color-selected-tag: rgba($fg-color-light, 0.1);
+$fg-color-layout-hover: #DC9AC8;
+
+$fg-color-highlight: #29C590;
+
+$fg-color-volume: #271f16;
+$fg-color-volume-highlight: #FBD599;
+
+$menu-image: url("/home/iris/.local/share/icons/menu.svg");
+
+$font: "Noto Sans CJK JP";
+$font-icon: "JetBrainsMono Nerd Font";

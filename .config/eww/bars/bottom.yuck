@@ -110,7 +110,7 @@
                                       ( button :class 'add' :onclick 'sh ./bars/dwm_next_tag.sh' '+') ) )
                             )
                             ( button :class   'more-up'
-                                     :onclick `sh ./overview/menu open &`
+                                     :onclick `sh ./bars/context_menu.sh &`
                                      :halign  'center'
                                      :vexpand false
                                      "▲"

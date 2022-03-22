@@ -21,33 +21,35 @@ dwm_tag_change() {
 
 # A local function to shout out a tag name based on their IDs, you can change it to whatever
 # you want to or just remove it completelly.
-get_name_of_tag() {
-
-  # Icon of each tag based on XRESOURCES variables.
-  case $selected in
-    1)   name="$(xgetres bars.name0)" ;;
-    2)   name="$(xgetres bars.name1)" ;;
-    4)   name="$(xgetres bars.name2)" ;;
-    8)   name="$(xgetres bars.name3)" ;;
-    16)  name="$(xgetres bars.name4)" ;;
-    32)  name="$(xgetres bars.name5)" ;;
-    64)  name="$(xgetres bars.name6)" ;;
-    128) name="$(xgetres bars.name7)" ;;
-    256) name="$(xgetres bars.name8)" ;;
-    511) name="$(xgetres bars.name9)" ;;
-  esac
-
-  # Send a notification to XNOTIFY FIFO.
-  # HACK: using zsh echo built-in to read the UNICODE UTF-32BE characters. No idea how to change this.
-  zsh -c "echo -ne '$(printf "$name" | sed -r 's/U\w{8}/\\&/g')'" > "$XNOTIFY_FIFO" &
-
-}
+#get_name_of_tag() {
+#
+#  # Icon of each tag based on XRESOURCES variables.
+#  case $selected in
+#    1)   name="$(xgetres bars.name0)" ;;
+#    2)   name="$(xgetres bars.name1)" ;;
+#    4)   name="$(xgetres bars.name2)" ;;
+#    8)   name="$(xgetres bars.name3)" ;;
+#    16)  name="$(xgetres bars.name4)" ;;
+#    32)  name="$(xgetres bars.name5)" ;;
+#    64)  name="$(xgetres bars.name6)" ;;
+#    128) name="$(xgetres bars.name7)" ;;
+#    256) name="$(xgetres bars.name8)" ;;
+#    511) name="$(xgetres bars.name9)" ;;
+#  esac
+#
+#  # Send a notification to XNOTIFY FIFO.
+#  # HACK: using zsh echo built-in to read the UNICODE UTF-32BE characters. No idea how to change this.
+#  #zsh -c "echo -ne '$(printf "$name" | sed -r 's/U\w{8}/\\&/g')'" > "$XNOTIFY_FIFO" &
+#
+#}
 
 # To see if it will show the next tag sign on EWW.
 set_next_tag () {
 
    # If it's the last tag, don't set.
-   [ $name = 'nine' ] && unset noadd || noadd="true"
+   [ $name = 'nine' ] \
+     && unset noadd \
+     || noadd='true'
 
 }
 
@@ -129,21 +131,21 @@ dwm_tag_change | while IFS=$'\n' read -r selected && read -r occupied; do
              || eww update tag-add=false
 
   # If the last select is the same as the one right now, then give a qucik notification.
-  [ "$last_selected" = "$selected" ] || {
+  #[ "$last_selected" = "$selected" ] || {
 
     # XNOTIFY notification.
-    get_name_of_tag "$selected" &
+    #get_name_of_tag "$selected" &
 
     # Send a screenshot of the current tag to preview later.
-    {
-      sleep 0.1s
-      scrot --overwrite --file "/tmp/$selected.jpg"
-    } &
+    #{
+    #  sleep 0.1s
+    #  scrot --overwrite --file "/tmp/$selected.jpg"
+    #} &
 
-  }
+  #}
 
   # Define last selected to be used on the next tag change so that we don't run this again unnecessarily.
-  last_selected="$selected"
+  #last_selected="$selected"
 
 done
 
@@ -154,11 +156,11 @@ sleep 0.5s
 dwm-msg get_monitors || {
 
   # If dwm-msg or dwm is killed.
-  open="$(dunstify -u 2 "tags: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+  next=$(notify-call -o 'echo reset:Reset it!' -o "echo fine:It's okay" 'EWW' 'dwm-msg is gone. Perhaps it is because dwm died.')
 
-  [ "$open" = "A" ] || exit 0
+  [ $next = 'reset' ] || exit 0
 
 }
 
 # Executes this script itself if action handler is received or dwm is alive.
-exec "$HOME/.config/eww/bars/dwm_tags_daemon.sh"
+exec $0

@@ -5,11 +5,10 @@
 set playlist before current after
 
 limit=35
-
 {
 
   playlist="$(mpc playlist)"
-  current="$(mpc current)"
+  current="$(mpc -f "[%title%] - [%artist%]" | head -n1)"
 
   # If this is 
   before="$(echo "$playlist" | grep -B1 "$current" | head -n 1)"

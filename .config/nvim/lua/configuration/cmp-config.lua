@@ -1,32 +1,32 @@
 local cmp = require("cmp")
 
 local icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "ﰠ",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "塞",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "פּ",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-  Book = ""
+  Text          = "",
+  Method        = "",
+  Function      = "",
+  Constructor   = "",
+  Field         = "ﰠ",
+  Variable      = "",
+  Class         = "ﴯ",
+  Interface     = "",
+  Module        = "",
+  Property      = "ﰠ",
+  Unit          = "塞",
+  Value         = "",
+  Enum          = "",
+  Keyword       = "",
+  Snippet       = "",
+  Color         = "",
+  File          = "",
+  Reference     = "",
+  Folder        = "",
+  EnumMember    = "",
+  Constant      = "",
+  Struct        = "פּ",
+  Event         = "",
+  Operator      = "",
+  TypeParameter = "T",
+  Book          = ""
 }
 
 -- nvim-cmp setup
@@ -39,16 +39,16 @@ cmp.setup {
   },
 
  mapping = {
-    ["<TAB>"] = cmp.mapping.select_next_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<TAB>"]     = cmp.mapping.select_next_item(),
+    ["<C-p>"]     = cmp.mapping.select_prev_item(),
+    ["<C-n>"]     = cmp.mapping.select_next_item(),
+    ["<C-d>"]     = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"]     = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm {
+    ["<C-e>"]     = cmp.mapping.close(),
+    ["<CR>"]      = cmp.mapping.confirm {
        behavior = cmp.ConfirmBehavior.Replace,
-       select = true,
+       select   = true,
     },
     ["<Tab>"] = function(fallback)
        if cmp.visible() then
@@ -82,11 +82,11 @@ cmp.setup {
       vim_item.menu = ({
         nvim_lsp = "力",
         nvim_lua = "",
-        luasnip = icons.Color,
-        path = "﫶",
-        buffer = "﬘",
-        look = icons.Book,
-        emoji = "😎",
+        luasnip  = icons.Color,
+        path     = "﫶",
+        buffer   = "﬘",
+        look     = icons.Book,
+        emoji    = "😎",
       })[entry.source.name]
 
        return vim_item
@@ -99,7 +99,8 @@ cmp.setup {
     { name = "luasnip", priority = 6 },
     { name = "path", priority = 5 },
     { name = "buffer", priority = 4 },
-    { name = "look", priority = 2, keyword_length = 4, option = { convert_case = true, loud = true } },
-    { name = "emoji", priority = 1, option = { insert = true } },
+    { name = "look", priority = 3, keyword_length = 4, option = { convert_case = true, loud = true } },
+    { name = "emoji", priority = 2, option = { insert = true } },
+    { name = 'calc', priority = 9 }
  },
 }

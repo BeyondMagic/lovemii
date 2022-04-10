@@ -1,5 +1,9 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
+
+-- For Project.nvim
+vim.g.nvim_tree_respect_buf_cwd = 1
+
 require'nvim-tree'.setup {
   disable_netrw       = true,
   hijack_netrw        = true,
@@ -8,7 +12,7 @@ require'nvim-tree'.setup {
   auto_close          = false,
   open_on_tab         = false,
   hijack_cursor       = true,
-  update_cwd          = false,
+  update_cwd          = true,
   update_to_buf_dir   = {
     enable = true,
     auto_open = true,
@@ -24,7 +28,7 @@ require'nvim-tree'.setup {
   },
   update_focused_file = {
     enable      = true,
-    update_cwd  = false,
+    update_cwd  = true,
     ignore_list = {}
   },
   system_open = {

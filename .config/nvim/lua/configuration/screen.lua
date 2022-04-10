@@ -6,7 +6,7 @@
 if (vim.api.nvim_exec('echo argc()', true) == "0")
 then
 
-  math.randomseed( os.time() ) -- For random header.
+  --math.randomseed( os.time() ) -- For random header.
 
   -- To split our quote, artist and source.
   -- And automatically center it for screen loader of the header.
@@ -188,7 +188,8 @@ then
 
   local header = {
     type = "text",
-    val = Headers[math.random(#Headers)],
+    -- val = Headers[math.random(#Headers)],
+    val = Headers[1],
     opts = {
       position = "center",
       hl = "Type"

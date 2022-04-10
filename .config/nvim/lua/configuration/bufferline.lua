@@ -54,16 +54,19 @@ require('bufferline').setup {
         return true
       end
     end,
-    offsets = {{filetype = "NvimTree", text = "", text_align = "center"}},
-    show_buffer_icons = true, --| false, -- disable filetype icons for buffers
+    offsets = {
+      {filetype = "NvimTree", text = "", text_align = "center"},
+      {filetype = "neo-tree", text = "", text_align = "center"}
+    },
+    show_buffer_icons       = true, --| false, -- disable filetype icons for buffers
     show_buffer_close_icons = true, -- | false,
-    show_close_icon = true, -- | false,
-    show_tab_indicators = true, -- | false,
-    persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+    show_close_icon         = true, -- | false,
+    show_tab_indicators     = true, -- | false,
+    persist_buffer_sort     = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    --separator_style = "slant", -- | "thick" | "thin" | { 'any', 'any' },
-    enforce_regular_tabs = false, --| true,
+    --separator_style      = "slant", -- | "thick" | "thin" | { 'any', 'any' },
+    enforce_regular_tabs   = false, --| true,
     always_show_bufferline = true, -- | false,
     sort_by = 'id',--'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
       -- add custom logic

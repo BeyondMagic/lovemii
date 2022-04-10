@@ -18,6 +18,11 @@ return require('packer').startup(function(use)
     config = require('configuration.project')
   }
 
+  -- Unusable variables and functions markup.
+  use { 'narutoxy/dim.lua',
+    --config = require('configuration.dim')
+  }
+
   -- CPP modern syntax.
   use 'bfrg/vim-cpp-modern'
 
@@ -86,7 +91,7 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       --
       { "hrsh7th/vim-vsnip-integ" },
-      -- FIXIT: Fork to calculate simple arithmetic expressions and show on the menu.
+      --  FIXIT: Fork to calculate simple arithmetic expressions and show on the menu.
       { "gabrielbdsantos/cmp-calc" },
       -- Emoji
       { "hrsh7th/cmp-emoji" },
@@ -100,6 +105,19 @@ return require('packer').startup(function(use)
 
    -- Icons on menu
    use 'onsails/lspkind-nvim'
+
+  -- NIM support (syntax, folding).
+  use 'baabelfish/nvim-nim'
+
+  -- File-tree manager.
+  use { '/home/iris/Git/Forking/neo-tree.nvim/',
+    config = require('configuration.neo-tree'),
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim"
+    },
+  }
 
   --
   -- GIT
@@ -146,20 +164,15 @@ return require('packer').startup(function(use)
   }
 
   -- File explorer
-  use { 'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = require('configuration.nvim-tree')
-  }
+  -- use { 'kyazdani42/nvim-tree.lua',
+  --   requires = 'kyazdani42/nvim-web-devicons',
+  --   config = require('configuration.nvim-tree')
+  -- }
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} },
     config = require('configuration.telescope'),
-  }
-
-  -- Filetype (to do something when certain files are verified)
-  use { 'nathom/filetype.nvim',
-    config = require('configuration.ft-start')
   }
 
   --
@@ -176,9 +189,6 @@ return require('packer').startup(function(use)
   --use { 'j-hui/fidget.nvim',
   --  config = require('fidget').setup{}
   --}
-
-  -- Theme (dark and light)
-  use '/home/iris/Git/Projects/arcoiris-nvim-theme'
 
   -- Special words highlited in comments
   use { "folke/todo-comments.nvim",
@@ -225,9 +235,13 @@ return require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
-  -- Colorizer for strings "#468" Temporary fix for RGBAA
-  use { 'kwshi/nvim-colorizer.lua',
-   config = require('configuration.nvim-colorizer')
- }
+  -- Colorizer for strings.
+  use { 'RRethy/vim-hexokinase',
+    config = require('configuration.vim-hexokinase'),
+    run    = 'cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'
+  }
+
+  -- Theme (dark and light)
+  use '/home/iris/Git/Projects/arcoiris-nvim-theme'
 
 end)

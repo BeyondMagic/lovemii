@@ -12,9 +12,9 @@ lspconfig.ccls.setup {
       onChange = true,
     },
 
-    cache = {
-      directory = "/home/iris/.cache/ccls/"
-    },
+    --cache = {
+    --  directory = "/home/iris/.cache/ccls/"
+    --},
 
     clang = {
       excludeArgs = { "-frounding-math"},

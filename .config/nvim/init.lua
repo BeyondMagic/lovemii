@@ -1,5 +1,8 @@
--- Personal global, windows options of neovim:
+-- Global, windows options of neovim:
 require('options')
+
+-- Filetype specialties.
+require('configuration.filetype')
 
 -- Packer Plugin to adminstrate packages:
 --   git clone https://github.com/wbthomason/packer.nvim\
@@ -19,4 +22,4 @@ require('functions')
 require('keymappings')
 
 -- Hai there!
-print('-- Welcome my fellow friend :)')
+print('|> Welcome my fellow friend 🌎')

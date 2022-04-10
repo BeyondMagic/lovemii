@@ -1,0 +1,4 @@
+--require('dim').setup({
+--  disable_lsp_decorations = false,  -- disable virt text and underline by lsp on unused vars and functions
+--  change_in_insert        = false, -- change highlights in insert mode (real time updates)
+--})

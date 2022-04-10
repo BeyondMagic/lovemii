@@ -1,6 +1,7 @@
 -------------------Less words-----------------------
 
 local option = vim.api.nvim_set_option
+local set = vim.api.nvim_set_var
 
 --------------------Windows------------------------
 
@@ -11,7 +12,7 @@ vim.wo.linebreak = true
 -- let g:do_filetype_lua = 1
 
 -- Show lines number (hybrid)
-vim.wo.number        = true
+vim.wo.number         = true
 vim.wo.relativenumber = true
 
 -- Set wrap for words
@@ -101,9 +102,9 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 
 --------------------Variables-----------------
 
-vim.api.nvim_set_var('one_allow_itali:set cursorlinec:set cursorlines', 1)
-vim.api.nvim_set_var('nnn#command', 'nnn -dDoxR')
-vim.api.nvim_set_var('do_filetype_lua', 1)
+set('one_allow_itali:set cursorlinec:set cursorlines', 1)
+set('nnn#command', 'nnn -dDoxR')
+set('do_filetype_lua', 1)
 
 --------------------API------------------------
 
@@ -128,9 +129,7 @@ option('foldmethod', 'expr')
 -- File format for neovim reading
 option('fileformat', 'unix')
 
--- File format for neovim reading
-option('fileformat', 'unix')
-
 -- Setting our theme set
 option('background', 'dark')
-vim.api.nvim_exec('colorscheme arcoiris', false)
+
+vim.api.nvim_command('colo arcoiris')

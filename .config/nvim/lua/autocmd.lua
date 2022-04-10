@@ -4,7 +4,7 @@
 --   Return to last edit position when opening files (You want this!)
 --   Save session to nvim
 --   Signals (USR1toto reload theme
-vim.api.nvim_exec(
+vim.api.nvim_command(
 [[
 
 function! Switch_Theme()
@@ -45,5 +45,6 @@ au BufEnter NvimTree setlocal statusline=%!DisableST()
 
 " autocmd BufEnter * let &titlestring = expand("%:t")
 
+]])
 
-]], false)
+vim.cmd('au BufEnter * HexokinaseTurnOn')

@@ -6,6 +6,7 @@
 #include "/home/iris/.config/xorg/default/bars.x"
 #include "/home/iris/.config/xorg/default/91menu.x"
 #include "/home/iris/.config/xorg/default/dreameater.x"
+#include "/home/iris/.config/xorg/default/xmenu.x"
 
 #include "/home/iris/.config/xorg/theme-linked/theme.x"
 #include "/home/iris/.config/xorg/theme-linked/xnotify.x"
@@ -18,3 +19,4 @@
 #include "/home/iris/.config/xorg/theme-linked/bars.x"
 #include "/home/iris/.config/xorg/theme-linked/91menu.x"
 #include "/home/iris/.config/xorg/theme-linked/nnn.x"
+#include "/home/iris/.config/xorg/theme-linked/xmenu.x"

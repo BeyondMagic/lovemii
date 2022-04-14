@@ -17,6 +17,8 @@
 
 ! Italic font.
 flarity.italic        : VictorMono NF:style=Bold Italic:pixelsize=14:antialias=true:hinting=true
+!flarity.italic        : Cartograph CF:style=Italic:pixelsize=14.5:antialias=true:hinting=true
+
 
 ! Bold font.
 flarity.bold          : FiraCode NF:style=Bold:pixelsize=14:antialias=true:hinting=true

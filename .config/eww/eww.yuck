@@ -1,24 +1,25 @@
 ; Super Super Duper Party People - MaGiCK
 ;
-; BeyondMagic 2022
+;   My current system for eww :)
+;
+; João F. © BeyondMagic 2022 <koetemagie@gmail.com>
 
 ; -- Variables.
-( include "./variables.yuck" )
+( include "./yuck/variables.yuck" )
 
-; -- Top bar.
-( include "./bars/top.yuck" )
-
-; -- Bottom bar.
-( include "./bars/bottom.yuck" )
+; -- Bars.
+( include "./yuck/bars.yuck" )
 
 ; -- Power menu.
-;( include "./floating/power.yuck" )
+;( include "./yuck/power.yuck" )
 
 ;; -- Calendary.
-( include "./floating/calendary.yuck" )
+( include "./yuck/calendary.yuck" )
 
 ;; -- Menu.
-( include "./overview/menu.yuck" )
+( include "./yuck/menu.yuck" )
 
 ;; -- Song viewer.
-( include "./floating/mpd.yuck" )
+;;( include "./yuck/mpd.yuck" )
+
+;; -- Special mode means time, rain chances, etc.

@@ -2,19 +2,19 @@
 
 ( defwidget revealer-on-hover [var varname ?class ?duration ?transition]
             ( box
-                  :class        "${class} revealer-on-hover"
-                  :orientation  "h"
+                  :class        '${class} revealer-on-hover'
+                  :orientation  'h'
                   :space-evenly false
                   ( eventbox
-                             :class       "eventbox"
-                             :onhover     "eww update ${varname}=true"
-                             :onhoverlost "eww update ${varname}=false"
+                             :class       'eventbox'
+                             :onhover     'eww update ${varname}=true'
+                             :onhoverlost 'eww update ${varname}=false'
                              ( box
                                    :space-evenly false
                                    ( revealer
                                               :reveal var
-                                              :transition { transition ?: "slideright" }
-                                              :duration   { duration   ?: "500ms" }
+                                              :transition { transition ?: 'slideright' }
+                                              :duration   { duration   ?: '500ms' }
                                               ( children :nth 1 )
                                    )
                                    ( children :nth 0 )
@@ -22,34 +22,6 @@
                   )
             )
 )
-
-( defwidget hover-module [vara varname icon ?class ?click]
-            ( box
-                  :space-evenly false
-                  :class "hover-module ${class}"
-                         ( revealer-on-hover
-                                             :var        vara
-                                             :varname    "${varname}"
-                                             :icon       icon
-                                             :transition "slideleft"
-                                             ( button
-                                                     :class   "icon"
-                                                     :onclick click
-                                                     icon
-                                             )
-                                             ( scale
-                                                     ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
-                                                     :onchange "amixer -D pulse sset Master {}%"
-                                                     ;:timeout "2s"
-                                                     :value    75
-                                                     :min       0
-                                                     :max     100
-                                                     ;:draw-value true
-                                             )
-                         )
-            )
-)
-
 
 ( defwindow bot-bar
             :monitor 0
@@ -74,7 +46,7 @@
                              :orientation  "horizontal"
                              :halign       "start"
                              :space-evenly false
-                             ( eventbox :class "layout" ( button :onclick "preview_tag &" :onmiddleclick "dwm-msg run_command cyclelayout 1 &" :width 45 layout ) )
+                             ( eventbox :class "layout" ( button :onmiddleclick "dwm-msg run_command cyclelayout 1 &" :width 45 layout ) )
                              ( box
                                    :space-evenly false
                                    :class 'tag-list'
@@ -107,10 +79,10 @@
                                       ( button :class tag-class-nine :onclick 'dwm-msg run_command view 256' (box (label :text '九') ) ) ) )
                                    ( revealer :reveal tag-add :transition "slideleft" :duration "500ms"
                                     ( eventbox 
-                                      ( button :class 'add' :onclick 'sh ./bars/dwm_next_tag.sh' '+') ) )
+                                      ( button :class 'add' :onclick 'sh ./executable/dwm_next_tag.sh' '+') ) )
                             )
                             ( button :class   'more-up'
-                                     :onclick `sh ./bars/context_menu.sh &`
+                                     :onclick `sh ./executable/menu-context.sh &`
                                      :halign  'center'
                                      :vexpand false
                                      "▲"
@@ -158,14 +130,30 @@
                               :halign       "end"
                               :space-evenly false
                               :hexpand      false
-                                    ( hover-module
-                                                   :vara    reveal-volume
-                                                   :varname "reveal-volume"
-                                                   :class   "volume-handler"
-                                                   :click   "pavucontrol &"
-                                                   :icon    ""
+                              ( box
+                                    :space-evenly false
+                                    :class "hover-module volume-handler"
+                                    ( revealer-on-hover
+                                                        :var        "volume-handler"
+                                                        :varname    "reveal-volume"
+                                                        :icon       ""
+                                                        :transition "slideleft"
+                                                        ( button
+                                                                 :class   "icon"
+                                                                 :onclick "pavucontrol &"
+                                                                 ""
+                                                        )
+                                                        ( scale
+                                                                ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
+                                                                :onchange "amixer -D pulse sset Master {}%"
+                                                                ;:timeout "2s"
+                                                                :value    75
+                                                                :min       0
+                                                                :max     100
+                                                                ;:draw-value true
+                                                        )
                                     )
-
+                              )
                               ;( box
                               ;      :class "memory"
                               ;      :space-evenly false
@@ -213,4 +201,105 @@
            )
 )
 
+; Bar at the top.
+( defwindow top-bar
+            :monitor 0
+            :geometry ( geometry
+                                 :x      "0px"
+                                 :y      "3px"
+                                 :width  "1434px"
+                                 :height "20px"
+                                 :anchor "top center")
+            :stacking   "bg"
+            :windowtype "dock"
+            :wm-ignore  true
+            ( top-widget )
+)
 
+(defwidget top-widget []
+           ( centerbox
+                       :orientation "horizontal"
+                       :class       "top-bar"
+                       ; Left.
+                       ( box
+                             :class        "left-part"
+                             :space-evenly false
+                             :hexpand      false
+                             :orientation "horizontal"
+                             :space-evenly false
+                             ( button
+                                      :class "logo"
+                                      :width 24
+                                      :style `background-image: url("/home/iris/.local/share/icons/artixlinux-logo.png");`
+                                      ""
+                             )
+                             ( revealer
+                                        :reveal       reveal-title
+                                        :transition   "slideright"
+                                        :duration     "500ms"
+                                        ( box
+                                              :space-evenly false
+                                              ( label
+                                                      :class "title"
+                                                      :text  title-name
+                                              )
+                                              ( label
+                                                      :class          "title-name"
+                                                      :limit-width    40
+                                                      :show_truncated true
+                                                      :text           title-literal
+                                              )
+                                        )
+                             )
+                       )
+                       ; Center.
+                       ( box
+                             :orientation  "horizontal"
+                             :class        "bar center"
+                             :space-evenly false
+                             :hexpand      false
+                             ( revealer
+                                        :reveal     reveal-songnames
+                                        :transition "slideright"
+                                        :duration   "500ms"
+                                        ( literal
+                                              :class   "song-handler"
+                                              :content "( box
+                                                              :space-evenly false
+                                                              :class        'song'
+                                                              :spacing      0
+                                                              :orientation  'horizontal'
+                                                              :vexpand      true
+                                                              :hexpand      true
+                                                              ${song}
+                                                        )"
+                                        )
+                             )
+                       )
+                       ; Right.
+                       ( box
+                             :orientation  "horizontal"
+                             :halign       "end"
+                             :space-evenly false
+                             :hexpand      false
+                             ( revealer
+                                        :class "camera"
+                                        :reveal     record_menu
+                                        :duration   "500ms"
+                                        :transition "slideleft"
+                                        ( eventbox
+                                                   ( button
+                                                            :onclick "sh ./executable/menu-record.sh &"
+                                                            ""
+                                                   )
+                                        )
+                             )
+                             ;( button
+                             ;         :class        "power-handler"
+                             ;         :onclick      "eww open powermenu"
+                             ;         :onrightclick "eww close powermenu"
+                             ;         ""
+                             ;)
+                       )
+           )
+)

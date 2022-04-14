@@ -1,0 +1,19 @@
+// 1. Settled colours for specific theming.
+$normal-bg-light           : #2A2A2E;
+$normal-bg                 : #131315;
+$bg-editor                 : #0A0A0B;
+$bg-calendar-selected      : #DE8390;
+$fg-layout-hover           : #DC9AC8;
+$fg-highlight              : #E3A8AE;
+$fg-volume                 : #271f16;
+$fg-volume-highlight       : #FBD599;
+$fg-title                  : #FFFFFF;
+
+// 2. Additional colours for general theming.
+$bg : black;
+$fg : black;
+
+// 3. Misc theming for handling different settings.
+$bot-menu-image : url('/home/iris/.local/share/icons/menu.svg');
+$font           : 'Noto Sans CJK JP';
+$font-icon      : 'JetBrainsMono Nerd Font';

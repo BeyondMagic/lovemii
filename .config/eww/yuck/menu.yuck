@@ -2,20 +2,19 @@
             :wm-ignore true
             :monitor   0
             :geometry  ( geometry
-                                  :x      "0%"
-                                  :y      "0%"
-                                  :width  "33%"
-                                  :height "100%"
-                                  :anchor "center right"
+                                  :x      '0%'
+                                  :y      '0%'
+                                  :width  '33%'
+                                  :height '100%'
+                                  :anchor 'center right'
                        )
-            :windowtype "dialog"
+            :windowtype 'dialog'
             ( box
                   :class 'menu bg'
                   :space-evenly true
                   ( button
-                           :style   "background-color: transparent;"
-                           :onclick `sh ./overview/menu &`
-                    ""
+                           :onclick `sh ./executable/menu &`
+                    ''
                   )
                   ; Lyrics.
                   ;( box 

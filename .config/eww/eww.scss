@@ -1,19 +1,16 @@
-// Colours for everyone.
-@import "./colours.scss";
+// #. Colours for everyone.
+@import './scss/colours';
 
-// Bottom and top bar.
-@import "./bars/top.scss";
-@import "./bars/bottom.scss";
+// #. Bottom and top bar.
+@import './scss/bars';
 
-// Song viewer.
-@import "./floating/mpd.scss";
+// #. Calendar viewer.
+@import './scss/calendar';
 
-// Calendar viewer.
-@import "./floating/calendar.scss";
+// #. Center menu.
+@import './scss/menu';
 
-// Center menu.
-@import "./overview/menu.scss";
-
+// 1. Make a default setting for all the GTK3 elements.
 * {
 
   font-size: 14px;
@@ -25,6 +22,7 @@
 
 }
 
+// 2. Nully default values of windows stylesheets.
 window {
 
   background: transparent;

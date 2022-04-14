@@ -76,7 +76,10 @@ while : ; do
 done
 
 # If dwm-msg or dwm is killed.
-open="$(dunstify -u 2 "song: mpc is gone" "Perhaps it is because mpd died. To reset: middle click on this notification." -A "A,N")"
+open="$(notify-call \
+          -d 'echo A' \
+          'EWW' \
+          'Do you want to reset the EWW script for MPD songs?')"
 
 # Executes this script itself if action handler is received.
-[ "$open" = "A" ] && exec "$HOME/.config/eww/bars/song_daemon.sh"
+[ "$open" = "A" ] && exec "$0"

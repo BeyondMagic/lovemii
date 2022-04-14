@@ -8,16 +8,15 @@
 
     font-size: 8px;
     padding-left: 0.6rem;
-    color: $fg-color-lighting;
+    color: rgba($fg, 0.5);;
 
   }
 
   .menu-window {
 
-
     .menu {
 
-      background-image: $menu-image;
+      background-image: $bot-menu-image;
       background-size: 17px;
       background-repeat: no-repeat;
       padding: 0 0.5rem;
@@ -31,7 +30,6 @@
 
       opacity: 1;
 
-
     }
 
   }
@@ -42,8 +40,7 @@
 
     .time {
 
-
-      color: $fg-color-lightn;
+      color: rgba($fg, 0.85);
 
       font-weight: bold;
       font-size: 11px;
@@ -60,7 +57,7 @@
 
       .special {
 
-        color: $fg-color-lightn;
+        color: rgba($fg, 0.85);
 
       }
 
@@ -70,7 +67,7 @@
 
   .volume-handler {
 
-    color: $fg-color-lightn;
+    color: rgba($fg, 0.85);
 
     .icon {
 
@@ -83,7 +80,7 @@
 
       trough {
 
-        background-color: $fg-color-volume;
+        background-color: $fg-volume;
         border-radius: 50px;
         min-height: 5px;
         min-width: 100px;
@@ -92,7 +89,7 @@
         highlight {
 
           all: unset;
-          background-color: $fg-color-volume-highlight;
+          background-color: $fg-volume-highlight;
           border-radius: 10px;
 
         }
@@ -105,6 +102,8 @@
 
   .layout {
 
+    color: $bg;
+
     button {
 
       transition: all 200ms linear;
@@ -113,8 +112,8 @@
 
     &:hover > button {
 
-      background-color: $bg-coloring;
-      color: $fg-color-layout-hover;
+      background-color: rgba($bg, 0.2);
+      color: $fg-layout-hover;
 
     }
 
@@ -132,19 +131,19 @@
 
       &.chosen-occupied {
 
-        color: $fg-color-light;
+        color: $fg;
 
       }
 
       &.chosen {
 
-        color: $fg-color-lighty;
+        color: rgba($fg, 0.75);
 
       }
 
       &.not-chosen {
 
-        color: $fg-color-lighting;
+        color: rgba($fg, 0.5);
         font-size: 12px;
         padding-top: 1px;
 
@@ -156,7 +155,7 @@
 
       button {
 
-        color: $fg-color-light;
+        color: $fg;
 
       }
 
@@ -164,7 +163,7 @@
 
     .add {
 
-      color: $fg-color-add-tag;
+      color: rgba($fg, 0.18);
 
     }
 
@@ -199,15 +198,124 @@
     *:hover {
 
       opacity: 1;
-      border-bottom: 1px solid $fg-color-light;
+      border-bottom: 1px solid rgba($fg, 0.5);
 
     }
 
     .selected {
 
       opacity: 1;
-      border-bottom: 1px solid $fg-color-light;
-      background-color: $fg-color-selected-tag;
+      border-bottom: 1px solid rgba($fg, 0.5);
+      background-color: rgba($fg, 0.75);
+
+    }
+
+  }
+
+}
+
+.top-bar {
+
+  font-size: 13.75px;
+  font-weight: bolder;
+  //background-color: $bg-color;
+
+  .left-part {
+
+    .logo {
+
+      margin-left: 0.5rem;
+      background-size: 24px;
+      background-repeat: no-repeat;
+      background-position: 0px center;
+
+    }
+
+    .title {
+
+      font-family: $font;
+      margin-left: 1rem;
+      padding-top: 1px;
+      font-size: 12px;
+      font-weight: bolder;
+      color: $fg-title;
+
+    }
+
+    .title-name {
+
+      padding-left: 1rem;
+
+      color: $fg-title;
+      font-size: 11px;
+
+      &:hover {
+
+        color: rgba($fg, 0.5);
+
+      }
+
+
+    }
+
+  }
+
+  .camera {
+
+    * > * > * {
+
+      padding: 0 1rem 0 0.5rem;
+      color: rgba($fg, 0.5);
+
+      font-family: $font-icon;
+      font-size: 12px;
+
+      transition: color 500ms linear;
+
+    }
+
+    *:hover > * > * {
+
+      color: $fg;
+
+    }
+
+
+  }
+
+  .song-handler {
+
+    font-family: $font;
+
+    .song {
+
+      font-size: 12px;
+
+
+      .highlight {
+
+        color: $fg-highlight;
+
+      }
+
+      .normal {
+
+        color: $fg;
+
+      }
+
+      .aside {
+
+        color: rgba($fg, 0.5);;
+        padding: 0 0.5rem;
+
+        &:hover {
+
+          color: rgba($fg, 0.75);;
+
+        }
+
+      }
 
     }
 

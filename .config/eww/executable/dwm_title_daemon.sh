@@ -19,11 +19,6 @@ get_title_window_change () {
 }
 
 # EWW .yuck literal transformers.
-#eww_title () {
-#
-#  echo "( label :limit-width 52 :text \`$1\` )";
-#
-#}
 eww_icon  () { 
 
   echo ":style \`background-image: url(\"$HOME/.local/share/icons/$1\");\`";
@@ -267,11 +262,17 @@ sleep 0.5s
 dwm-msg get_monitors || {
 
   # If dwm-msg or dwm is killed.
-  open="$(dunstify -u 2 "title: dwm-msg is gone" "Perhaps it is because dwm died. To reset: middle click on this notification." -A "A,N")"
+  open="$(notify-call \
+            -d 'echo yes' \
+            'EWW' \
+            'Do you want to reset the EWW script for DWM title?')"
 
-  [ "$open" = "A" ] || exit 0
+  # .
+  if [ "$open" = 'yes' ]; then
+
+    # Executes this script itself if action handler is received or dwm is alive.
+    exec "$0"
+
+  fi
 
 }
-
-# Executes this script itself if action handler is received or dwm is alive.
-exec "$HOME/.config/eww/bars/dwm_title_daemon.sh"

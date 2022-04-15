@@ -1,27 +1,35 @@
-; Revealer on hover, using children
-
-( defwidget revealer-on-hover [var varname ?class ?duration ?transition]
-            ( box
-                  :class        '${class} revealer-on-hover'
-                  :orientation  'h'
-                  :space-evenly false
-                  ( eventbox
-                             :class       'eventbox'
-                             :onhover     'eww update ${varname}=true'
-                             :onhoverlost 'eww update ${varname}=false'
-                             ( box
-                                   :space-evenly false
-                                   ( revealer
-                                              :reveal var
-                                              :transition { transition ?: 'slideright' }
-                                              :duration   { duration   ?: '500ms' }
-                                              ( children :nth 1 )
-                                   )
-                                   ( children :nth 0 )
-                             )
-                  )
-            )
+; Widgets to minimise code usage
+( defwidget tag [name label number id]
+           ( revealer :reveal name :transition "slideleft" :duration "500ms"
+            ( eventbox
+              ( button :class label :onclick 'dwm-msg run_command view ${number}' '${id}' ) ) )
 )
+;            ( box
+;                  :class        '${class} revealer-on-hover'
+;                  :orientation  'h'
+;                  :space-evenly false
+;                  ( eventbox
+;                             :class       'eventbox'
+;                             :onhover     'eww update ${var}=true'
+;                             :onhoverlost 'eww update ${var}=false'
+;                             ( box
+;                                   :space-evenly false
+;                                   ( revealer
+;                                              :reveal var
+;                                              :transition { transition ?: 'slideright' }
+;                                              :duration   { duration   ?: '500ms' }
+;                                              ( children :nth 1 )
+;                                   )
+;                                   ( children :nth 0 )
+;                             )
+;                  )
+;            )
+;)
+;
+;                                   ( revealer :reveal tag-four :transition "slideleft" :duration "500ms"
+;                                    ( eventbox :onhover "eww update preview-image=/tmp/8.jpg preview=true" :onhoverlost `eww update preview=false`
+;                                      ( button :class tag-class-four :onclick 'dwm-msg run_command view 8' (box (label :text '四') ) ) ) )
+;
 
 ( defwindow bot-bar
             :monitor 0
@@ -50,35 +58,17 @@
                              ( box
                                    :space-evenly false
                                    :class 'tag-list'
-                                   ( revealer :reveal tag-one :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/1.jpg preview=true" :onhoverlost `eww update preview=false`
-                                     ( button :class tag-class-one :onclick 'dwm-msg run_command view 1' (box (label :text '一') ) ) ) )
-                                   ( revealer :reveal tag-two :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/2.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-two :onclick 'dwm-msg run_command view 2' (box (label :text '二') ) ) ) )
-                                   ( revealer :reveal tag-three :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/4.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-three :onclick 'dwm-msg run_command view 4' (box (label :text '三') ) ) ) )
-                                   ( revealer :reveal tag-four :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/8.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-four :onclick 'dwm-msg run_command view 8' (box (label :text '四') ) ) ) )
-                                   ( revealer :reveal tag-five :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/16.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-five :onclick 'dwm-msg run_command view 16' (box (label :text '五') ) ) ) )
-                                   ( revealer :reveal tag-six :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/32.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-six :onclick 'dwm-msg run_command view 32' (box (label :text '六') ) ) ) )
-                                   ( revealer :reveal tag-seven :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/64.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-seven :onclick 'dwm-msg run_command view 64' (box (label :text '七') ) ) ) )
-                                   ( revealer :reveal tag-eight :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/128.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-eight :onclick 'dwm-msg run_command view 128' (box (label :text '八') ) ) ) )
-                                   ( revealer :reveal tag-nine :transition "slideleft" :duration "500ms"
-                                    ( eventbox :onhover "eww update preview-image=/tmp/256.jpg preview=true" :onhoverlost `eww update preview=false`
-                                      ( button :class tag-class-nine :onclick 'dwm-msg run_command view 256' (box (label :text '九') ) ) ) )
+                                   ( tag :name tag-one   :label tag-class-one   :number 1 :id '一' )
+                                   ( tag :name tag-two   :label tag-class-two   :number 2 :id '二' )
+                                   ( tag :name tag-three :label tag-class-three :number 3 :id '三' )
+                                   ( tag :name tag-four  :label tag-class-four  :number 4 :id '四' )
+                                   ( tag :name tag-five  :label tag-class-five  :number 5 :id '五' )
+                                   ( tag :name tag-six   :label tag-class-six   :number 6 :id '六' )
+                                   ( tag :name tag-seven :label tag-class-seven :number 7 :id '七' )
+                                   ( tag :name tag-eight :label tag-class-eight :number 8 :id '八' )
+                                   ( tag :name tag-nine  :label tag-class-nine  :number 9 :id '九' )
                                    ( revealer :reveal tag-add :transition "slideleft" :duration "500ms"
-                                    ( eventbox 
+                                    ( eventbox
                                       ( button :class 'add' :onclick 'sh ./executable/dwm_next_tag.sh' '+') ) )
                             )
                             ( button :class   'more-up'
@@ -130,29 +120,34 @@
                               :halign       "end"
                               :space-evenly false
                               :hexpand      false
-                              ( box
-                                    :space-evenly false
-                                    :class "hover-module volume-handler"
-                                    ( revealer-on-hover
-                                                        :var        "volume-handler"
-                                                        :varname    "reveal-volume"
-                                                        :icon       ""
-                                                        :transition "slideleft"
-                                                        ( button
-                                                                 :class   "icon"
-                                                                 :onclick "pavucontrol &"
-                                                                 ""
-                                                        )
-                                                        ( scale
-                                                                ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
-                                                                :onchange "amixer -D pulse sset Master {}%"
-                                                                ;:timeout "2s"
-                                                                :value    75
-                                                                :min       0
-                                                                :max     100
-                                                                ;:draw-value true
-                                                        )
-                                    )
+                              :class        'volume-handler revealer-on-hover'
+                              ( eventbox
+                                         :class       'eventbox'
+                                         :onhover     'eww update reveal-volume=true'
+                                         :onhoverlost 'eww update reveal-volume=false'
+                                         ( box
+                                               :space-evenly false
+                                               ( revealer
+                                                          :reveal reveal-volume
+                                                          :transition 'slideright'
+                                                          :duration   '500ms'
+                                                          ( scale
+                                                                  ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
+                                                                  :onchange "amixer -D pulse sset Master {}%"
+                                                                  ;:timeout "2s"
+                                                                  :value    75
+                                                                  :min       0
+                                                                  :max     100
+                                                                  ;:draw-value true
+                                                          )
+
+                                               )
+                                               ( button
+                                                        :class   "icon"
+                                                        :onclick "pavucontrol &"
+                                                        ""
+                                               )
+                                         )
                               )
                               ;( box
                               ;      :class "memory"

@@ -18,9 +18,9 @@
 
 ; Timers.
 ( defpoll song
-               :interval  "1s"
-               :run-while reveal-songnames
-               "sh ./executable/song.sh"
+  :interval  "1s"
+  :run-while reveal-songnames
+  "sh ./executable/eww-literal-song.sh"
 )
 
 ; ; Tags.
@@ -53,6 +53,6 @@
 
 ; Timers.
 ( defpoll time
-               :interval "1s"
-               "sh ./executable/time.sh"
+  :interval "1s"
+  "sh ./executable/eww-literal-time.sh"
 )

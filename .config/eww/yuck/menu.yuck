@@ -1,42 +1,44 @@
 ( defwindow menu-central
-            :wm-ignore true
-            :monitor   0
-            :geometry  ( geometry
-                                  :x      '0%'
-                                  :y      '0%'
-                                  :width  '33%'
-                                  :height '100%'
-                                  :anchor 'center right'
-                       )
-            :windowtype 'dialog'
-            ( box
-                  :class 'menu bg'
-                  :space-evenly true
-                  ( button
-                           :onclick `sh ./executable/menu &`
-                    ''
-                  )
-                  ; Lyrics.
-                  ;( box 
-                  ;      :class 'lyrics'
-                  ;      :orientation 'vertical'
-                  ;      :space-evenly false
-                  ;      ( button
-                  ;               :vexpand 'fill'
-                  ;               :valign 'center'
-                  ;               :onclick "dash -c 'eww update mpd_lyrics_index=$(($(eww get mpd_lyrics_index) + 1)); mpd_eww_lyrics' &"
-                  ;               ( label
-                  ;                       :vexpand 'fill'
-                  ;                       :valign 'center'
-                  ;                       :class 'text'
-                  ;                       :text mpd_lyrics
-                  ;               )
-                  ;      )
-                  ;      ( label
-                  ;              :valign 'end'
-                  ;              :class 'index'
-                  ;              :text mpd_lyrics_index
-                  ;      )
-                  ;)
-            )
+  :wm-ignore true
+  :monitor   0
+  :geometry  ( geometry
+               :x      '0%'
+               :y      '0%'
+               :width  '33%'
+               :height '100%'
+               :anchor 'center right'
+             )
+  :windowtype 'dialog'
+  ( box
+    :class 'menu bg'
+    :space-evenly true
+    ; ( button
+    ;   :onclick `sh ./executable/menu &`
+    ;   ''
+    ; )
+    ( scroll
+      :hscroll false
+      :width   '100'
+      :height  '100'
+      ( box
+        :space-evenly false
+        :orientation "v"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+        "TEST TEST TEST TEST TEST TEST TEST TEST"
+      )
+    )
+  )
 )

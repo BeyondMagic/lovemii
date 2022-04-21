@@ -69,7 +69,7 @@
                                    ( tag :name tag-nine  :label tag-class-nine  :number 9 :id '九' )
                                    ( revealer :reveal tag-add :transition "slideleft" :duration "500ms"
                                     ( eventbox
-                                      ( button :class 'add' :onclick 'sh ./executable/dwm_next_tag.sh' '+') ) )
+                                      ( button :class 'add' :onclick 'sh ./executable/dwm-next-tag.sh' '+') ) )
                             )
                             ( button :class   'more-up'
                                      :onclick `sh ./executable/menu-context.sh &`
@@ -225,7 +225,6 @@
                              ( button
                                       :class "logo"
                                       :width 24
-                                      :style `background-image: url("/home/iris/.local/share/icons/artixlinux-logo.png");`
                                       ""
                              )
                              ( revealer

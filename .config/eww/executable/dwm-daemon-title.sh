@@ -229,7 +229,7 @@ get_title_window_change | while IFS=$'\n' read -r winid; do
 
     eww update reveal-title=false
     eww update title-name=""
-    background_effect unblur
+    background-effect unblur
 
   # When focused.
   } || {
@@ -247,7 +247,7 @@ get_title_window_change | while IFS=$'\n' read -r winid; do
 
     #}
 
-    background_effect blur
+    background-effect blur
 
   }
 

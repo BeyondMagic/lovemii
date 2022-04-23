@@ -1,17 +1,19 @@
 /* Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com> */
+/* Copyright (C) 2022 João F. BeyondMagic <koetemagie@gmail.com> */
 /* Everyone is permitted to copy and distribute copies of this file under GNU-GPL3 */
 
 /* Color-Scheme */
 
 * {
-BG:    #0E0E1066;
-BGA:   #FFFFFF00;
-FG:    #ffffffCC;
-BDR:   #8EBBB822;
-BGBB:  #13131566;
-SEL:   #BCC1BA66;
-UGT:   #9140DDff;
-IMG:   #ffffffff;
-ON:    #1F6E42ff;
-OFF:   #E0564Fff;
+  BG    : #0E0E1066;
+  BGA   : #FFFFFF06;
+  FG    : #ffffffCC;
+  BDR   : #8EBBB822;
+  BGBB  : #13131566;
+  SEL   : #00000044;
+  BDR2  : #00000022;
+  UGT   : #9140DDff;
+  IMG   : #ffffffDD;
+  ON    : #1F6E42ff;
+  OFF   : #E0564Fff;
 }

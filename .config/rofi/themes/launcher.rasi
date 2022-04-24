@@ -23,7 +23,7 @@ window {
   border-radius     : 8px;
   width             : 680px;
   x-offset          : 0;
-  y-offset          : -38px;
+  y-offset          : -30px;
 }
 
 prompt {
@@ -31,6 +31,28 @@ prompt {
   padding           : 0px;
   background-color  : @BG;
   text-color        : @IMG;
+}
+
+horibox {
+  border           : 0%;
+  expand           : false;
+  orientation      : horizontal;
+  max-height       : 30px;
+  background-color : transparent;
+  children         : [dummy-one, textbox-custom, dummy-two];
+}
+
+dummy-two, dummy-one {
+  expand            : true;
+  background-color  : transparent;
+}
+
+textbox-custom {
+  expand            : false;
+  content           : "よろしく!";
+  text-color        : @IMG;
+  background-color  : transparent;
+  font              : "Noto Sans CJK JP Bold 12";
 }
 
 textbox-prompt-colon {
@@ -69,7 +91,7 @@ inputbar {
   border            : 1px 1px 0px 1px;
   border-radius     : 10px;
   border-color      : @BRD2;
-  margin            : 0px 0px 0px 0px;
+  margin            : 15px 0px 0px 0px;
   padding           : 0px;
   position          : center;
   font              : "Noto Sans CJK JP 9";
@@ -94,8 +116,8 @@ listview {
 
 mainbox {
   background-color  : @BG;
-  children          : [ inputbar, listview ];
-  spacing           : 40px;
+  children          : [ horibox, inputbar, listview ];
+  spacing           : 10px;
   padding           : 35px;
 }
 

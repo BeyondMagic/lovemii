@@ -130,7 +130,7 @@ element {
 }
 
 element-icon {
-  background-color  : inherit;
+  background-color  : #00000000;
   text-color        : inherit;
   horizontal-align  : 0.5;
   vertical-align    : 0.5;
@@ -139,7 +139,7 @@ element-icon {
 }
 
 element-text {
-  background-color  : inherit;
+  background-color  : #00000000;
   text-color        : inherit;
   font              : "Noto Sans CJK JP 9";
   expand            : true;
@@ -162,7 +162,7 @@ element alternate.active {
 }
 
 element selected {
-  background-color  : @BGA;
+  background-color  : #ffffff11;
   text-color        : @FG;
   border            : 1px;
   border-radius     : 4px;

@@ -1,299 +1,302 @@
 ; Widgets to minimise code usage
 ( defwidget tag [name label number id]
-           ( revealer :reveal name :transition "slideleft" :duration "500ms"
-            ( eventbox
-              ( button :class label :onclick 'dwm-msg run_command view ${number}' '${id}' ) ) )
+  ( revealer 
+    :reveal name 
+    :transition "slideleft" 
+    :duration "500ms"
+    ( eventbox
+      ( button 
+        :class label 
+        :onclick 'dwm-msg run_command view ${number}' 
+        '${id}' 
+      ) 
+    ) 
+  )
 )
-;            ( box
-;                  :class        '${class} revealer-on-hover'
-;                  :orientation  'h'
-;                  :space-evenly false
-;                  ( eventbox
-;                             :class       'eventbox'
-;                             :onhover     'eww update ${var}=true'
-;                             :onhoverlost 'eww update ${var}=false'
-;                             ( box
-;                                   :space-evenly false
-;                                   ( revealer
-;                                              :reveal var
-;                                              :transition { transition ?: 'slideright' }
-;                                              :duration   { duration   ?: '500ms' }
-;                                              ( children :nth 1 )
-;                                   )
-;                                   ( children :nth 0 )
-;                             )
-;                  )
-;            )
-;)
-;
-;                                   ( revealer :reveal tag-four :transition "slideleft" :duration "500ms"
-;                                    ( eventbox :onhover "eww update preview-image=/tmp/8.jpg preview=true" :onhoverlost `eww update preview=false`
-;                                      ( button :class tag-class-four :onclick 'dwm-msg run_command view 8' (box (label :text '四') ) ) ) )
-;
 
 ( defwindow bot-bar
-            :monitor 0
-            :geometry ( geometry
-                                 :x      "0px"
-                                 :y      "-3px"
-                                 :width  "1434px"
-                                 :height "20px"
-                                 :anchor "bottom center")
-            :stacking   "bg"
-            :windowtype "dock"
-            :wm-ignore  true
-            ( bot-widget )
+  :monitor 0
+  :geometry ( geometry
+    :x      "0px"
+    :y      "-3px"
+    :width  "1434px"
+    :height "20px"
+    :anchor "bottom center")
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+  ( bot-widget )
 )
 
 (defwidget bot-widget []
-           ( centerbox
-                       :orientation "h"
-                       :class       "bot-bar"
-                       ; Left.
-                       ( box
-                             :orientation  "horizontal"
-                             :halign       "start"
-                             :space-evenly false
-                             ( eventbox :class "layout" ( button :onmiddleclick "dwm-msg run_command cyclelayout 1 &" :width 45 layout ) )
-                             ( box
-                                   :space-evenly false
-                                   :class 'tag-list'
-                                   ( tag :name tag-one   :label tag-class-one   :number 1 :id '一' )
-                                   ( tag :name tag-two   :label tag-class-two   :number 2 :id '二' )
-                                   ( tag :name tag-three :label tag-class-three :number 3 :id '三' )
-                                   ( tag :name tag-four  :label tag-class-four  :number 4 :id '四' )
-                                   ( tag :name tag-five  :label tag-class-five  :number 5 :id '五' )
-                                   ( tag :name tag-six   :label tag-class-six   :number 6 :id '六' )
-                                   ( tag :name tag-seven :label tag-class-seven :number 7 :id '七' )
-                                   ( tag :name tag-eight :label tag-class-eight :number 8 :id '八' )
-                                   ( tag :name tag-nine  :label tag-class-nine  :number 9 :id '九' )
-                                   ( revealer :reveal tag-add :transition "slideleft" :duration "500ms"
-                                    ( eventbox
-                                      ( button :class 'add' :onclick 'sh ./executable/dwm-next-tag.sh' '+') ) )
-                            )
-                            ( button :class   'more-up'
-                                     :onclick `sh ./executable/menu-context.sh &`
-                                     :halign  'center'
-                                     :vexpand false
-                                     "▲"
-                            )
+  ( centerbox
+    :orientation "h"
+    :class       "bot-bar"
+    ; Left.
+    ( box
+      :orientation  "horizontal"
+      :halign       "start"
+      :space-evenly false
+      ( eventbox 
+        :class "layout" 
+        ( button 
+          :onmiddleclick 
+          "dwm-msg run_command cyclelayout 1 &" 
+          :width 45 
+          layout 
+        ) 
+      )
+      ( box
+        :space-evenly false
+        :class 'tag-list'
+        ( tag :name tag-one   :label tag-class-one   :number 1 :id '一' )
+        ( tag :name tag-two   :label tag-class-two   :number 2 :id '二' )
+        ( tag :name tag-three :label tag-class-three :number 3 :id '三' )
+        ( tag :name tag-four  :label tag-class-four  :number 4 :id '四' )
+        ( tag :name tag-five  :label tag-class-five  :number 5 :id '五' )
+        ( tag :name tag-six   :label tag-class-six   :number 6 :id '六' )
+        ( tag :name tag-seven :label tag-class-seven :number 7 :id '七' )
+        ( tag :name tag-eight :label tag-class-eight :number 8 :id '八' )
+        ( tag :name tag-nine  :label tag-class-nine  :number 9 :id '九' )
+        ( revealer 
+          :reveal tag-add 
+          :transition "slideleft" 
+          :duration "500ms"
+          ( eventbox
+            ( button 
+              :class 'add' 
+              :onclick 'sh ./executable/dwm-next-tag.sh' 
+              '+'
+            ) 
+          ) 
+        )
+      )
+      ( button 
+        :class   'more-up'
+        :onclick `sh ./executable/menu-context.sh &`
+        :halign  'center'
+        :vexpand false
+        "▲"
+      )
+     )
+     ; Center.
+     ( box
+       :orientation  "horizontal"
+       :class        "bar center"
+       :space-evenly false
+       :hexpand      false
+       ( eventbox
+         :class "menu-window"
+         ( button
+           :onclick "rofi -theme ~/.config/rofi/themes/launcher.rasi -show drun -hover-select -terminal flarity &"
+           :class "menu"
+           :width 20
+           "≡"
+         )
+       )
+       ( revealer
+         :reveal       reveal-title
+         :transition   "crossfade"
+         :duration     "500ms"
+         :space-evenly false
+         :vexpand      true
+         :hexpand      true
+         ( literal
+           :content "( box
+                       :space-evenly false
+                       :spacing 1
+                       :class 'windows'
+                       :orientation 'horizontal'
+                       :vexpand true
+                       :hexpand true
+                       ${windows-literal}
+                     )"
+         )
+       )
+     )
+     ; Right.
+     ( box
+       :orientation  "horizontal"
+       :halign       "end"
+       :space-evenly false
+       :hexpand      false
+       :class        'volume-handler revealer-on-hover'
+       ( eventbox
+         :class       'eventbox'
+         :onhover     'eww update reveal-volume=true'
+         :onhoverlost 'eww update reveal-volume=false'
+         ( box
+           :space-evenly false
+           ( revealer
+             :reveal     reveal-volume
+             :transition 'slideright'
+             :duration   '500ms'
+             ( scale
+               ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
+               :onchange "amixer -D pulse sset Master {}%"
+               ;:timeout "2s"
+               :value    75
+               :min       0
+               :max     100
+               ;:draw-value true
+             )
 
-                        )
-                        ; Center.
-                        ( box
-                              :orientation  "horizontal"
-                              :class        "bar center"
-                              :space-evenly false
-                              :hexpand      false
-                              ( eventbox
-                                         :class "menu-window"
-                                         ( button
-                                                  :onclick "rofi -theme ~/.config/rofi/themes/launcher.rasi -show drun -hover-select -terminal flarity &"
-                                                  :class "menu"
-                                                  :width 20
-                                                  ""
-                                         )
-                              )
-                              ( revealer
-                                         :reveal       reveal-title
-                                         :transition   "crossfade"
-                                         :duration     "500ms"
-                                         :space-evenly false
-                                         :vexpand      true
-                                         :hexpand      true
-                                         ( literal
-                                                   :content "( box
-                                                                   :space-evenly false
-                                                                   :spacing 7
-                                                                   :class 'title-handler'
-                                                                   :orientation 'horizontal'
-                                                                   :vexpand true
-                                                                   :hexpand true
-                                                                   ${windows-literal}
-                                                             )"
-                                         )
-                              )
-                        )
-                        ; Right.
-                        ( box
-                              :orientation  "horizontal"
-                              :halign       "end"
-                              :space-evenly false
-                              :hexpand      false
-                              :class        'volume-handler revealer-on-hover'
-                              ( eventbox
-                                         :class       'eventbox'
-                                         :onhover     'eww update reveal-volume=true'
-                                         :onhoverlost 'eww update reveal-volume=false'
-                                         ( box
-                                               :space-evenly false
-                                               ( revealer
-                                                          :reveal reveal-volume
-                                                          :transition 'slideright'
-                                                          :duration   '500ms'
-                                                          ( scale
-                                                                  ;:onchange "pactl -- set-sink-volume @DEFAULT_SINK@ {}%"
-                                                                  :onchange "amixer -D pulse sset Master {}%"
-                                                                  ;:timeout "2s"
-                                                                  :value    75
-                                                                  :min       0
-                                                                  :max     100
-                                                                  ;:draw-value true
-                                                          )
-
-                                               )
-                                               ( button
-                                                        :class   "icon"
-                                                        :onclick "pavucontrol &"
-                                                        ""
-                                               )
-                                         )
-                              )
-                              ;( box
-                              ;      :class "memory"
-                              ;      :space-evenly false
-                              ;      :hexpand false
-                              ;                                ( label :text "" )
-                              ;      ; ( label :text "${round(EWW_RAM.used_mem_perc, 0)}%" )
-                              ;)
-                              ; ( eventbox
-                              ;            :class "name-logo"
-                              ;            :onhover     "eww update reveal-logo=true"
-                              ;            :onhoverlost "eww update reveal-logo=false"
-                              ;            ( box
-                              ;                  :space-evenly false
-                              ;                  ( revealer
-                              ;                             :reveal reveal-logo
-                              ;                             :transition "slideright"
-                              ;                             :duration   "500ms"
-                              ;                             ( label :text "SDPP" )
-                              ;                  )
-                              ;                  ( label :text "M" )
-                              ;                  ( label :text "a" )
-                              ;                  ( label :text "G" )
-                              ;                  ( label :text "i" )
-                              ;                  ( label :text "C" )
-                              ;                  ( label :text "K" )
-                              ;            )
-                              ; )
-                              ( literal
-                                       :class   'time-handler'
-                                       :valign "center"
-                                      ;:onclick "eww open-many powermenu"
-                                       :content `( button :onclick \`${change-days}\` ( box
-                                                       :space-evenly false
-                                                       :class 'time'
-                                                       :spacing 0
-                                                       :orientation 'horizontal'
-                                                       :vexpand true
-                                                       :hexpand true
-                                                       :valign "center"
-                                                       :width 85
-                                                       ${time}
-                                                 ) )`
-                             )
-                        )
            )
+           ( button
+             :class   "icon"
+             :onclick "pavucontrol &"
+             ""
+           )
+         )
+       )
+       ; ( eventbox
+       ;   :class "name-logo"
+       ;   :onhover     "eww update reveal-logo=true"
+       ;   :onhoverlost "eww update reveal-logo=false"
+       ;   ( box
+       ;     :space-evenly false
+       ;     ( revealer
+       ;       :reveal reveal-logo
+       ;       :transition "slideright"
+       ;       :duration   "500ms"
+       ;       ( label :text "SDPP" )
+       ;     )
+       ;     ( label :text "M" )
+       ;     ( label :text "a" )
+       ;     ( label :text "G" )
+       ;     ( label :text "i" )
+       ;     ( label :text "C" )
+       ;     ( label :text "K" )
+       ;   )
+       ; )
+       ( literal
+         :class   'time-handler'
+         :valign  "center"
+         ;:onclick "eww open-many powermenu"
+         :content `( button :onclick \`${change-days}\`
+                     ( box
+                       :space-evenly false
+                       :class 'time'
+                       :spacing 0
+                       :orientation 'horizontal'
+                       :vexpand true
+                       :hexpand true
+                       :valign "center"
+                       :width 85
+                       ${time}
+                     )
+                   )`
+       )
+     )
+  )
 )
 
 ; Bar at the top.
 ( defwindow top-bar
-            :monitor 0
-            :geometry ( geometry
-                                 :x      "0px"
-                                 :y      "3px"
-                                 :width  "1434px"
-                                 :height "20px"
-                                 :anchor "top center")
-            :stacking   "bg"
-            :windowtype "dock"
-            :wm-ignore  true
-            ( top-widget )
+  :monitor 0
+  :geometry ( geometry
+    :x      "0px"
+    :y      "3px"
+    :width  "1434px"
+    :height "20px"
+    :anchor "top center" )
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+  ( top-widget )
 )
 
-(defwidget top-widget []
-           ( centerbox
-                       :orientation "horizontal"
-                       :class       "top-bar"
-                       ; Left.
-                       ( box
-                             :class        "left-part"
-                             :space-evenly false
-                             :hexpand      false
-                             :orientation "horizontal"
-                             :space-evenly false
-                             ( button
-                                      :class "logo"
-                                      :width 24
-                                      ""
-                             )
-                             ( revealer
-                                        :reveal       reveal-title
-                                        :transition   "slideright"
-                                        :duration     "500ms"
-                                        ( box
-                                              :space-evenly false
-                                              ( label
-                                                      :class "title"
-                                                      :text  title-name
-                                              )
-                                              ( label
-                                                      :class          "title-name"
-                                                      :limit-width    40
-                                                      :show_truncated true
-                                                      :text           title-literal
-                                              )
-                                        )
-                             )
-                       )
-                       ; Center.
-                       ( box
-                             :orientation  "horizontal"
-                             :class        "bar center"
-                             :space-evenly false
-                             :hexpand      false
-                             ( revealer
-                                        :reveal     reveal-songnames
-                                        :transition "slideright"
-                                        :duration   "500ms"
-                                        ( literal
-                                              :class   "song-handler"
-                                              :content "( box
-                                                              :space-evenly false
-                                                              :class        'song'
-                                                              :spacing      0
-                                                              :orientation  'horizontal'
-                                                              :vexpand      true
-                                                              :hexpand      true
-                                                              ${song}
-                                                        )"
-                                        )
-                             )
-                       )
-                       ; Right.
-                       ( box
-                             :orientation  "horizontal"
-                             :halign       "end"
-                             :space-evenly false
-                             :hexpand      false
-                             ( revealer
-                                        :class "camera"
-                                        :reveal     record_menu
-                                        :duration   "500ms"
-                                        :transition "slideleft"
-                                        ( eventbox
-                                                   ( button
-                                                            :onclick "sh ./executable/menu-record.sh &"
-                                                            ""
-                                                   )
-                                        )
-                             )
-                             ;( button
-                             ;         :class        "power-handler"
-                             ;         :onclick      "eww open powermenu"
-                             ;         :onrightclick "eww close powermenu"
-                             ;         ""
-                             ;)
-                       )
-           )
+( defwidget top-widget []
+  ( centerbox
+    :orientation "horizontal"
+    :class       "top-bar"
+    ; Left.
+    ( box
+      :class        "left-part"
+      :space-evenly false
+      :hexpand      false
+      :orientation "horizontal"
+      :space-evenly false
+      ( button
+        :class "logo"
+        :width 24
+        "Ł"
+      )
+      ( revealer
+        :reveal       reveal-title
+        :transition   "slideright"
+        :duration     "500ms"
+        ( box
+          :space-evenly false
+          ( label
+            :class "title"
+            :text  title-name
+          )
+          ( scroll
+             :width        300
+             :height       15
+             :vscroll      false
+             :hscroll      true
+             :space-evenly false
+             :halign       'baseline'
+             :hexpand      false
+             :class        'title-name'
+             ( label 
+               :xalign 0 
+               :text title-literal 
+             )
+          )
+        )
+      )
+    )
+    ; Center.
+    ( box
+      :orientation  "horizontal"
+      :class        "bar center"
+      :space-evenly false
+      :hexpand      false
+      ( revealer
+        :reveal     reveal-songnames
+        :transition "slideright"
+        :duration   "500ms"
+        ( literal
+          :class   "song-handler"
+          :content "( box
+                      :space-evenly false
+                      :class        'song'
+                      :spacing      0
+                      :orientation  'horizontal'
+                      :vexpand      true
+                      :hexpand      true
+                      ${song}
+                    )"
+        )
+      )
+    )
+    ; Right.
+    ( box
+      :orientation  "horizontal"
+      :halign       "end"
+      :space-evenly false
+      :hexpand      false
+      ( revealer
+        :class      "camera"
+        :reveal     record_menu
+        :duration   "500ms"
+        :transition "slideleft"
+        ( eventbox
+          ( button
+            :onclick "sh ./executable/menu-record.sh &"
+            ""
+          )
+        )
+      )
+      ;( button
+      ;  :class        "power-handler"
+      ;  :onclick      "eww open powermenu"
+      ;  :onrightclick "eww close powermenu"
+      ;  ""
+      ;)
+    )
+  )
 )

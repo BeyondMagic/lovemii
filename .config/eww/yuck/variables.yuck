@@ -39,9 +39,6 @@
 ( defvar day false )
 ( defvar change-days `eww-switch day days` )
 
-; ; Logo.
-( defvar reveal-logo false )
-
 ; ; Windows.
 ( defvar windows-literal "" )
 

@@ -9,11 +9,8 @@
 # BeyondMagic UNLICENSE https://github.com/beyondmagic/magiCK/
 
 # Update overall EWW.
-eww_update () {
-
-  mpd-notify-song
-
-}
+alias mpd_update='mpd-notify-song'
+alias eww_update='eww update'
 
 # To ge the current state of MPD.
 # Possible values are "playing" and "paused".
@@ -26,7 +23,7 @@ last_state="$(mpd_state)"
 last_name="$(mpc current)"
 
 # Initial setup, will run once, it will get the current state of MPD and update to the correct value.
-[ "$last_state" = 'playing' ] && eww update reveal-songnames=true
+[ "$last_state" = 'playing' ] && eww_update 'reveal-songnames'=true
 
 # Loop MPD state changes, it gives two outputs, one of the server itself, another from the player.
 while true ; do
@@ -37,7 +34,7 @@ while true ; do
   if [ "$(mpd_state)" = 'paused' ]; then
 
     # Disable EWW running the other script.
-    eww update reveal-songnames=false &
+    eww update 'reveal-songnames'=false &
 
     # To verify later if the song was paused.
     last_state='paused'
@@ -51,21 +48,21 @@ while true ; do
     [ "$last_name" != "$new_song" ] && {
 
       last_name="$new_song"
-      eww_update &
+      mpd_update &
 
     }
 
     # If the last state was not playing.
     [ "$last_state" = "paused" ] && {
 
-      eww_update &
+      mpd_update &
       last_state='playing'
 
     }
 
     # Quick update of value and allow EWW to run the other script.
-    eww update reveal-songnames=false
-    eww update reveal-songnames=true &
+    eww_update 'reveal-songnames'=false
+    eww_update 'reveal-songnames'=true &
 
   fi
 

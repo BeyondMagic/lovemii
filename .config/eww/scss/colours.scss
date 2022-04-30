@@ -1,20 +1,61 @@
 // 1. Settled colours for specific theming.
-$normal-bg-light           : #2A2A2E;
-$normal-bg                 : #131315;
-$bg-editor                 : #0A0A0B;
-$bg-calendar-selected      : #DE8390;
-$fg-layout-hover           : #DC9AC8;
-$fg-highlight              : #E3A8AE;
-$fg-volume                 : #271f16;
-$fg-volume-highlight       : #FBD599;
-$fg-title                  : #000000;
 
-// 2. Additional colours for general theming.
-$bg : black;
-$fg : black;
+$bg-editor            : #0A0A0B;
+$bg-calendar-selected : #DE8390;
 
-// 3. Misc theming for handling different settings.
-$bot-menu-image : url('/home/iris/.local/share/icons/menu.svg');
-$logo-pc        : url('/home/iris/.local/share/icons/artix.svg');
-$font           : 'Noto Sans CJK JP';
-$font-icon      : 'JetBrainsMono Nerd Font';
+// 0. Misc.
+$text-shadow-settings : 1px 1px 2px;
+$font                 : 'Noto Sans CJK JP';
+$font-icon            : 'JetBrainsMono Nerd Font';
+$bg                   : #131315;
+$fg                   : black;
+
+// 1. Bottom Bar.
+$fg-bot           : black;
+$bg-bot           : black;
+
+// 1. #. Layout.
+$fg-layout       : #E5B2B7;
+$fg-layout-hover : #DC9AC8;
+$bg-layout-hover : rgba($fg-layout, 0.2);
+
+// 1. #. Tags.
+$fg-tags         : $fg-layout;
+$fg-tags-more    : rgba(#212543, 0.35);
+
+// 1. #. More up.
+$fg-context-menu : rgba(white, 0.75);
+
+// 1. #. Windows.
+$bg-windows : $bg-bot;
+$fg-windows : $bg-windows;
+
+// 1. #. Tray icons.
+$fg-tray-icon             : $bg-bot;
+$fg-tray-volume           : $fg-tray-icon;
+$fg-tray-volume-highlight : #FBD599;
+$fg-tray-camera           : rgba($fg-tray-icon, 0.5);
+$fg-tray-camera-highlight : #FF6600;
+
+// 1. #. Time/date.
+$fg-time-date          : $fg-tray-icon;
+$fg-time-date-special  : $fg-time-date;
+
+// 2. #. Logo of desktop.
+$fg-logo : white;
+
+// 2. #. Program name.
+$fg-program-name : $fg-layout;
+
+// 2. #. Program title.
+$fg-program-title : rgba($fg-program-name, 0.85);
+
+
+// 2. #. Song names.
+$fg-song           : white;
+$fg-song-highlight : #E3A8AE;
+
+// 3. #. On misc locations.
+$fg-weather          : white;
+$bg-weather          : black;
+$fg-weather-location : #C6BD72;

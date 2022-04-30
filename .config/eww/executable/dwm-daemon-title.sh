@@ -34,14 +34,9 @@ get_windows_icons () {
   selected_window="$1"
 
   # There isn't any windows.
-  [ $tags_number = 0 ] && {
+  [ $tags_number = 0 ] || {
 
-    eww update reveal-windows=false
-
-  # There are windows.
-  } || {
-
-    eww update reveal-windows=true
+    #eww update reveal-windows=true
     windows=""
 
     set last_one

@@ -1,28 +1,20 @@
 .bot-bar {
 
-  //background-color: $bg-color;
   font-size: 13.75px;
   font-weight: bolder;
 
-  .more-up {
-
-    font-size: 8px;
-    padding-left: 0.6rem;
-    color: rgba($fg, 0.5);;
-
-  }
-
+  // 1. #. Windows in the center.
   .menu-window {
 
     .menu {
 
-      background-image: $bot-menu-image;
-      background-size: 17px;
-      background-repeat: no-repeat;
-      padding: 0 0.5rem;
+      padding: 0 0.25rem;
       margin-right: 0.25rem;
-      background-position: center;
       opacity: 0.8;
+
+      color: $fg-windows;
+      text-shadow: $text-shadow-settings rgba($fg-windows, 0.5);
+      font-weight: bolder;
 
     }
 
@@ -34,30 +26,76 @@
 
   }
 
+  // 1. #. Windows.
+  .windows {
+
+    font-weight: bolder;
+
+    * {
+
+      transition: all 250ms linear;
+      border-radius: 4px;
+
+    }
+
+    .icon {
+
+      background-color: rgba($bg-windows, 0.65);
+
+      background-size: 14px;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      padding: 0 11px;
+
+      border-bottom: 1px solid rgba($bg-windows, 0.85);
+
+    }
+
+    .not-selected {
+
+      opacity: 0.44;
+
+    }
+
+    *:hover {
+
+      opacity: 1;
+      //border-bottom: 1px solid rgba($bg-windows, 0.5);
+
+    }
+
+    .selected {
+
+      opacity: 1;
+      //background-color: rgba($bg-windows, 0.75);
+
+    }
+
+  }
+
+  // 1. #. Time/date.
   .time-handler {
 
     padding: 0; margin: 0;
 
     .time {
 
-      color: rgba($fg, 0.85);
+      color: rgba($fg-time-date, 0.85);
 
       font-weight: bold;
       font-size: 11px;
 
+      text-shadow: $text-shadow-settings rgba($fg-time-date, 0.25);
       padding-left: 0.8rem;
 
-      //.last {
+      //.last {}
 
-      //}
-
-      //.normal {
-
-      //}
+      //.normal {}
 
       .special {
 
-        color: rgba($fg, 0.85);
+        color: rgba($fg-time-date-special, 0.85);
 
       }
 
@@ -67,10 +105,9 @@
 
   .volume-handler {
 
-    color: rgba($fg, 0.85);
-
     .icon {
 
+      color: rgba($fg-tray-volume, 0.85);
       padding: 1px 0 0 0.5rem;
       font-size: 14px;
 
@@ -80,16 +117,16 @@
 
       trough {
 
-        background-color: $fg-volume;
+        background-color: $fg-tray-volume;
         border-radius: 50px;
         min-height: 5px;
         min-width: 100px;
         margin: 0 10px 0 10px;
-
+  
         highlight {
 
           all: unset;
-          background-color: $fg-volume-highlight;
+          background-color: $fg-tray-volume-highlight;
           border-radius: 10px;
 
         }
@@ -102,7 +139,7 @@
 
   .layout {
 
-    color: $bg;
+    color: $fg-layout;
 
     button {
 
@@ -112,7 +149,7 @@
 
     &:hover > button {
 
-      background-color: rgba($bg, 0.2);
+      background-color: $bg-layout-hover;
       color: $fg-layout-hover;
 
     }
@@ -129,21 +166,23 @@
 
       transition: all 125ms linear;
 
+      text-shadow: $text-shadow-settings rgba($fg-tags, 0.25);
+
       &.chosen-occupied {
 
-        color: $fg;
+        color: $fg-tags;
 
       }
 
       &.chosen {
 
-        color: rgba($fg, 0.75);
+        color: rgba($fg-tags, 0.75);
 
       }
 
       &.not-chosen {
 
-        color: rgba($fg, 0.5);
+        color: rgba($fg-tags, 0.5);
         font-size: 12px;
         padding-top: 1px;
 
@@ -155,7 +194,7 @@
 
       button {
 
-        color: $fg;
+        color: $fg-tags;
 
       }
 
@@ -163,53 +202,18 @@
 
     .add {
 
-      color: rgba($fg, 0.18);
+      color: $fg-tags-more;
 
     }
 
   }
 
-  .title-handler {
+  .more-up {
 
-    font-weight: bolder;
-
-    * {
-
-      transition: all 250ms linear;
-
-    }
-
-    .icon {
-
-      background-color: rgba($fg, 0.75);
-      background-size: 14px;
-      background-repeat: no-repeat;
-      background-position: center;
-      padding: 0 11px;
-      border-bottom: 1px solid transparent;
-
-    }
-
-    .not-selected {
-
-      opacity: 0.44;
-
-    }
-
-    *:hover {
-
-      opacity: 1;
-      border-bottom: 1px solid rgba($fg, 0.5);
-
-    }
-
-    .selected {
-
-      opacity: 1;
-      border-bottom: 1px solid rgba($fg, 0.5);
-      background-color: rgba($fg, 0.75);
-
-    }
+    font-size: 8px;
+    padding-left: 0.6rem;
+    color: $fg-context-menu;
+    text-shadow: $text-shadow-settings rgba($fg-context-menu, 0.25);
 
   }
 
@@ -225,11 +229,8 @@
 
     .logo {
 
-      background-image: $logo-pc;
       margin-left: 0.5rem;
-      background-size: 14px;
-      background-repeat: no-repeat;
-      background-position: 0px center;
+      text-shadow: $fg-logo rgba($fg-logo, 0.25);
 
     }
 
@@ -240,7 +241,9 @@
       padding-top: 1px;
       font-size: 12px;
       font-weight: bolder;
-      color: $fg-title;
+
+      color: $fg-program-name;
+      text-shadow: $text-shadow-settings rgba($fg-program-name, 0.25);
 
     }
 
@@ -248,15 +251,28 @@
 
       padding-left: 1rem;
 
-      color: $fg-title;
+      color: $fg-program-title;
+      text-shadow: $text-shadow-settings rgba($fg-program-name, 0.15);
       font-size: 11px;
 
-      &:hover {
+      scrollbar {
 
-        color: rgba($fg, 0.5);
+        background-color: transparent;
+        min-height: 5px;
+
+        //&.fine-tune {}
+
+        trough {
+
+          min-height: 15px;
+          margin-bottom: 3px;
+          background-color: transparent;
+
+          //slider { }
+
+        }
 
       }
-
 
     }
 
@@ -267,7 +283,7 @@
     * > * > * {
 
       padding: 0 1rem 0 0.5rem;
-      color: rgba($fg, 0.5);
+      color: $fg-tray-camera;
 
       font-family: $font-icon;
       font-size: 12px;
@@ -278,7 +294,7 @@
 
     *:hover > * > * {
 
-      color: $fg;
+      color: $fg-tray-camera-highlight;
 
     }
 
@@ -289,6 +305,8 @@
 
     font-family: $font;
 
+    text-shadow: $text-shadow-settings rgba($fg-song, 0.5);
+
     .song {
 
       font-size: 12px;
@@ -296,24 +314,24 @@
 
       .highlight {
 
-        color: $fg-highlight;
+        color: $fg-song-highlight;
 
       }
 
       .normal {
 
-        color: $fg;
+        color: $fg-song;
 
       }
 
       .aside {
 
-        color: rgba($fg, 0.5);;
+        color: rgba($fg-song, 0.5);;
         padding: 0 0.5rem;
 
         &:hover {
 
-          color: rgba($fg, 0.75);;
+          color: rgba($fg-song, 0.75);
 
         }
 

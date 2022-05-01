@@ -24,3 +24,6 @@
 
 ;; -- Special mode means time, rain chances, etc.
 ( include "./yuck/special.yuck" )
+
+;; -- Lyrics specialty.
+( include "./yuck/lyrics.yuck" )

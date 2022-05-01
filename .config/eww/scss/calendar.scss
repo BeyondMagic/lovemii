@@ -3,11 +3,11 @@
   font-family: $font;
   font-size: 13px;
 
-  background-color: $normal-bg;
+  background-color: $bg-calendar;
 
   &:selected {
 
-    background-color: $bg-calendar-selected;
+    background-color: $bg-calendar-highlight;
     color: #0F0F11;
     border-radius: 15%;
 

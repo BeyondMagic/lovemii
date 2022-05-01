@@ -4,13 +4,13 @@
   :windowtype 'normal'
   :geometry 
     ( geometry
-       :x      '-1%'
-       :y      '-4%'
-       :width  '15%'
-       :height '5%'
-       :anchor 'bottom right'
+      :x      '-1%'
+      :y      '-4%'
+      :width  '15%'
+      :height '5%'
+      :anchor 'bottom right'
     )
   ( calendar
-     :class 'calendar'
+    :class 'calendar'
   )
 )

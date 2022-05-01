@@ -1,7 +1,7 @@
-( defvar weather-image-path "" )
-( defvar weather-celsius "0" )
-( defvar weather-location "" )
-( defvar weather-climate-label "" )
+( defvar weather-image-path    '' )
+( defvar weather-celsius       '' )
+( defvar weather-location      '' )
+( defvar weather-climate-label '' )
 
 ( defwindow time-center
   :wm-ignore  false
@@ -10,67 +10,65 @@
   :stacking   'bg'
   :geometry
     ( geometry
-       :x      '0%'
-       :y      '-10%'
-       :width  '22%'
-       :height '5%'
-       :anchor 'center center'
+      :x      '0%'
+      :y      '-10%'
+      :width  '22%'
+      :height '5%'
+      :anchor 'center center'
     )
   ( box
-     :class        'time-center'
-     :orientation  'vertical'
-     :space-evenly false
-     :active       false
-     :halign       'center'
-     ( box
-       :class "grid-one"
-       :orientation 'horizontal'
-       :height 75
-       ( box
-          :class 'climate'
-          :orientation 'vertical'
-          :space-evenly false
-          ( label
-             :text  ''
-             :class 'image'
-             :style `background-image: url('${weather-image-path}')`
-             :height 75
-          )
-          ( label
-             :text '${weather-climate-label}'
-             :class 'label'
-             :halign 'center'
-             :valign 'end'
-          )
-       )
-       ( label
-          :halign 'start'
-          :class 'celsius'
-          :text '${weather-celsius}°'
-       )
-     )
-     ( label
-        :halign 'center'
-        :class 'location'
-        :text weather-location
-     )
-     ( literal
-        :class  'handler'
-        :halign 'center'
-        ;:onclick "eww open-many powermenu"
-        :content
-          `( button
-              ( box
-                 :space-evenly false
-                 :class 'time'
-                 :spacing 0
-                 :orientation 'horizontal'
-                 ${time}
-              )
-           )`
-     )
-
-
+    :class        'time-center'
+    :orientation  'vertical'
+    :space-evenly false
+    :active       false
+    :halign       'center'
+    ( box
+      :class       'grid-one'
+      :orientation 'horizontal'
+      :height      75
+      ( box
+        :class        'climate'
+        :orientation  'vertical'
+        :space-evenly false
+        ( label
+          :text   ''
+          :class  'image'
+          :style  `background-image: url('${weather-image-path}')`
+          :height 75
+        )
+        ( label
+          :text   '${weather-climate-label}'
+          :class  'label'
+          :halign 'center'
+          :valign 'end'
+        )
+      )
+      ( label
+        :halign 'start'
+        :class  'celsius'
+        :text   '${weather-celsius}°'
+      )
+    )
+    ( label
+      :halign 'center'
+      :class  'location'
+      :text   weather-location
+    )
+    ( literal
+      :class  'handler'
+      :halign 'center'
+      ;:onclick "eww open-many powermenu"
+      :content
+        `( button
+           ( box
+             :space-evenly false
+             :class 'time'
+             :spacing 0
+             :orientation 'horizontal'
+             ${time}
+           )
+         )`
+    )
   )
 
 )

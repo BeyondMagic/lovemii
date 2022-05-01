@@ -1,44 +1,21 @@
 ( defwindow menu-central
   :wm-ignore true
   :monitor   0
-  :geometry  ( geometry
-               :x      '0%'
-               :y      '0%'
-               :width  '33%'
-               :height '100%'
-               :anchor 'center right'
-             )
+  :geometry  
+    ( geometry
+      :x      '0%'
+      :y      '0%'
+      :width  '33%'
+      :height '100%'
+      :anchor 'center right'
+    )
   :windowtype 'dialog'
   ( box
-    :class 'menu bg'
+    :class        'menu bg'
     :space-evenly true
     ; ( button
     ;   :onclick `sh ./executable/menu &`
     ;   ''
     ; )
-    ( scroll
-      :hscroll false
-      :width   '100'
-      :height  '100'
-      ( box
-        :space-evenly false
-        :orientation "v"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-        "TEST TEST TEST TEST TEST TEST TEST TEST"
-      )
-    )
   )
 )

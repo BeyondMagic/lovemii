@@ -51,5 +51,5 @@
 ; Timers.
 ( defpoll time
   :interval "1s"
-  "sh ./executable/eww-literal-time.sh"
+  "sh ./executable/eww-markup-time.sh"
 )

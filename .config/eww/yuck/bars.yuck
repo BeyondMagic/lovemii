@@ -1,16 +1,16 @@
 ; Widgets to minimise code usage
 ( defwidget tag [name label number id]
-  ( revealer 
-    :reveal name 
-    :transition "slideleft" 
+  ( revealer
+    :reveal name
+    :transition "slideleft"
     :duration "500ms"
     ( eventbox
-      ( button 
-        :class label 
-        :onclick 'dwm-msg run_command view ${number}' 
-        '${id}' 
-      ) 
-    ) 
+      ( button
+        :class label
+        :onclick 'dwm-msg run_command view ${number}'
+        '${id}'
+      )
+    )
   )
 )
 
@@ -37,14 +37,14 @@
       :orientation  "horizontal"
       :halign       "start"
       :space-evenly false
-      ( eventbox 
-        :class "layout" 
-        ( button 
-          :onmiddleclick 
-          "dwm-msg run_command cyclelayout 1 &" 
-          :width 45 
-          layout 
-        ) 
+      ( eventbox
+        :class "layout"
+        ( button
+          :onmiddleclick
+          "dwm-msg run_command cyclelayout 1 &"
+          :width 45
+          layout
+        )
       )
       ( box
         :space-evenly false
@@ -58,20 +58,20 @@
         ( tag :name tag-seven :label tag-class-seven :number 7 :id '七' )
         ( tag :name tag-eight :label tag-class-eight :number 8 :id '八' )
         ( tag :name tag-nine  :label tag-class-nine  :number 9 :id '九' )
-        ( revealer 
-          :reveal tag-add 
-          :transition "slideleft" 
+        ( revealer
+          :reveal tag-add
+          :transition "slideleft"
           :duration "500ms"
           ( eventbox
-            ( button 
-              :class 'add' 
-              :onclick 'sh ./executable/dwm-next-tag.sh' 
+            ( button
+              :class 'add'
+              :onclick 'sh ./executable/dwm-next-tag.sh'
               '+'
-            ) 
-          ) 
+            )
+          )
         )
       )
-      ( button 
+      ( button
         :class   'more-up'
         :onclick `sh ./executable/menu-context.sh &`
         :halign  'center'
@@ -169,23 +169,10 @@
        ;     ( label :text "K" )
        ;   )
        ; )
-       ( literal
-         :class   'time-handler'
-         :valign  "center"
-         ;:onclick "eww open-many powermenu"
-         :content `( button :onclick \`${change-days}\`
-                     ( box
-                       :space-evenly false
-                       :class 'time'
-                       :spacing 0
-                       :orientation 'horizontal'
-                       :vexpand true
-                       :hexpand true
-                       :valign "center"
-                       :width 85
-                       ${time}
-                     )
-                   )`
+       ( label
+         :class  'time'
+         :valign 'center'
+         :markup time
        )
      )
   )
@@ -194,12 +181,14 @@
 ; Bar at the top.
 ( defwindow top-bar
   :monitor 0
-  :geometry ( geometry
-    :x      "0px"
-    :y      "3px"
-    :width  "1434px"
-    :height "20px"
-    :anchor "top center" )
+  :geometry
+    ( geometry
+      :x      "0px"
+      :y      "3px"
+      :width  "1434px"
+      :height "20px"
+      :anchor "top center"
+    )
   :stacking   "bg"
   :windowtype "dock"
   :wm-ignore  true
@@ -241,9 +230,9 @@
              :halign       'baseline'
              :hexpand      false
              :class        'title-name'
-             ( label 
-               :xalign 0 
-               :text title-literal 
+             ( label
+               :xalign 0
+               :text   title-literal
              )
           )
         )

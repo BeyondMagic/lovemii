@@ -3,6 +3,8 @@
 ( defvar weather-location      '' )
 ( defvar weather-climate-label '' )
 
+( defvar fg-weather-celsius-highlight '#eeeeee' )
+
 ( defwindow time-center
   :wm-ignore  false
   :monitor    0
@@ -33,7 +35,7 @@
         ( label
           :text   ''
           :class  'image'
-          :style  `background-image: url('${weather-image-path}')`
+          :style  "background-image: url('${weather-image-path}')"
           :height 75
         )
         ( label
@@ -45,8 +47,8 @@
       )
       ( label
         :halign 'start'
+        :markup '${weather-celsius}<span color="${fg-weather-celsius-highlight}">°</span>'
         :class  'celsius'
-        :text   '${weather-celsius}°'
       )
     )
     ( label
@@ -54,20 +56,10 @@
       :class  'location'
       :text   weather-location
     )
-    ( literal
-      :class  'handler'
+    ( label
+      :class  'time'
       :halign 'center'
-      ;:onclick "eww open-many powermenu"
-      :content
-        `( button
-           ( box
-             :space-evenly false
-             :class 'time'
-             :spacing 0
-             :orientation 'horizontal'
-             ${time}
-           )
-         )`
+      :markup time
     )
   )
 

@@ -1,6 +1,7 @@
 xmenu.background:     #0A0A0B
 xmenu.foreground:     #ffffff
-xmenu.selbackground:  #EFEFEF
-xmenu.selforeground:  #131315
-xmenu.separator:      #131315
-xmenu.border:         #0E0E10
+xmenu.selbackground:  #344259
+xmenu.selforeground:  #ffffff
+xmenu.separator:      #222222
+xmenu.border:         #0A0A0B
+xmenu.opacity:        0.5

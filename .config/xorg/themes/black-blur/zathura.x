@@ -1,12 +1,12 @@
-zathura.bg                      : #ff00ff
+zathura.bg                      : rgba(0,0,0,0)
 zathura.fg                      : #f8f8f2
-zathura.default.bg              : #0c0c0c
+zathura.default.bg              : rgba(0,0,0,0.5)
 zathura.default.fg              : #f8f8f2
 zathura.render.bg               : #0c0c0f
 zathura.render.fg               : #f8f8f2
 zathura.input.bg                : #0c0c0f
 zathura.input.fg                : #f8f8f2
-zathura.status.bg               : #141617
+zathura.status.bg               : rgba(255,255,255,0.05)
 zathura.status.fg               : #f8f8f2
 zathura.index.bg                : #0c0c0f
 zathura.index.fg                : #f8f8f2

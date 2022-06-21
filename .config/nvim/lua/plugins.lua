@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
   }
 
   -- Signs for built-in marks.
-  use { 'chentau/marks.nvim',
+  use { 'chentoast/marks.nvim',
     config = require('configuration.marks')
   }
 
@@ -69,7 +69,7 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/nvim-cmp',
     config = require('configuration.cmp-config'),
     requires = {
-      { "octaltree/cmp-look" },
+      { "~/Git/Contributing/cmp-look" },
       --
       { "hrsh7th/cmp-nvim-lsp" },
       --
@@ -129,6 +129,12 @@ return require('packer').startup(function(use)
     config = require('configuration.git-signs')
   }
 
+  -- Trouble for diagnostics of plugins
+  use { 'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = require('configuration.trouble'),
+  }
+
   --
   -- Movement
   --
@@ -141,7 +147,7 @@ return require('packer').startup(function(use)
 
   -- Fold code.
   use{ 'anuvyklack/pretty-fold.nvim',
-   config = require('configuration.pretty-fold')
+   --config = require('configuration.pretty-fold')
   }
 
   -- Multi line like Sublime Text (My first Text Editor <3)
@@ -159,9 +165,9 @@ return require('packer').startup(function(use)
   --use 'mcchrish/nnn.vim'
 
   -- Smooth scroll with neoscroll
-  use { 'karb94/neoscroll.nvim',
-    config = require('configuration.neoscroll')
-  }
+  --use { 'karb94/neoscroll.nvim',
+  --  config = require('configuration.neoscroll')
+  --}
 
   -- File explorer
   -- use { 'kyazdani42/nvim-tree.lua',
@@ -179,6 +185,11 @@ return require('packer').startup(function(use)
   -- Appearance
   --
 
+  use 'lervag/vimtex'
+
+  -- Theme for sxhkdrc.
+  use 'kovetskiy/sxhkd-vim'
+
   -- Scrollbar with LSP
   use { 'petertriho/nvim-scrollbar',
     config = require('configuration.nvim-scrollbar'),
@@ -186,9 +197,9 @@ return require('packer').startup(function(use)
   }
 
    -- Status information for LSP.
-  --use { 'j-hui/fidget.nvim',
-  --  config = require('fidget').setup{}
-  --}
+  use { 'j-hui/fidget.nvim',
+    --config = require('fidget').setup{}
+  }
 
   -- Special words highlited in comments
   use { "folke/todo-comments.nvim",

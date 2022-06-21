@@ -34,3 +34,6 @@ set('Hexokinase_ftOptInPatterns', {
 
 -- Sample value, to keep default behaviour don't define this', variable
 set('Hexokinase_ftEnabled', { 'css', 'html', 'javascript' })
+
+-- Turn the colors on.
+vim.cmd('au BufEnter * HexokinaseTurnOn')

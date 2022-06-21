@@ -7,44 +7,32 @@
 vim.api.nvim_command(
 [[
 
-function! Switch_Theme()
-  let &bg=(&bg=='light'?'dark':'light')
-  colorscheme arcoiris-nvim
-endfunction
-
-function! Visual_Scroll_Up()
-  exe "normal v\<PageUp>"
-endfunction
-
-function! Visual_Scroll_Down()
-  exe "normal v\<PageDown>i"
-endfunction
-
-function! Insert_Scroll_Up()
-  exe "normal \<PageUp>"
-endfunction
-
-function! Insert_Scroll_Down()
-  exe "normal \<PageDown>"
-endfunction
-
-autocmd! BufReadPost * :setlocal foldmethod=syntax
-autocmd! VimLeavePre * :mks! ~/.config/nvim/session.vim
-autocmd! Signal SIGUSR1 :call Switch_Theme()
-
 " For some reason ?? this do not work with neovim lua builtin comands.
-nmap <C-Down> z%
-nmap <C-Up> g%
-imap <C-Down> <Esc>z%i
-imap <C-Up> <Esc>g%i
-
-function! DisableST()
-  return " "
-endfunction
-au BufEnter NvimTree setlocal statusline=%!DisableST()
-
-" autocmd BufEnter * let &titlestring = expand("%:t")
+"nmap <C-Down> z%
+"nmap <C-Up> g%
+"imap <C-Down> <Esc>z%i
+"imap <C-Up> <Esc>g%i
+"
+"function! DisableST()
+"  return " "
+"endfunction
+"au BufEnter NvimTree setlocal statusline=%!DisableST()
 
 ]])
 
-vim.cmd('au BufEnter * HexokinaseTurnOn')
+-- To save the current session (may be restored later).
+-- autocmd! VimLeavePre * :mks! ~/.config/nvim/session.vim
+vim.api.nvim_create_autocmd( 'VimLeavePre', {
+  pattern = '*',
+  command = ":mks! ~/.config/nvim/session.vim"
+})
+
+
+-- To switch themes.
+vim.api.nvim_create_autocmd( 'Signal', {
+  pattern = 'SIGUSR1',
+  callback = function ()
+    vim.cmd( [[let &bg=(&bg=='light'?'dark':'light' ]] )
+    vim.cmd( [[colorscheme arcoiris-nvim]] )
+  end,
+})

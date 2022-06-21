@@ -96,11 +96,19 @@ cmp.setup {
  sources = {
     { name = "nvim_lua", priority = 8 },
     { name = "nvim_lsp", priority = 7 },
-    { name = "luasnip", priority = 6 },
-    { name = "path", priority = 5 },
-    { name = "buffer", priority = 4 },
-    { name = "look", priority = 3, keyword_length = 4, option = { convert_case = true, loud = true } },
-    { name = "emoji", priority = 2, option = { insert = true } },
-    { name = 'calc', priority = 9 }
+    { name = "luasnip",  priority = 6 },
+    { name = "path",     priority = 9 },
+    { name = "buffer",   priority = 4 },
+    {
+      name = 'look',
+      keyword_length = 2,
+      option = {
+        convert_case = true,
+        loud = true
+        --dict = '/usr/share/dict/words'
+      }
+    },
+    { name = "emoji",    priority = 2, option = { insert = true } },
+    { name = 'calc',     priority = 10 }
  },
 }

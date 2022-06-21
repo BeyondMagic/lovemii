@@ -8,11 +8,18 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- Then change the path to your 'lua-language-server' build
 require('lsp.lua-ls')
 
+
+-- LATEX
+require('lsp.latex')
+
 -- Parse English.
 --require('lint-nv')
 
 -- C++ and C Language Server
 require('lsp.ccls')
+
+-- Rust Language Server.
+require('lsp.rust')
 
 -- Bash Language Server
 require('lspconfig').bashls.setup{}

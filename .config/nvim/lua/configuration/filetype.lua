@@ -1,5 +1,19 @@
+-- https://github.com/BeyondMagic/whitedove
+-- Personal website.
+function Build (type)
+
+  vim.api.nvim_create_autocmd( 'BufWritePost', {
+    pattern = '<buffer>',
+    callback = function ()
+      os.execute( "./build.sh " .. type )
+    end,
+  })
+
+end
+
 -- In init.lua or filetype.nvim's config file
 vim.filetype.add({
+
     extension = {
         h = function()
             -- Use a lazy heuristic that #including a C++ header means it's a
@@ -9,16 +23,22 @@ vim.filetype.add({
             end
             return "c"
         end,
+
+        -- Spelling fix.
         md = function()
           vim.api.nvim_command('setlocal spell!')
         end,
+
+        --
         csv = "csv",
         cl  = "opencl",
         env = "env",
+        rasi = "rasi"
 
     },
     pattern = {
-      -- Go to root configuration.
+
+      -- Go to root configuration of some projects.
       [".*config/nvim/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/magic/.config/nvim/')
       end,
@@ -37,31 +57,58 @@ vim.filetype.add({
       end,
       [".*config/xorg/.*"] = function()
         vim.api.nvim_command('cd ~/.config/xorg/')
-        vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_XResources()')
+
+        -- Make up the XORG.
+        vim.api.nvim_create_autocmd( 'BufWritePost', {
+          pattern = '<buffer>',
+          callback = function ()
+            os.execute( "xrdb ~/.config/xorg/XResources" )
+          end,
+        })
+
         return 'xdefaults'
       end,
 
-      -- BeyondMagic.space
-      [".*Personal/beyondmagic.space/ts/.*"] = function()
+      -- beyondMagic.space
+      -- Personal website.
+      [".*Personal/beyondmagic.space/typescript/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('./make.sh --ts')")
-        return 'typescript'
+        Build('ts')
       end,
-      [".*Personal/beyondmagic.space/templates/.*"] = function()
+      [".*Personal/beyondmagic.space/layout/.*html"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('./make.sh --templates')")
-        return 'html'
+        Build('html')
       end,
-      [".*Personal/beyondmagic.space/sass/.*"] = function()
+      [".*Personal/beyondmagic.space/layout/style.sheet/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('./make.sh --silent-sass')")
-        return 'sass'
+        Build('scss')
       end,
-      [".*Personal/beyondmagic.space/data/.*"] = function()
-        vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('./make.sh --data')")
-        return 'json5'
+
+      -- NWrite - WhiteDove
+      -- https://github.com/BeyondMagic/whitedove
+      [".*Projects/whitedove/src/typescript/renderer/.*"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
+        Build('ts renderer')
       end,
+      [".*Projects/whitedove/src/typescript/system/.*"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
+        Build('ts system')
+      end,
+      [".*Projects/whitedove/src/typescript/main.ts"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
+        Build('ts window')
+      end,
+      [".*Projects/whitedove/src/layout/.*html"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
+        Build('html')
+      end,
+      [".*Projects/whitedove/src/layout/style.sheet/.*"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
+        Build('sass')
+
+      end,
+
+      -- Story :)
       [".*Story/Script/.*"] = function()
         vim.api.nvim_command('cd ~/Story/Script/')
         vim.api.nvim_command('set colorcolumn=85')
@@ -71,24 +118,34 @@ vim.filetype.add({
         return 'txt'
       end,
     },
+
     filename = {
-      ['dunstrc.template'] = function()
-        vim.api.nvim_command('cd ~/.config/dunst/')
-        vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_Dunst()')
-        return 'sh'
-      end,
+
+      -- Those template files work with the system to auto-update certain configuration of programs.
       ['zathurarc.template'] = function()
         vim.api.nvim_command('cd ~/.config/zathura/')
-        vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_Zathura()')
+
+        -- Make up the zathurarc.
+        vim.api.nvim_create_autocmd( 'BufWritePost', {
+          pattern = '<buffer>',
+          callback = function ()
+            os.execute( [[zsh -c ". ~/.config/zsh/aliasesrc; up_zathura"]] )
+          end,
+        })
+
         return 'python'
       end,
-      xbindkeysrc = function()
-        vim.api.nvim_command('cd ~/.config/xbindkeys/')
-        vim.api.nvim_command('autocmd! BufWritePost <buffer> :lua Restart_XBindKeys()')
-      end,
+
+      -- To work within the folder plus LSP.
       aliasesrc = function()
         vim.api.nvim_command('cd ~/.config/zsh/')
         return 'sh'
-      end
+      end,
+
+      -- https://github.com/kovetskiy/sxhkd-vim
+      sxhkdrc = function()
+        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('pkill -USR1 -x sxhkd')")
+        return 'sxhkd'
+      end,
 	  },
 })

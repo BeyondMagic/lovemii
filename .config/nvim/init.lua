@@ -1,25 +1,22 @@
 -- Global, windows options of neovim:
 require('options')
-
--- Filetype specialties.
+--
+---- Filetype specialties.
 require('configuration.filetype')
-
--- Packer Plugin to adminstrate packages:
---   git clone https://github.com/wbthomason/packer.nvim\
---   ~/.local/share/nvim/site/pack/paker/start/packer.nvim
+--
+---- Packer Plugin to adminstrate packages:
+----   git clone https://github.com/wbthomason/packer.nvim\
+----   ~/.local/share/nvim/site/pack/paker/start/packer.nvim
 require('plugins')
-
--- LSP for editing.
+--
+---- LSP for editing.
 require('lsp')
-
--- Autocmd commands from Vimscript
+--
+---- Autocmd commands from Vimscript
 require('autocmd')
-
--- Global function
-require('functions')
-
--- Personal Keymaps of neovim:
+--
+---- Personal Keymaps of neovim:
 require('keymappings')
 
 -- Hai there!
-print('|> Welcome my fellow friend 🌎')
+--print('|> Welcome my fellow friend 🌎')

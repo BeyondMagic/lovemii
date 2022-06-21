@@ -68,7 +68,17 @@ key('n', '<Leader>qq', ':q<CR>', remap )
 key('n', '<C-c>', ':set hlsearch!<CR>', remap )
 
 -- Toggle the sidebar tree of the root folder.
-key('n', '<Leader>e', ":Neotree toggle source=filesystem position=left<CR>:echo ''<CR>", remap )
+key('n', '<Leader>e', '', {
+
+  noremap = true,
+  silent  = true,
+  desc    = "Open the NeoTree without any warning messages...",
+  callback = function ()
+    vim.o.cmdheight = 2
+    vim.cmd("Neotree toggle source=filesystem position=left")
+    vim.o.cmdheight = 0
+  end
+})
 
 -- Writing mode with zen.
 key('n', '<Leader>z', ':ZenMode<CR>', remap )
@@ -138,16 +148,17 @@ key('i', '<S-Right>', '<C-o>v<Right>', remap )
 -- Set 'SHIFT + special-keys' as 'select' like a moden text editor.
 key('i', '<S-Home>', '<Esc>v<Home>', remap )
 key('i', '<S-End>', '<C-o>v<End><Left>',   remap )
+
 key('n', '<S-Home>', 'v<Home>',      remap )
-key('n', '<S-End>', 'v<End>',        remap )
-key('n', '<S-PageUp>', '<Esc>:call Visual_Scroll_Up()<CR>i<Right><Left>',     remap )
-key('n', '<S-PageDown>', '<Esc>:call Visual_Scroll_Down()<CR>i<Right><Left>', remap )
+key('n', '<S-End>', 'v<End><Left>',        remap )
+-- key('n', '<S-PageUp>', '<Esc>:call Visual_Scroll_Up()<CR>i<Right><Left>',     remap )
+-- key('n', '<S-PageDown>', '<Esc>:call Visual_Scroll_Down()<CR>i<Right><Left>', remap )
 
 -- Set a nice Page-Arrow transition.
-key('i', '<PageUp>', '<Esc>:call Insert_Scroll_Up()<CR>i',                    remap )
-key('i', '<PageDown>', '<Esc>:call Insert_Scroll_Down()<CR>i',                remap )
-key('i', '<S-PageUp>', '<Esc>:call Visual_Scroll_Up()<CR>i<Right><Left>',     remap )
-key('i', '<S-PageDown>', '<Esc>:call Visual_Scroll_Down()<CR>i<Right><Left>', remap )
+-- key('i', '<PageUp>', '<Esc>:call Insert_Scroll_Up()<CR>i',                    remap )
+-- key('i', '<PageDown>', '<Esc>:call Insert_Scroll_Down()<CR>i',                remap )
+-- key('i', '<S-PageUp>', '<Esc>:call Visual_Scroll_Up()<CR>i<Right><Left>',     remap )
+-- key('i', '<S-PageDown>', '<Esc>:call Visual_Scroll_Down()<CR>i<Right><Left>', remap )
 
 -- Indent the current visual selection.
 key('v', '<', '<gv', remap )

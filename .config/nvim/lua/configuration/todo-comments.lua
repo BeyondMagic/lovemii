@@ -9,17 +9,23 @@ require("todo-comments").setup {
       alt   = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO        = { icon = " ", color = "info" },
-    HACK        = { icon = " ", color = "warning" },
-    WARN        = { icon = " ", color = "warning",
-                    alt  = { "WARNING", "XXX" } },
-    PERF        = { icon = " ",
-                    alt  = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE        = { icon = " ", color = "hint",
-                    alt  = { "INFO" } },
-    DONE        = { icon = " ", color = "done" },
-    DESCRIPTION = { icon = "漣", color = "description",
-                    alt  = { "VERSION", "MAINTAINER(s)", "MAINTAINER", "DEPENDENCIES" } },
+    TODO        = { icon  = " ",
+                    color = "info" },
+    HACK        = { icon  = " ",
+                    color = "warning" },
+    WARN        = { icon  = " ",
+                    color = "warning",
+                    alt   = { "WARNING", "XXX" } },
+    PERF        = { icon  = " ",
+                    alt   = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE        = { icon  = " ",
+                    color = "warning",
+                    alt   = { "INFO" } },
+    DONE        = { icon  = " ",
+                    color = "done" },
+    DESCRIPTION = { icon  = "漣",
+                    color = "description",
+                    alt   = { "VERSION", "MAINTAINER(s)", "MAINTAINER", "DEPENDENCIES" } },
   },
   merge_keywords = true, -- when true, custom keywords will be merged with the defaults
   -- highlighting of the line containing the todo comment
@@ -27,7 +33,7 @@ require("todo-comments").setup {
   -- * keyword: highlights of the keyword
   -- * after: highlights after the keyword (todo text)
   highlight = {
-    before        = "", -- "fg" or "bg" or empty
+    before        = "bg", -- "fg" or "bg" or empty
     keyword       = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
     after         = "fg", -- "fg" or "bg" or empty
     pattern       = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)

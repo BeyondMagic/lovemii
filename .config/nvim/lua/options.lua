@@ -15,6 +15,9 @@ vim.wo.linebreak = true
 vim.wo.number         = true
 vim.wo.relativenumber = true
 
+-- To have a extra line :)
+vim.o.cmdheight = 0
+
 -- Set wrap for words
 vim.wo.wrap = true
 
@@ -90,6 +93,9 @@ vim.o.mouse = 'a'
 vim.o.spelllang = 'en_gb'
 vim.bo.spelllang = 'en_gb'
 
+-- Global statusline.
+vim.opt.laststatus = 3
+
 -- Columns line "limit"
 -- vim.o.cc = '85'
 
@@ -103,7 +109,6 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 --------------------Variables-----------------
 
 set('one_allow_itali:set cursorlinec:set cursorlines', 1)
-set('nnn#command', 'nnn -dDoxR')
 set('do_filetype_lua', 1)
 
 --------------------API------------------------
@@ -124,7 +129,7 @@ option('dictionary', '/usr/share/dict/words')
 option('wildignore', '*/tmp*/,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*,*/.vim$,~$,*/.log')
 
 -- Folding
-option('foldmethod', 'expr')
+option('foldmethod', 'manual')
 
 -- File format for neovim reading
 option('fileformat', 'unix')

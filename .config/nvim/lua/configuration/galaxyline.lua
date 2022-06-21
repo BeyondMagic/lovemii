@@ -54,26 +54,26 @@ gls.left[1] = {
         provider = function()
             -- auto change color according the vim mode
             local mode_color = {
-                n = { 'Normal', colors.blue },
-                i = { 'Insert', colors.green },
-                v = { 'Visual', colors.purple },
+                n      = { 'Normal', colors.blue },
+                i      = { 'Insert', colors.green },
+                v      = { 'Visual', colors.purple },
                 [''] = { 'Visual Block', colors.purple },
-                V = { 'Visual Line', colors.purple },
-                c = { 'Command-Line', colors.magenta },
-                no = { 'Operator-Pending', colors.blue },
-                s =  { 'Select', colors.orange },
-                S = { 'Select', colors.orange },
+                V      = { 'Visual Line', colors.purple },
+                c      = { 'Command-Line', colors.magenta },
+                no     = { 'Operator-Pending', colors.blue },
+                s      = { 'Select', colors.orange },
+                S      = { 'Select', colors.orange },
                 [''] = { 'Select', colors.orange },
-                ic = { 'Ins-Complete', colors.yellow },
-                R = { 'Replace', colors.red },
-                Rv = { 'Virtual', colors.red },
-                cv = { 'Ex', colors.blue },
-                ce = { 'Normal Ex', colors.blue },
-                r = { 'Hit-Enter', colors.cyan },
-                rm = { '--More', colors.cyan },
+                ic     = { 'Ins-Complete', colors.yellow },
+                R      = { 'Replace', colors.red },
+                Rv     = { 'Virtual', colors.red },
+                cv     = { 'Ex', colors.blue },
+                ce     = { 'Normal Ex', colors.blue },
+                r      = { 'Hit-Enter', colors.cyan },
+                rm     = { '--More', colors.cyan },
                 ['r?'] = { ':Confirm', colors.cyan },
-                ['!'] = { 'Shell', colors.blue },
-                t = { 'Terminal', colors.blue }
+                ['!']  = { 'Shell', colors.blue },
+                t      = { 'Terminal', colors.blue }
             }
             vim.cmd('hi GalaxyViMode guifg=' .. colors.fg .. ' guibg=' .. mode_color[vim.fn.mode()][2] .. ' gui=bold')
             return '  ' .. mode_color[vim.fn.mode()][1] .. ' '

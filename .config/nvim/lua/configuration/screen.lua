@@ -11,9 +11,9 @@ then
   -- To split our quote, artist and source.
   -- And automatically center it for screen loader of the header.
   local function split(s)
-    local t = {}
+    local t               = {}
     local max_line_length = vim.api.nvim_get_option('columns')
-    local longest = 0 -- Value of longest string is 0 by default
+    local longest         = 0 -- Value of longest string is 0 by default
     for far in s:gmatch("[^\r\n]+") do
       -- Break the line if it's actually bigger than terminal columns
       local line
@@ -23,7 +23,7 @@ then
           table.insert(t, line)
           line = word
         else
-          line = line..spc..word
+          line    = line..spc..word
           longest = max_line_length
         end
       end)
@@ -36,9 +36,9 @@ then
     -- Center all strings by the longest
     for i = 1, #t do
       local space = longest - #t[i]
-      local left = math.floor(space/2)
+      local left  = math.floor(space/2)
       local right = space - left
-      t[i] = string.rep(' ', left) .. t[i] .. string.rep(' ', right)
+      t[i]        = string.rep(' ', left) .. t[i] .. string.rep(' ', right)
     end
     return t
   end
@@ -60,12 +60,12 @@ then
     local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
     local opts = {
-      position = "center",
-      shortcut = sc,
-      cursor = 5,
-      width = 50,
+      position       = "center",
+      shortcut       = sc,
+      cursor         = 5,
+      width          = 50,
       align_shortcut = "right",
-      hl_shortcut = "Conditional",
+      hl_shortcut    = "Conditional",
     }
     if keybind then
       keybind_opts = vim.F.if_nil(keybind_opts, {noremap = true, silent = true, nowait = true})
@@ -78,10 +78,10 @@ then
     end
 
     return {
-      type = "button",
-      val = txt,
+      type     = "button",
+      val      = txt,
       on_press = on_press,
-      opts = opts,
+      opts     = opts,
     }
   end
 
@@ -203,11 +203,11 @@ then
     -- https://github.com/BeyondMagic/scripts/blob/master/quotes/rdn
     -- Which returns one to three lines, being each divided by a line break.
     -- Or just an array: { "I see you:", "Above you." }
-    val = split(capture('rdn')),
-    hl = "NvimTreeRootFolder",
+    val = { "Love", "Very", "Wow", }, -- split(capture('rdn')),
+    hl  = "NvimTreeRootFolder",
     opts = {
       position = "center",
-      hl = "Conditional",
+      hl       = "Conditional",
     }
   }
 
@@ -232,36 +232,42 @@ then
   --
 
   local ol = { -- occupied lines
-    icon = #header.val,            -- CONST: number of lines that your header will occupy
-    message = 1 + #footer.val,             -- CONST: because of padding at the bottom
-    length_buttons = #buttons.val * 2 - 1, -- CONST: it calculate the number that buttons will occupy
-    neovim_lines = 3,                      -- CONST: 2 of command line, 1 of the top bar
+    icon            = #header.val,            -- CONST: number of lines that your header will occupy
+    message         = #footer.val,            -- CONST: because of padding at the bottom
+    length_buttons  = #buttons.val * 2 - 1, -- CONST: it calculate the number that buttons will occupy
+    neovim_lines    = 3,                      -- CONST: 2 of command line, 1 of the top bar
     padding_between = 2,                   -- STATIC: can be set to anything, padding between keybinds and header
   }
 
   local left_terminal_value = vim.api.nvim_get_option('lines') - (ol.length_buttons + ol.message + ol.padding_between + ol.icon + ol.neovim_lines)
-  local top_padding = math.floor(left_terminal_value / 2)
-  local bottom_padding = left_terminal_value - top_padding
 
-  --
-  -- Set alpha sections
-  --
+  -- Not screen enough to run the command.
+  if (left_terminal_value >= 0) then
 
-  local opts = {
-    layout = {
-      { type = "padding", val = top_padding },
-      header,
-      { type = "padding", val = ol.padding_between },
-      buttons,
-      footer,
-      { type = "padding", val = bottom_padding },
-    },
-    opts = {
-      margin = 5
-    },
-  }
+    local top_padding         = math.floor(left_terminal_value / 2)
+    local bottom_padding      = left_terminal_value - top_padding
 
-  require('alpha').setup(opts)
+    --
+    -- Set alpha sections
+    --
+
+    local opts = {
+      layout = {
+        { type = "padding", val = top_padding },
+        header,
+        { type = "padding", val = ol.padding_between },
+        buttons,
+        footer,
+        { type = "padding", val = bottom_padding },
+      },
+      opts = {
+        margin = 5
+      },
+    }
+
+    require('alpha').setup(opts)
+
+  end
 
 --else
   --vim.api.nvim_exec('silent source ~/.config/nvim/session.vim', false)

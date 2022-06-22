@@ -6,14 +6,18 @@ require('lspconfig').texlab.setup({
   --root_dir = '',
   settings = {
     texlab = {
-      auxDirectory    = ".",
+      auxDirectory    = '.',
       bibtexFormatter = "texlab",
       build = {
-        args = { "-pdf",
-                 "%f" },
+        args  =
+          { "-pdf",
+            --"-output-directory=" .. cache_latex,
+            "-interaction=nonstopmode",
+            "-synctex=1",
+            "%f" },
         executable         = "latexmk",
         forwardSearchAfter = false,
-        onSave             = true
+        onSave             = false
       },
       chktex = {
         onEdit        = false,
@@ -24,6 +28,7 @@ require('lspconfig').texlab.setup({
       forwardSearch = {
         args = {}
       },
+      -- TODO: Using as a way to actually pass PDF files.
       latexFormatter = "latexindent",
       latexindent = {
         modifyLineBreaks = false

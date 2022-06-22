@@ -1,11 +1,18 @@
+-- To be used anywhere.
+local function job (command)
+
+  vim.api.nvim_command( "call jobstart('" .. command .."')" )
+
+end
+
 -- https://github.com/BeyondMagic/whitedove
 -- Personal website.
-function Build (type)
+local function build (type)
 
   vim.api.nvim_create_autocmd( 'BufWritePost', {
     pattern = '<buffer>',
     callback = function ()
-      os.execute( "./build.sh " .. type )
+      job( './build.sh ' .. type )
     end,
   })
 
@@ -33,7 +40,30 @@ vim.filetype.add({
         csv = "csv",
         cl  = "opencl",
         env = "env",
-        rasi = "rasi"
+        rasi = "rasi",
+
+        -- Latex
+        tex = function()
+          vim.api.nvim_create_autocmd( 'BufWritePost', {
+            pattern = '<buffer>',
+            callback = function ()
+              local cache_folder = '/home/iris/.cache/latex'
+              local all_letters  = '[%w%sA-Za-zÀ-ÖØ-öø-ÿ'
+              local buffer_name  = vim.api.nvim_buf_get_name(0)
+
+              local name_file    = string.gsub(buffer_name, all_letters .. ".]+/", '')
+                    name_file    = string.gsub(name_file, '.' .. all_letters .. "]+$", '')
+
+              local pdf_file     = cache_folder .. name_file .. '.pdf'
+
+              local directory    = string.gsub(buffer_name, all_letters .. '.]+$', '')
+
+              job( 'latexmk -pdf -output-directory=' .. cache_folder ..
+                ' -interaction=nonstopmode -synctex=1 "' .. buffer_name .. '"')
+              job('sleep 0.3s; cp -f' .. ' "' .. pdf_file .. '" "' .. directory .. '"')
+            end,
+          })
+        end,
 
     },
     pattern = {
@@ -73,38 +103,38 @@ vim.filetype.add({
       -- Personal website.
       [".*Personal/beyondmagic.space/typescript/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        Build('ts')
+        build('ts')
       end,
       [".*Personal/beyondmagic.space/layout/.*html"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        Build('html')
+        build('html')
       end,
       [".*Personal/beyondmagic.space/layout/style.sheet/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        Build('scss')
+        build('scss')
       end,
 
       -- NWrite - WhiteDove
       -- https://github.com/BeyondMagic/whitedove
       [".*Projects/whitedove/src/typescript/renderer/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        Build('ts renderer')
+        build('ts renderer')
       end,
       [".*Projects/whitedove/src/typescript/system/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        Build('ts system')
+        build('ts system')
       end,
       [".*Projects/whitedove/src/typescript/main.ts"] = function()
         vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        Build('ts window')
+        build('ts window')
       end,
       [".*Projects/whitedove/src/layout/.*html"] = function()
         vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        Build('html')
+        build('html')
       end,
       [".*Projects/whitedove/src/layout/style.sheet/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        Build('sass')
+        build('sass')
 
       end,
 
@@ -144,7 +174,13 @@ vim.filetype.add({
 
       -- https://github.com/kovetskiy/sxhkd-vim
       sxhkdrc = function()
-        vim.api.nvim_command("autocmd! BufWritePost <buffer> :call jobstart('pkill -USR1 -x sxhkd')")
+      vim.api.nvim_create_autocmd( 'BufWritePost', {
+        pattern = '<buffer>',
+        callback = function ()
+          job('pkill -USR1 -x sxhkd')
+        end,
+      })
+
         return 'sxhkd'
       end,
 	  },

@@ -9,6 +9,11 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- ASYNC
+  --use { 'ms-jpq/lua-async-await',
+  --  branch = 'neo',
+  --}
+
   --
   -- LSP
   --

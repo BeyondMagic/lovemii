@@ -64,14 +64,23 @@
   display: none;
 }
 
-/*
- * Auto hide sidebar.
- */
-/* Sidebar position is on the right. */
+#sidebar-header {
+  display: none;
+}
+
+#sidebar-box {
+  width: 4.8rem !important;
+  min-width: 4.8rem !important;
+  max-width: 4.8rem !important;
+}
+*:fullscreen #sidebar-box {
+  width: 0;
+  min-width: 0;
+  max-width: 0;
+}
 #sidebar-box[positionend] {
   direction: rtl;
 }
-
 #sidebar-box:not([hidden]) {
   box-shadow: 2px 0 14px rgba(0, 0, 0, 0.13) !important;
   background-color: inherit !important;
@@ -84,11 +93,20 @@
   z-index: 3;
   transition: all 400ms linear;
 }
+#sidebar-box:not([hidden])[customizing], #sidebar-box:not([hidden]):focus-visible, #sidebar-box:not([hidden]):active, #sidebar-box:not([hidden]):focus, #sidebar-box:not([hidden]):focus-within, #sidebar-box:not([hidden]):hover {
+  width: 20rem !important;
+  min-width: 20rem !important;
+  max-width: 20rem !important;
+  opacity: 1;
+}
 
-#sidebar-box {
-  width: 4.8rem !important;
-  min-width: 4.8rem !important;
-  max-width: 4.8rem !important;
+#sidebar-search-container,
+.sidebar-panel .sidebar-placesTree,
+.sidebar-panel .sidebar-placesTreechildren,
+#sidebar {
+  background-color: inherit !important;
+  width: 20rem !important;
+  height: 100%;
 }
 
 #appcontent {
@@ -104,35 +122,8 @@
     margin-left: 0;
   }
 }
-#sidebar-box:not([hidden])[customizing],
-#sidebar-box:not([hidden]):focus-visible,
-#sidebar-box:not([hidden]):active,
-#sidebar-box:not([hidden]):focus,
-#sidebar-box:not([hidden]):focus-within,
-#sidebar-box:not([hidden]):hover {
-  width: 20rem !important;
-  min-width: 20rem !important;
-  max-width: 20rem !important;
-  opacity: 1;
-}
-
-#bookmarksPanel,
-#sidebar-search-container,
-.sidebar-panel .sidebar-placesTree,
-#bookmarks-view,
-.sidebar-panel .sidebar-placesTreechildren,
-#sidebar {
-  background-color: inherit !important;
-  width: 20rem !important;
-  height: 100%;
-}
-
 .sidebar-splitter {
   --sidebar-border-color: var(--chrome-content-separator-color);
-}
-
-#sidebar-header {
-  display: none;
 }
 
 /*
@@ -167,6 +158,13 @@
 }
 #nav-bar:hover ~ box > toolbox > .browser-toolbar:not([urlbar-exceeds-toolbar-bounds]), #nav-bar[customizing], #nav-bar:focus-within:not([urlbar-exceeds-toolbar-bounds]), #nav-bar:hover:not([urlbar-exceeds-toolbar-bounds]) {
   backdrop-filter: blur(16px) saturate(200%);
+}
+
+#bookmarksPanel,
+#bookmarks-view {
+  background-color: inherit !important;
+  width: 20rem !important;
+  height: 100%;
 }
 
 .bookmark-item .toolbarbutton-icon,

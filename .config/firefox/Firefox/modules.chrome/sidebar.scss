@@ -1,41 +1,83 @@
 $width-sidebery-bar: 4.8rem !important;
 $max-width-sidebery-bar: 20rem !important;
 
-/*
- * Auto hide sidebar.
- */
+// #. The title of the sidebar : [SideBery]
+#sidebar-header {
 
-/* Sidebar position is on the right. */
-#sidebar-box[positionend] {
-  direction: rtl;
-}
-
-#sidebar-box:not([hidden]) {
-
-  //border-right: solid 1px red !important;
-  box-shadow: 2px 0 14px rgba(0, 0, 0, 0.13) !important;
-  background-color: inherit !important;
-
-  overflow: hidden;
-  height: 100%;
-
-  width: $width-sidebery-bar;
-  min-width: $width-sidebery-bar;
-  max-width: $width-sidebery-bar;
-
-  display: block;
-  //position: fixed;
-  z-index: 3;
-
-  transition: all 400ms linear;
+  display: none;
 
 }
 
+// #. Sidebar position is on the right.
 #sidebar-box {
 
   width: $width-sidebery-bar;
   min-width: $width-sidebery-bar;
   max-width: $width-sidebery-bar;
+
+  *:fullscreen & {
+
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+
+  }
+
+  &[positionend] {
+
+    direction: rtl;
+
+  }
+
+  &:not([hidden]) {
+
+    //border-right: solid 1px red !important;
+    box-shadow: 2px 0 14px rgba(0, 0, 0, 0.13) !important;
+    background-color: inherit !important;
+
+    overflow: hidden;
+    height: 100%;
+
+    width: $width-sidebery-bar;
+    min-width: $width-sidebery-bar;
+    max-width: $width-sidebery-bar;
+
+    display: block;
+    //position: fixed;
+    z-index: 3;
+
+    transition: all 400ms linear;
+
+  }
+
+  &:not([hidden])[customizing],
+  &:not([hidden]):focus-visible,
+  &:not([hidden]):active,
+  &:not([hidden]):focus,
+  &:not([hidden]):focus-within,
+  &:not([hidden]):hover {
+  
+    //position: fixed;
+  
+    width: $max-width-sidebery-bar;
+    min-width: $max-width-sidebery-bar;
+    max-width: $max-width-sidebery-bar;
+  
+    opacity: 1;
+  
+  }
+
+}
+
+#sidebar-search-container,
+.sidebar-panel .sidebar-placesTree,
+.sidebar-panel .sidebar-placesTreechildren,
+#sidebar {
+
+  background-color: inherit !important;
+
+  width: $max-width-sidebery-bar;
+  height: 100%;
 
 }
 
@@ -46,42 +88,11 @@ $max-width-sidebery-bar: 20rem !important;
   #appcontent {margin-left: 0;}
 }
 
-#sidebar-box:not([hidden])[customizing],
-#sidebar-box:not([hidden]):focus-visible,
-#sidebar-box:not([hidden]):active,
-#sidebar-box:not([hidden]):focus,
-#sidebar-box:not([hidden]):focus-within,
-#sidebar-box:not([hidden]):hover {
 
-  //position: fixed;
+.sidebar-splitter {
 
-  width: $max-width-sidebery-bar;
-  min-width: $max-width-sidebery-bar;
-  max-width: $max-width-sidebery-bar;
+  --sidebar-border-color: var(--chrome-content-separator-color);
 
-  opacity: 1;
-
-}
-
-#bookmarksPanel,
-#sidebar-search-container,
-.sidebar-panel .sidebar-placesTree,
-#bookmarks-view,
-.sidebar-panel .sidebar-placesTreechildren,
-#sidebar {
-
-  background-color: inherit !important;
-
-  width: 20rem !important;
-  height: 100%;
-}
-
-
-.sidebar-splitter {--sidebar-border-color: var(--chrome-content-separator-color)}
-
-// #. The title of the sidebar : [SideBery]
-#sidebar-header {
-  display:none;
 }
 
 

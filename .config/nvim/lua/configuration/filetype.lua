@@ -116,26 +116,21 @@ vim.filetype.add({
 
       -- NWrite - WhiteDove
       -- https://github.com/BeyondMagic/whitedove
-      [".*Projects/whitedove/src/typescript/renderer/.*"] = function()
-        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        build('ts renderer')
-      end,
-      [".*Projects/whitedove/src/typescript/system/.*"] = function()
-        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        build('ts system')
-      end,
-      [".*Projects/whitedove/src/typescript/main.ts"] = function()
-        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        build('ts window')
-      end,
-      [".*Projects/whitedove/src/layout/.*html"] = function()
-        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
+      [".*Projects/WhiteDove/whitedove/source/html/.*"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/WhiteDove/whitedove/')
         build('html')
       end,
-      [".*Projects/whitedove/src/layout/style.sheet/.*"] = function()
-        vim.api.nvim_command('cd ~/Git/Projects/whitedove/src/')
-        build('sass')
-
+      [".*Projects/WhiteDove/whitedove/source/scss/.*"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/WhiteDove/whitedove/')
+        build('scss')
+      end,
+      [".*Projects/WhiteDove/whitedove/source/ts/.*"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/WhiteDove/whitedove/')
+        build('ts main')
+      end,
+      [".*Projects/WhiteDove/whitedove/source/ts/global.ts"] = function()
+        vim.api.nvim_command('cd ~/Git/Projects/WhiteDove/whitedove/')
+        build('ts global')
       end,
 
       -- Story :)
@@ -150,6 +145,9 @@ vim.filetype.add({
     },
 
     filename = {
+
+      -- For Typescript projects.
+      ['tsconfig.json'] = 'json5',
 
       -- Those template files work with the system to auto-update certain configuration of programs.
       ['zathurarc.template'] = function()

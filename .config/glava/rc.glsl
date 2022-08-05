@@ -48,7 +48,8 @@
 #request settitle "GLava"
 
 /* Window geometry (x, y, width, height) */
-#request setgeometry -10 750 1460 150
+//#request setgeometry -10 750 (1440 + 20) 150
+#request setgeometry -10 0 1460 150
 //#request setgeometry -10 515 1460 150
 
 /* Window background color (RGB format).

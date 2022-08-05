@@ -1,7 +1,7 @@
-( defvar weather-image-path    '' )
-( defvar weather-celsius       '' )
-( defvar weather-location      '' )
-( defvar weather-climate-label '' )
+( defvar weather-image-path    '/home/iris/.local/share/icons/onebox/thunderstorms.png' )
+( defvar weather-celsius       '10' )
+;( defvar weather-location      '' )
+( defvar weather-climate-label '晴時々曇' )
 
 ( defvar fg-weather-celsius-highlight '#eeeeee' )
 
@@ -12,7 +12,7 @@
   :stacking   'bg'
   :geometry
     ( geometry
-      :x      '0%'
+      :x      '-25%'
       :y      '-10%'
       :width  '22%'
       :height '5%'
@@ -51,11 +51,11 @@
         :class  'celsius'
       )
     )
-    ( label
-      :halign 'center'
-      :class  'location'
-      :text   weather-location
-    )
+    ;( label
+    ;  :halign 'center'
+    ;  :class  'location'
+    ;  :text   weather-location
+    ;)
     ( label
       :class  'time'
       :halign 'center'

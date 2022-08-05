@@ -1,50 +1,63 @@
 #!/usr/bin/env sh
 
+format() { sed -r 's_\&__g'; };
 
-# Setting defaults
-set playlist before current after
-
-limit=35
 {
 
+  # 0. Get current playlist.
   playlist="$(mpc playlist)"
-  current="$(mpc -f "[%title%] - [%artist%]" | head -n1)"
 
-  # If this is 
-  before="$(echo "$playlist" | grep -B1 "$current" | head -n 1)"
-  after="$(mpc queued)"
+  # 1. Get current song's name.
+  song_center_index="$(mpc status %songpos%)"
+  song_center="$(echo "$playlist" | sed -n "${song_center_index}p" | format)"
 
-  # No before? Set to the last of the playlist
-  [ "$before" ] || before="$(echo "$playlist" | grep -B1 -Ps "[-$current]" | head -n 1)"
+  # 2. Get previous song's name.
+  song_left_index=$((song_center_index - 1))
+  song_left="$(echo "$playlist" | sed -n "${song_left_index}p" | format)"
 
-  # If this is the first song of the playlist, then just set nothing to before.
-  [ "$current" = "$(echo "$playlist" | head -n1)" ] && before=""
+  # 3. Get next song's name.
+  song_right_index=$((song_center_index + 1))
+  song_right="$(echo "$playlist" | sed -n "${song_right_index}p" | format)"
 
-  [ ${#current} -gt $limit ] && current="$(echo "$current" | cut -c -"$limit")..."
-  [ ${#before}  -gt $limit ] &&  before="$(echo "$before"  | cut -c -"$limit")..."
-  [ ${#after}   -gt $limit ] &&   after="$(echo "$after"   | cut -c -"$limit")..."
+  # If on single mode. Don't show the next and left.
+  [ "$(mpc status %single%)" = 'on' ] && unset song_right song_left
 
 }
-
-highlight () { echo "( button :class 'highlight' \`$1\`)"; }
-normal    () { echo "( button :class 'normal'    \`$1\`)"; }
-previous  () { echo "( button :class 'aside' :onclick 'mpc prev' \`$1\`)"; }
-next      () { echo "( button :class 'aside' :onclick 'mpc next' \`$1\`)"; }
 
 {
 
-  song_length=${#current}
+  # 1. Get the number of characters of the song's name.
+  song_length=${#song_center}
 
-  # Parse the info to get the progress in %
-  run_percentage=$(mpc status '%percenttime%' | sed -r 's/^ +|%$//g')
+  # 2. Parse the info to get the progress in %
+  percentage_run=$(mpc status '%percenttime%' | sed -r 's/^ +|%$//g')
 
-  real_percentage=$(awk -v n="$song_length" -v m="$run_percentage" 'BEGIN{ print int( n*(m/100)) }')
+  # 3. Transform into the porcentage of the total song.
+  percentage_total=$(awk -v n="$song_length" -v m="$percentage_run" 'BEGIN{ print int( n*(m/100)) }')
 
-  current="
-    $(highlight "$(expr substr "$current" 1  $real_percentage)" )
-    $(normal    "$(expr substr "$current" $(($real_percentage + 1)) $song_length)" )
-  "
+  # 4. 
+  song_center_highlight="$(expr substr "$song_center" 1  $percentage_total)"
+  song_center_normal="$(expr substr "$song_center" $(($percentage_total + 1)) $song_length)"
 
 }
 
-echo "$(previous "$before") $current $(next "$after")"
+# 1. Left
+colour="$(xgetres eww.top-bar.song.left)"
+song_left="<span color='$colour'>$song_left</span>"
+
+# 1. Center.
+colour_hi="$(xgetres eww.top-bar.song.center.highlight)"
+colour="$(xgetres eww.top-bar.song.center)"
+song_center="<span color='$colour_hi'>${song_center_highlight}</span><span color='$colour'>${song_center_normal}</span>"
+
+# 2. Right
+colour="$(xgetres eww.top-bar.song.right)"
+song_right="<span color='$colour'>$song_right</span>"
+
+eww update top-bar-song-left="$song_left" &
+eww update top-bar-song-center="$song_center" &
+eww update top-bar-song-right="$song_right" &
+
+echo "$song_left"
+echo "$song_center"
+echo "$song_right"

@@ -14,19 +14,55 @@
   )
 )
 
+( defvar top-bar-reveal true )
+( defvar bot-bar-reveal true )
+
+( defwindow bot-bar-slider
+  :monitor 0
+  :geometry 
+    ( geometry
+      :x      "0"
+      :y      "0"
+      :width  "100%"
+      :height "1px"
+      :anchor "bottom center"
+    )
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+  ( eventbox
+    :class   'event-slide-bars ${bot-bar-reveal}'
+    :onhover 'eww update bot-bar-reveal=true &'
+    :onclick 'eww-switch bot-bar-reveal &'
+    :height  1
+    ''
+  )
+)
+
 ( defwindow bot-bar
   :monitor 0
   :geometry ( geometry
-    :x      "0px"
-    :y      "-3px"
-    :width  "1434px"
-    :height "20px"
+    :x      "0"
+    :y      "-1px"
+    :width  "100%"
+    :height "1px"
     :anchor "bottom center")
   :stacking   "bg"
   :windowtype "dock"
   :wm-ignore  true
-  ( bot-widget )
+  ( box
+    :orientation  'vertical'
+    :space-evenly false
+    ( revealer
+      :reveal       bot-bar-reveal
+      :transition   "slideup"
+      :duration     "500ms"
+      ( bot-widget )
+    )
+  )
 )
+
+
 
 (defwidget bot-widget []
   ( centerbox
@@ -121,6 +157,39 @@
        :space-evenly false
        :hexpand      false
        :class        'volume-handler revealer-on-hover'
+
+       ; # Snippet for climate.
+       ( box
+         :spacing 4
+         :orientation  "horizontal"
+         :space-evenly false
+         :class 'climate'
+         ( label
+           :text   ''
+           :class  'image'
+           :style  "background-image: url('${weather-image-path}')"
+           :height 20
+           :width  23
+         )
+         ( label
+           :halign 'start'
+           :markup '${weather-celsius}°C'
+           :class  'celsius'
+         )
+         ( scroll
+           :width    60
+           :hscroll  true
+           :halign   'baseline'
+           :hexpand  false
+           :class    'scroll'
+           ( label
+             :xalign 0
+             :class 'a'
+             :markup weather-climate-label
+           )
+         )
+       )
+
        ( eventbox
          :class       'eventbox'
          :onhover     'eww update reveal-volume=true'
@@ -178,21 +247,52 @@
   )
 )
 
+( defwindow top-bar-slider
+  :monitor 0
+  :geometry ( geometry
+    :x      "0"
+    :y      "0"
+    :width  "100%"
+    :height "1px"
+    :anchor "top center" )
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+  ( eventbox
+    :class   'event-slide-bars ${top-bar-reveal}'
+    :onhover 'eww update top-bar-reveal=true &'
+    :onclick 'eww-switch top-bar-reveal &'
+    :height  1
+    ''
+  )
+)
+
+
 ; Bar at the top.
 ( defwindow top-bar
   :monitor 0
   :geometry
     ( geometry
       :x      "0px"
-      :y      "3px"
-      :width  "1434px"
-      :height "20px"
+      :y      "1px"
+      :width  "100%"
+      :height "5px"
       :anchor "top center"
     )
   :stacking   "bg"
   :windowtype "dock"
   :wm-ignore  true
-  ( top-widget )
+  ( box
+    :orientation  'vertical'
+    :space-evenly false
+    :vexpand      false
+    ( revealer
+      :reveal     top-bar-reveal
+      :transition "slideup"
+      :duration   "500ms"
+      ( top-widget )
+    )
+  )
 )
 
 ( defwidget top-widget []
@@ -205,7 +305,6 @@
       :space-evenly false
       :hexpand      false
       :orientation "horizontal"
-      :space-evenly false
       ( button
         :class "logo"
         :width 24
@@ -222,43 +321,62 @@
             :text  title-name
           )
           ( scroll
-             :width        300
-             :height       15
-             :vscroll      false
-             :hscroll      true
-             :space-evenly false
-             :halign       'baseline'
-             :hexpand      false
-             :class        'title-name'
-             ( label
-               :xalign 0
-               :text   title-literal
-             )
+            :width        300
+            :height       15
+            :vscroll      false
+            :hscroll      true
+            :space-evenly false
+            :halign       'baseline'
+            :hexpand      false
+            :class        'title-name'
+            ( label
+              :xalign 0
+              :text   title-literal
+            )
           )
         )
       )
     )
     ; Center.
-    ( box
-      :orientation  "horizontal"
-      :class        "bar center"
-      :space-evenly false
-      :hexpand      false
-      ( revealer
-        :reveal     reveal-songnames
-        :transition "slideright"
-        :duration   "500ms"
-        ( literal
-          :class   "song-handler"
-          :content "( box
-                      :space-evenly false
-                      :class        'song'
-                      :spacing      0
-                      :orientation  'horizontal'
-                      :vexpand      true
-                      :hexpand      true
-                      ${song}
-                    )"
+    ( revealer
+      :reveal     true
+      :transition "slideright"
+      :duration   "500ms"
+      ( box
+        :space-evenly false
+        :class        'center-bar'
+        :spacing      6
+        ( scroll
+          :width        240
+          :vscroll      false
+          :hscroll      true
+          :class        'left-scroll'
+          :hexpand      true
+          :halign       'fill'
+          ( label
+            :xalign   1
+            :markup   top-bar-song-left
+          )
+        )
+        ( scroll
+          :width        230
+          :vscroll      false
+          :hscroll      true
+          :class        'center-scroll'
+          ( label
+            :xalign   0.5
+            :markup   top-bar-song-center
+          )
+        )
+        ( scroll
+          :width        230
+          :vscroll      false
+          :hscroll      true
+          :class        'right-scroll'
+          ( label
+            :xalign   0
+            :markup   top-bar-song-right
+          )
         )
       )
     )

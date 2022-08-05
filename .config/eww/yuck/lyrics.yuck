@@ -42,6 +42,12 @@
           :onclick 'eww-switch lyrics-reveal'
           ( label :markup '▼' )
         )
+        ; Edit lyrics.
+        ;( button 
+        ;  :class   'hide-button'
+        ;  :onclick 'eww-switch lyrics-reveal'
+        ;  ( label :markup '▼' )
+        ;)
       )
       ; Center.
       ( label

@@ -23,6 +23,10 @@
   "sh ./executable/eww-literal-song.sh"
 )
 
+( defvar top-bar-song-left "" )
+( defvar top-bar-song-center "" )
+( defvar top-bar-song-right "" )
+
 ; ; Tags.
 ( defvar tag-one   true ) ( defvar tag-class-one   "not-chosen" )
 ( defvar tag-two   true ) ( defvar tag-class-two   "not-chosen" )

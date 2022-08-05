@@ -29,18 +29,18 @@ retrieve_image() {
 
 while :; do
 
-  content="$(iris 'temperature gama brasilia' \
+  content="$(LANG=fr iris 'temperature gama brasilia' \
     | awk '$1 == "GoogleWeather" { $1="";$2=""; print substr($0,3) }')"
 
   eu 'weather-celsius'="$(retrieve_line 1)"
 
-  eu 'weather-location'="$(retrieve_line 3)"
+  #eu 'weather-location'="$(retrieve_line 3)"
 
   eu 'weather-climate-label'="$(retrieve_line 5)"
 
   eu 'weather-image-path'="$(retrieve_image 10)"
 
-  sleep 1h
+  sleep 30m
 
 done
 

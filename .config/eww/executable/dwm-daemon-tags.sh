@@ -3,10 +3,7 @@
 # Dependencies:
 #   eww
 #   dwm (IPC patch applied)
-#   jq
-#   dunstify
 #   xgetres
-#   xnotify
 #   zsh
 #
 # BeyondMagic UNLICENSE https://github.com/beyondmagic/magiCK/
@@ -14,8 +11,10 @@
 # As the name says, it will wait for a TAG change of DWM and give the new values.
 dwm_tag_change() {
 
-  dwm-msg --ignore-reply subscribe tag_change_event \
-    | jq --unbuffered '.tag_change_event.new_state.selected , .tag_change_event.new_state.occupied'
+  dwm-msg --ignore-reply \
+    subscribe tag_change_event \
+    | jq --unbuffered \
+    '.tag_change_event.new_state.selected , .tag_change_event.new_state.occupied'
 
 }
 

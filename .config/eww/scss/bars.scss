@@ -85,6 +85,49 @@
     text-shadow: $text-shadow-settings rgba($fg-time-date, 0.25);
     padding-left: 0.8rem;
 
+    margin-right: 1rem;
+
+  }
+
+  .climate {
+
+    color: $fg-climate;
+    font-size: 0.9rem;
+
+    .image {
+
+      background-repeat: no-repeat;
+      background-position: center;
+
+      background-size: 1.5rem;
+
+    }
+
+    scrollbar {
+
+      background-color: transparent;
+      min-height: 5px;
+
+      //&.fine-tune {}
+
+      trough {
+
+        min-height: 15px;
+        margin-bottom: 3px;
+        background-color: transparent;
+
+        //slider { }
+
+      }
+
+    }
+
+    .a {
+
+      margin-right: 0.75rem;
+
+    }
+
   }
 
   .volume-handler {
@@ -207,7 +250,6 @@
 
   font-size: 13.75px;
   font-weight: bolder;
-  //background-color: $bg-color;
 
   .left-part {
 
@@ -285,43 +327,60 @@
 
   }
 
-  .song-handler {
+  .center-bar {
+
+    //background-color: red;
 
     font-family: $font;
 
     text-shadow: $text-shadow-settings rgba($fg-song, 0.5);
 
-    .song {
+    .left-scroll, .right-scroll {
 
-      font-size: 12px;
+      font-size: 0.9rem;
 
+    }
 
-      .highlight {
+    .center-scroll, .left-scroll, .right-scroll {
 
-        color: $fg-song-highlight;
+      scrollbar {
 
-      }
+        background-color: transparent;
+        min-height: 5px;
 
-      .normal {
+        //&.fine-tune {}
 
-        color: $fg-song;
+        trough {
 
-      }
+          min-height: 15px;
+          margin-bottom: 3px;
+          background-color: transparent;
 
-      .aside {
-
-        color: rgba($fg-song, 0.5);;
-        padding: 0 0.5rem;
-
-        &:hover {
-
-          color: rgba($fg-song, 0.75);
+          //slider { }
 
         }
 
       }
 
     }
+
+    //.left-scroll {
+
+    //  font-size: 0.9rem;
+
+    //}
+
+    .center-scroll {
+
+      font-size: 1rem;
+
+    }
+
+    //.right-scroll {
+
+    //  font-size: 0.9rem;
+
+    //}
 
   }
 

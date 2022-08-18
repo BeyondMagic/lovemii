@@ -106,6 +106,9 @@ vim.opt.laststatus = 3
 vim.o.completeopt = 'menuone,longest,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
+-- Menu Transparency.
+vim.go.pumblend = 10
+
 --------------------Variables-----------------
 
 set('one_allow_itali:set cursorlinec:set cursorlines', 1)

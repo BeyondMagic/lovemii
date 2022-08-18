@@ -53,9 +53,9 @@ return require('packer').startup(function(use)
   }
 
   -- Signature for LSP
-  --use { 'ray-x/lsp_signature.nvim',
-  --  config = require('configuration.lsp_signature')
-  --}
+  use { 'ray-x/lsp_signature.nvim',
+    config = require('configuration.lsp_signature')
+  }
 
   -- Indent align.
   use 'godlygeek/tabular'
@@ -63,12 +63,6 @@ return require('packer').startup(function(use)
   --
   -- Menu
   --
-
-  -- Snippets for nvim-cmp
-  use {
-   "rafamadriz/friendly-snippets",
-   event = "InsertEnter",
-  }
 
   -- Completion menu
   use { 'hrsh7th/nvim-cmp',
@@ -90,22 +84,21 @@ return require('packer').startup(function(use)
       --
       { "hrsh7th/vim-vsnip" },
       --
+      { "rafamadriz/friendly-snippets", event = "InsertEnter", },
+      -- Snippets for lua.
+      { "L3MON4D3/LuaSnip", config = "luasnip", },
+      --
       { "hrsh7th/cmp-vsnip" },
       --
       -- Signature for functions.
       { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       --
       { "hrsh7th/vim-vsnip-integ" },
-      --  FIXIT: Fork to calculate simple arithmetic expressions and show on the menu.
-      { "gabrielbdsantos/cmp-calc" },
-      -- Emoji
+      -- Make arimathetic operations.
+      { "hrsh7th/cmp-calc" },
+      -- Emoji.
       { "hrsh7th/cmp-emoji" },
     },
-  }
-
-  -- Snippets for lua
-  use { "L3MON4D3/LuaSnip",
-    config = "luasnip",
   }
 
    -- Icons on menu

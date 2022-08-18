@@ -67,6 +67,11 @@ key('n', '<Leader>qq', ':q<CR>', remap )
 -- Toggle highlight of search
 key('n', '<C-c>', ':set hlsearch!<CR>', remap )
 
+-- Quick navigation between diagonostics.
+key('n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', remap )
+key('n', '<Leader>N', ':lua vim.diagnostic.goto_next()<CR>', remap )
+key('n', '<Leader>n', ':lua vim.diagnostic.goto_prev()<CR>', remap )
+
 -- Toggle the sidebar tree of the root folder.
 key('n', '<Leader>e', '', {
 

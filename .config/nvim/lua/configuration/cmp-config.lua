@@ -1,5 +1,6 @@
 local cmp = require("cmp")
 
+-- Icons to display.
 local icons = {
   Text          = "",
   Method        = "",
@@ -32,44 +33,60 @@ local icons = {
 -- nvim-cmp setup
 cmp.setup {
 
+  -- Window documentation, for defining its dimensions.
+  window = {
+
+    -- Max 10 items on display for documentation.
+    max_height = 10,
+
+  },
+
+  -- Snippet support.
   snippet = {
    expand = function(args)
     require("luasnip").lsp_expand(args.body)
    end,
   },
 
- mapping = {
-    ["<TAB>"]     = cmp.mapping.select_next_item(),
-    ["<C-p>"]     = cmp.mapping.select_prev_item(),
-    ["<C-n>"]     = cmp.mapping.select_next_item(),
-    ["<C-d>"]     = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"]     = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"]     = cmp.mapping.close(),
-    ["<CR>"]      = cmp.mapping.confirm {
-       behavior = cmp.ConfirmBehavior.Replace,
-       select   = true,
-    },
-    ["<Tab>"] = function(fallback)
-       if cmp.visible() then
-          cmp.select_next_item()
-       elseif require("luasnip").expand_or_jumpable() then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-       else
-          fallback()
-       end
-    end,
-    ["<S-Tab>"] = function(fallback)
-       if cmp.visible() then
-          cmp.select_prev_item()
-       elseif require("luasnip").jumpable(-1) then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-       else
-          fallback()
-       end
-    end,
- },
+  -- How the match works based on the input.
+  matching = {
 
+    -- Whethever we allow fuzzy matching or not.
+    disallow_fuzzy_matching = false,
+
+  },
+
+  -- Mapping each keybind.
+  mapping = {
+     ["<C-d>"]     = cmp.mapping.scroll_docs(-4),
+     ["<C-f>"]     = cmp.mapping.scroll_docs(4),
+     --["<C-Space>"] = cmp.mapping.complete(),
+     ["<C-e>"]     = cmp.mapping.close(),
+     ["<CR>"]      = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select   = true,
+     },
+     ["<Tab>"] = function(fallback)
+        if cmp.visible() then
+           cmp.select_next_item()
+        elseif require("luasnip").expand_or_jumpable() then
+           vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+        else
+           fallback()
+        end
+     end,
+     ["<S-Tab>"] = function(fallback)
+        if cmp.visible() then
+           cmp.select_prev_item()
+        elseif require("luasnip").jumpable(-1) then
+           vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+        else
+           fallback()
+        end
+     end,
+  },
+
+  -- Formatting the menu display.
   formatting = {
     format = function(entry, vim_item)
       -- load lspkind icons
@@ -94,19 +111,23 @@ cmp.setup {
    },
 
    -- Experimental features.
-    experimental = {
+   experimental = {
 
-     -- It will type a shadow text of the intended completion.
-     ghost_text = { hl_group = 'Comment' },
+    -- It will type a shadow text of the intended completion.
+    ghost_text = { hl_group = 'Comment' },
 
-    },
+   },
 
-    -- Sources for completion, since it is modular; cmp accepts
-    -- Multiple modules.
+   -- Sources for completion, since it is modular; cmp accepts
+   -- Multiple modules.
    sources = {
 
       -- Simple signature, normally outside an object.
-      --{ name = 'nvim_lsp_signature_help', priority = 10 },
+      --{ name = 'nvim_lsp_signature_help', priority = 15 },
+
+      -- More snippets.
+      -- For all types of languages.
+      { name = "friendly-snippets", priority = 11 },
 
       -- For the Nvim lua specifics commands.
       { name = "nvim_lua", priority = 8 },
@@ -128,17 +149,17 @@ cmp.setup {
 
       -- Dictionary for words.
       -- Type any word that is on the /usr/share/dict/words
-      {
-        name           = 'look',
-        priority       = 1,
-        keyword_length = 3,
-        max_item_count = 4,
-        option = {
-          convert_case = true,
-          loud = true,
-          dict = '/usr/share/dict/words'
-        },
-      },
+      --{
+      --  name           = 'look',
+      --  priority       = 1,
+      --  keyword_length = 3,
+      --  max_item_count = 4,
+      --  option = {
+      --    convert_case = true,
+      --    loud = true,
+      --    dict = '/usr/share/dict/words'
+      --  },
+      --},
 
       -- Emoji.
       -- Activate with ":".
@@ -158,4 +179,8 @@ require("luasnip").config.set_config({
 })
 
 -- Load loaders from VSCode.
-require("luasnip.loaders.from_vscode").load()
+require("luasnip.loaders.from_vscode").load({
+
+  paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" }
+
+})

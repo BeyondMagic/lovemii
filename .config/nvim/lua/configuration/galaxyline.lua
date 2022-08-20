@@ -1,25 +1,20 @@
+local gl = require('galaxyline')
+local condition = require('galaxyline.condition')
+local gls = gl.section
+
+gl.short_line_list = { 'packer', 'neo-tree-not-working', }
+
+-- This function serve to count all the words in the buffer and return a number.
+-- @return number The amount of words.
 local function getWords()
-  if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" then
-    if vim.fn.wordcount().visual_words == 1 then
-      return tostring(vim.fn.wordcount().visual_words) .. " word"
-    elseif not (vim.fn.wordcount().visual_words == nil) then
-      return tostring(vim.fn.wordcount().visual_words) .. " words"
-    else
-      return tostring(vim.fn.wordcount().words) .. " words"
-    end
+  if vim.fn.wordcount().visual_words == 1 then
+    return tostring(vim.fn.wordcount().visual_words) .. " word"
+  elseif not (vim.fn.wordcount().visual_words == nil) then
+    return tostring(vim.fn.wordcount().visual_words) .. " words"
   else
-    return ""
+    return tostring(vim.fn.wordcount().words) .. " words"
   end
 end
-
-local gl = require('galaxyline')
-
-vim.api.nvim_exec(
-[[
-au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
-]],
-false
-)
 
 -- get my theme in galaxyline reo
 -- local colors = require('galaxyline.theme').default
@@ -43,11 +38,6 @@ local colors = {
   error_red     = '#F44747',
   info_yellow   = '#FFCC66'
 }
-
-local condition = require('galaxyline.condition')
-local gls = gl.section
-
-gl.short_line_list = { 'NvimTree', 'vista', 'dbui', 'packer', 'neo-tree' }
 
 gls.left[1] = {
     ViMode = {
@@ -81,6 +71,7 @@ gls.left[1] = {
 --        highlight = {colors.red, colors.bg}
     }
 }
+
 print(vim.fn.getbufvar(0, 'ts'))
 vim.fn.getbufvar(0, 'ts')
 
@@ -208,6 +199,9 @@ gls.right[8] = {
       return '  ' .. getWords() .. ' '
     end,
     separator = ' ',
+    condition = function()
+      if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" then return true end
+    end,
     separator_highlight = {'NONE', colors.bg},
     highlight = {"#E57CC1", colors.bg}
   }

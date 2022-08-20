@@ -84,14 +84,14 @@ return require('packer').startup(function(use)
       --
       { "hrsh7th/vim-vsnip" },
       --
-      { "rafamadriz/friendly-snippets", event = "InsertEnter", },
+      { "rafamadriz/friendly-snippets" },
       -- Snippets for lua.
       { "L3MON4D3/LuaSnip", config = "luasnip", },
       --
       { "hrsh7th/cmp-vsnip" },
       --
       -- Signature for functions.
-      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+      --{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
       --
       { "hrsh7th/vim-vsnip-integ" },
       -- Make arimathetic operations.
@@ -229,7 +229,7 @@ return require('packer').startup(function(use)
   -- Show your functions/classes at the top of the screen.
   -- use 'romgrk/nvim-treesitter-context'
 
-  -- Tabs (galaxyline)
+  -- Bottom line (galaxyline)
   use { 'glepnir/galaxyline.nvim',
       branch = 'main',
    --    your statusline
@@ -239,9 +239,14 @@ return require('packer').startup(function(use)
   }
 
   -- Tabs of buffers
-  use { 'akinsho/bufferline.nvim',
-    config = require('configuration.bufferline'),
-    requires = 'kyazdani42/nvim-web-devicons'
+  --use { 'akinsho/bufferline.nvim',
+  --  --config = require('configuration.bufferline'),
+  --  requires = 'kyazdani42/nvim-web-devicons'
+  --}
+
+  -- Tabs of buffers.
+  use { 'noib3/nvim-cokeline',
+    config = require('configuration.nvim-cokeline'),
   }
 
   -- Colorizer for strings.

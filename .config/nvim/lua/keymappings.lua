@@ -53,10 +53,14 @@ key('i', '<A-TAB>', '<c-o>:tabNext<CR>', remap)
 key('n', '<A-TAB>', ':tabNext<CR>', remap)
 
 -- Go to next tab (buffer).
-key('n', '<TAB>', ':BufferLineCycleNext<CR>', remap )
+key('n', '<Tab>', '<Plug>(cokeline-focus-next)', remap )
+key('n', '<S-Tab>', '<Plug>(cokeline-focus-prev)', remap )
 
--- Go to previous tab (buffer).
-key('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', remap )
+--map('n', '<Tab>',     '',  { silent = true })
+--map('n', '<S-Tab>',   '<Plug>(cokeline-focus-prev)',  { silent = true })
+--y
+key('n', '<Leader><', '<Plug>(cokeline-switch-prev)', remap)
+key('n', '<Leader>>', '<Plug>(cokeline-switch-next)', remap)
 
 -- To delete current buffer.
 key('n', '<Leader>x', ':Bdelete<CR>', remap )
@@ -74,14 +78,11 @@ key('n', '<Leader>n', ':lua vim.diagnostic.goto_prev()<CR>', remap )
 
 -- Toggle the sidebar tree of the root folder.
 key('n', '<Leader>e', '', {
-
   noremap = true,
   silent  = true,
   desc    = "Open the NeoTree without any warning messages...",
   callback = function ()
-    vim.o.cmdheight = 2
     vim.cmd("Neotree toggle source=filesystem position=left")
-    vim.o.cmdheight = 0
   end
 })
 

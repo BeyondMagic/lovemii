@@ -209,7 +209,11 @@ require("neo-tree").setup({
       ["c"]             = "copy", -- takes text input for destination
       ["m"]             = "move", -- takes text input for destination
       ["q"]             = "close_window",
-      ["R"]             = "refresh",
+      ["<Leader>e"]             = "close_window",
+      ["R"] = "refresh",
+      ["?"] = "show_help",
+      ["<"] = "prev_source",
+      [">"] = "next_source",
     }
   },
   nesting_rules = {},
@@ -219,8 +223,8 @@ require("neo-tree").setup({
       hide_dotfiles   = true,
       hide_gitignored = false,
       hide_by_name    = {
-        ".DS_Store",
-        "thumbs.db"
+        --".DS_Store",
+        --"thumbs.db"
         --"node_modules"
       },
       never_show = { -- remains hidden even if visible is toggled to true
@@ -228,7 +232,7 @@ require("neo-tree").setup({
         --"thumbs.db"
       },
     },
-    find_by_full_path_words = false,
+    find_by_full_path_words = true,
     bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
     search_limit = 50, -- max number of search results when using filters
     follow_current_file    = true, -- This will find and focus the file in the active buffer every
@@ -242,12 +246,15 @@ require("neo-tree").setup({
                                     -- instead of relying on nvim autocmd events.
     window = {
       mappings = {
-        ["<bs>"]  = "navigate_up",
-        ["."]     = "set_root",
-        ["H"]     = "toggle_hidden",
-        ["/"]     = "fuzzy_finder",
-        ["f"]     = "filter_on_submit",
+        ["<bs>"] = "navigate_up",
+        ["."] = "set_root",
+        ["H"] = "toggle_hidden",
+        ["/"] = "fuzzy_finder",
+        --["D"] = "fuzzy_finder_directory",
+        ["f"] = "filter_on_submit",
         ["<c-x>"] = "clear_filter",
+        ["[g"] = "prev_git_modified",
+        ["]g"] = "next_git_modified",
       }
     }
   },

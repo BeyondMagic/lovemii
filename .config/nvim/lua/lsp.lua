@@ -3,6 +3,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- For context in the winbar.
+local navic = require("nvim-navic")
+
 -- LSP Lua (build from source without telemetry (use grep to find config)
 --    https://github.com/sumneko/lua-language-server
 --    cd lua-language-server
@@ -22,10 +25,10 @@ require('lsp.ccls')
 require('lsp.rust')
 
 -- Bash Language Server
-require('lspconfig').bashls.setup({})
+--require('lspconfig').bashls.setup({})
 
 -- Typescript + Javascript Language Server
-require('lspconfig').tsserver.setup({})
+---require('lspconfig').tsserver.setup({})
 
 -- SASS Language Server
 --require('lspconfig').tailwindcss.setup{}
@@ -34,13 +37,19 @@ require('lspconfig').tsserver.setup({})
 require('lsp.cssls')
 
 -- For everything.
-require('lspconfig').html.setup{}
+--require('lspconfig').html.setup{}
 
-local servers = { 'cssls', 'tsserver', 'html' }
+local servers = { 'cssls', 'tsserver', 'html', 'bashls', 'ccls', 'rls', 'texlab', 'sumneko_lua' }
 
 for _, lsp in ipairs(servers) do
 
   require('lspconfig')[lsp].setup({
     capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+      end
+    end,
+
   })
 end

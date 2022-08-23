@@ -1,4 +1,4 @@
-require('lspconfig').rls.setup {
+require('lspconfig').rls.setup({
   settings = {
     rust = {
       unstable_features = true,
@@ -6,4 +6,4 @@ require('lspconfig').rls.setup {
       all_features      = true,
     },
   },
-}
+})

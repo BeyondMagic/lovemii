@@ -1,3 +1,4 @@
+local colours = require "colours"
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -32,7 +33,7 @@ require("neo-tree").setup({
   sort_case_insensitive      = true, -- used when sorting files and directories in the tree
   use_popups_for_input       = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
 
-  --event_handlers = {
+  event_handlers = {
   --  {
   --    event = "before_render",
   --    handler = function (state)
@@ -67,19 +68,25 @@ require("neo-tree").setup({
   --      print(args.source, " moved to ", args.destination)
   --    end
   --  },
-  --  {
-  --    event = "neo_tree_buffer_enter",
-  --    handler = function()
-  --      vim.cmd 'highlight! Cursor blend=100'
-  --    end
-  --  },
-  --  {
-  --    event = "neo_tree_buffer_leave",
-  --    handler = function()
-  --      vim.cmd 'highlight! Cursor guibg=#5f87af blend=0'
-  --    end
-  --  }
-  --},
+    {
+      event = "neo_tree_buffer_enter",
+      handler = function()
+        vim.cmd("set winbar=")
+        vim.cmd("highlight CursorLine gui='bold'")
+        vim.cmd("highlight CursorColumn guibg=NONE")
+        vim.cmd("set guicursor+=a:InvisibleCursor")
+        vim.cmd("highlight InvisibleCursor gui=reverse blend=100")
+      end
+    },
+    {
+      event = "neo_tree_buffer_leave",
+      handler = function()
+        vim.cmd("set guicursor-=a:InvisibleCursor")
+        vim.cmd("highlight CursorLine gui=NONE")
+        vim.cmd("highlight CursorColumn guibg=" .. colours.bg_cursor)
+      end
+    }
+  },
 
   default_component_configs = {
     indent = {
@@ -192,7 +199,7 @@ require("neo-tree").setup({
     -- Mappings for tree window. See `:h nep-tree-mappings` for a list of built-in commands.
     -- You can also create your own commands by providing a function instead of a string.
     mappings = {
-      ["<space>"]       = "toggle_node",
+      --["<space>"]       = "toggle_node",
       ["<2-LeftMouse>"] = "open",
       ["<cr>"]          = "open",
       ["S"]             = "open_split",
@@ -209,7 +216,7 @@ require("neo-tree").setup({
       ["c"]             = "copy", -- takes text input for destination
       ["m"]             = "move", -- takes text input for destination
       ["q"]             = "close_window",
-      ["<Leader>e"]             = "close_window",
+      ["<Leader>e"]     = "close_window",
       ["R"] = "refresh",
       ["?"] = "show_help",
       ["<"] = "prev_source",

@@ -72,8 +72,8 @@ gls.left[1] = {
     }
 }
 
-print(vim.fn.getbufvar(0, 'ts'))
-vim.fn.getbufvar(0, 'ts')
+--print(vim.fn.getbufvar(0, 'ts'))
+--vim.fn.getbufvar(0, 'ts')
 
 gls.left[2] = {
     GitIcon = {
@@ -148,7 +148,7 @@ gls.left[7] = {
 
 -- local lsp_provider = require('galaxyline.provider_lsp')
 
-gls.right[5] = {
+gls.right[1] = {
     LineInfo = {
         provider = 'LineColumn',
         separator = ' ',
@@ -157,7 +157,7 @@ gls.right[5] = {
     }
 }
 
-gls.right[6] = {
+gls.right[2] = {
     PerCent = {
         provider = 'LinePercent',
         separator = ' ',
@@ -166,7 +166,7 @@ gls.right[6] = {
     }
 }
 
-gls.right[7] = {
+gls.right[3] = {
   GetLspClient = {
     provider = 'GetLspClient',
     condition = function()
@@ -193,10 +193,10 @@ gls.right[7] = {
 --    }
 --}
 
-gls.right[8] = {
+gls.right[4] = {
   Space = {
     provider = function()
-      return '  ' .. getWords() .. ' '
+      return '  ' .. getWords()
     end,
     separator = ' ',
     condition = function()
@@ -207,13 +207,20 @@ gls.right[8] = {
   }
 }
 
-gls.right[9] = {
+gls.right[5] = {
   BufferType = {
     provider = 'FileTypeName',
     condition = condition.hide_in_width,
-    separator = '  ',
+    separator = '    ',
     separator_highlight = { '#C3C8FD', colors.bg },
     highlight = { '#C3C8FD', colors.bg }
+  }
+}
+
+gls.right[6] = {
+  SpaceNew = {
+    provider  = function() return '  ' end,
+    highlight = {colors.orange, colors.bg},
   }
 }
 

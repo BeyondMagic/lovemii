@@ -13,6 +13,8 @@ local colours = {
   delimeter  = get_hex('Delimiter', 'fg'),
   operator   = get_hex('Operator', 'fg'),
   background = get_hex('VertSplit', 'bg'),
+  tabfill    = get_hex('TabLineFill', 'bg'),
+  msgarea    = get_hex('MsgArea', 'bg'),
 
 }
 
@@ -80,8 +82,9 @@ require('cokeline').setup({
     -- default: `Normal`'s foreground color for focused buffers,
     -- `ColorColumn`'s background color for unfocused ones.
     -- default: `Normal`'s foreground color.
-    bg = colours.background,
-
+    bg = function (buffer)
+      return buffer.is_focused and colours.background or colours.tabfill
+    end,
     -- default: `'NONE'`.
     -- 'attr1,attr2,...' | function(buffer) -> 'attr1,attr2,...'
     style = function(buffer)
@@ -125,7 +128,9 @@ require('cokeline').setup({
         end,
         fg = function(buffer)
           return buffer.devicon.color
-        end
+        end,
+
+        style = 'NONE',
       },
 
       -- The prefix (path, folder) of the file.
@@ -198,24 +203,7 @@ require('cokeline').setup({
     filetype = 'neo-tree',
     components = {
       {
-        text = '   ',
-      },
-      {
-        text = 'ファイル',
-        style = 'bold',
-      },
-      {
-        text = '・',
-        fg   = colours.comment,
-      },
-      {
-        text = 'エクスプローラ',
-        style = 'bold',
-      },
-      {
-        text = ' ',
-        fg   = colours.comment,
-        delete_buffer_on_left_click = true,
+        text = '',
       },
     },
   },

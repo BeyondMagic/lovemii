@@ -8,7 +8,7 @@ require("scrollbar").setup({
   show = true,
   handle = {
     text                = " ",
-    color               = "#2a2a2e",
+    color               = require('../colours').bar,
     hide_if_all_visible = true, -- Hides handle if all lines are visible
   },
   marks = {

@@ -90,7 +90,7 @@ key('n', '<Leader>e', '', {
 key('n', '<Leader>z', ':ZenMode<CR>', remap )
 
 -- Close block-only highlighting mode.
-key('n', '<Leader>t', ':Twilight<CR>', remap )
+--key('n', '<Leader>t', ':Twilight<CR>', remap )
 
 -- Open n³ file explorer.
 -- key('n', '<Leader>n', ':NnnPicker %:p:h<CR>', remap )

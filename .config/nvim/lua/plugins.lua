@@ -1,13 +1,13 @@
 -- Plugins start here, source from Packer:
-return require('packer').startup(function(use)
+return require('packer').startup( function(use)
+
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
 
   -- Alpha (dashboard) for neovim
   use { 'goolord/alpha-nvim',
     config = require('configuration.screen'),
   }
-
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
 
   -- ASYNC
   --use { 'ms-jpq/lua-async-await',
@@ -24,9 +24,9 @@ return require('packer').startup(function(use)
   }
 
   -- Unusable variables and functions markup.
-  use { 'narutoxy/dim.lua',
-    --config = require('configuration.dim')
-  }
+  --use { 'narutoxy/dim.lua',
+  --  --config = require('configuration.dim')
+  --}
 
   -- CPP modern syntax.
   use 'bfrg/vim-cpp-modern'
@@ -37,8 +37,20 @@ return require('packer').startup(function(use)
 
   -- Zen Mode
   use {
+    --"Pocco81/true-zen.nvim",
     "folke/zen-mode.nvim",
     config = require('configuration.zen-mode')
+  }
+
+  -- Winbar with context.
+  use {
+    "utilyre/barbecue.nvim",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "/home/iris/Git/Contributing/nvim-navic",
+      "kyazdani42/nvim-web-devicons", -- optional
+    },
+    config = require('configuration.barbecue'),
   }
 
   -- Dim
@@ -108,7 +120,7 @@ return require('packer').startup(function(use)
   use 'baabelfish/nvim-nim'
 
   -- File-tree manager.
-  use { '/home/iris/Git/Forking/neo-tree.nvim/',
+  use { 'nvim-neo-tree/neo-tree.nvim',
     config = require('configuration.neo-tree'),
     requires = {
       "nvim-lua/plenary.nvim",
@@ -230,12 +242,14 @@ return require('packer').startup(function(use)
   -- use 'romgrk/nvim-treesitter-context'
 
   -- Bottom line (galaxyline)
-  use { 'glepnir/galaxyline.nvim',
-      branch = 'main',
-   --    your statusline
-      config = require('configuration.galaxyline'),
-   --    some optional icons
-      requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  use {
+    --'glepnir/galaxyline.nvim',
+    'nvim-lualine/lualine.nvim',
+    branch = 'master',
+     --    your statusline
+    config = require('configuration.lualine'),
+     --    some optional icons
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
   -- Tabs of buffers

@@ -2,7 +2,7 @@ local lspconfig = require('lspconfig')
 local rp = lspconfig.util.root_pattern("./")
 
 -- C++ and C language server
-lspconfig.ccls.setup {
+lspconfig.ccls.setup({
   init_options = {
 
     compilationDatabaseDirectory = "build",
@@ -34,6 +34,4 @@ lspconfig.ccls.setup {
     single_file_support = true,
     root_dir = rp("compile_commands.json", ".ccls", ".git"),
   }
-}
-
-
+})

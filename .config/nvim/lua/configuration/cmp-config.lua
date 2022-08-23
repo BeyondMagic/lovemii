@@ -144,8 +144,8 @@ cmp.setup {
       -- Type any path, relatively or globally.
       { name = "path",     priority = 9 },
 
-      -- .
-      --{ name = "buffer",   priority = 4 },
+      -- Words from buffer.
+      { name = "buffer",   priority = 4 },
 
       -- Dictionary for words.
       -- Type any word that is on the /usr/share/dict/words
@@ -179,7 +179,7 @@ require("luasnip").config.set_config({
 })
 
 -- Load loaders from VSCode.
-require("luasnip.loaders.from_vscode").load({
+require("luasnip.loaders.from_vscode").lazy_load({
 
   paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" }
 

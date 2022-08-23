@@ -101,15 +101,23 @@ vim.filetype.add({
 
       -- beyondMagic.space
       -- Personal website.
-      [".*Personal/beyondmagic.space/typescript/.*"] = function()
+      [".*Personal/beyondmagic.space/source/typescript/global.ts"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
-        build('ts')
+        build('ts global')
       end,
-      [".*Personal/beyondmagic.space/layout/.*html"] = function()
+      [".*Personal/beyondmagic.space/source/typescript/main.ts"] = function()
+        vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
+        build('ts main')
+      end,
+      [".*Personal/beyondmagic.space/source/typescript/modules/.*ts"] = function()
+        vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
+        build('ts main')
+      end,
+      [".*Personal/beyondmagic.space/source/html/.*html"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
         build('html')
       end,
-      [".*Personal/beyondmagic.space/layout/style.sheet/.*"] = function()
+      [".*Personal/beyondmagic.space/source/scss/.*"] = function()
         vim.api.nvim_command('cd ~/Git/Personal/beyondmagic.space/')
         build('scss')
       end,

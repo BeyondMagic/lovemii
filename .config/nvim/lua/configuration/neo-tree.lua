@@ -74,14 +74,14 @@ require("neo-tree").setup({
         vim.cmd("set winbar=")
         vim.cmd("highlight CursorLine gui='bold'")
         vim.cmd("highlight CursorColumn guibg=NONE")
-        vim.cmd("set guicursor+=a:InvisibleCursor")
-        vim.cmd("highlight InvisibleCursor gui=reverse blend=100")
+        --vim.cmd("set guicursor+=a:InvisibleCursor")
+        --vim.cmd("highlight InvisibleCursor gui=reverse blend=100")
       end
     },
     {
       event = "neo_tree_buffer_leave",
       handler = function()
-        vim.cmd("set guicursor-=a:InvisibleCursor")
+        --vim.cmd("set guicursor-=a:InvisibleCursor")
         vim.cmd("highlight CursorLine gui=NONE")
         vim.cmd("highlight CursorColumn guibg=" .. colours.bg_cursor)
       end

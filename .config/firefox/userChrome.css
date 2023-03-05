@@ -1,8 +1,7 @@
 * {
   --toolbarbutton-active-background: var(--toolbarbutton-hover-background);
   --urlbar-box-active-bgcolor: var(--urlbar-box-hover-bgcolor);
-  --panelview-toolbarbutton-active-bgcolor: var(--panelview-toolbarbutton-hover-bgcolor);
-  /*old*/
+  --panelview-toolbarbutton-active-bgcolor: var(--panelview-toolbarbutton-hover-bgcolor); /*old*/
   --button-active-bgcolor: var(--button-hover-bgcolor);
   --panel-banner-item-active-bgcolor: var(--panel-banner-item-hover-bgcolor);
   --panel-item-active-bgcolor: var(--panel-item-hover-bgcolor);
@@ -36,8 +35,7 @@
   --autocomplete-popup-separator-color: var(--2);
   --autocomplete-popup-hover-background: var(--2);
   --input-bgcolor: var(--2);
-  --panelview-toolbarbutton-hover-bgcolor: var(--2);
-  /*old*/
+  --panelview-toolbarbutton-hover-bgcolor: var(--2); /*old*/
   --panel-item-hover-bgcolor: var(--2);
   --button-hover-bgcolor: var(--2);
   --panel-banner-item-hover-bgcolor: var(--2);
@@ -69,9 +67,10 @@
 }
 
 #sidebar-box {
-  width: 4.8rem !important;
   min-width: 4.8rem !important;
   max-width: 4.8rem !important;
+  position: relative;
+  overflow: hidden;
 }
 *:fullscreen #sidebar-box {
   width: 0;
@@ -82,28 +81,37 @@
   direction: rtl;
 }
 #sidebar-box:not([hidden]) {
-  box-shadow: 2px 0 14px rgba(0, 0, 0, 0.13) !important;
-  background-color: inherit !important;
-  overflow: hidden;
+  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.75) !important;
   height: 100%;
-  width: 4.8rem !important;
   min-width: 4.8rem !important;
   max-width: 4.8rem !important;
   display: block;
-  z-index: 3;
-  transition: all 400ms linear;
+  z-index: 2;
 }
 #sidebar-box:not([hidden])[customizing], #sidebar-box:not([hidden]):focus-visible, #sidebar-box:not([hidden]):active, #sidebar-box:not([hidden]):focus, #sidebar-box:not([hidden]):focus-within, #sidebar-box:not([hidden]):hover {
-  width: 20rem !important;
+  overflow: visible;
+}
+#sidebar-box #sidebar {
+  position: absolute;
+  background-color: inherit !important;
+  z-index: 1000;
+  min-width: 4.8rem !important;
+  max-width: 4.8rem !important;
+  width: 4.8rem !important;
+  height: 100%;
+}
+[sidebarcommand=viewBookmarksSidebar] #sidebar-box #sidebar, #sidebar-box #sidebar:hover {
   min-width: 20rem !important;
   max-width: 20rem !important;
-  opacity: 1;
+  width: 20rem !important;
+  transform: translateX(0) !important;
+  box-shadow: 2px 0 33px -3px rgba(255, 255, 255, 0.5);
+  transition: all 150ms linear;
 }
 
 #sidebar-search-container,
 .sidebar-panel .sidebar-placesTree,
-.sidebar-panel .sidebar-placesTreechildren,
-#sidebar {
+.sidebar-panel .sidebar-placesTreechildren {
   background-color: inherit !important;
   width: 20rem !important;
   height: 100%;
@@ -117,7 +125,6 @@
   [sizemode=normal] #sidebar-box {
     height: calc(100% - 10px);
   }
-
   #appcontent {
     margin-left: 0;
   }
@@ -270,7 +277,7 @@ panel, menupopup {
 * {
   --urlbar-height: var(--urlbar-toolbar-height) !important;
   scrollbar-width: thin;
-  scrollbar-color: #80808040 transparent !important;
+  scrollbar-color: rgba(128, 128, 128, 0.2509803922) transparent !important;
 }
 
 #urlbar-background:not(#urlbar[breakout][breakout-extend][open] > #urlbar-background) {
@@ -348,20 +355,18 @@ panel, menupopup {
   border: 0 !important;
   border-top-right-radius: 3px;
   backdrop-filter: blur(32px) saturate(200%);
-  background-color: #fff8 !important;
+  background-color: rgba(255, 255, 255, 0.5333333333) !important;
   color: #000 !important;
 }
 
 [lwthemetextcolor=bright] #statuspanel-label {
-  background-color: #0008 !important;
+  background-color: rgba(0, 0, 0, 0.5333333333) !important;
   color: #eee !important;
 }
 
 * {
   --in-content-page-background: #17171A!important;
-}
-
-/* Disable when using light theme. Can't isolate */
+} /* Disable when using light theme. Can't isolate */
 #window-modal-dialog {
   --chrome-offset: 20px !important;
 }

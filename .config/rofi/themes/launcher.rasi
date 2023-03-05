@@ -23,7 +23,7 @@ window {
   border-radius     : 8px;
   width             : 680px;
   x-offset          : 0;
-  y-offset          : -30px;
+  y-offset          : -45px;
 }
 
 prompt {
@@ -33,18 +33,47 @@ prompt {
   text-color        : @IMG;
 }
 
+vertbox {
+  border           : 0%;
+  expand           : false;
+  orientation      : vertical;
+  max-height       : 30px;
+  background-color : transparent;
+  children         : [horibox-profile, horibox];
+}
+
+horibox-profile {
+  border           : 0%;
+  expand           : false;
+  orientation      : horizontal;
+  background-color : transparent;
+  children         : [dummy-one, textbox-photo, dummy-one];
+}
+
 horibox {
   border           : 0%;
   expand           : false;
   orientation      : horizontal;
   max-height       : 30px;
   background-color : transparent;
-  children         : [dummy-one, textbox-custom, dummy-two];
+  children         : [dummy-one, textbox-custom, dummy-one];
 }
 
-dummy-two, dummy-one {
+
+dummy-one {
   expand            : true;
   background-color  : transparent;
+}
+
+textbox-photo {
+  expand            : false;
+  content           : "";
+  border-radius     : 100%;
+  padding           : 25px 37px 25px 37px;
+  text-color        : @IMG;
+  background-color  : transparent;
+  background-image  : url("~/Desktop/profile-picture.png", width);
+  font              : "Noto Sans CJK JP Bold 12"; 
 }
 
 textbox-custom {
@@ -52,12 +81,12 @@ textbox-custom {
   content           : "よろしく!";
   text-color        : @IMG;
   background-color  : transparent;
-  font              : "Noto Sans CJK JP Bold 12";
+  font              : "Noto Sans CJK JP Bold 12"; 
 }
 
 textbox-prompt-colon {
   expand            : false;
-  str               : "🔍";
+  str               : "💫";
   border            : 0px 0px 3px 0px;
   border-color      : @SEL;
   border-radius     : 0px;
@@ -115,8 +144,8 @@ listview {
 }
 
 mainbox {
-  background-color  : @BG;
-  children          : [ horibox, inputbar, listview ];
+  background-color  : #00000000;
+  children          : [ inputbar, listview ];
   spacing           : 10px;
   padding           : 35px;
 }

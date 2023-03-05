@@ -1,1 +1,0 @@
-/home/iris/.config/xorg/themes/black-blur/91menu.x

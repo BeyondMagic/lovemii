@@ -1,3 +1,5 @@
+@import './modules/picker';
+
 .bot-bar {
 
   font-size: 13.75px;
@@ -12,7 +14,7 @@
       margin-right: 0.25rem;
       opacity: 0.8;
 
-      color: $fg-windows;
+      color: $accent;
       text-shadow: $text-shadow-settings rgba($fg-windows, 0.5);
       font-weight: bolder;
 
@@ -77,7 +79,7 @@
   // 1. #. Time/date.
   .time {
 
-    color: rgba($fg-time-date, 0.85);
+    color: $fg;
 
     font-weight: bold;
     font-size: 11px;
@@ -91,7 +93,7 @@
 
   .climate {
 
-    color: $fg-climate;
+    color: $fg;
     font-size: 0.9rem;
 
     .image {
@@ -134,7 +136,7 @@
 
     .icon {
 
-      color: rgba($fg-tray-volume, 0.85);
+      color: $fg;
       padding: 1px 0 0 0.5rem;
       font-size: 14px;
 
@@ -166,7 +168,7 @@
 
   .layout {
 
-    color: $fg-layout;
+    color: $fg;
 
     button {
 
@@ -177,7 +179,7 @@
     &:hover > button {
 
       background-color: $bg-layout-hover;
-      color: $fg-layout-hover;
+      color: $accent;
 
     }
 
@@ -197,19 +199,19 @@
 
       &.chosen-occupied {
 
-        color: $fg-tags;
+        color: $accent;
 
       }
 
       &.chosen {
 
-        color: rgba($fg-tags, 0.75);
+        color: rgba($accent, 0.5);
 
       }
 
       &.not-chosen {
 
-        color: rgba($fg-tags, 0.5);
+        color: $fg;
         font-size: 12px;
         padding-top: 1px;
 
@@ -221,7 +223,7 @@
 
       button {
 
-        color: $fg-tags;
+        color: $accent;
 
       }
 
@@ -229,7 +231,7 @@
 
     .add {
 
-      color: $fg-tags-more;
+      color: $accent;
 
     }
 
@@ -239,7 +241,7 @@
 
     font-size: 8px;
     padding-left: 0.6rem;
-    color: $fg-context-menu;
+    color: $fg;
     text-shadow: $text-shadow-settings rgba($fg-context-menu, 0.25);
 
   }
@@ -268,7 +270,7 @@
       font-size: 12px;
       font-weight: bolder;
 
-      color: $fg-program-name;
+      color: $fg;
       text-shadow: $text-shadow-settings rgba($fg-program-name, 0.25);
 
     }
@@ -277,7 +279,7 @@
 
       padding-left: 1rem;
 
-      color: $fg-program-title;
+      color: $fg;
       text-shadow: $text-shadow-settings rgba($fg-program-name, 0.15);
       font-size: 11px;
 
@@ -309,7 +311,7 @@
     * > * > * {
 
       padding: 0 1rem 0 0.5rem;
-      color: $fg-tray-camera;
+      color: $accent;
 
       font-family: $font-icon;
       font-size: 12px;
@@ -320,7 +322,7 @@
 
     *:hover > * > * {
 
-      color: $fg-tray-camera-highlight;
+      color: $accent;
 
     }
 

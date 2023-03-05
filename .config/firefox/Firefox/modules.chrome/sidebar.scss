@@ -1,5 +1,6 @@
-$width-sidebery-bar: 4.8rem !important;
-$max-width-sidebery-bar: 20rem !important;
+$width-sidebery-collapsed-bar: 4.8rem;
+$max-width-sidebery-bar: 20rem;
+$sidebar-shadow-color: rgba(white, 0.5);
 
 // #. The title of the sidebar : [SideBery]
 #sidebar-header {
@@ -11,9 +12,11 @@ $max-width-sidebery-bar: 20rem !important;
 // #. Sidebar position is on the right.
 #sidebar-box {
 
-  width: $width-sidebery-bar;
-  min-width: $width-sidebery-bar;
-  max-width: $width-sidebery-bar;
+  min-width: $width-sidebery-collapsed-bar !important;
+  max-width: $width-sidebery-collapsed-bar !important;
+
+  position: relative;
+  overflow: hidden;
 
   *:fullscreen & {
 
@@ -32,21 +35,14 @@ $max-width-sidebery-bar: 20rem !important;
   &:not([hidden]) {
 
     //border-right: solid 1px red !important;
-    box-shadow: 2px 0 14px rgba(0, 0, 0, 0.13) !important;
-    background-color: inherit !important;
-
-    overflow: hidden;
+    box-shadow: 0.5rem 0.5rem 2rem rgba(black, 0.75) !important;
     height: 100%;
-
-    width: $width-sidebery-bar;
-    min-width: $width-sidebery-bar;
-    max-width: $width-sidebery-bar;
-
-    display: block;
     //position: fixed;
-    z-index: 3;
+    min-width: $width-sidebery-collapsed-bar !important;
+    max-width: $width-sidebery-collapsed-bar !important;
+    display: block;
+    z-index: 2;
 
-    transition: all 400ms linear;
 
   }
 
@@ -56,27 +52,47 @@ $max-width-sidebery-bar: 20rem !important;
   &:not([hidden]):focus,
   &:not([hidden]):focus-within,
   &:not([hidden]):hover {
-  
-    //position: fixed;
-  
-    width: $max-width-sidebery-bar;
-    min-width: $max-width-sidebery-bar;
-    max-width: $max-width-sidebery-bar;
-  
-    opacity: 1;
-  
+
+    overflow: visible;
+    //min-width: $max-width-sidebery-bar !important;
+    //max-width: $max-width-sidebery-bar !important;
+
+  }
+
+  #sidebar {
+
+    position: absolute;
+    background-color: inherit !important;
+    z-index: 1000;
+
+    min-width: $width-sidebery-collapsed-bar !important;
+    max-width: $width-sidebery-collapsed-bar !important;
+    width: $width-sidebery-collapsed-bar !important;
+    height: 100%;
+
+    [sidebarcommand="viewBookmarksSidebar"] &,
+    &:hover {
+
+      min-width: $max-width-sidebery-bar !important;
+      max-width: $max-width-sidebery-bar !important;
+      width: $max-width-sidebery-bar !important;
+      transform: translateX(0) !important;
+      box-shadow: 0.5rem 0.5rem 2rem rgba(black, 0.75) !important;
+      transition: all 150ms linear;
+
+    }
+
   }
 
 }
 
 #sidebar-search-container,
 .sidebar-panel .sidebar-placesTree,
-.sidebar-panel .sidebar-placesTreechildren,
-#sidebar {
+.sidebar-panel .sidebar-placesTreechildren {
 
   background-color: inherit !important;
 
-  width: $max-width-sidebery-bar;
+  width: $max-width-sidebery-bar !important;
   height: 100%;
 
 }
@@ -88,11 +104,8 @@ $max-width-sidebery-bar: 20rem !important;
   #appcontent {margin-left: 0;}
 }
 
-
 .sidebar-splitter {
 
   --sidebar-border-color: var(--chrome-content-separator-color);
 
 }
-
-

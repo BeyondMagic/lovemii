@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 #
-# To load when <CTRL-C> is pressed on nsxiv.
+# To load when <CTRL-X> is pressed on nsxiv.
 #
-# BeyondMagic © 2021
+# João F. © BeyondMagic 2022 <koetemagie@gmail.com>
 
 while read file; do
 
@@ -19,20 +19,29 @@ while read file; do
             convert -rotate 90 "$file" "$file" ;;
 
         # Copy image path to clipboard
-        'C-c')
+        'C-t')
             echo -n "$file" | xclip -selection clipboard ;;
 
         # Copy image to clipboard
-        'C-t')
+        'c')
             cat "$file" | xclip -selection clipboard -t image/png ;;
 
         # 
         'C-m')
-            mv "$file" $dirpath ;;
+            #mv "$file" $dirpath ;;
+            mv "$file" "$HOME/Library/Images/Wallpapers/black/" ;;
+
+        # Open on GIMP
+        'g')
+            gimp "$file" & ;;
+
+        # Open on File Manager
+        'n')
+          flarity -e 'dash' '-c' "nnn -adDoxRiJ -p '$file' -T t %U" ;;
 
         # Set wallpaper
         'C-w')
-            zsh -c ". ~/.config/zsh/aliasesrc; wallpaper \"$file\"" ;;
+            zsh -c ". ~/.config/zsh/aliasesrc; wallpaper \"$file\"" & ;;
 
         # 
         *)

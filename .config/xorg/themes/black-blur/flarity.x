@@ -21,6 +21,6 @@ flarity.color256       : #111111
 flarity.color257       : #ffffff
 flarity.color258       : #0A0C11
 flarity.foreground     : #FDFCFD
-flarity.background     : #0E0E10
+flarity.background     : #050508
 flarity.cursorfg       : #111111
 flarity.reverse-cursor : #ffffff

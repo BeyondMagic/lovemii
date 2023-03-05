@@ -1,4 +1,4 @@
 theme.type      : black
-Xcursor.theme   : Breeze-Snow
-theme.gtk.theme : trollwut-pink-dark
-theme.gtk.icon  : Grade-black-dark
+Xcursor.theme   : Bibata-Rainbow-Original
+theme.gtk.theme : Juno-ocean-v40
+theme.gtk.icon  : Tela pink dark

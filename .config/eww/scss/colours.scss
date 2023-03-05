@@ -1,3 +1,6 @@
+// #. Colours for everyone.
+@import 'automatic';
+
 // 1. Settled colours for specific theming.
 $bg-editor                : #0A0A0B;
 
@@ -6,7 +9,7 @@ $text-shadow-settings     : 1px 1px 2px;
 $font                     : 'Noto Sans CJK JP';
 $font-icon                : 'JetBrainsMono Nerd Font';
 $bg                       : #131315;
-$fg                       : black;
+$fg                       : white;
 
 // 1. Bottom Bar.
 $fg-bot                   : $fg;

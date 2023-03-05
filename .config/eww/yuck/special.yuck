@@ -1,9 +1,4 @@
-( defvar weather-image-path    '/home/iris/.local/share/icons/onebox/thunderstorms.png' )
-( defvar weather-celsius       '10' )
-;( defvar weather-location      '' )
-( defvar weather-climate-label '晴時々曇' )
 
-( defvar fg-weather-celsius-highlight '#eeeeee' )
 
 ( defwindow time-center
   :wm-ignore  false

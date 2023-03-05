@@ -1,0 +1,108 @@
+;; Variables of all colours in SCSS.
+( defvar modules-colour-accent     "rgb(0,0,0,0)" )
+( defvar modules-colour-color      "rgb(0,0,0,0)" )
+( defvar modules-colour-background "rgb(0,0,0,0)" )
+
+;; Match one of the variables above by multating the last world.
+( defvar modules-colour-tochange   "accent" )
+
+;;
+;; The window to pick a colour.
+;;
+( defwindow colours-choser
+  :monitor 0
+  :geometry
+    ( geometry
+      :x      "0"
+      :y      "0"
+      :anchor "center center"
+    )
+  :stacking   "fg"
+  :windowtype "normal"
+  :wm-ignore  false
+
+  ( color-chooser
+    :use-alpha true
+    :onchange  `eww open --toggle colours-choser && eww update modules-colour-${modules-colour-tochange}="{}" && ./executable/modules/picker.sh ${modules-colour-tochange} "{}"`
+    :class   'colour picker'
+  )
+
+)
+
+;;
+;; The block of colours.
+;;
+( defwindow colours-picker-accent
+  :monitor 0
+  :geometry 
+    ( geometry
+      :x      "1%"
+      :y      "7px"
+      :width  "20px"
+      :height "20px"
+      :anchor "top left"
+    )
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+
+  ( button
+    :width   "20px"
+    :height  "20px"
+    :onclick `eww update modules-colour-tochange=accent && eww open --toggle colours-choser`
+    :style   "background-color: ${modules-colour-accent};"
+    :class   'colour accent'
+    ''
+  )
+
+)
+
+( defwindow colours-picker-color
+  :monitor 0
+  :geometry 
+    ( geometry
+      :x      "3%"
+      :y      "7px"
+      :width  "20px"
+      :height "20px"
+      :anchor "top left"
+    )
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+
+  ( button
+    :width   "20px"
+    :height  "20px"
+    :onclick `eww update modules-colour-tochange=color && eww open --toggle colours-choser`
+    :style   "background-color: ${modules-colour-color};"
+    :class   'colour color'
+    ''
+  )
+
+)
+
+( defwindow colours-picker-background
+  :monitor 0
+  :geometry 
+    ( geometry
+      :x      "5%"
+      :y      "7px"
+      :width  "20px"
+      :height "20px"
+      :anchor "top left"
+    )
+  :stacking   "bg"
+  :windowtype "dock"
+  :wm-ignore  true
+
+  ( button
+    :width   "20px"
+    :height  "20px"
+    :onclick `eww update modules-colour-tochange=background && eww open --toggle colours-choser`
+    :style   "background-color: ${modules-colour-background};"
+    :class   'colour background'
+    ''
+  )
+
+)

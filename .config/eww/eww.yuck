@@ -1,8 +1,8 @@
 ; Super Super Duper Party People - MaGiCK
 ;
-;   My current system for eww :)
+;   My current system for eww.
 ;
-; João F. © BeyondMagic 2022 <koetemagie@gmail.com>
+; João F. © BeyondMagic 2022-2023 <beyondmagic@mail.ru>
 
 ; -- Variables.
 ( include "./yuck/variables.yuck" )
@@ -14,16 +14,16 @@
 ;( include "./yuck/power.yuck" )
 
 ;; -- Calendary.
-( include "./yuck/calendary.yuck" )
+;;( include "./yuck/calendary.yuck" )
 
 ;; -- Menu.
-( include "./yuck/menu.yuck" )
+;;( include "./yuck/menu.yuck" )
 
 ;; -- Song viewer.
 ;;( include "./yuck/mpd.yuck" )
 
 ;; -- Special mode means time, rain chances, etc.
-( include "./yuck/special.yuck" )
+;;( include "./yuck/special.yuck" )
 
 ;; -- Lyrics specialty.
-( include "./yuck/lyrics.yuck" )
+;;( include "./yuck/lyrics.yuck" )

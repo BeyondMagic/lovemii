@@ -49,7 +49,7 @@ case $1 in
     section "GNU+coreutils"
     text    "For many scripts I've written."
 
-    section "advcpmv https://github.com/jarun/advcpmv"
+    section "advcpmv (https://github.com/jarun/advcpmv)"
     text    "cp and mv with progress bar."
 
     section "libxft-bgra"
@@ -73,7 +73,7 @@ case $1 in
     section "xorg-xrdb"
     text    "For XResources."
 
-    sextion "polkit-dumb-agent-git"
+    section "polkit-dumb-agent-git"
     text    "For polkit..."
 
     section "neovim-nightly-bin"
@@ -92,14 +92,13 @@ case $1 in
     text    "For JS applications and some language servers."
 
     section "vscode-langservers-extracted"
-    text    "To code faster in CSS SCSS."
+    text    "To code faster in CSS & SCSS."
 
     section "typescript typescript-language-server"
     text    "Javascript + Typescript."
 
     section "vale"
     text    "Write better English..."
-
 
     section "colorpicker (https://github.com/BeyondMagic/colorpicker)"
     text    "To print random colouring from input."
@@ -137,7 +136,7 @@ case $1 in
     section "scrot"
     text    "Take screenshot."
 
-    section "nsxiv"
+    section "nsxiv (https://github.com/BeyondMagic/nmodsxiv)"
     text    "Image viewer."
 
     section "dunst"
@@ -149,11 +148,8 @@ case $1 in
     section "ncmpcpp"
     text    "MPD player viwer."
 
-    section "mpd"
-    text    "Music server."
-
-    section "mpdscribble"
-    text    "Connect MPD to last.fm."
+    section "mpd mopidy (pip: Mopidy-Listenbrainz Mopidy Mopidy-Autoplay Mopidy-Iris Mopidy-Listenbrainz Mopidy-Local Mopidy-MPD Mopidy-Scrobbler Mopidy-Spotify Mopidy-YouTube)"
+    text    "Music server..."
 
     section "dash dashbinsh"
     text    "Faster shell."
@@ -161,20 +157,14 @@ case $1 in
     section "dmenu"
     text    "Submenu for X11."
 
-    section "st"
-    text    "Terminal."
-
-    section "unclutter"
-    text    "Make cursor disappear in a few seconds."
-
-    section "skippy-xd"
-    text    "Handle all windows."
+    #section "skippy-xd"
+    #text    "Handle all windows."
 
     section "telegram-desktop"
     text    "Telegram."
 
-    section "gimp"
-    text    "Image editor."
+    section "gimp krita"
+    text    "Image Editor and Digital Image Painter"
 
     section "yt-dlp"
     text    "To download youtube videos."
@@ -188,14 +178,23 @@ case $1 in
     section "xgetres"
     text    "To get XResources definitions."
 
-    section "zathura zathura-pdf-poppler zathura-cb"
+    section "foliate zathura zathura-pdf-poppler zathura-cb"
     text    "To read PDF and such documents."
+
+    section "readarr-nightly"
+    text    "To organise books library and such."
+
+    section "latex-mk texlab perl-yaml-tiny perl-file-homedir"
+    text    "For latex (which means everything related to documents."
+
+    section "libreoffice"
+    text    "To simply convert DOCX files to PDF..."
 
     section "tokei"
     text    "Read source-code"
 
-    section "light-server"
-    text    "For WEB development."
+    #section "light-server"
+    #text    "For WEB development."
 
     section "glava"
     text    "Audio visualizer."
@@ -210,7 +209,7 @@ case $1 in
     text    "For the terminal."
 
     section "flarity (https://github.com/beyondmagic/flarity)"
-    text    "A modern st build."
+    text    "A modern ST build."
 
     section "dwm (https://github.com/beyondmagic/dwm)"
     text    "Window Manager."
@@ -218,11 +217,14 @@ case $1 in
     section "colorpicker (https://github.com/BeyondMagic/mod-colorpicker)"
     text    "Pick colour from the screen."
 
-    section "91menu (https://github.com/beyondmagic/91menu)"
-    text    "FIFO notification server."
+    section "xmenu (https://github.com/beyondmagic/xmenu)"
+    text    "For context menu."
 
-    section "xnotify (https://github.com/beyondmagic/mod-xnotify)"
-    text    "Plan9-inspired menu."
+    #section "91menu (https://github.com/beyondmagic/91menu)"
+    #text    "FIFO notification server."
+
+    #section "xnotify (https://github.com/beyondmagic/mod-xnotify)"
+    #text    "Plan9-inspired menu."
 
     section "slock (https://github.com/beyondmagic/slock)"
     text    "Lock Screen."
@@ -230,14 +232,38 @@ case $1 in
     section "dmenu (https://github.com/beyondmagic/dmenu)"
     text    "Dynamic Menu for X11."
 
-    section "deemix-gui"
-    text    "Deezer player :)"
+    section "freezer-bin (pip: scdl)"
+    text    "Deezer player and SoundCloud player."
 
     section "song-rec"
     text    "Identify playing song."
 
-    section "steam-runtime-native"
-    text    "Play games."
+    section "xidlehook"
+    text    "To control the idle usage."
+
+    section "copyq"
+    text    "To control the copy history."
+
+    section "xbanish"
+    text    "Hide mouse cursor conveniently."
+
+    section "lbry-app-bin"
+    text    "To manage LBRY and Odysee."
+
+    section "mailspring"
+    text    "To manage multiple emails."
+
+    section "anki"
+    text    "To learn a lot of things."
+
+    section "lmms"
+    text    "To manage sounds and create music."
+
+    section "geogebra"
+    text    "Mathematics graphical calculator."
+
+    section "sxhkd"
+    text    "For keybinds."
 
   ;;
 

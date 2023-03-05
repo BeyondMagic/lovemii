@@ -3,18 +3,14 @@
 # -------------------------------------------------------------------------------------------
 
 # My toy :)
-NINCAT_ROOT=$HOME/Git/Projects/ninecath/nincat dash $HOME/Git/Projects/ninecath/nincat/nincat --random --center
+echo "$(NINCAT_ROOT=$HOME/Programming/Projects/ninecath/nincat dash $HOME/Programming/Projects/ninecath/nincat/nincat --random --center)\n"
 
 # Load faster
 . ~/.config/zsh/zsh-plugins/instant-zsh.zsh
 
-# while PROMPT
-#instant-zsh-pre ":)"
-
-
-
-PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✜✟?!❥$-+§ØŦƆƩƪȹϮϨϞ߷ლႿჄჯᐉᓬᗆᗇᗈᗎᗎᗓᗔᗘᗙᗠᗤᗦᘱᙄᯡᯢ᯾ᰉᰜᰞ᱃᱃†'
+PS1_SYMBOLS='Ǝ♥>:∞▲✞✛✜✟?!❥$-+§ØŦ†Z𝐙V'
 PS1_SYMBOL=$(expr substr "$PS1_SYMBOLS" $(shuf -i 1-$(printf "$PS1_SYMBOLS" | wc -m) -n 1) 1)
+PS1="%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}"
 
 instant-zsh-pre "%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}"
 
@@ -61,8 +57,19 @@ skip_global_compinit=1
 # init
 # -------------------------------------------------------------------------------------------
 
+if [[ `uname` == Darwin ]]; then
+    MAX_MEMORY_UNITS=KB
+else
+    MAX_MEMORY_UNITS=MB
+fi
 
-#colors
+TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
+'avg shared (code):         %X KB'$'\n'\
+'avg unshared (data/stack): %D KB'$'\n'\
+'total (sum):               %K KB'$'\n'\
+'max memory:                %M '$MAX_MEMORY_UNITS''$'\n'\
+'page faults from disk:     %F'$'\n'\
+'other page faults:         %R'
 
 
 # -------------------------------------------------------------------------------------------
@@ -201,7 +208,6 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=''
 HISTFILE=~/.config/zsh/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
-PS1="%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}"
 _comp_options+=(globdots)
 
 
@@ -297,3 +303,5 @@ for key     kcap   seq        mode     widget (
 #zprof
 
 instant-zsh-post
+#-e 
+#alias luamake=/home/iris/Git/Using/Language_Servers/lua-language-server/3rd/luamake/luamake

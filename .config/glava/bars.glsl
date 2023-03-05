@@ -19,11 +19,11 @@
 #define GRADIENT_POWER 60
 /* Bar color changes with height */
 //#define GRADIENT (d / GRADIENT_POWER + 1)
-#define GRADIENT_V mix(#E4E5E7, #97A4AA, clamp(d / 100, 0, 1))
-//#define GRADIENT_H mix(#028DAC, #A218C3, clamp(gl_FragCoord.x / screen.x, 0, 1))
-#define COLOR GRADIENT_V
+#define GRADIENT_V mix(#39979F, #E5DAAD, clamp(d / 100, 0, 1))
+#define GRADIENT_H mix(#12214A, #6B95C7, clamp(gl_FragCoord.x / screen.x, 0, 1))
+#define COLOR GRADIENT_H
 /* Bar color */
-//#define COLOR mix(#FF00FE, #00CFFE, clamp(GRADIENT, 0, 2))
+//#define COLOR mix(GRADIENT_H, GRADIENT_V, clamp(GRADIENT, 0, 2))
 /* Direction that the bars are facing, 0 for inward, 1 for outward */
 #define DIRECTION 0
 /* Whether to switch left/right audio buffers */

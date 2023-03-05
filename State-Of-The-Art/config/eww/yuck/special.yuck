@@ -1,0 +1,61 @@
+
+
+( defwindow time-center
+  :wm-ignore  false
+  :monitor    0
+  :windowtype 'dock'
+  :stacking   'bg'
+  :geometry
+    ( geometry
+      :x      '-25%'
+      :y      '-10%'
+      :width  '22%'
+      :height '5%'
+      :anchor 'center center'
+    )
+  ( box
+    :class        'time-center'
+    :orientation  'vertical'
+    :space-evenly false
+    :active       false
+    :halign       'center'
+    ( box
+      :class       'grid-one'
+      :orientation 'horizontal'
+      :height      75
+      ( box
+        :class        'climate'
+        :orientation  'vertical'
+        :space-evenly false
+        ( label
+          :text   ''
+          :class  'image'
+          :style  "background-image: url('${weather-image-path}')"
+          :height 75
+        )
+        ( label
+          :text   '${weather-climate-label}'
+          :class  'label'
+          :halign 'center'
+          :valign 'end'
+        )
+      )
+      ( label
+        :halign 'start'
+        :markup '${weather-celsius}<span color="${fg-weather-celsius-highlight}">°</span>'
+        :class  'celsius'
+      )
+    )
+    ;( label
+    ;  :halign 'center'
+    ;  :class  'location'
+    ;  :text   weather-location
+    ;)
+    ( label
+      :class  'time'
+      :halign 'center'
+      :markup time
+    )
+  )
+
+)

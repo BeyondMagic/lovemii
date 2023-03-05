@@ -1,0 +1,11 @@
+# GIMP gimp-text-tool options
+
+(foreground (color-rgb 1 1 1))
+(palette "Caramel")
+(font "Source Code Pro Ultra-Light Italic")
+(font-size 65)
+(hint-style full)
+(justify right)
+(box-mode fixed)
+
+# end of gimp-text-tool options

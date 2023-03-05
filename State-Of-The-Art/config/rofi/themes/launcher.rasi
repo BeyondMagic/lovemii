@@ -1,0 +1,209 @@
+/* Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com> */
+/* Copyright (C) 2022 João F. BeyondMagic <koetemagie@gmail.com> */
+/* Everyone is permitted to copy and distribute copies of this file under GNU-GPL3 */
+
+configuration {
+  show-icons           : true;
+  display-drun         : "";
+  drun-display-format  : "{icon} {name}";
+  disable-history      : false;
+  click-to-exit        : true;
+  location             : 6;
+}
+
+@import "font.rasi"
+@import "colors.rasi"
+
+window {
+  transparency      : "real";
+  background-color  : @BG;
+  text-color        : @FG;
+  border            : 0px;
+  border-color      : @BGA;
+  border-radius     : 8px;
+  width             : 680px;
+  x-offset          : 0;
+  y-offset          : -45px;
+}
+
+prompt {
+  enabled           : true;
+  padding           : 0px;
+  background-color  : @BG;
+  text-color        : @IMG;
+}
+
+vertbox {
+  border           : 0%;
+  expand           : false;
+  orientation      : vertical;
+  max-height       : 30px;
+  background-color : transparent;
+  children         : [horibox-profile, horibox];
+}
+
+horibox-profile {
+  border           : 0%;
+  expand           : false;
+  orientation      : horizontal;
+  background-color : transparent;
+  children         : [dummy-one, textbox-photo, dummy-one];
+}
+
+horibox {
+  border           : 0%;
+  expand           : false;
+  orientation      : horizontal;
+  max-height       : 30px;
+  background-color : transparent;
+  children         : [dummy-one, textbox-custom, dummy-one];
+}
+
+
+dummy-one {
+  expand            : true;
+  background-color  : transparent;
+}
+
+textbox-photo {
+  expand            : false;
+  content           : "";
+  border-radius     : 100%;
+  padding           : 25px 37px 25px 37px;
+  text-color        : @IMG;
+  background-color  : transparent;
+  background-image  : url("~/Desktop/profile-picture.png", width);
+  font              : "Noto Sans CJK JP Bold 12"; 
+}
+
+textbox-custom {
+  expand            : false;
+  content           : "よろしく!";
+  text-color        : @IMG;
+  background-color  : transparent;
+  font              : "Noto Sans CJK JP Bold 12"; 
+}
+
+textbox-prompt-colon {
+  expand            : false;
+  str               : "💫";
+  border            : 0px 0px 3px 0px;
+  border-color      : @SEL;
+  border-radius     : 0px;
+  background-color  : @BGA;
+  text-color        : @IMG;
+  padding           : 10px 12px 6px 12px;
+  font              : "Noto Sans CJK JP 12";
+}
+
+entry {
+  background-color   : @BGA;
+  text-color         : @IMG;
+  placeholder-color  : @IMG;
+  expand             : true;
+  horizontal-align   : 0;
+  placeholder        : "探す...";
+  blink              : true;
+  border             : 0px 0px 3px 0px;
+  border-color       : @SEL;
+  border-radius      : 0px;
+  padding            : 11px 10px 0px 10px;
+  font               : "Noto Sans CJK JP Bold 9";
+}
+
+inputbar {
+  children          : [ textbox-prompt-colon, entry ];
+  spacing           : 0px;
+  background-color  : @BGBB;
+  text-color        : @FG;
+  expand            : false;
+  border            : 1px 1px 0px 1px;
+  border-radius     : 10px;
+  border-color      : @BRD2;
+  margin            : 15px 0px 0px 0px;
+  padding           : 0px;
+  position          : center;
+  font              : "Noto Sans CJK JP 9";
+}
+
+case-indicator {
+  background-color  : @BG;
+  text-color        : @FG;
+  spacing           : 0;
+}
+
+
+listview {
+  background-color  : #00000000;
+  columns           : 6;
+  lines             : 6;
+  spacing           : 4px;
+  cycle             : false;
+  dynamic           : true;
+  layout            : vertical;
+}
+
+mainbox {
+  background-color  : #00000000;
+  children          : [ inputbar, listview ];
+  spacing           : 10px;
+  padding           : 35px;
+}
+
+element {
+  background-color  : #00000000;
+  text-color        : @FG;
+  orientation       : vertical;
+  border-radius     : 4px;
+  padding           : 20px;
+}
+
+element-icon {
+  background-color  : #00000000;
+  text-color        : inherit;
+  horizontal-align  : 0.5;
+  vertical-align    : 0.5;
+  size              : 40px;
+  border            : 0px;
+}
+
+element-text {
+  background-color  : #00000000;
+  text-color        : inherit;
+  font              : "Noto Sans CJK JP 9";
+  expand            : true;
+  horizontal-align  : 0.5;
+  vertical-align    : 0.5;
+  margin            : 0px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color  : @UGT;
+  text-color        : @FG;
+  border-radius     : 9px;
+}
+
+element normal.active,
+element alternate.active {
+  background-color  : @BGA;
+  text-color        : @FG;
+}
+
+element selected {
+  background-color  : #ffffff11;
+  text-color        : @FG;
+  border            : 1px;
+  border-radius     : 4px;
+  border-color      : @BDR;
+}
+
+element selected.urgent {
+  background-color  : @UGT;
+  text-color        : @FG;
+}
+
+element selected.active {
+  background-color  : @BGA;
+  color             : @FG;
+}

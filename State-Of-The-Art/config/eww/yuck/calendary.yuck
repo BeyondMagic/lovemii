@@ -1,0 +1,16 @@
+( defwindow days
+  :wm-ignore  true
+  :monitor    0
+  :windowtype 'normal'
+  :geometry 
+    ( geometry
+      :x      '-1%'
+      :y      '-4%'
+      :width  '15%'
+      :height '5%'
+      :anchor 'bottom right'
+    )
+  ( calendar
+    :class 'calendar'
+  )
+)

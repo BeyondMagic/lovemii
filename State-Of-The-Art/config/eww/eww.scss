@@ -1,0 +1,43 @@
+// João F. © BeyondMagic 2022 <koetemagie@gmail.com>
+
+// #. Colours for everyone.
+@import './scss/colours';
+
+// #. Bottom and top bar.
+@import './scss/bars';
+
+// #. Calendar viewer.
+@import './scss/calendar';
+
+// #. Center menu.
+@import './scss/menu';
+
+// #. Special center widgets.
+@import './scss/special';
+
+// #. 
+@import './scss/lyrics.scss';
+
+// #. For testing.
+//@import './scss/testing';
+
+// 1. Make a default setting for all the GTK3 elements.
+* {
+
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  all: unset;
+
+}
+
+// 2. Nully default values of windows stylesheets.
+window {
+
+  background: rgba($color, 1);
+  padding: 0;
+  margin: 0;
+
+}

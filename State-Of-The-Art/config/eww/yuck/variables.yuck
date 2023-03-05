@@ -1,0 +1,59 @@
+; -- Overfiew.
+
+( defvar menu_is_open false )
+
+; -- Bars.
+
+; ; FFMEPG recording script.
+( defvar record_menu      false )
+
+; ; MPD & MPC song names.
+( defvar reveal-songnames false )
+
+; ; Title name.
+( defvar title-name "" )
+
+; ; Title.
+( defvar reveal-title false ) ( defvar title-literal "" )
+
+; Timers.
+( defpoll song
+  :interval  "1s"
+  :run-while reveal-songnames
+  "sh ./executable/eww-literal-song.sh"
+)
+
+( defvar top-bar-song-left "" )
+( defvar top-bar-song-center "" )
+( defvar top-bar-song-right "" )
+
+; ; Tags.
+( defvar tag-one   true ) ( defvar tag-class-one   "not-chosen" )
+( defvar tag-two   true ) ( defvar tag-class-two   "not-chosen" )
+( defvar tag-three true ) ( defvar tag-class-three "not-chosen" )
+( defvar tag-four  true ) ( defvar tag-class-four  "not-chosen" )
+( defvar tag-five  true ) ( defvar tag-class-five  "not-chosen" )
+( defvar tag-six   true ) ( defvar tag-class-six   "not-chosen" )
+( defvar tag-seven true ) ( defvar tag-class-seven "not-chosen" )
+( defvar tag-eight true ) ( defvar tag-class-eight "not-chosen" )
+( defvar tag-nine  true ) ( defvar tag-class-nine  "not-chosen" )
+( defvar tag-add   true )
+
+; ; Time.
+( defvar day false )
+( defvar change-days `eww-switch day days` )
+
+; ; Windows.
+( defvar windows-literal "" )
+
+; ; DWM Layout.
+( defvar layout "･" )
+
+; ; Volume/Sound.
+( defvar reveal-volume false )
+
+; Timers.
+( defpoll time
+  :interval "1s"
+  "sh ./executable/eww-markup-time.sh"
+)

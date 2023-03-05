@@ -1,0 +1,59 @@
+.time-center { 
+
+  .location {
+
+    color: $fg-weather-location;
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-shadow: 3px 1px 6px $bg-weather;
+    font-weight: bolder;
+
+  }
+
+  .handler .time {
+
+    color: $fg-weather;
+    font-weight: 400;
+    font-size: 1rem;
+    text-shadow: 3px 1px 6px $bg-weather;
+    padding-bottom: 1rem;
+
+  }
+
+  .grid-one {
+
+    .climate {
+
+
+      .image {
+
+        background-repeat: no-repeat;
+        background-position: center;
+
+        background-size: 1rem;
+
+      }
+
+      .label {
+
+        color: rgba($fg-weather, 0.5);
+        text-shadow: 3px 1px 6px rgba($bg-weather, 0.6);
+        font-size: 0.75rem;
+
+      }
+
+    }
+
+    .celsius {
+
+      font-size: 3.5rem;
+      text-shadow: 3px 1px 6px rgba($bg-weather, 0.4);
+      padding: 0 1rem;
+      color: rgba($fg-weather, 0.8);
+      font-weight: bolder;
+
+    }
+
+  }
+
+}

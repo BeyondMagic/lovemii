@@ -1,0 +1,375 @@
+(
+    // Maximum number of notifications to show at any one time.
+    // A value of 0 means that there is no limit.
+    max_notifications : 8,
+
+    // The default timeout, in miliseconds, for notifications that don't have an initial timeout set.
+    // 1000ms = 1s.
+    timeout : 10000,
+
+    // `poll_interval` decides decides how often (in milliseconds) Wired checks for new notifications, events,
+    // draws notifications (if necessary), etc.
+    // Note that when no notifications are present, Wired always polls at 500ms.
+    // 16ms ~= 60hz / 7ms ~= 144hz.
+    poll_interval : 16,
+
+    // How many notifications are kept in history.
+    // Each notification is roughly 256 bytes (excluding buffers!), so do the math here.
+    history_length : 16,
+
+    // Enable/disable replacement functionality.
+    // If this is disabled, replacement requests will just send a new notification.
+    // E.g., with replacing_enabled: true, Pidgin will only show the latest message from each contact,
+    // instead of sending a new one for each message.
+    replacing_enabled : true,
+
+    // Whether a notification should reset its timeout when it is replaced.
+    // No effect if replacing_enabled is set to false.
+    replacing_resets_timeout : true,
+
+    // Enable/disable debug rendering.
+    debug           : false,
+    debug_color     : Color(r: 0.0, g: 1.0, b: 0.0, a: 1.0), // Primary color for debug rectangles.
+    debug_color_alt : Color(r: 1.0, g: 0.0, b: 0.0, a: 1.0), // Secondary color for debug rectangles.
+
+    // Minimum window width and height.  This is used to create the base rect that the notification
+    // grows within.
+    // The notification window will never be smaller than this.
+    // A value of 1 means that the window will generally always resize with notification, unless
+    // you have a 1x1 pixel notification...
+    // Generally, you shouldn't need to set this.
+    min_window_width  : 335,
+    min_window_height : 60,
+
+    // Wired will pause notifications if you are idle (no mouse or keyboard input) for longer than
+    // `idle_threshold` seconds.
+    // Note that notifications will not be automatically unpaused on wake, and will need to be manually
+    // cleared.  Let me know if you think this should be different.
+    // If `idle_threshold` is not specified, the behavior will be disabled entirely.
+    idle_threshold : 3600,
+
+    // Enable printing notification data to a file.
+    // Useful for scripting purposes.
+    // The data is written as JSON.
+    //print_to_file: "/tmp/wired.log",
+
+    layout_blocks : [
+
+        // DESCRIPTION: Layout 1.
+        (
+            name                 : "root",
+            parent               : "",
+            hook                 : Hook(parent_anchor: TR, self_anchor: RT),
+            offset               : Vec2(x: -25.0, y: 40.0),
+            render_anti_criteria : [ AppName("pulseaudio-volume") ],
+            // render_criteria: [AppImage],
+            // https://github.com/Toqozz/wired-notify/wiki/NotificationBlock
+            params: NotificationBlock((
+                monitor               : 0,
+                border_width          : 2,
+                border_rounding       : 5,
+                background_color      : Color(hex : "#AA212121"),
+                border_color          : Color(hex : "#AA212121"),
+                border_color_low      : Color(hex : "#AA282828"),
+                border_color_critical : Color(hex : "#AAFF6B6B"),
+                border_color_paused   : Color(hex : "#AAfabd2f"),
+                gap                   : Vec2(x: 0.0, y: 8.0),
+                notification_hook     : Hook(parent_anchor: BR, self_anchor: TR),
+            )),
+        ),
+
+        (
+            name   : "time",
+            parent : "root",
+            hook   : Hook(parent_anchor: TL, self_anchor: BR),
+            offset : Vec2(x: 315.0, y: 25.0),
+            // https://github.com/Toqozz/wired-notify/wiki/TextBlock
+            params: TextBlock((
+                text            : "%t(%H:%M)",
+                font            : "Noto Sans CJK JP Medium 8",
+                ellipsize       : NoEllipsize,
+                border_color    : Color(hex: "#00000000"),
+                color           : Color(hex: "#88ffffff"),
+                //color_hovered : Color(hex: "#212121"),
+                padding         : Padding(left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
+                dimensions      : (width: (min: 0, max: 50), height: (min: 0, max: 0)),
+            )),
+        ),
+
+        (
+            name   : "summary",
+            parent : "root",
+            hook   : Hook(parent_anchor: TM, self_anchor: TM),
+            offset : Vec2(x: 0.0, y: 0.0),
+            // https://github.com/Toqozz/wired-notify/wiki/TextBlock
+            params: TextBlock((
+                text            : "%s",
+                font            : "Noto Sans CJK JP Black 10.5",
+                ellipsize       : NoEllipsize,
+                color           : Color(hex: "#ffffff"),
+                //color_hovered : Color(hex: "#212121"),
+                padding         : Padding(left: 0.0, right: 0.0, top: 12.0, bottom: 0.0),
+                dimensions      : (width: (min: 0, max: 150), height: (min: 0, max: 0)),
+            )),
+        ),
+
+        (
+            name   : "body",
+            parent : "summary",
+            hook   : Hook(parent_anchor: MB, self_anchor: TM),
+            offset : Vec2(x: 0.0, y: 0.0),
+            // https://github.com/Toqozz/wired-notify/wiki/ScrollingTextBlock
+            params: TextBlock((
+                text            : "%b",
+                font            : "Noto Sans CJK JP 10",
+                ellipsize       : NoEllipsize,
+                color           : Color(hex: "#dddddd"),
+                //color_hovered : Color(hex: "#212121"),
+                padding         : Padding(left: 0.0, right: 0.0, top: 2.0, bottom: 6.0),
+                dimensions      : (width: (min: 0, max: 200), height: (min: 0, max: 0)),
+            )),
+        ),
+
+        (
+            name            : "image",
+            parent          : "root",
+            hook            : Hook(parent_anchor: ML, self_anchor: MR),
+            offset          : Vec2(x: 60.0, y: 0.0),
+            render_criteria : [ HintImage ],
+            // https://github.com/Toqozz/wired-notify/wiki/ImageBlock
+            params: ImageBlock((
+                image_type   : Hint,
+                // We actually want 4px padding, but the border is 3px.
+                padding      : Padding(left: 30.0, right: 0.0, top: 0.0, bottom: 0.0),
+                rounding     : 3.0,
+                scale_width  : 60,
+                scale_height : 60,
+                filter_mode  : Lanczos3,
+            )),
+        ),
+
+        (
+            name            : "actiondefault",
+            parent          : "body",
+            hook            : Hook(parent_anchor: BM, self_anchor: TM),
+            offset          : Vec2(x: 0.0, y: 0.0),
+            render_criteria : [ ActionDefault ],
+            params: ButtonBlock((
+                text                       : "はい！",
+                font                       : "Noto Sans CJK JP Bold 10",
+                action                     : DefaultAction,
+                ellipsize                  : End,
+                text_color                 : Color(hex: "#5BB8CA"),
+                text_color_hovered         : Color(hex: "#91d7e4"),
+                border_color               : Color(hex: "#00000000"),
+                background_color           : Color(hex: "#00000000"),
+                //background_color_hovered : Color(hex: "#88282a36"),
+                border_rounding            : 0.0,
+                border_width               : 0.0,
+                padding                    : Padding(left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
+                dimensions                 : (width: (min: 0, max: 200), height: (min: 0, max: 0)),
+            )),
+        ),
+        (
+            name            : "action0",
+            parent          : "actiondefault",
+            hook            : Hook(parent_anchor: BR, self_anchor: TR),
+            offset          : Vec2(x: 0.0, y: 0.0),
+            render_criteria : [ ActionOther(0)],
+            params: ButtonBlock((
+                text               : "%a",
+                font               : "Noto Sans CJK JP Bold 10",
+                action             : OtherAction(0),
+                ellipsize          : End,
+                text_color         : Color(hex: "#FF7D2D"),
+                text_color_hovered : Color(hex: "#f1f1f1"),
+                border_color       : Color(hex: "#00000000"),
+                background_color   : Color(hex: "#00000000"),
+                border_rounding    : 0.0,
+                border_width       : 0.0,
+                padding            : Padding(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
+                dimensions         : (width: (min: -1, max: -1), height: (min: 0, max: 0)),
+            )),
+        ),
+        (
+            name            : "action1",
+            parent          : "action0",
+            hook            : Hook(parent_anchor: MR, self_anchor: ML),
+            offset          : Vec2(x: 0.0, y: 0.0),
+            render_criteria : [ ActionOther(1) ],
+            params: ButtonBlock((
+                text               : "%a",
+                font               : "Noto Sans CJK JP Bold 10",
+                action             : OtherAction(1),
+                ellipsize          : End,
+                text_color         : Color(hex: "#FAC846"),
+                text_color_hovered : Color(hex: "#f1f1f1"),
+                border_color       : Color(hex: "#00000000"),
+                background_color   : Color(hex: "#00000000"),
+                border_rounding    : 0.0,
+                border_width       : 0.0,
+                padding            : Padding(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
+                dimensions         : (width: (min: -1, max: -1), height: (min: 0, max: 0)),
+            )),
+        ),
+        (
+            name            : "action2",
+            parent          : "action1",
+            hook            : Hook(parent_anchor: MR, self_anchor: ML),
+            offset          : Vec2(x: 0.0, y: 0.0),
+            render_criteria : [ ActionOther(2)],
+            params: ButtonBlock((
+                text               : "%a",
+                font               : "Noto Sans CJK JP Bold 10",
+                action             : OtherAction(2),
+                ellipsize          : End,
+                text_color         : Color(hex: "#A0C382"),
+                text_color_hovered : Color(hex: "#f1f1f1"),
+                border_color       : Color(hex: "#00000000"),
+                background_color   : Color(hex: "#00000000"),
+                border_rounding    : 0.0,
+                border_width       : 0.0,
+                padding            : Padding(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
+                dimensions         : (width: (min: -1, max: -1), height: (min: 0, max: 0)),
+            )),
+        ),
+        (
+            name            : "action3",
+            parent          : "action2",
+            hook            : Hook(parent_anchor: MR, self_anchor: ML),
+            offset          : Vec2(x: 0.0, y: 0.0),
+            render_criteria : [ ActionOther(3) ],
+            params: ButtonBlock((
+                text               : "%a",
+                font               : "Noto Sans CJK JP Bold 10",
+                action             : OtherAction(3),
+                ellipsize          : End,
+                text_color         : Color(hex: "#5F9B8C"),
+                text_color_hovered : Color(hex: "#f1f1f1"),
+                border_color       : Color(hex: "#00000000"),
+                background_color   : Color(hex: "#00000000"),
+                border_rounding    : 0.0,
+                border_width       : 0.0,
+                padding            : Padding(left: 10.0, right: 0.0, top: 5.0, bottom: 5.0),
+                dimensions         : (width: (min: -1, max: -1), height: (min: 0, max: 0)),
+            )),
+        ),
+
+        // DESCRIPTION: Layout 2 -- For progress handling.
+        (
+            name                 : "root-progress",
+            parent               : "",
+            hook                 : Hook(parent_anchor: MM, self_anchor: MM),
+            offset               : Vec2(x: 0.0, y: 0.0),
+            render_criteria      : [ AppName("pulseaudio-volume") ],
+            // https://github.com/Toqozz/wired-notify/wiki/NotificationBlock
+            params: NotificationBlock((
+                monitor               : 0,
+                border_width          : 2,
+                border_rounding       : 5,
+                background_color      : Color(hex : "#AA212121"),
+                border_color          : Color(hex : "#AA212121"),
+                border_color_low      : Color(hex : "#AA282828"),
+                border_color_critical : Color(hex : "#AAFF6B6B"),
+                border_color_paused   : Color(hex : "#AAfabd2f"),
+                gap                   : Vec2(x: 0.0, y: 8.0),
+                notification_hook     : Hook(parent_anchor: BR, self_anchor: TR),
+            )),
+        ),
+
+        //(
+        //    name            : "progress",
+        //    parent          : "root-progress",
+        //    hook            : Hook(parent_anchor: BL, self_anchor: TL),
+        //    offset          : Vec2(x: 0.0, y: 0.0),
+        //    render_criteria : [ Progress ],
+        //    params: ProgressBlock((
+        //        padding                  : Padding(left: 0, right: 00, top: 0, bottom: 5.0),
+        //        border_width             : 2.0,
+        //        border_rounding          : 5.0,
+        //        border_color             : Color(hex: "#0F0F11"),
+        //        background_color         : Color(hex: "#0A0A0B"),
+        //        border_color_hovered     : Color(hex: "#fbf1c7"),
+        //        background_color_hovered : Color(hex: "#3c3836"),
+        //        fill_color_hovered       : Color(hex: "#fbf1c7"),
+        //        fill_rounding            : 1.0,
+        //        fill_color               : Color(hex: "#00ff00"),
+        //        width                    : -1.0,
+        //        height                   : 12.0,
+        //    ))
+        //),
+
+        (
+            name   : "summary-progress",
+            parent : "root-progress",
+            hook   : Hook(parent_anchor: TM, self_anchor: TM),
+            offset : Vec2(x: 0.0, y: 0.0),
+            // https://github.com/Toqozz/wired-notify/wiki/TextBlock
+            params: TextBlock((
+                text            : "%s",
+                font            : "Noto Sans CJK JP Black 10.5",
+                ellipsize       : NoEllipsize,
+                color           : Color(hex: "#ffffff"),
+                //color_hovered : Color(hex: "#212121"),
+                padding         : Padding(left: 0.0, right: 0.0, top: 12.0, bottom: 0.0),
+                dimensions      : (width: (min: 0, max: 150), height: (min: 0, max: 0)),
+            )),
+        ),
+
+        //(
+        //    name   : "body-progress",
+        //    parent : "summary-progress",
+        //    hook   : Hook(parent_anchor: MB, self_anchor: TM),
+        //    offset : Vec2(x: 0.0, y: 0.0),
+        //    // https://github.com/Toqozz/wired-notify/wiki/ScrollingTextBlock
+        //    params: TextBlock((
+        //        text            : "%b",
+        //        font            : "Noto Sans CJK JP 10",
+        //        ellipsize       : NoEllipsize,
+        //        color           : Color(hex: "#dddddd"),
+        //        //color_hovered : Color(hex: "#212121"),
+        //        padding         : Padding(left: 0.0, right: 0.0, top: 2.0, bottom: 6.0),
+        //        dimensions      : (width: (min: 0, max: 200), height: (min: 0, max: 0)),
+        //    )),
+        //),
+
+        (
+            name            : "image-progress",
+            parent          : "root-progress",
+            hook            : Hook(parent_anchor: TM, self_anchor: MM),
+            offset          : Vec2(x: 0.0, y: 60.0),
+            render_criteria : [ HintImage ],
+            // https://github.com/Toqozz/wired-notify/wiki/ImageBlock
+            params: ImageBlock((
+                image_type   : Hint,
+                // We actually want 4px padding, but the border is 3px.
+                padding      : Padding(left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
+                rounding     : 3.0,
+                scale_width  : 60,
+                scale_height : 60,
+                filter_mode  : Lanczos3,
+            )),
+        ),
+
+    ],
+
+    // https://github.com/Toqozz/wired-notify/wiki/Shortcuts
+    shortcuts: ShortcutsConfig (
+
+        //notification_action1            : 3,
+        //notification_interact           : 1,
+        notification_interact_and_close   : 1,
+        //notification_close              : 2,
+        notification_closeall             : 2,
+        notification_pause                : 3,
+        // notification_action1           : Some(3),
+        // notification_action2           : None,
+        // notification_action3           : None,
+        // notification_action4           : None,
+
+        //notification_action1_and_close  : 1,
+        //notification_action2_and_close  : 1,
+        //notification_action3_and_close  : 1,
+        // notification_action4_and_close : None,
+    ),
+)

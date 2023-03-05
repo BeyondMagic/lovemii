@@ -4,3 +4,8 @@
 **/mpv/scripts/autosub.lua
 **/ncmpcpp/**
 !**/ncmpcpp/config
+**/mpd/**
+!**/mpd/mpd.conf
+**/mpdscribble
+**/mozc
+**/mopidy

@@ -1,0 +1,17 @@
+# GIMP gimp-eraser-tool options
+
+(foreground (color-rgb 1 1 1))
+(background (color-rgb 0 0 0))
+(opacity 0.47899999999999998)
+(brush "2. Hardness 025")
+(dynamics "Basic Simple")
+(palette "Caramel")
+(brush-size 8)
+(brush-spacing 0.029999999999999999)
+(brush-hardness 0.46000000000000002)
+(brush-force 0.28999999999999998)
+(dynamics-expanded yes)
+(fade-length 61)
+(fade-unit percent)
+
+# end of gimp-eraser-tool options

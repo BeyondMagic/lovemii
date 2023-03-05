@@ -1,0 +1,16 @@
+=========================
+Fcitx 5.0.21 -- Get Signal No.: 11
+Date: try "date -d @1677171222" if you are using GNU date ***
+ProcessID: 1059
+fcitx5(+0x12e4c)[0x5610f5061e4c]
+/usr/lib/libc.so.6(+0x38f50)[0x7f21b6e51f50]
+/usr/lib/libFcitx5Utils.so.2(+0x3a1d5)[0x7f21b745e1d5]
+/usr/lib/libFcitx5Utils.so.2(+0x4c6d3)[0x7f21b74706d3]
+/usr/lib/libevent_core-2.1.so.7(+0x1ec35)[0x7f21b7360c35]
+/usr/lib/libevent_core-2.1.so.7(event_base_loop+0x4ff)[0x7f21b736239f]
+/usr/lib/libFcitx5Utils.so.2(_ZN5fcitx9EventLoop4execEv+0x3f)[0x7f21b746cdef]
+/usr/lib/libFcitx5Core.so.7(_ZN5fcitx8Instance4execEv+0x57)[0x7f21b7536277]
+fcitx5(+0x11050)[0x5610f5060050]
+/usr/lib/libc.so.6(+0x23790)[0x7f21b6e3c790]
+/usr/lib/libc.so.6(__libc_start_main+0x8a)[0x7f21b6e3c84a]
+fcitx5(+0x12425)[0x5610f5061425]

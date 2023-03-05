@@ -1,0 +1,12 @@
+# settings
+
+(GimpGegl-gegl-wind-config "2022-12-30 20:40:29"
+    (time 1672443629)
+    (style wind)
+    (direction left)
+    (edge leading)
+    (threshold 10)
+    (strength 10)
+    (seed 0))
+
+# end of settings

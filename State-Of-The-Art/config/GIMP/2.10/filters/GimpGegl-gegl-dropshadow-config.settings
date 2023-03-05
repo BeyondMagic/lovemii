@@ -1,0 +1,40 @@
+# settings
+
+(GimpGegl-gegl-dropshadow-config "2022-12-28 14:40:28"
+    (time 1672249228)
+    (x 6.4000000000000004)
+    (y 6.4000000000000004)
+    (radius 3.6499999999999999)
+    (grow-shape circle)
+    (grow-radius 0)
+    (color (color-rgba 0 0 0 1))
+    (opacity 0.5))
+(GimpGegl-gegl-dropshadow-config "2022-12-28 14:36:07"
+    (time 1672248967)
+    (x 20)
+    (y 20)
+    (radius 16.41)
+    (grow-shape diamond)
+    (grow-radius -12)
+    (color (color-rgba 0 0 0 1))
+    (opacity 0.5))
+(GimpGegl-gegl-dropshadow-config "2022-12-25 19:09:03"
+    (time 1672006143)
+    (x 20)
+    (y 20)
+    (radius 10)
+    (grow-shape circle)
+    (grow-radius 0)
+    (color (color-rgba 0 0 0 1))
+    (opacity 0.5))
+(GimpGegl-gegl-dropshadow-config "2022-04-13 01:06:25"
+    (time 1649822785)
+    (x -3.8959999999999999)
+    (y -3.8959999999999999)
+    (radius 0)
+    (grow-shape circle)
+    (grow-radius 0)
+    (color (color-rgba 0 0 0 1))
+    (opacity 0.97699999999999998))
+
+# end of settings

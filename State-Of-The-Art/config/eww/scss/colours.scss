@@ -1,0 +1,68 @@
+// #. Colours for everyone.
+@import 'automatic';
+
+// 1. Settled colours for specific theming.
+$bg-editor                : #0A0A0B;
+
+// 0. Misc.
+$text-shadow-settings     : 1px 1px 2px;
+$font                     : 'Noto Sans CJK JP';
+$font-icon                : 'JetBrainsMono Nerd Font';
+$bg                       : #131315;
+$fg                       : white;
+
+// 1. Bottom Bar.
+$fg-bot                   : $fg;
+$bg-bot                   : $fg-bot;
+
+// 1. #. Layout.
+$fg-layout                : $fg-bot;
+$fg-layout-hover          : mix($bg, $fg-bot, 0.1);
+$bg-layout-hover          : rgba($fg-layout, 0.2);
+
+// 1. #. Tags.
+$fg-tags                  : $fg-layout;
+$fg-tags-more             : rgba($fg-bot, 0.35);
+
+// 1. #. More up.
+$fg-context-menu          : rgba($fg-bot, 0.75);
+
+// 1. #. Windows.
+$bg-windows               : $bg-bot;
+$fg-windows               : $bg-windows;
+
+// 1. #. Tray icons.
+$fg-tray-icon             : $bg-bot;
+$fg-tray-volume           : $fg-tray-icon;
+$fg-tray-volume-highlight : #FBD599;
+$fg-tray-camera           : rgba($fg-tray-icon, 0.5);
+$fg-tray-camera-highlight : #FF6600;
+
+// 1. #. Climate.
+$fg-climate               : $fg-tray-icon;
+
+// 1. #. Time/date.
+$fg-time-date             : $fg-tray-icon;
+
+// 2. #. Logo of desktop.
+$fg-logo                  : $fg;
+
+// 2. #. Program name.
+$fg-program-name          : $fg;
+
+// 2. #. Program title.
+$fg-program-title         : rgba($fg-program-name, 0.85);
+
+// 2. #. Song names.
+$fg-song                  : black;
+$fg-song-highlight        : #E3A8AE;
+
+// 3. #. On misc locations.
+$fg-weather               : black;
+$bg-weather               : black;
+$fg-weather-location      : #C6BD72;
+// Pango: fg-weather-celsius-highlight
+
+// 4. #. Calendar.
+$bg-calendar              : $bg;
+$bg-calendar-highlight    : #DE8390;

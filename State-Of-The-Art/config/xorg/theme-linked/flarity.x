@@ -1,0 +1,1 @@
+/home/dream/.config/xorg/themes/black-blur/flarity.x

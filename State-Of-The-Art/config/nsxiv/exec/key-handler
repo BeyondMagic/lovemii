@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+#
+# To load when <CTRL-X> is pressed on nsxiv.
+#
+# João F. © BeyondMagic 2022 <koetemagie@gmail.com>
+
+while read file; do
+
+    echo "- File: $file"
+
+    case "$1" in
+
+        # Trash it
+        'C-d')
+              mv "$file" ~/.local/trash/ ;;
+
+        # Rotate our image 90deg
+        'C-r')
+            convert -rotate 90 "$file" "$file" ;;
+
+        # Copy image path to clipboard
+        'C-t')
+            echo -n "$file" | xclip -selection clipboard ;;
+
+        # Copy image to clipboard
+        'c')
+            cat "$file" | xclip -selection clipboard -t image/png ;;
+
+        # 
+        'C-m')
+            #mv "$file" $dirpath ;;
+            mv "$file" "$HOME/Library/Images/Wallpapers/black/" ;;
+
+        # Open on GIMP
+        'g')
+            gimp "$file" & ;;
+
+        # Open on File Manager
+        'n')
+          flarity -e 'dash' '-c' "nnn -adDoxRiJ -p '$file' -T t %U" ;;
+
+        # Set wallpaper
+        'C-w')
+            zsh -c ". ~/.config/zsh/aliasesrc; wallpaper \"$file\"" & ;;
+
+        # 
+        *)
+            echo "Not yet implemented: $1" ;;
+    esac
+
+done

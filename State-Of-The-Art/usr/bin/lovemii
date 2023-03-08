@@ -1,0 +1,201 @@
+#!/usr/bin/env sh
+#
+# Description:
+#   Execute magic's desktop :)
+#
+# Maintainer: (s)
+#   BeyondMagic © 2021-2023
+
+#-----------------------
+# Environment Variables
+#-----------------------
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Where removed files will be moved before being
+# 'rm -rf'ed out of existence.
+export TRASH="$HOME/.local/trash"
+
+# Suppress acessibility warnings from bus, disabling
+# GNOME classic information.
+export NO_AT_BRIDGE=1
+
+# Aur package manager configuration.
+export PARU_CONF="$XDG_CONFIG_HOME/paru/paru.conf"
+
+# Cargo (Rust) installs and configuration.
+export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
+
+# Default home directory for GNU pg.
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
+# Default browser to be used for .html pages.
+export BROWSER='firefox-developer-edition'
+
+# Default book reader.
+export READER='zathura'
+
+# Default file manager to be used.
+export FILE='nnn'
+
+# Set default input manager.
+export SDL_IM_MODULE="fcitx"
+export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export XMODIFIERS=@im='fcitx'
+
+# When in terminal, use this as default editor
+export EDITOR='nvim'
+
+# When in display, use this as default editor.
+export VISUAL='nvim'
+
+# GTK2 root theme path.
+export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
+
+# Root configuration of 'zsh', shell, to look at.
+export ZDOTDIR="$HOME/.config/zsh"
+
+# The history path for 'less'.
+export LESSHISTFILE='/dev/null'
+
+# User scripts will be placed in.
+export SCRIPTS_FOLDER="$HOME/Programming/Projects/creamberry/bin"
+
+# Which place (folder) we should get wallpapers to set with
+# our image viewer.
+export XWALLPAPERS_FOLDER="$HOME/Storage/Library/Pictures/Paredepapel/"
+
+# The file which will guard all the latest wallpapers.
+export XWALLPAPER_HISTORY="$HOME/.cache/xwallpapers_history"
+
+# Limit of wallpapers to be cached in the history file.
+export LIMIT_WALLPAPERS=50
+
+# Folders where the system will search for binaries to be executed.
+# Note that it is not recursive.
+export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="$SCRIPTS_FOLDER:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+#--------------------------------
+# Start shit (Important session)
+#--------------------------------
+
+#   Start SSH-AGENT and dbus
+eval $(ssh-agent)
+gpg-agent --daemon
+export $(dbus-launch)
+
+#   Just get colours
+xrdb "$HOME/.config/xorg/XResources"
+
+#   Set cursor
+gsettings set org.gnome.desktop.interface font-name "$(xgetres theme.font-name)"
+
+#   Set keyboard to ABNT2 PT-BR
+setxkbmap -model abnt2 -layout br -variant abnt2
+
+#   Rate.
+xset r rate 200 60
+
+#   Mouse side.
+xmodmap -e 'pointer = 3 2 1'
+
+#   Cursor.
+xbanish -t 1 &
+
+#   SXHKD
+sxhkd -c "$XDG_CONFIG_HOME/sxhkd/sxhkdrc" &
+
+#   Picom
+picom --blur-method dual_kawase --blur-strength 20 &
+
+#   Flarity.
+flarity & 
+
+# Set last wallpaper with xwallpaper.
+zsh -c ". ~/.config/zsh/aliasesrc; wallpaper \"$(tail -n1 "$XWALLPAPER_HISTORY")\""
+
+#   Audio.
+#   How the audio will be set.
+pipewire & disown
+pipewire-pulse & disown
+wireplumber & disown
+
+# Clipboard Manager
+# Every data saved to a history file!.
+#
+copyq &
+
+# Input Managager.
+# Which languages and which keys will output a letter,
+# or two.
+fcitx5 &
+
+# Start window manager and let it be
+exec dwm
+
+#   Start our audio visualizer.
+#glava -m bars &
+
+# Pokit agent
+#polkit-dumb-agent &
+
+# Set random wallpaper for next time this session is loaded
+#zsh -c '. ~/.config/zsh/aliasesrc; random_wallpaper sddm'
+
+# Update GTK
+#zsh -c '. ~/.config/zsh/aliasesrc; up_gtk'
+
+# Picom as compositor
+
+#-------------------------------------------------------------------------------
+# Start shit (Not so important session)
+#-------------------------------------------------------------------------------
+
+#  Load a new null module to set when recording
+#pactl load-module module-null-sink sink_name=null
+
+#  Notifications per tag change
+#xnotify -o 0<>"$XNOTIFY_FIFO" &
+
+#   Start xbindkeys for keybinds
+#xbindkeys -f "$HOME/.config/xbindkeys/xbindkeysrc" &
+
+#   Start MPD and MPD Scrible to Lastfm and Music
+#mpd "$HOME/.config/mpd/mpd.conf" &
+
+#   Start unclutter to make mouse disappear after one second
+#unclutter --timeout 1 &
+
+#   Open new terminal and todoncli7
+#st -g '110x25+500+57' -t 'things_of_life' -e 'dash' '-c' 'sh ~/Desktop/THINGS_TO_DO' &
+
+#   Notification server
+#dunst -s -follow keyboard &
+
+#   Set mouse order
+#xmodmap -e 'pointer = 3 2 1'
+
+# Eww beauties
+#eww daemon
+#eww open top-bar
+#eww open bot-bar
+#~/.config/eww/bars/bottom/dwm_tags_daemon.sh   &
+#~/.config/eww/bars/bottom/dwm_title_daemon.sh  &
+#~/.config/eww/bars/bottom/dwm_layout_daemon.sh &
+#~/.config/eww/bars/top/song_daemon.sh          &
+
+#   TEMP - Warn dwm about the bars space.
+#echo "." | lemonbar
+
+#mpdscribble --conf "$HOME/.config/mpdscribble/mpdscribble.conf" &
+
+#------------------------------------------------
+# Remove some folders
+#----------------------------------------------------
+
+#   Sleep after 7 minutes of inactivity.
+#xautolock -time 7 -locker "lock"
+#

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=nnn
-Comment=A simple file manager just for you!
-Exec=flarity -e 'dash' '-c' 'nnn -adDoxRiJ -T t %U'
-Icon=nnn
-Terminal=false
-Type=Application
-Categories=Utility
-MimeType=inode/directory

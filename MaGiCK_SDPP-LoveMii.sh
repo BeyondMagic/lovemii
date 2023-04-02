@@ -61,6 +61,9 @@ case $1 in
     section "eww"
     text    "Widgets of the desktop."
 
+    section "qalculate"
+    text    "Qalculate! is an arbitrary precision cross-platform software calculator. It supports complex mathematical operations and concepts such as derivation, integration, data plotting, and unit conversion."
+
     section "zsh"
     text    "Main shell."
 
@@ -186,6 +189,15 @@ case $1 in
 
     section "latex-mk texlab perl-yaml-tiny perl-file-homedir"
     text    "For latex (which means everything related to documents."
+
+    section "Gummi"
+    text    "An preview-editor for latex."
+
+    section "aspell"
+    text    "Check spelling mistakes."
+
+    section "iftop"
+    text    "Network analyser."
 
     section "libreoffice"
     text    "To simply convert DOCX files to PDF..."

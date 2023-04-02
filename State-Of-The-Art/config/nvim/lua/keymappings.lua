@@ -7,6 +7,7 @@ local remap = { noremap = true, silent = true }
 
 -- Set with normal Vim opts, 'Space' as mapleader
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Set 'Space' as <NOP> key to leadermap key
 key('n', '<Space>', '<NOP>', remap )

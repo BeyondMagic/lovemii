@@ -5,7 +5,6 @@ vim.api.nvim_create_autocmd( 'VimLeavePre', {
   command = ":mks! ~/.config/nvim/session.vim"
 })
 
-
 -- To switch themes.
 -- vim.api.nvim_create_autocmd( 'Signal', {
 --   pattern = 'SIGUSR1',

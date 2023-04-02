@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=loveMii
-Comment=Executes the loveMii desktop.
-Exec=lovemii
-TryExec=lovemii
-Icon=dwm
-Type=XSession

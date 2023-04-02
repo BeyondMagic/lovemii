@@ -137,4 +137,3 @@ option('foldmethod', 'manual')
 
 -- File format for neovim reading
 option('fileformat', 'unix')
-

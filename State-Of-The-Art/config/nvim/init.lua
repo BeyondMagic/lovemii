@@ -1,22 +1,20 @@
--- Global, windows options of neovim:
-require('options')
+-- Personal Keymaps of neovim:
+require('keymappings')
 
 -- Filetype specialties.
 require('filetype')
 
 -- LSP for editing.
-require('lsp')
+--require('lsp')
 
--- Packer Plugin to adminstrate packages:
---   git clone https://github.com/wbthomason/packer.nvim\
---   ~/.local/share/nvim/site/pack/paker/start/packer.nvim
-require('plugins')
+-- To adminstrate packages:
+require('plugin-manager')
+
+-- Global, windows options of neovim:
+require('options')
 
 -- Autocmd commands from Vimscript
 require('autocmd')
-
--- Personal Keymaps of neovim:
-require('keymappings')
 
 -- Hai there!
 --print('|> Welcome my fellow friend 🌎')

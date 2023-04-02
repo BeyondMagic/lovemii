@@ -1177,7 +1177,7 @@
   <resource identifier="${gimp_data_dir}/gradients/Yellow_Orange.ggr" checksum="428584726006e23e260baa2a7d79f295">
   </resource>
 
-  <resource identifier="gimp-palette-color-history" checksum="68693707b0265fa63f8f943711fc85a6">
+  <resource identifier="gimp-palette-color-history" checksum="8f6062f53e103dd03939f31b24ee9d81">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Bears.gpl" checksum="e82e818c20ac12bdd21049924ea2d1e7">
@@ -2354,6 +2354,9 @@
   </resource>
 
   <resource identifier="Nimbus Sans Narrow Semi-Condensed" checksum="(null)">
+  </resource>
+
+  <resource identifier="Noto Color Emoji" checksum="(null)">
   </resource>
 
   <resource identifier="Noto Sans CJK HK" checksum="(null)">

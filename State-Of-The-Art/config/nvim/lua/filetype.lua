@@ -35,6 +35,21 @@ vim.filetype.add({
         -- Spelling fix.
         md = function()
           vim.api.nvim_command('setlocal spell!')
+
+          vim.api.nvim_create_autocmd( 'BufWritePost', {
+            callback = function ()
+              -- The path of the file.
+              local buffer_name  = vim.api.nvim_buf_get_name(0)
+
+              -- To transfrom the path "../../a.pdf" to "a".
+              local name_file    = buffer_name:match("[^/]*.md$")
+                    name_file    = name_file:sub(0, #name_file - 3)
+
+              local directory    = string.match(buffer_name, ".+/")
+              
+              job("pandoc " .. buffer_name .. " -s -o " .. directory .. name_file .. ".pdf")
+            end,
+          })
           return "markdown"
         end,
 
@@ -49,9 +64,7 @@ vim.filetype.add({
         tex = function()
           vim.api.nvim_create_autocmd( 'BufWritePost', {
             callback = function ()
-              local cache_folder = '/home/spirit/.cache/latex'
-              local all_letters  = '[%w%sA-Za-zÀ-ÖØ-öø-ÿ'
-
+              local cache_folder = '/home/dream/.cache/latex'
               -- The path of the file.
               local buffer_name  = vim.api.nvim_buf_get_name(0)
 

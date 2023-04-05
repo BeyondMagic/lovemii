@@ -4,11 +4,14 @@ require('keymappings')
 -- Filetype specialties.
 require('filetype')
 
--- LSP for editing.
---require('lsp')
+-- Main theme of Neovim.
+require('theme')
 
 -- To adminstrate packages:
 require('plugin-manager')
+
+-- LSP for editing.
+require('lsp')
 
 -- Global, windows options of neovim:
 require('options')

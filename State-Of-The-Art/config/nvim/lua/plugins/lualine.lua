@@ -11,31 +11,28 @@ return {
     -- Credit: glepnir
     local lualine = require('lualine')
 
-    -- Colours for the plugins.
-    local colors = require'../utils'.colours
-
     -- auto change color according to neovims mode
     local mode_color = {
-      n      = { 'Normal'           ,colors.blue },
-      i      = { 'Insert'           ,colors.green },
-      v      = { 'Visual'           ,colors.purple },
-      [''] = { 'Visual Block'     ,colors.violet },
-      V      = { 'Visual Line'      ,colors.purple },
-      c      = { 'Command-Line'     ,colors.magenta },
-      no     = { 'Operator-Pending' ,colors.darkblue },
-      s      = { 'Select'           ,colors.orange },
-      S      = { 'Select'           ,colors.info_yellow },
-      [''] = { 'Select'           ,colors.dark_yellow },
-      ic     = { 'Ins-Complete'     ,colors.yellow },
-      R      = { 'Replace'          ,colors.red },
-      Rv     = { 'Virtual'          ,colors.error_red },
-      cv     = { 'Ex'               ,colors.vivid_blue },
-      ce     = { 'Normal Ex'        ,colors.dark_blue },
-      r      = { 'Hit-Enter'        ,colors.light_blue },
-      rm     = { '--More'           ,colors.cyan },
-      ['r?'] = { ':Confirm'         ,colors.light_green },
-      ['!']  = { 'Shell'            ,colors.blue },
-      t      = { 'Terminal'         ,colors.blue }
+      n      = { 'Normal'           ,COLOUR.blue },
+      i      = { 'Insert'           ,COLOUR.green },
+      v      = { 'Visual'           ,COLOUR.purple },
+      [''] = { 'Visual Block'     ,COLOUR.violet },
+      V      = { 'Visual Line'      ,COLOUR.purple },
+      c      = { 'Command-Line'     ,COLOUR.magenta },
+      no     = { 'Operator-Pending' ,COLOUR.darkblue },
+      s      = { 'Select'           ,COLOUR.orange },
+      S      = { 'Select'           ,COLOUR.info_yellow },
+      [''] = { 'Select'           ,COLOUR.dark_yellow },
+      ic     = { 'Ins-Complete'     ,COLOUR.yellow },
+      R      = { 'Replace'          ,COLOUR.red },
+      Rv     = { 'Virtual'          ,COLOUR.error_red },
+      cv     = { 'Ex'               ,COLOUR.vivid_blue },
+      ce     = { 'Normal Ex'        ,COLOUR.dark_blue },
+      r      = { 'Hit-Enter'        ,COLOUR.light_blue },
+      rm     = { '--More'           ,COLOUR.cyan },
+      ['r?'] = { ':Confirm'         ,COLOUR.light_green },
+      ['!']  = { 'Shell'            ,COLOUR.blue },
+      t      = { 'Terminal'         ,COLOUR.blue }
     }
 
     -- Conditional for a certain part of the bar to be rendered.
@@ -95,8 +92,8 @@ return {
           -- We are going to use lualine_c an lualine_x as left and
           -- right section. Both are highlighted by c theme .  So we
           -- are just setting default looks o statusline
-          normal = { c = { fg = colors.fg, bg = colors.bg } },
-          inactive = { c = { fg = colors.fg, bg = colors.bg } },
+          normal = { c = { fg = COLOUR.fg, bg = COLOUR.bg } },
+          inactive = { c = { fg = COLOUR.fg, bg = COLOUR.bg } },
         },
 
         -- #. Sets how often lualine should refreash it's contents (in ms)
@@ -221,12 +218,12 @@ return {
     insert.status.left({
       'filename',
       cond = conditions.buffer_not_empty,
-      color = { fg = colors.grey, gui = 'bold' },
+      color = { fg = COLOUR.grey, gui = 'bold' },
     })
 
     insert.status.left({ 'location' })
 
-    insert.status.left({ 'progress', color = { fg = colors.fg, gui = 'bold' } })
+    insert.status.left({ 'progress', color = { fg = COLOUR.fg, gui = 'bold' } })
 
 
     insert.status.left({
@@ -234,9 +231,9 @@ return {
       colored = true, -- Displays a colored diff status if set to true
       diff_color = {
         -- Same color values as the general color option can be used here.
-        added    = { fg = colors.add },  -- Changes the diff's added color
-        modified = { fg = colors.change },  -- Changes the diff's modified color
-        removed  = { fg = colors.red }  -- Changes the diff's removed color you
+        added    = { fg = COLOUR.add },  -- Changes the diff's added color
+        modified = { fg = COLOUR.change },  -- Changes the diff's modified color
+        removed  = { fg = COLOUR.red }  -- Changes the diff's removed color you
       },
       symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
       cond = conditions.hide_in_width,
@@ -252,7 +249,7 @@ return {
           return '  ' .. vim.api.nvim_get_option('spelllang')
         end,
         cond = conditions.spell_activated,
-        color = { fg = colors.green, gui = 'bold' },
+        color = { fg = COLOUR.green, gui = 'bold' },
     })
 
     -- Insert mid section. You can make any number of sections in neovim :)
@@ -281,7 +278,7 @@ return {
         return ''
       end,
       icon = ' ',
-      color = { fg = colors.fg, gui = 'bold' },
+      color = { fg = COLOUR.fg, gui = 'bold' },
     })
 
 
@@ -291,10 +288,10 @@ return {
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       diagnostics_color = {
         -- Same values as the general color option can be used here.
-        error = { fg = colors.error }, -- Changes diagnostics' error color.
-        warn  = { fg = colors.warning }, -- Changes diagnostics' warn color.
-        info  = { fg = colors.information }, -- Changes diagnostics' info color.
-        hint  = { fg = colors.hint }  -- Changes diagnostics' hint color.,
+        error = { fg = COLOUR.error }, -- Changes diagnostics' error color.
+        warn  = { fg = COLOUR.warning }, -- Changes diagnostics' warn color.
+        info  = { fg = COLOUR.information }, -- Changes diagnostics' info color.
+        hint  = { fg = COLOUR.hint }  -- Changes diagnostics' hint color.,
       },
       colored = true,           -- Displays diagnostics status in color if set to true.
       update_in_insert = false, -- Update diagnostics in insert mode.
@@ -314,7 +311,7 @@ return {
         end
       end,
       cond = conditions.writing_file,
-      color = { fg = colors.gray, gui = 'bold' },
+      color = { fg = COLOUR.gray, gui = 'bold' },
     })
 
     -- Add components to right sections
@@ -322,20 +319,20 @@ return {
       'o:encoding', -- option component same as &encoding in viml
       fmt = string.upper, -- I'm not sure why it's upper case either ;)
       cond = conditions.hide_in_width,
-      color = { fg = colors.fg, gui = 'bold' },
+      color = { fg = COLOUR.fg, gui = 'bold' },
     })
 
     insert.status.right({
       'fileformat',
       fmt = string.upper,
       icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-      color = { fg = colors.fg, gui = 'bold' },
+      color = { fg = COLOUR.fg, gui = 'bold' },
     })
 
     insert.status.right({
       'branch',
       icon = '',
-      color = { fg = colors.gray, gui = 'bold' },
+      color = { fg = COLOUR.gray, gui = 'bold' },
     })
 
     --insert.status.right({
@@ -343,9 +340,9 @@ return {
     --  -- Is it me or the symbol for modified us really weird
     --  symbols = { added = ' ', modified = '柳 ', removed = ' ' },
     --  diff_color = {
-    --    added = { fg = colors.green },
-    --    modified = { fg = colors.orange },
-    --    removed = { fg = colors.red },
+    --    added = { fg = COLOUR.green },
+    --    modified = { fg = COLOUR.orange },
+    --    removed = { fg = COLOUR.red },
     --  },
     --  cond = conditions.hide_in_width,
     --})
@@ -354,7 +351,7 @@ return {
       function()
         return '▊'
       end,
-      color = { fg = colors.bar },
+      color = { fg = COLOUR.bar },
       padding = { left = 1 },
     })
 
@@ -367,7 +364,7 @@ return {
     --  function ()
     --    return " I feel like dreaming!"
     --  end,
-    --  color = { fg = colors.fg, bg = colors.bg_light, gui = 'bold' },
+    --  color = { fg = COLOUR.fg, bg = COLOUR.bg_light, gui = 'bold' },
     --})
 
     ----------------------------------------------------

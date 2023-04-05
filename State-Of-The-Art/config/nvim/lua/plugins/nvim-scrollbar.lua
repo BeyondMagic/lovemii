@@ -17,7 +17,7 @@ return {
     show = true,
     handle = {
       text                = " ",
-      color               = require'../utils'.colours.bar,
+      color               = COLOUR.ba,
       hide_if_all_visible = true, -- Hides handle if all lines are visible
     },
     marks = {

@@ -9,3 +9,5 @@
 **/mpdscribble
 **/mozc
 **/mopidy
+**/copyq/**
+!**/copyq/themes/

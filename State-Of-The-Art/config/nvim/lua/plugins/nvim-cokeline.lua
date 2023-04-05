@@ -1,7 +1,5 @@
 -- Tabs of buffers.
 
-local colours = require('../utils').colours
-
 return {
   'noib3/nvim-cokeline',
   config = {
@@ -68,7 +66,7 @@ return {
       -- `ColorColumn`'s background color for unfocused ones.
       -- default: `Normal`'s foreground color.
       bg = function (buffer)
-        return buffer.is_focused and colours.background or colours.tabfill
+        return buffer.is_focused and COLOUR.background or COLOUR.tabfill
       end,
       -- default: `'NONE'`.
       -- 'attr1,attr2,...' | function(buffer) -> 'attr1,attr2,...'
@@ -96,8 +94,8 @@ return {
           -- Whetever the are mistakes in this.
           fg = function(buffer)
             return
-              (buffer.diagnostics.errors ~= 0 and colours.error)
-              or (buffer.diagnostics.warnings ~= 0 and colours.warning)
+              (buffer.diagnostics.errors ~= 0 and COLOUR.error)
+              or (buffer.diagnostics.warnings ~= 0 and COLOUR.warning)
               or nil
           end,
 
@@ -125,7 +123,7 @@ return {
             return buffer.unique_prefix
           end,
           fg = function(buffer)
-            return buffer.is_focused and colours.ignore or colours.comment
+            return buffer.is_focused and COLOUR.ignore or COLOUR.comment
           end,
           style = function(buffer)
             return buffer.is_focused and "bold" or nil
@@ -146,9 +144,9 @@ return {
             return buffer.filename .. " "
           end,
           fg = function(buffer)
-            return (buffer.diagnostics.errors ~= 0 and colours.error)
-              or (buffer.diagnostics.warnings ~= 0 and colours.warning)
-              or (buffer.is_focused and colours.purple)
+            return (buffer.diagnostics.errors ~= 0 and COLOUR.error)
+              or (buffer.diagnostics.warnings ~= 0 and COLOUR.warning)
+              or (buffer.is_focused and COLOUR.purple)
               or nil
           end,
           style = function(buffer)
@@ -169,7 +167,7 @@ return {
           text = ' ',
           delete_buffer_on_left_click = true,
           fg = function(buffer)
-            return buffer.is_modified and colours.operator
+            return buffer.is_modified and COLOUR.operator
           end,
         },
 

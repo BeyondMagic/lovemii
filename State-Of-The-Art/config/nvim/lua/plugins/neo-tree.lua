@@ -1,5 +1,4 @@
 -- File-tree manager.
-local colours = require"../utils".colours
 
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -92,7 +91,7 @@ return {
         handler = function()
           --vim.cmd("set guicursor-=a:InvisibleCursor")
           vim.cmd("highlight CursorLine gui=NONE")
-          vim.cmd("highlight CursorColumn guibg=" .. colours.bg_cursor)
+          vim.cmd("highlight CursorColumn guibg=" .. COLOUR.bg_cursor)
         end
       }
     },
@@ -183,11 +182,11 @@ return {
             --   zindex = 10,
             --   highlight = "NeoTreeSymbolicLinkTarget",
             -- },
-            { "clipboard", zindex    = 10 },
-            { "bufnr", zindex        = 10 },
-            { "modified", zindex     = 20, align = "right" },
-            { "diagnostics",  zindex = 20, align = "right" },
-            { "git_status", zindex   = 20, align = "right" },
+            { "clipboard",   zindex = 10 },
+            { "bufnr",       zindex = 10 },
+            { "modified",    zindex = 20, align = "right" },
+            { "diagnostics", zindex = 20, align = "right" },
+            { "git_status",  zindex = 20, align = "right" },
           },
         },
       },

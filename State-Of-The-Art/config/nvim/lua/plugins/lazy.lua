@@ -1,19 +1,50 @@
 return {
 
-  -- Theme (dark and light)
-  {
-    dir      = '~/Programming/Projects/arcoiris-nvim-theme',
-    lazy     = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config   = function ()
-      vim.cmd.colorscheme('arcoiris')
-    end
-  },
+  -- Theme.
+  --{
+  --  dir      = '~/Programming/Projects/arcoiris-overhaul',
+  --  priority = 1000,
+  --  name     = 'arcoiris',
+  --  init     = function()
+  --    vim.api.nvim_create_autocmd('ColorScheme {
+  --      callback = function() vim.api.nvim_set_hl(…) end,
+  --      group = vim.api.nvim_create_augroup('config', {clear = false}),
+  --      pattern = 'highlite',
+  --    })
+  --    vim.opt.termguicolors = true
+
+  --    -- Setting our theem set.
+  --    -- 1. 'light' for white theme.
+  --    -- 2. 'dark' for dark theme.
+  --    vim.api.nvim_set_option('background', 'dark')
+
+  --    -- Set colorscheme theme.
+  --    vim.cmd.colorscheme'arcoiris'
+
+  --    -- Load main theme.
+  --    require('utils')
+
+  --  end,
+  --  config = function()
+  --    vim.opt.termguicolors = true
+
+  --    -- Setting our theem set.
+  --    -- 1. 'light' for white theme.
+  --    -- 2. 'dark' for dark theme.
+  --    vim.api.nvim_set_option('background', 'dark')
+
+  --    -- Set colorscheme theme.
+  --    vim.cmd.colorscheme'arcoiris'
+
+  --    -- Load main theme.
+  --    require('utils')
+  --  end,
+  --},
 
   -- CPP modern syntax.
   'bfrg/vim-cpp-modern',
 
-  -- LSP auto-complet
+  -- LSP auto-complete.
   'neovim/nvim-lspconfig',
   'hrsh7th/vim-vsnip',
 

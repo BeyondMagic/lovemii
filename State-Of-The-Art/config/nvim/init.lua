@@ -7,14 +7,14 @@ require('filetype')
 -- Main theme of Neovim.
 require('theme')
 
+-- Global, windows options of neovim:
+require('options')
+
 -- To adminstrate packages:
 require('plugin-manager')
 
 -- LSP for editing.
 require('lsp')
-
--- Global, windows options of neovim:
-require('options')
 
 -- Autocmd commands from Vimscript
 require('autocmd')

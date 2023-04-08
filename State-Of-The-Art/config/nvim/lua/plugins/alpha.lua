@@ -204,7 +204,7 @@ then
     -- Which returns one to three lines, being each divided by a line break.
     -- Or just an array: { "I see you:", "Above you." }
     val = {
-      "My mama didn't raise no fool",
+      "After a dark night there's a brighter day.",
       "                       Tupac",
       "Changes",
     }, -- split(capture('rdn')),

@@ -13,7 +13,7 @@ return {
 
     -- auto change color according to neovims mode
     local mode_color = {
-      n      = { 'Normal'           ,COLOUR.blue },
+      n      = { 'Normal'           ,COLOUR.grey },
       i      = { 'Insert'           ,COLOUR.green },
       v      = { 'Visual'           ,COLOUR.purple },
       [''] = { 'Visual Block'     ,COLOUR.violet },
@@ -91,9 +91,9 @@ return {
         theme = {
           -- We are going to use lualine_c an lualine_x as left and
           -- right section. Both are highlighted by c theme .  So we
-          -- are just setting default looks o statusline
-          normal = { c = { fg = COLOUR.fg, bg = COLOUR.bg } },
-          inactive = { c = { fg = COLOUR.fg, bg = COLOUR.bg } },
+          -- are just setting default looks o statuslinbar_e
+          normal = { c = { fg = COLOUR.fg, bg = COLOUR.bar_bg } },
+          inactive = { c = { fg = COLOUR.fg, bg = COLOUR.bar_bg } },
         },
 
         -- #. Sets how often lualine should refreash it's contents (in ms)
@@ -218,7 +218,7 @@ return {
     insert.status.left({
       'filename',
       cond = conditions.buffer_not_empty,
-      color = { fg = COLOUR.grey, gui = 'bold' },
+      color = { fg = COLOUR.gray, gui = 'bold' },
     })
 
     insert.status.left({ 'location' })
@@ -231,9 +231,9 @@ return {
       colored = true, -- Displays a colored diff status if set to true
       diff_color = {
         -- Same color values as the general color option can be used here.
-        added    = { fg = COLOUR.add },  -- Changes the diff's added color
-        modified = { fg = COLOUR.change },  -- Changes the diff's modified color
-        removed  = { fg = COLOUR.red }  -- Changes the diff's removed color you
+        added    = { fg = COLOUR.green },  -- Changes the diff's added color
+        modified = { fg = COLOUR.blue },  -- Changes the diff's modified color
+        removed  = { fg = COLOUR.error }  -- Changes the diff's removed color you
       },
       symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
       cond = conditions.hide_in_width,
@@ -347,13 +347,13 @@ return {
     --  cond = conditions.hide_in_width,
     --})
 
-    insert.status.right({
-      function()
-        return '▊'
-      end,
-      color = { fg = COLOUR.bar },
-      padding = { left = 1 },
-    })
+    --insert.status.right({
+    --  function()
+    --    return '▊'
+    --  end,
+    --  color = { fg = COLOUR.bar },
+    --  padding = { left = 1 },
+    --})
 
     ----------------------------------------------------
 

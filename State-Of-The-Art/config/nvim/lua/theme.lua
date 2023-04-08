@@ -32,6 +32,7 @@ vim.cmd.colorscheme'arcoiris'
 COLOUR = {
   bg            = get_hex("StatusLine", "bg"),
   fg            = get_hex("Comment", "fg"),
+  bar_bg        = get_hex("VisualNOS", "bg"),
   bar           = get_hex("CursorLineNR", "bg"),
   bold          = get_hex("NavicBold", "fg"),
   yellow        = get_hex("PreProc", "fg"),
@@ -52,7 +53,7 @@ COLOUR = {
   error_red     = get_hex("NavicRed", "fg"),
   info_yellow   = get_hex("NavicYellow", "fg"),
   bg_light      = get_hex("VertSplit", "fg"),
-  bg_cursor     = get_hex("FloatBorder", "fg"),
+  bg_cursor     = get_hex("CursorColumn", "bg"),
   gray          = get_hex("SpecialComment", "fg"),
 
   -- LSP

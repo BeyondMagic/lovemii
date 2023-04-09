@@ -56,6 +56,8 @@ alias        dev='./make.sh'
 alias     lo2pdf='libreoffice --headless --convert-to pdf'
 alias    comprez='tar -czfv'
 alias    extrakt='tar -xzfv'
+alias        xcp='xclip -selection clipboard < '
+alias        xpt='xclip -selection clipboard -o > '
 
 #--------------------------------------------------------------------------------
 # Functions
@@ -210,6 +212,15 @@ find_here () {
 
   grep -r $@ *
 
+}
+
+# Change the mode of the command-line to show less.
+mode () {
+  if [ "$1" = "competitive" ]; then
+    PS1="%B%F{grey}%1d %(?..%F{red})$PS1_SYMBOL  %b%F{grey}"
+  else
+    PS1="%B%F{grey}%~ %(?..%F{red})$PS1_SYMBOL  %b%F{grey}"
+  fi
 }
 
 # Run todoncli

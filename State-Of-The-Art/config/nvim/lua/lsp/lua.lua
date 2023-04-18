@@ -1,10 +1,10 @@
-USER = vim.fn.expand('$USER')
+local user = vim.fn.expand('$USER')
 
-local sumneko_root_path = "/home/" .. USER .. "/Programming/Language_Servers/lua-language-server"
-local sumneko_binary    = "/home/" .. USER .. "/Programming/Language_Servers/lua-language-server/bin/Linux/lua-language-server"
+local sumneko_root_path = "/home/" .. user .. "/Programming/Language_Servers/lua-language-server"
+local sumneko_binary    = "/home/" .. user .. "/Programming/Language_Servers/lua-language-server/bin/lua-language-server"
 
-require('lspconfig').lua_ls.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+require 'lspconfig' .lua_ls.setup {
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     settings = {
         Lua = {
             runtime = {

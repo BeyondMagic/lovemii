@@ -59,14 +59,14 @@ return {
       -- default: `ColorColumn`'s background color for focused buffers,
       -- `Normal`'s foreground color for unfocused ones.
       fg = function (buffer)
-        return buffer.is_focused and 'white' or 'gray'
+        return buffer.is_focused and COLOUR.fg_1 or COLOUR.fg_2
       end,
 
       -- default: `Normal`'s foreground color for focused buffers,
       -- `ColorColumn`'s background color for unfocused ones.
       -- default: `Normal`'s foreground color.
       bg = function (buffer)
-        return buffer.is_focused and COLOUR.background or COLOUR.tabfill
+        return buffer.is_focused and COLOUR.bg_1 or COLOUR.bg_0
       end,
       -- default: `'NONE'`.
       -- 'attr1,attr2,...' | function(buffer) -> 'attr1,attr2,...'
@@ -94,8 +94,8 @@ return {
           -- Whetever the are mistakes in this.
           fg = function(buffer)
             return
-              (buffer.diagnostics.errors ~= 0 and COLOUR.error)
-              or (buffer.diagnostics.warnings ~= 0 and COLOUR.warning)
+              (buffer.diagnostics.errors ~= 0 and COLOUR.red_1)
+              or (buffer.diagnostics.warnings ~= 0 and COLOUR.fg_3)
               or nil
           end,
 
@@ -123,7 +123,7 @@ return {
             return buffer.unique_prefix
           end,
           fg = function(buffer)
-            return buffer.is_focused and COLOUR.ignore or COLOUR.comment
+            return buffer.is_focused and COLOUR.fg_3 or COLOUR.fg_5
           end,
           style = function(buffer)
             return buffer.is_focused and "bold" or nil
@@ -144,9 +144,9 @@ return {
             return buffer.filename .. " "
           end,
           fg = function(buffer)
-            return (buffer.diagnostics.errors ~= 0 and COLOUR.error)
+            return (buffer.diagnostics.errors ~= 0 and COLOUR.red_1)
               or (buffer.diagnostics.warnings ~= 0 and COLOUR.warning)
-              or (buffer.is_focused and COLOUR.purple)
+              or (buffer.is_focused and COLOUR.violet_1)
               or nil
           end,
           style = function(buffer)
@@ -167,7 +167,7 @@ return {
           text = ' ',
           delete_buffer_on_left_click = true,
           fg = function(buffer)
-            return buffer.is_modified and COLOUR.operator
+            return buffer.is_modified and COLOUR.green_0
           end,
         },
 

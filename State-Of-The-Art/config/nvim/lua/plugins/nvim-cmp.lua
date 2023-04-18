@@ -172,14 +172,24 @@ return {
 
         -- More snippets.
         -- For all types of languages.
-        { name = "friendly-snippets", priority = 11 },
+        {
+          name = "friendly-snippets",
+          priority = 11,
+        },
 
         -- For the Nvim lua specifics commands.
-        { name = "nvim_lua", priority = 8 },
+        {
+          name = "nvim_lua",
+          priority = 8,
+        },
 
         -- Support with the current active LSP.
         -- Anything that LSP supports and can share with CMP.
-        { name = "nvim_lsp", priority = 11 },
+        {
+          name = "nvim_lsp",
+          priority = 11,
+          max_item_count = 10,
+        },
 
         -- Snippets in general to facilitate life.
         -- Type a often typed methods, like for in C.
@@ -187,10 +197,18 @@ return {
 
         -- Show path based on the backslashes.
         -- Type any path, relatively or globally.
-        { name = "path",     priority = 9 },
+        {
+          name = "path",
+          priority = 9,
+        },
 
         -- Words from buffer.
-        { name = "buffer",   priority = 4 },
+        {
+          name = "buffer",
+          priority = 4,
+        },
+
+        -- Max item count.
 
         -- Dictionary for words.
         -- Type any word that is on the /usr/share/dict/words
@@ -212,7 +230,10 @@ return {
 
         -- Calculate expressions based on the current line.
         -- Activate with something like "4 + 5".
-        { name = 'calc',     priority = 10 }
+        {
+          name = 'calc',
+          priority = 10,
+        }
       }
     }
   end

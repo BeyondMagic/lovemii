@@ -13,26 +13,26 @@ return {
 
     -- auto change color according to neovims mode
     local mode_color = {
-      n      = { 'Normal'           ,COLOUR.grey },
-      i      = { 'Insert'           ,COLOUR.green },
-      v      = { 'Visual'           ,COLOUR.purple },
-      [''] = { 'Visual Block'     ,COLOUR.violet },
-      V      = { 'Visual Line'      ,COLOUR.purple },
-      c      = { 'Command-Line'     ,COLOUR.magenta },
-      no     = { 'Operator-Pending' ,COLOUR.darkblue },
-      s      = { 'Select'           ,COLOUR.orange },
-      S      = { 'Select'           ,COLOUR.info_yellow },
-      [''] = { 'Select'           ,COLOUR.dark_yellow },
-      ic     = { 'Ins-Complete'     ,COLOUR.yellow },
-      R      = { 'Replace'          ,COLOUR.red },
-      Rv     = { 'Virtual'          ,COLOUR.error_red },
-      cv     = { 'Ex'               ,COLOUR.vivid_blue },
-      ce     = { 'Normal Ex'        ,COLOUR.dark_blue },
-      r      = { 'Hit-Enter'        ,COLOUR.light_blue },
-      rm     = { '--More'           ,COLOUR.cyan },
-      ['r?'] = { ':Confirm'         ,COLOUR.light_green },
-      ['!']  = { 'Shell'            ,COLOUR.blue },
-      t      = { 'Terminal'         ,COLOUR.blue }
+      n      = { 'Normal'           ,COLOUR.fg_1 },
+      i      = { 'Insert'           ,COLOUR.green_3 },
+      v      = { 'Visual'           ,COLOUR.green_1 },
+      [''] = { 'Visual Block'     ,COLOUR.green_0 },
+      V      = { 'Visual Line'      ,COLOUR.violet_2 },
+      c      = { 'Command-Line'     ,COLOUR.violet_0 },
+      no     = { 'Operator-Pending' ,COLOUR.blue_1 },
+      s      = { 'Select'           ,COLOUR.orange_1 },
+      S      = { 'Select'           ,COLOUR.yellow_0 },
+      [''] = { 'Select'           ,COLOUR.orange_0 },
+      ic     = { 'Ins-Complete'     ,COLOUR.yellow_1 },
+      R      = { 'Replace'          ,COLOUR.red_1 },
+      Rv     = { 'Virtual'          ,COLOUR.red_2 },
+      cv     = { 'Ex'               ,COLOUR.green_5 },
+      ce     = { 'Normal Ex'        ,COLOUR.blue_2 },
+      r      = { 'Hit-Enter'        ,COLOUR.violet_1 },
+      rm     = { '--More'           ,COLOUR.blue_0 },
+      ['r?'] = { ':Confirm'         ,COLOUR.green_4 },
+      ['!']  = { 'Shell'            ,COLOUR.blue_3 },
+      t      = { 'Terminal'         ,COLOUR.blue_4 }
     }
 
     -- Conditional for a certain part of the bar to be rendered.
@@ -41,6 +41,11 @@ return {
       -- To see if the buffer is not empty.
       buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+      end,
+
+      -- If buffer is not X name.
+      is_not_buffer = function(name)
+        return vim.api.nvim_buf_get_name(0) == name
       end,
 
       -- To hide if is biggerr than certain width.
@@ -78,8 +83,8 @@ return {
 
         -- Filetypes to disable lualine for.
         disabled_filetypes = {
-          statusline = { 'neo-tree' },       -- only ignores the ft for statusline.
-          winbar     = { 'neo-tree' },           -- only ignores the ft for winbar.
+          statusline = { 'neo-tree' }, -- only ignores the ft for statusline.
+          winbar     = { 'neo-tree' }, -- only ignores the ft for winbar.
         },
 
 
@@ -92,8 +97,8 @@ return {
           -- We are going to use lualine_c an lualine_x as left and
           -- right section. Both are highlighted by c theme .  So we
           -- are just setting default looks o statuslinbar_e
-          normal = { c = { fg = COLOUR.fg, bg = COLOUR.bar_bg } },
-          inactive = { c = { fg = COLOUR.fg, bg = COLOUR.bar_bg } },
+          normal = { c = { fg = COLOUR.fg_4, bg = COLOUR.bg_2 } },
+          inactive = { c = { fg = COLOUR.fg_3, bg = COLOUR.bg_3 } },
         },
 
         -- #. Sets how often lualine should refreash it's contents (in ms)
@@ -212,18 +217,19 @@ return {
     -- #. Filesize component.
     insert.status.left({
       'filesize',
-      cond = conditions.buffer_not_empty,
     })
+
+    --insert.status.left({
+    --  'filename',
+    --  cond = conditions.buffer_not_empty,
+    --  color = { fg = COLOUR.gray, gui = 'bold' },
+    --})
 
     insert.status.left({
-      'filename',
-      cond = conditions.buffer_not_empty,
-      color = { fg = COLOUR.gray, gui = 'bold' },
+      'location',
     })
 
-    insert.status.left({ 'location' })
-
-    insert.status.left({ 'progress', color = { fg = COLOUR.fg, gui = 'bold' } })
+    insert.status.left({ 'progress', color = { fg = COLOUR.fg_0, gui = 'bold' } })
 
 
     insert.status.left({
@@ -231,9 +237,9 @@ return {
       colored = true, -- Displays a colored diff status if set to true
       diff_color = {
         -- Same color values as the general color option can be used here.
-        added    = { fg = COLOUR.green },  -- Changes the diff's added color
-        modified = { fg = COLOUR.blue },  -- Changes the diff's modified color
-        removed  = { fg = COLOUR.error }  -- Changes the diff's removed color you
+        added    = { fg = COLOUR.green_0 },  -- Changes the diff's added color
+        modified = { fg = COLOUR.blue_1 },  -- Changes the diff's modified color
+        removed  = { fg = COLOUR.red_1 }  -- Changes the diff's removed color you
       },
       symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
       cond = conditions.hide_in_width,
@@ -249,7 +255,7 @@ return {
           return '  ' .. vim.api.nvim_get_option('spelllang')
         end,
         cond = conditions.spell_activated,
-        color = { fg = COLOUR.green, gui = 'bold' },
+        color = { fg = COLOUR.green_3, gui = 'bold' },
     })
 
     -- Insert mid section. You can make any number of sections in neovim :)
@@ -278,7 +284,7 @@ return {
         return ''
       end,
       icon = ' ',
-      color = { fg = COLOUR.fg, gui = 'bold' },
+      color = { fg = COLOUR.fg_0, gui = 'bold' },
     })
 
 
@@ -288,10 +294,10 @@ return {
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       diagnostics_color = {
         -- Same values as the general color option can be used here.
-        error = { fg = COLOUR.error }, -- Changes diagnostics' error color.
-        warn  = { fg = COLOUR.warning }, -- Changes diagnostics' warn color.
-        info  = { fg = COLOUR.information }, -- Changes diagnostics' info color.
-        hint  = { fg = COLOUR.hint }  -- Changes diagnostics' hint color.,
+        error = { fg = COLOUR.red_1 }, -- Changes diagnostics' error color.
+        warn  = { fg = COLOUR.yellow_0 }, -- Changes diagnostics' warn color.
+        info  = { fg = COLOUR.blue_3 }, -- Changes diagnostics' info color.
+        hint  = { fg = COLOUR.violet_1 }  -- Changes diagnostics' hint color.,
       },
       colored = true,           -- Displays diagnostics status in color if set to true.
       update_in_insert = false, -- Update diagnostics in insert mode.
@@ -311,7 +317,7 @@ return {
         end
       end,
       cond = conditions.writing_file,
-      color = { fg = COLOUR.gray, gui = 'bold' },
+      color = { fg = COLOUR.fg_0, gui = 'bold' },
     })
 
     -- Add components to right sections
@@ -319,20 +325,20 @@ return {
       'o:encoding', -- option component same as &encoding in viml
       fmt = string.upper, -- I'm not sure why it's upper case either ;)
       cond = conditions.hide_in_width,
-      color = { fg = COLOUR.fg, gui = 'bold' },
+      color = { fg = COLOUR.fg_0, gui = 'bold' },
     })
 
     insert.status.right({
       'fileformat',
       fmt = string.upper,
       icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-      color = { fg = COLOUR.fg, gui = 'bold' },
+      color = { fg = COLOUR.fg_0, gui = 'bold' },
     })
 
     insert.status.right({
       'branch',
       icon = '',
-      color = { fg = COLOUR.gray, gui = 'bold' },
+      color = { fg = COLOUR.fg_0, gui = 'bold' },
     })
 
     --insert.status.right({

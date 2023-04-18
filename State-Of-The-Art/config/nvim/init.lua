@@ -1,3 +1,4 @@
+
 -- Personal Keymaps of neovim:
 require('keymappings')
 

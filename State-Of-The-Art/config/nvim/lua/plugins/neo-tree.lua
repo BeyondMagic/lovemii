@@ -91,7 +91,7 @@ return {
         handler = function()
           --vim.cmd("set guicursor-=a:InvisibleCursor")
           vim.cmd("highlight CursorLine gui=NONE")
-          vim.cmd("highlight CursorColumn guibg=" .. COLOUR.bg_cursor)
+          vim.cmd("highlight CursorColumn guibg=" .. COLOUR.bg_2)
         end
       }
     },

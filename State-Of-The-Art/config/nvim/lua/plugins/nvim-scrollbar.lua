@@ -17,7 +17,7 @@ return {
     show = true,
     handle = {
       text                = " ",
-      color               = COLOUR.ba,
+      color               = COLOUR.bar,
       hide_if_all_visible = true, -- Hides handle if all lines are visible
     },
     marks = {
@@ -29,7 +29,7 @@ return {
       Misc   = { text = { "-", "=" }, priority = 5, color = "purple" },
     },
     excluded_filetypes = {
-      "",
+      "neo-tree",
       "prompt",
       "TelescopePrompt",
     },

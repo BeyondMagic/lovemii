@@ -101,19 +101,21 @@ vim.filetype.add({
       --[".*config/picom/.*"] = function()
       --  vim.api.nvim_command('cd ~/Programming/Personal/magic/.config/picom/')
       --end,
-      --[".*config/xorg/.*"] = function()
-      --  vim.api.nvim_command('cd ~/.config/xorg/')
+      [".*config/xorg/.*"] = function()
+        vim.api.nvim_command('cd ~/.config/xorg/')
 
-      --  -- Make up the XORG.
-      --  vim.api.nvim_create_autocmd( 'BufWritePost', {
-      --    pattern = '<buffer>',
-      --    callback = function ()
-      --      os.execute( "xrdb ~/.config/xorg/XResources" )
-      --    end,
-      --  })
+        -- Make up the XORG.
+        vim.api.nvim_create_autocmd( 'BufWritePost', {
+          pattern = '<buffer>',
+          callback = function ()
+            os.execute( "xrdb ~/.config/xorg/XResources" )
+          end,
+        })
 
-      --  return 'xdefaults'
-      --end,
+        vim.api.nvim_command('HexokinaseTurnOn')
+
+        return 'xdefaults'
+      end,
 
       ---- Typescript Projects
       [".*/source/ts/.*ts"] = function()

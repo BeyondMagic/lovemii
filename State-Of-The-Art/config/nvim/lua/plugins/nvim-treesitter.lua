@@ -3,19 +3,19 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  --config = function ()
+  config = function ()
 
-  --  require'nvim-treesitter.configs'.setup {
-  --    highlight = {
-  --      enable = true,
-  --      disable = {},
-  --      injections = {
-  --        python = {
-  --          docstrings: "markdown",
-  --        },
-  --      }
-  --    }
-  --  }
+    require('nvim-treesitter.configs').setup {
+      highlight = {
+        enable = true,
+        disable = {},
+        --injections = {
+        --  python = {
+        --    docstrings: "markdown",
+        --  },
+        --}
+      },
+    }
 
-  --end
+  end
 }

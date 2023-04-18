@@ -1,5 +1,6 @@
 return {
 
+
   -- Theme.
   --{
   --  dir      = '~/Programming/Projects/arcoiris-overhaul',
@@ -134,4 +135,9 @@ return {
 
   -- JSONLS
   'b0o/schemastore.nvim',
+
+  -- 
+  --  LSP
+  -- 
+  'MunifTanjim/eslint.nvim',
 }

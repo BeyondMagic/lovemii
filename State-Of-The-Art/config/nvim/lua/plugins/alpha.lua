@@ -54,9 +54,10 @@ then
   -- Create button for initial keybind.
   --- @param sc string
   --- @param txt string
+  --- @param hl string
   --- @param keybind string optional
   --- @param keybind_opts table optional
-  local function button(sc, txt, keybind, keybind_opts)
+  local function button(sc, txt, hl, keybind, keybind_opts)
     local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
     local opts = {
@@ -65,8 +66,9 @@ then
       cursor         = 5,
       width          = 50,
       align_shortcut = "right",
-      hl_shortcut    = "Conditional",
+      hl_shortcut    = hl,
     }
+
     if keybind then
       keybind_opts = vim.F.if_nil(keybind_opts, {noremap = true, silent = true, nowait = true})
       opts.keymap = {"n", sc_, keybind, keybind_opts}
@@ -89,17 +91,32 @@ then
   Headers = {
 
     {
-      [[                                                                     ]],
-      [[       ███████████           █████      ██                     ]],
-      [[      ███████████             █████                             ]],
-      [[      ████████████████ ███████████ ███   ███████     ]],
-      [[     ████████████████ ████████████ █████ ██████████████   ]],
-      [[    █████████████████████████████ █████ █████ ████ █████   ]],
-      [[  ██████████████████████████████████ █████ █████ ████ █████  ]],
-      [[ ██████  ███ █████████████████ ████ █████ █████ ████ ██████ ]],
-      [[ ██████   ██  ███████████████   ██ █████████████████ ]],
-      [[ ██████   ██  ███████████████   ██ █████████████████ ]],
-    },
+      [[            .-'''''-.    ]],
+      [[          .'         `.  ]],
+      [[         :             : ]],
+      [[        :               :]],
+      [[        :      _/|      :]],
+      [[         :   =/_/      : ]],
+      [[          `._/ |     .'  ]],
+      [[       (   /  ,|...-'    ]],
+      [[        \_/^\/||__       ]],
+      [[     _/~  `""~`"` \_     ]],
+      [[  __/  -'.  ` .  `\_\__  ]],
+      [[/jgs     \           \-.\ ]],
+    }, -- jgs
+
+    --{
+    --  [[                                                                     ]],
+    --  [[       ███████████           █████      ██                     ]],
+    --  [[      ███████████             █████                             ]],
+    --  [[      ████████████████ ███████████ ███   ███████     ]],
+    --  [[     ████████████████ ████████████ █████ ██████████████   ]],
+    --  [[    █████████████████████████████ █████ █████ ████ █████   ]],
+    --  [[  ██████████████████████████████████ █████ █████ ████ █████  ]],
+    --  [[ ██████  ███ █████████████████ ████ █████ █████ ████ ██████ ]],
+    --  [[ ██████   ██  ███████████████   ██ █████████████████ ]],
+    --  [[ ██████   ██  ███████████████   ██ █████████████████ ]],
+    --},
 
    -- {
    --   '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ',
@@ -192,7 +209,7 @@ then
     val = Headers[1],
     opts = {
       position = "center",
-      hl = "Type"
+      hl       = "Whitespace"
       -- wrap = "overflow";
     }
   }
@@ -204,30 +221,30 @@ then
     -- Which returns one to three lines, being each divided by a line break.
     -- Or just an array: { "I see you:", "Above you." }
     val = {
-      "After a dark night there's a brighter day.",
-      "                       Tupac",
-      "Changes",
+      "We accept the love we think we deserve.",
+      "                           Mr. Callahan",
+      "The Perks of Being a Wallflower",
     }, -- split(capture('rdn')),
     hl  = "NvimTreeRootFolder",
     opts = {
       position = "center",
-      hl       = "Conditional",
+      hl       = "Whitespace",
     }
   }
 
   local buttons = {
     type = "group",
     val = {
-      button("e", "  New Buffer",            ':tabnew<CR>'),
-      button("f", "  Find file",             ':Telescope find_files<CR>'),
-      button("h", "  Recently opened files", ':Telescope oldfiles<CR>'),
-      button("r", "  Frecency/MRU",          ':Telescope oldfiles<CR>'),
-      button("g", "  Open Last Session",     ':source ~/.config/nvim/session.vim<CR>'),
-      button("m", "  Word Finder",           ':Telescope live_grep<CR>'),
-      button("l", "  Marks",                 ':Telescope marks<CR>'),
+      button("e", "  New Buffer",            'RainbowRed', ':tabnew<CR>'),
+      button("f", "  Find file",             'RainbowYellow', ':Telescope find_files<CR>'),
+      button("h", "  Recently opened files", 'RainbowBlue', ':Telescope oldfiles<CR>'),
+      button("r", "  Frecency/MRU",          'RainbowOrange', ':Telescope oldfiles<CR>'),
+      button("g", "  Open Last Session",     'RainbowGreen', ':source ~/.config/nvim/session.vim<CR>'),
+      button("m", "  Word Finder",           'RainbowViolet', ':Telescope live_grep<CR>'),
+      button("l", "  Marks",                 'RainbowCyan', ':Telescope marks<CR>'),
     },
     opts = {
-      spacing = 1
+      spacing = 1,
     }
   }
 
@@ -238,9 +255,9 @@ then
   local ol = { -- occupied lines
     icon            = #header.val,            -- CONST: number of lines that your header will occupy
     message         = #footer.val,            -- CONST: because of padding at the bottom
-    length_buttons  = #buttons.val * 2 - 1, -- CONST: it calculate the number that buttons will occupy
-    neovim_lines    = 3,                      -- CONST: 2 of command line, 1 of the top bar
-    padding_between = 2,                   -- STATIC: can be set to anything, padding between keybinds and header
+    length_buttons  = #buttons.val * 2 - 1,   -- CONST: it calculate the number that buttons will occupy
+    neovim_lines    = 2,                      -- CONST: 2 of command line, 1 of the top bar
+    padding_between = 3,                      -- STATIC: can be set to anything, padding between keybinds and header
   }
 
   local left_terminal_value = vim.api.nvim_get_option('lines') - (ol.length_buttons + ol.message + ol.padding_between + ol.icon + ol.neovim_lines)

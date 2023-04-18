@@ -58,6 +58,7 @@ alias    comprez='tar -czfv'
 alias    extrakt='tar -xzfv'
 alias        xcp='xclip -selection clipboard < '
 alias        xpt='xclip -selection clipboard -o > '
+alias git-untracked='git ls-files --others --exclude-standard'
 
 #--------------------------------------------------------------------------------
 # Functions

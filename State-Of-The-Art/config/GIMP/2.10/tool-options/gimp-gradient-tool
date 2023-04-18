@@ -1,9 +1,0 @@
-# GIMP gimp-gradient-tool options
-
-(gradient "Full saturation spectrum CW")
-(brush-size 51)
-(brush-hardness 0.5)
-(gradient-reverse yes)
-(instant yes)
-
-# end of gimp-gradient-tool options

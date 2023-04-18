@@ -1,9 +1,0 @@
-# GIMP gimp-vector-tool options
-
-(brush "2. Hardness 025")
-(dynamics "Basic Simple")
-(pattern "Pine")
-(gradient "Full saturation spectrum CW")
-(palette "Caramel")
-
-# end of gimp-vector-tool options

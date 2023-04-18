@@ -13,5 +13,7 @@
 !**/copyq/themes/
 **/nvim/session.vim
 **/GIMP/2.10/**
-!**/GIMP/2.10/themes/
-!**/GIMP/2.10/splashes/
+!**/GIMP/2.10/themes
+!**/GIMP/2.10/themes/**
+!**/GIMP/2.10/splashes
+!**/GIMP/2.10/splashes/**

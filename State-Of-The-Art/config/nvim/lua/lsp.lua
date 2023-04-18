@@ -13,7 +13,7 @@ require('lsp.lua')
 require('lsp.latex')
 
 -- C++ and C
-require('lsp.c++')
+require('lsp.c_c++')
 
 -- Rust
 require('lsp.rust')

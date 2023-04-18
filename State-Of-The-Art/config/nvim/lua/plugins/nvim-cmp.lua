@@ -2,32 +2,32 @@
 
 -- Icons to display.
 local icons = {
-  Text          = "",
-  Method        = "",
-  Function      = "",
-  Constructor   = "",
-  Field         = "ﰠ",
-  Variable      = "",
-  Class         = "ﴯ",
-  Interface     = "",
-  Module        = "",
-  Property      = "ﰠ",
-  Unit          = "塞",
-  Value         = "",
-  Enum          = "",
-  Keyword       = "",
-  Snippet       = "",
-  Color         = "",
-  File          = "",
-  Reference     = "",
-  Folder        = "",
-  EnumMember    = "",
-  Constant      = "",
-  Struct        = "פּ",
-  Event         = "",
-  Operator      = "",
-  TypeParameter = "T",
-  Book          = ""
+  Text          = "  ",
+  Method        = "  ",
+  Function      = "  ",
+  Constructor   = "  ",
+  Field         = " ﰠ ",
+  Variable      = "  ",
+  Class         = " ﴯ ",
+  Interface     = "  ",
+  Module        = "  ",
+  Property      = " ﰠ ",
+  Unit          = " 塞 ",
+  Value         = "  ",
+  Enum          = "  ",
+  Keyword       = "  ",
+  Snippet       = "  ",
+  Color         = "  ",
+  File          = "  ",
+  Reference     = "  ",
+  Folder        = "  ",
+  EnumMember    = "  ",
+  Constant      = "  ",
+  Struct        = " פּ ",
+  Event         = "  ",
+  Operator      = "  ",
+  TypeParameter = " T ",
+  Book          = "  "
 }
 
 -- Load specialities from LuaSnip.
@@ -86,6 +86,9 @@ return {
       window = {
         -- Max 10 items on display for documentation.
         max_height = 10,
+        completion = {
+          side_padding = 0,
+        },
       },
 
       -- Snippet support.
@@ -133,23 +136,32 @@ return {
 
       -- Formatting the menu display.
       formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-          -- load lspkind icons
-          vim_item.kind = string.format(
-            "%s %s",
-            icons[vim_item.kind],
-            vim_item.kind
-          )
 
-          vim_item.menu = ({
-            nvim_lsp = "力",
-            nvim_lua = "",
-            luasnip  = icons.Color,
-            path     = "﫶",
-            buffer   = "﬘",
-            look     = icons.Book,
-            emoji    = "😎",
-          })[entry.source.name]
+          vim_item.menu = vim_item.kind
+
+          -- load lspkind icons
+          --vim_item.kind = string.format(
+          --  "%s %s",
+          --  icons[vim_item.kind],
+          --  vim_item.kind
+          --)
+          vim_item.kind = icons[vim_item.kind]
+
+          --vim_item.menu = string.format(
+          --  "%s %s",
+          --  ({
+          --      nvim_lsp = "力",
+          --      nvim_lua = "",
+          --      luasnip  = icons.Color,
+          --      path     = "﫶",
+          --      buffer   = "﬘ ",
+          --      look     = icons.Book,
+          --      emoji    = "😎",
+          --  })[entry.source.name],
+          --  name
+          --)
 
           return vim_item
         end,

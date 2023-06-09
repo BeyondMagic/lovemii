@@ -18,6 +18,15 @@ return {
     -- ...
     include_buftypes = { "" },
 
+    ---Filetypes not to enable winbar in.
+    ---
+    ---@type string[]
+    exclude_filetypes = {
+      '',
+      'txt',
+      'markdown',
+    },
+
     -- :help events
     -- :help [event] (like :help BufWinEnter)
     update_events = {
@@ -33,7 +42,7 @@ return {
     tilde_home = true,
 
     -- Your winbar will have a little padding from the edge
-    prefix = "",
+    prefix = "  ",
 
     -- The sign between each entry
     separator = "  ",

@@ -88,13 +88,14 @@ return {
         max_height = 10,
         completion = {
           side_padding = 0,
+          col_offset = 1,
         },
       },
 
       -- Snippet support.
       snippet = {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          require'luasnip'.lsp_expand(args.body)
         end,
       },
 
@@ -200,7 +201,7 @@ return {
         {
           name = "nvim_lsp",
           priority = 11,
-          max_item_count = 10,
+          --max_item_count = 10,
         },
 
         -- Snippets in general to facilitate life.

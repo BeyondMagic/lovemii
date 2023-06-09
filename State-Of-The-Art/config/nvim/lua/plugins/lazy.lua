@@ -45,8 +45,6 @@ return {
   -- CPP modern syntax.
   'bfrg/vim-cpp-modern',
 
-  -- LSP auto-complete.
-  'neovim/nvim-lspconfig',
   'hrsh7th/vim-vsnip',
 
   -- Indent align.
@@ -139,5 +137,5 @@ return {
   -- 
   --  LSP
   -- 
-  'MunifTanjim/eslint.nvim',
+  -- 'MunifTanjim/eslint.nvim',
 }

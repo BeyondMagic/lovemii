@@ -2,7 +2,7 @@
 CAPABILITIES = vim.lsp.protocol.make_client_capabilities()
 CAPABILITIES = require('cmp_nvim_lsp').default_capabilities(CAPABILITIES)
 CAPABILITIES.textDocument.completion.completionItem.snippetSupport = true
-CAPABILITIES.textDocument.completion.completionItem.snippetSupport = true
+
 --CAPABILITIES.offsetEncoding = 'utf-8'
 
 -- LSP Lua (build from source without telemetry (use grep to find config)
@@ -37,3 +37,9 @@ require 'lsp.html'
 
 -- Python
 require 'lsp.python'
+
+-- eslint_d + prettierd
+-- require 'lsp.eslint_d_prettierd'
+
+-- rome
+require 'lsp.rome'

@@ -73,6 +73,7 @@ key('n', '<Leader>qq', ':q<CR>', remap )
 key('n', '<C-c>', ':set hlsearch!<CR>', remap )
 
 -- Quick navigation between diagonostics.
+key('n', '<Leader>D', ':TroubleToggle<CR>', remap )
 key('n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', remap )
 key('n', '<Leader>N', ':lua vim.diagnostic.goto_next()<CR>', remap )
 key('n', '<Leader>n', ':lua vim.diagnostic.goto_prev()<CR>', remap )

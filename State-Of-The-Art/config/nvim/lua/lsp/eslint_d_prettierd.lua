@@ -1,6 +1,11 @@
+local null_ls = require("null-ls")
+local eslint = require("eslint")
+-- local sources = { null_ls.builtins.formatting.prettierd }
 
-require'eslint'.setup {
-  bin = 'eslint', -- or `eslint_d`
+null_ls.setup()
+
+eslint.setup {
+  bin = 'eslint_d',
   code_actions = {
     enable = true,
     apply_on_save = {

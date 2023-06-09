@@ -18,6 +18,26 @@ local function build (type)
 
 end
 
+local function format ()
+  vim.api.nvim_create_autocmd( 'BufWritePost', {
+    pattern = '<buffer>',
+    callback = function ()
+      vim.lsp.buf.format()
+    end
+  })
+end
+
+local function gtk_build ()
+  vim.api.nvim_create_autocmd( 'BufWritePost', {
+    pattern = '<buffer>',
+    callback = function ()
+      job('killall -HUP xsettingsd')
+    end
+  })
+
+  return 'conf'
+end
+
 -- In init.lua or filetype.nvim's config file
 vim.filetype.add({
 
@@ -119,17 +139,23 @@ vim.filetype.add({
 
       ---- Typescript Projects
       [".*/source/ts/.*ts"] = function()
-        build('ts')
+        format()
       end,
       [".*/source/.*json"] = function()
-        build('ts')
+        format()
       end,
       [".*/source/scss/.*scss"] = function()
-        build('scss')
+        format()
       end,
       [".*/source/html/.*html"] = function()
-        build('html')
+        format()
       end,
+
+      [".*/share/themes/.*/.*scss"] = function()
+        vim.api.nvim_command('HexokinaseTurnOn')
+        return gtk_build()
+      end
+
       ---- Personal website.
       ---- [".*Personal/beyondmagic.space/source/typescript/global.ts"] = function()
       ----   vim.api.nvim_command('cd ~/Programming/Personal/beyondmagic.space/')
@@ -180,6 +206,9 @@ vim.filetype.add({
 
     filename = {
 
+      -- For eslint_d configuration file.
+      ['.eslintrc'] = 'jsonc',
+
       -- For Typescript projects.
       --['tsconfig.json'] = 'json5',
 
@@ -204,6 +233,8 @@ vim.filetype.add({
         return 'sh'
       end,
 
+      -- To restart xsettingsd
+      xsettingsdrc = gtk_build,
 
       -- https://github.com/kovetskiy/sxhkd-vim
       sxhkdrc = function()

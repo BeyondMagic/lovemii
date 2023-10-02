@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/magic/.config/nvim'
+let g:netrw_dirhist_0='/home/magic/.config/nvim/lua'
+let g:netrw_dirhist_9='/home/magic/github/nincat/mmm/artist5'
+let g:netrw_dirhist_8='/home/magic/github/nincat/mmm/artist4'
+let g:netrw_dirhist_7='/home/magic/github/nincat/mmm/animals2'
+let g:netrw_dirhist_6='/home/magic/.config/picom'
+let g:netrw_dirhist_5='/home/magic/.config/nvim/plugged'
+let g:netrw_dirhist_4='/home/magic/.config/nvim/plugged/vim-airline-themes/autoload/airline/themes'
+let g:netrw_dirhist_3='/home/magic/.config/nvim/plugged/vim-airline-themes/autoload/airline'
+let g:netrw_dirhist_2='/home/magic/.config/nvim/plugged/vim-airline-themes/autoload'

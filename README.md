@@ -6,8 +6,6 @@
 
 ---
 
-<img align="center" src="./.github/preview/system_information.png">
-
 The [nushell script](https://www.nushell.sh/) called [lovemii.sh](./lovemii.sh) is a helper for the desktop, it will list all software and little disclaimers for what I use them in this system of applications.
 
 

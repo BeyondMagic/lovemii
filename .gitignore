@@ -1,7 +1,15 @@
 # Filers/folders to organise later.
 **/.organise/
 
+# ignore the scripts, instead redirect.
+/scripts/
+
+# services for executables
 /runit-services/**/supervise
+
+# javascript package manager hell
+**/package-lock.json
+**/node_modules/
 
 # 1. removing logs-or-history related files.
 # zsh
@@ -41,5 +49,3 @@
 # ags
 /config/ags/style.css
 /config/ags/config_old.js
-**/package-lock.json
-**/node_modules/

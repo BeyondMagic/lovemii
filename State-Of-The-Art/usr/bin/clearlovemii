@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-#
-# Execute (on the literal way) LoveMii desktop :)
-
-# Kil all the process from the current user!
-pkill -U $(whoami)

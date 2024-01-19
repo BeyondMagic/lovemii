@@ -1,19 +1,45 @@
-.ccls-cache
-**/zsh/.zsh_history
-**/mpv/watch_later/
-**/mpv/scripts/autosub.lua
-**/ncmpcpp/**
-!**/ncmpcpp/config
-**/mpd/**
-!**/mpd/mpd.conf
-**/mpdscribble
-**/mozc
-**/mopidy
-**/copyq/**
-!**/copyq/themes/
-**/nvim/session.vim
-**/GIMP/2.10/**
-!**/GIMP/2.10/themes
-!**/GIMP/2.10/themes/**
-!**/GIMP/2.10/splashes
-!**/GIMP/2.10/splashes/**
+# Filers/folders to organise later.
+**/.organise/
+
+/runit-services/**/supervise
+
+# 1. removing logs-or-history related files.
+# zsh
+/config/zsh/.zsh_history
+
+# mpv
+/config/mpv/watch_later/
+/config/mpv/scripts/autosub.lua
+
+# ncmpcpp
+/config/ncmpcpp/**
+!/config/ncmpcpp/config
+
+# mpd
+/config/mpd/**
+!/config/mpd/mpd.conf
+
+# mpdscribble
+/config/mpdscribble
+
+# mozc
+/config/mozc
+
+# mopidy
+/config/mopidy
+
+# nvim
+/config/nvim/session.vim
+
+# gimp
+/config/GIMP/2.10/**
+!/config/GIMP/2.10/themes
+!/config/GIMP/2.10/themes/**
+!/config/GIMP/2.10/splashes
+!/config/GIMP/2.10/splashes/**
+
+# ags
+/config/ags/style.css
+/config/ags/config_old.js
+**/package-lock.json
+**/node_modules/

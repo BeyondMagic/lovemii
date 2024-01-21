@@ -53,7 +53,7 @@ export def finish [
 	if number == $SERVICE_RUN_FAILED {
 		log critical $"[($SERVICE_MANAGER)] ($message_critical)."
 		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_TRY_AGAIN)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_critical)'"
-	} else if $number != 0 {
+	} else if $number != 0 and $number != -1 {
 		log error $"[($SERVICE_MANAGER)] ($message_error)."
 		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RESTART)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
 	} else {

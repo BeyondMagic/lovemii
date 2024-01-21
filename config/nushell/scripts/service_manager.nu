@@ -33,10 +33,10 @@ export def check [
 
 	if $state == 'down' {
 		log error $"[($SERVICE_MANAGER)] ($message_error)"
-		notify-call --action $"sv once ($executable):($SERVICE_RUN_ONCE)" --urgency critical --app-name $env.DESKTOP_NAME $SERVICE_MANAGER $message_error
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RUN_ONCE)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
 		exit 1
 	}
-	notify-call --urgency low --app-name $env.DESKTOP_NAME $SERVICE_MANAGER $message_ok
+	fork $"exec notify-call --urgency low --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
 	exit 0
 }
 
@@ -52,13 +52,13 @@ export def finish [
 
 	if number == $SERVICE_RUN_FAILED {
 		log critical $"[($SERVICE_MANAGER)] ($message_critical)."
-		notify-call --action $"sv once ($executable):($SERVICE_TRY_AGAIN)" --urgency critical --app-name $env.DESKTOP_NAME $SERVICE_MANAGER $message_critical
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_TRY_AGAIN)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_critical)'"
 	} else if $number != 0 {
 		log error $"[($SERVICE_MANAGER)] ($message_error)."
-		notify-call --action $"sv once ($executable):($SERVICE_RESTART)" --urgency critical --app-name $env.DESKTOP_NAME $SERVICE_MANAGER $message_error
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RESTART)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
 	} else {
 		log debug $"[($SERVICE_MANAGER)] ($message_ok)."
-		notify-call --action $"sv once ($executable):($SERVICE_START_AGAIN)" --urgency critical --app-name $env.DESKTOP_NAME $SERVICE_MANAGER $message_ok
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_START_AGAIN)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
 	}
 	exit 0
 }

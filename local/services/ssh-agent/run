@@ -2,4 +2,4 @@
 #
 # João Farias © 2024 BeyondMagic <beyondmagic@mail.ru>
 
-exec ssh-agent -D -a "$SSH_AUTH_SOCKET"
+exec ssh-agent -D -a /tmp/ssh-agent.socket

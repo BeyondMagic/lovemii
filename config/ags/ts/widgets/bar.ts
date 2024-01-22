@@ -1,14 +1,16 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-import date from '../labels/date';
-// import volume from '../labels/volume';
+import LabelDate from 'ts/labels/date';
 
 /*
  * The bar of the main monitor.
  */
 const Bar = (monitor: number) => Widget.Window({
 	name: `bar-${monitor}`,
+	layer: 'top',
+	exclusivity: 'exclusive',
+	visible: true,
 	anchor: ['top', 'left', 'right'],
-	child: Widget.Label().bind('label', date),
+	child: LabelDate,
 });
 
 export default Bar;

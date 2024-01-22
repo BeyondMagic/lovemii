@@ -2,7 +2,7 @@
 /// <reference types="@girs/gtk-3.0/gtk-3.0-ambient.js" />
 import { type BaseProps } from './widget.js';
 import Gtk from 'node_modules/@girs/gtk-3.0/gtk-3.0';
-interface Context {
+export interface Context {
     setSourceRGBA: (r: number, g: number, b: number, a: number) => void;
     arc: (x: number, y: number, r: number, a1: number, a2: number) => void;
     setLineWidth: (w: number) => void;

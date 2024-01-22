@@ -1,3 +1,26 @@
+/*
+ * bar
+ */
+
 #bar-0 {
-	background-color: red;
+	background-color: rgba(0, 0, 0, 1);
+	padding: 0 0.5rem;
+
+	.label-date {
+		color: white;
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
+}
+
+/*
+ * screencorners
+ */
+.widget-corner {
+	background-color: transparent;
+}
+
+.corner-black {
+	background-color: black;
+	border-radius: 1.705rem;
 }

@@ -39,6 +39,9 @@
 # nvim
 /config/nvim/session.vim
 
+# nushell
+/config/nushell/history.txt
+
 # gimp
 /config/GIMP/2.10/**
 !/config/GIMP/2.10/themes

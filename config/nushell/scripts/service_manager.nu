@@ -7,6 +7,7 @@ use fork.nu
 
 use std log
 
+const DESKTOP_NAME = 'lovemii'
 const SERVICE_MANAGER = "Service Manager"
 const SERVICE_NAME = "Service"
 const SERVICE_TRY_AGAIN = "Try again"
@@ -33,10 +34,10 @@ export def check [
 
 	if $state == 'down' {
 		log error $"[($SERVICE_MANAGER)] ($message_error)"
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RUN_ONCE)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RUN_ONCE)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
 		exit 1
 	}
-	fork $"exec notify-call --urgency low --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
+	fork $"exec notify-call --urgency low --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
 	exit 0
 }
 
@@ -52,13 +53,13 @@ export def finish [
 
 	if number == $SERVICE_RUN_FAILED {
 		log critical $"[($SERVICE_MANAGER)] ($message_critical)."
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_TRY_AGAIN)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_critical)'"
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_TRY_AGAIN)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_critical)'"
 	} else if $number != 0 and $number != -1 {
 		log error $"[($SERVICE_MANAGER)] ($message_error)."
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RESTART)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RESTART)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
 	} else {
 		log debug $"[($SERVICE_MANAGER)] ($message_ok)."
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_START_AGAIN)' --urgency critical --app-name '($env.DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
+		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_START_AGAIN)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
 	}
 	exit 0
 }

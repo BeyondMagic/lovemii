@@ -27,8 +27,7 @@ export def main [
 	--n_keep: int = $N, # Specify the number of tokens from the prompt to retain when the context size is exceeded and tokens need to be discarded.
 	--stream = $STREAM, # It allows receiving each predicted token in real-time instead of waiting for the completion to finish.
 	--repeat_penalty: float = $REPEAT_PENALTY, # Control the repetition of token sequences in the generated text.
-
-] -> null {
+] -> int {
 	if ($message | is-empty) {
 		log critical "You have to state some prompt."
 		exit 1

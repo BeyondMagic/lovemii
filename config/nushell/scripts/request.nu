@@ -58,7 +58,7 @@ export def main [
 	 	if (not ($line | is-empty)) and ($line | find 'frequency_penalty' | is-empty) and ($line | find 'predicted_per_token_ms' | is-empty) {
 			let data = ($line | from json)
 			if (not ($data | is-empty)) and ($data | describe) != 'string' {
-				printf $data.data.content
+				^printf "%s" $"($data.data.content)"
 			}
 	 	}
 	}

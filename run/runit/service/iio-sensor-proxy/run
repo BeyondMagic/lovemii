@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Service to run iio-sensor-proxy.
+# Run acceleramentor interface server.
 #
 # João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
 

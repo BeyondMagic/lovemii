@@ -5,6 +5,7 @@
 /scripts/
 
 # services for executables
+/local/services/**/supervise
 /runit-services/**/supervise
 
 # javascript package manager hell

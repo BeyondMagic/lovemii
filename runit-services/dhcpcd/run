@@ -1,9 +1,0 @@
-#!/bin/sh -e
-#
-# Service to run dhcpcd (network server).
-#
-# João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
-
-[ -r conf ] && . ./conf
-
-exec dhcpcd -B ${OPTS} ${IFACE:=-M} 1>&2

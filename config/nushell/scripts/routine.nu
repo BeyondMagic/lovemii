@@ -76,6 +76,28 @@ export module task {
 
 export module group {
 
+	# Remove group from routine.
+	export def remove [
+		name : string # Name of the group.
+		--database : string = $default_database # Database path.
+	] {
+		mut data = (open $database)
+
+		if ($data.groups | where name == $name | is-empty) {
+			error make {
+				msg: "Non-existent group was given."
+				label: {
+					text: $'Group ($name) does not exist.'
+					span: (metadata $name).span
+				}
+			}
+		}
+
+		$data.groups = ($data.groups | filter {|group| $group.name != $name})
+		
+		$data | save --force $database
+	}
+
 	# Add new group to routine.
 	export def add [
 		name : string # Name of the group.

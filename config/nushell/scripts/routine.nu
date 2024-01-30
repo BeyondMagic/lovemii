@@ -33,9 +33,9 @@ export module task {
 		--name : string # Name of the task, be short and concise.
 		--duration : duration # Duration of the task.
 		--description : string # Description of the task, be coherent.
-		--groups : list<string> # Groups to be added for the task.
+		--tags : list<string> # Tags to be added for the task.
 		--database : string = $default_database # Where it is guarded.
-		--add_groups = true # Add non-existent groups automatically.
+		--add_tags = true # Add non-existent tags automatically.
 	] -> int {
 		if ($name | is-empty) {
 			not_found 'name' (metadata $name).span
@@ -55,17 +55,17 @@ export module task {
 			}
 		}
 
-		if $add_groups {
-			$data.groups = ($data.groups | append $groups | uniq)
+		if $add_tags {
+			$data.tags = ($data.tags | append $tags | uniq)
 		} else {
-			let group_name = $data.groups | wrap 'name'
-			$data.group | each {|group|
-				if ($group_name | where name == $group | is-empty) {
+			let tag_name = $data.tags | wrap 'name'
+			$data.tag | each {|tag|
+				if ($tag_name | where name == $tag | is-empty) {
 					error make {
-						msg: "Non-existent group was given."
+						msg: "Non-existent tag was given."
 						label: {
-							text: $'Group ($group) does not exist.',
-							span: (metadata $group).span
+							text: $'Tag ($tag) does not exist.',
+							span: (metadata $tag).span
 						}
 					}
 				}
@@ -76,7 +76,7 @@ export module task {
 			'name': $name
 			'description': $description
 			'duration': $duration
-			'groups': $groups
+			'tags': $tags
 		})
 		$data | save --force $database
 	}
@@ -87,16 +87,37 @@ export def main [
 	--database : string = $default_database # Where it is guarded.
 ] {
 	{
-		'groups': []
+		'tags': []
 		'tasks': []
-		'week': {
-			'sunday': []
-			'monday': []
-			'tuesday': []
-			'wednesday': []
-			'thursday': []
-			'friday': []
-			'saturday': []
-		}
+		'groups': [
+			{
+				'name': 'sunday'
+				'tasks': []
+			}
+			{
+				'name': 'monday'
+				'tasks': []
+			}
+			{
+				'name': 'tuesday'
+				'tasks': []
+			}
+			{
+				'name': 'wednesday'
+				'tasks': []
+			}
+			{
+				'name': 'thursday'
+				'tasks': []
+			}
+			{
+				'name': 'friday'
+				'tasks': []
+			}
+			{
+				'name': 'saturday'
+				'tasks': []
+			}
+		]
 	}| save $database
 }

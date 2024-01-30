@@ -89,15 +89,24 @@ export module task {
 export module group {
 
 	# Raise error with non existent goup.
-	def non_existent [
-		name: string # Name of the variable.
+	def raise_error [
 		span: record<start: int, end: int> # Span to create error from.
+		exists # Whether group exists or not.
 	] {
+		if $exists {
+			error make {
+				msg: "Existent group was given."
+				label: {
+					text: "Group already exists."
+					span: $span
+				}
+			}
+		}
 		error make {
 			msg: "Non-existent group was given."
 			label: {
-				text: $'Group ($name) does not exist.'
-				span: (metadata $name).span
+				text: "Group does not exist."
+				span: $span
 			}
 		}
 	}
@@ -110,7 +119,7 @@ export module group {
 		mut data = (open $database)
 
 		if ($data.groups | where name == $name | is-empty) {
-			non_existent 'name' (metadata $name).span
+			raise_error (metadata $name).span false
 		}
 
 		$data.groups = ($data.groups | filter {|group| $group.name != $name})
@@ -126,13 +135,7 @@ export module group {
 		mut data = (open $database)
 
 		if not ($data.groups | where name == $name | is-empty) {
-			error make {
-				msg: "Existent group was given."
-				label: {
-					text: $'Group ($name) already exists.'
-					span: (metadata $name).span
-				}
-			}
+			raise_error (metadata $name).span true
 		}
 
 		$data.groups = ($data.groups | append {
@@ -154,7 +157,7 @@ export module group {
 		}
 		let data = ($groups | where name == $name)
 		if ($data | is-empty) {
-			non_existent 'name' (metadata $name).span
+			raise_error (metadata $name).span false
 		}
 		$data
 	}

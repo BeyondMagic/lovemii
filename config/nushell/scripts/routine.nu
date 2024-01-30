@@ -72,6 +72,17 @@ export module task {
 		})
 		$data | save --force $database
 	}
+
+	# Display tasks.
+	export def main [
+		--database : string = $default_database # Database path.
+	] {
+		open $database | get tasks | each {|data|
+			mut task = $data
+			$task.duration = ($task.duration | into duration)
+			$task
+		}
+	}
 }
 
 export module group {

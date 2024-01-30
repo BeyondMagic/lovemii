@@ -107,9 +107,9 @@ export module group {
 
 		if not ($data.groups | where name == $name | is-empty) {
 			error make {
-				msg: "Existent name was given."
+				msg: "Existent group was given."
 				label: {
-					text: $'Group ($name) already exists.',
+					text: $'Group ($name) already exists.'
 					span: (metadata $name).span
 				}
 			}

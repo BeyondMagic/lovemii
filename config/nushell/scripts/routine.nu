@@ -137,14 +137,24 @@ export module group {
 
 	# Display group tasks.
 	export def main [
-		--name: string # Name of the group (cannot be empty.)
+		name?: string # Name of the group.
 		--database : string = $default_database # Database path.
 	] {
-		if ($name | is-empty) {
-			not_found 'name' (metadata $name).span
-		}
 		let groups = (open $database).groups
-		$groups | where name == $name
+		if ($name | is-empty) {
+			return $groups
+		}
+		let data = ($groups | where name == $name)
+		if ($data | is-empty) {
+			error make {
+				msg: "Non-existent group was given."
+				label: {
+					text: $'Group ($name) does not exist.'
+					span: (metadata $name).span
+				}
+			}
+		}
+		$data
 	}
 }
 
@@ -155,7 +165,7 @@ export def today [
 	--database : string = $default_database # Database path.
 ] {
 	let day = (date now | format date '%A' | str downcase)
-	group --name $day --database $database
+	group $day --database $database
 }
 
 # Create database.

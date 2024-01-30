@@ -7,9 +7,9 @@ export def item [] {
 	let piped = $in
 	if ($piped | is-empty) {
 		error make {
-			msg: "Failed to find data.",
+			msg: "Failed to find data."
 			label: {
-				text: "Not given any data.",
+				text: "Not given any data."
 				span: (metadata $piped).span
 			}
 		}

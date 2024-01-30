@@ -20,8 +20,8 @@ def not_found [
 
 # Each task will have as unique identifies its name, so doesn't allow repetitive task names.
 export module task {
-	# Add task to routine.
-	export def add [
+	# Create task to routine.
+	export def create [
 		--name : string # Name of the task, be short and concise.
 		--duration : duration # Duration of the task.
 		--description : string # Description of the task, be coherent.
@@ -85,10 +85,11 @@ export module task {
 	}
 }
 
+# Each group will have as unique identifies its name, so doesn't allow repetitive group names.
 export module group {
 
-	# Remove group from routine.
-	export def remove [
+	# Delete group from routine.
+	export def delete [
 		name : string # Name of the group.
 		--database : string = $default_database # Database path.
 	] {
@@ -109,8 +110,8 @@ export module group {
 		$data | save --force $database
 	}
 
-	# Add new group to routine.
-	export def add [
+	# Create and add new group to routine.
+	export def create [
 		name : string # Name of the group.
 		--database : string = $default_database # Database path.
 	] {

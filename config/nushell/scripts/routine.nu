@@ -146,6 +146,45 @@ export module group {
 		$data | save --force $database
 	}
 
+	# Add task to specific group.
+	export def add [
+		group : string # Group to add.
+		--task : string # Task to add (required.)
+		--at : int = -1 # Which index to put at.
+		--database : string = $default_database # Database path.
+	] {
+		# Raise error if not found task variable.
+		if ($task | is-empty) {
+			error make {
+				msg: "Task was not given."
+				label: {
+					text: "--task not defined."
+					span: (metadata $task).span
+				}
+			}
+		}
+
+		mut data = (open $database)
+
+		# Raise error if group does not exist.
+		if ($data.groups | where name == $group | is-empty) {
+			raise_error (metadata $group).span false
+		}
+
+		# Raise error if not found task name.
+		if ($data.tasks | where name == $task | is-empty) {
+			error make {
+				msg: "Invalid task was given."
+				label: {
+					text: "Task does not exist."
+					span: (metadata $task).span
+				}
+			}
+		}
+
+		#$data | save --force $database
+	}
+
 	# Display group tasks.
 	export def main [
 		name?: string # Name of the group.

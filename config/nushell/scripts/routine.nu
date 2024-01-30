@@ -20,14 +20,6 @@ def not_found [
 
 # Each task will have as unique identifies its name, so doesn't allow repetitive task names.
 export module task {
-	export module group {
-		export def add [
-			--name : string, # Name of the group of the task.
-		] -> int {
-			
-		}
-	}
-
 	# Add task to routine.
 	export def add [
 		--name : string # Name of the task, be short and concise.
@@ -79,6 +71,20 @@ export module task {
 			'tags': $tags
 		})
 		$data | save --force $database
+	}
+}
+
+export module group {
+	# Display group tasks.
+	export def main [
+		--name: string # Name of the group (cannot be empty.)
+		--database : string = $default_database # Where it is guarded.
+	] {
+		if ($name | is-empty) {
+			not_found 'name' (metadata $name).span
+		}
+		let groups = (open $database).groups
+		$groups | where name == $name
 	}
 }
 

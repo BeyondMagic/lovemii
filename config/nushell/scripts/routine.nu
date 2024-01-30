@@ -75,6 +75,32 @@ export module task {
 }
 
 export module group {
+
+	# Add new group to routine.
+	export def add [
+		name : string # Name of the group.
+		--database : string = $default_database # Database path.
+	] {
+		mut data = (open $database)
+
+		if not ($data.groups | where name == $name | is-empty) {
+			error make {
+				msg: "Existent name was given."
+				label: {
+					text: $'Group ($name) already exists.',
+					span: (metadata $name).span
+				}
+			}
+		}
+
+		$data.groups = ($data.groups | append {
+			'name': $name
+			'tasks': []
+		})
+
+		$data | save --force $database
+	}
+
 	# Display group tasks.
 	export def main [
 		--name: string # Name of the group (cannot be empty.)

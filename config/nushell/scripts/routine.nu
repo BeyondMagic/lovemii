@@ -88,6 +88,20 @@ export module task {
 # Each group will have as unique identifies its name, so doesn't allow repetitive group names.
 export module group {
 
+	# Raise error with non existent goup.
+	def non_existent [
+		name: string # Name of the variable.
+		span: record<start: int, end: int> # Span to create error from.
+	] {
+		error make {
+			msg: "Non-existent group was given."
+			label: {
+				text: $'Group ($name) does not exist.'
+				span: (metadata $name).span
+			}
+		}
+	}
+
 	# Delete group from routine.
 	export def delete [
 		name : string # Name of the group.
@@ -96,13 +110,7 @@ export module group {
 		mut data = (open $database)
 
 		if ($data.groups | where name == $name | is-empty) {
-			error make {
-				msg: "Non-existent group was given."
-				label: {
-					text: $'Group ($name) does not exist.'
-					span: (metadata $name).span
-				}
-			}
+			non_existent 'name' (metadata $name).span
 		}
 
 		$data.groups = ($data.groups | filter {|group| $group.name != $name})
@@ -146,13 +154,7 @@ export module group {
 		}
 		let data = ($groups | where name == $name)
 		if ($data | is-empty) {
-			error make {
-				msg: "Non-existent group was given."
-				label: {
-					text: $'Group ($name) does not exist.'
-					span: (metadata $name).span
-				}
-			}
+			non_existent 'name' (metadata $name).span
 		}
 		$data
 	}

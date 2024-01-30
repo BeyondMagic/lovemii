@@ -26,7 +26,7 @@ export module task {
 		--duration : duration # Duration of the task.
 		--description : string # Description of the task, be coherent.
 		--tags : list<string> # Tags to be added for the task.
-		--database : string = $default_database # Where it is guarded.
+		--database : string = $default_database # Database path.
 		--add_tags = true # Add non-existent tags automatically.
 	] -> int {
 		if ($name | is-empty) {
@@ -104,7 +104,7 @@ export module group {
 	# Display group tasks.
 	export def main [
 		--name: string # Name of the group (cannot be empty.)
-		--database : string = $default_database # Where it is guarded.
+		--database : string = $default_database # Database path.
 	] {
 		if ($name | is-empty) {
 			not_found 'name' (metadata $name).span
@@ -118,7 +118,7 @@ use group
 
 # Tasks of today.
 export def today [
-	--database : string = $default_database # Where it is guarded.
+	--database : string = $default_database # Database path.
 ] {
 	let day = (date now | format date '%A' | str downcase)
 	group --name $day --database $database
@@ -126,7 +126,7 @@ export def today [
 
 # Create database.
 export def main [
-	--database : string = $default_database # Where it is guarded.
+	--database : string = $default_database # Database path.
 ] {
 	{
 		'tags': []

@@ -4,22 +4,22 @@
 
 const default_database = '~/storage/routine.json'
 
-# Make an empty or not defined variable error.
-def not_found [
-	name: string # Name of the variable.
-	span: record<start: int, end: int> # Span to create error from.
-] -> nothing {
-	error make {
-		msg: $"Variable empty or not defined."
-		label: {
-			text: $"--($name) was not given value."
-			span: $span
-		}
-	}
-}
-
 # Each task will have as unique identifies its name, so doesn't allow repetitive task names.
 export module task {
+	# Make an empty or not defined variable error.
+	export def raise_error [
+		name: string # Name of the variable.
+		span: record<start: int, end: int> # Span to create error from.
+	] -> nothing {
+		error make {
+			msg: $'($name) empty or not defined.'
+			label: {
+				text: $'--($name) was not given a value.'
+				span: $span
+			}
+		}
+	}
+
 	# Create task to routine.
 	export def create [
 		--name : string # Name of the task, be short and concise.
@@ -30,12 +30,8 @@ export module task {
 		--add_tags = true # Add non-existent tags automatically.
 	] -> int {
 		if ($name | is-empty) {
-			not_found 'name' (metadata $name).span
+			raise_error 'name' (metadata $name).span
 		}
-		if ($duration | is-empty) {
-			not_found 'duration' (metadata $duration).span
-		}
-
 		mut data = (open $database)
 		if not ($data.tasks | get name | wrap 'name' | where name == $name | is-empty) {
 			error make {
@@ -45,6 +41,10 @@ export module task {
 					span: (metadata $name).span
 				}
 			}
+		}
+
+		if ($duration | is-empty) {
+			raise_error 'duration' (metadata $duration).span
 		}
 
 		if $add_tags {

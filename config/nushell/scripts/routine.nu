@@ -88,6 +88,16 @@ export module group {
 	}
 }
 
+use group
+
+# Tasks of today.
+export def today [
+	--database : string = $default_database # Where it is guarded.
+] {
+	let day = (date now | format date '%A' | str downcase)
+	group --name $day --database $database
+}
+
 # Create database.
 export def main [
 	--database : string = $default_database # Where it is guarded.

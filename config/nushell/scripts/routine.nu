@@ -103,6 +103,8 @@ export module task {
 	}
 }
 
+use task
+
 # Each group will have as unique identifies its name, so doesn't allow repetitive group names.
 export module group {
 
@@ -241,7 +243,14 @@ export module group {
 		name?: string@get_name_groups # Name of the group.
 		--database : string = $default_database # Database path.
 	] {
-		let groups = (open $database).groups
+		let tasks_expanded = task
+		let groups = (open $database).groups | par-each {|data|
+			mut group = $data
+			$group.tasks = ($group.tasks | par-each {|task_name|
+				$tasks_expanded | where name == $task_name
+			})
+			$group
+		}
 
 		# When not given group name, return all groups.
 		if ($name | is-empty) {

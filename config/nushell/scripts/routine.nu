@@ -19,7 +19,7 @@ def get_name_tasks [context: string] -> list<string> {
 	}
 
 	# Return only names of groups.
-	(open $database).tasks.name | each {|name| '"' + $name + '"' }
+	(open $database).tasks.name | par-each {|name| '"' + $name + '"' }
 }
 
 # Each task will have as unique identifies its name, so doesn't allow repetitive task names.
@@ -69,7 +69,7 @@ export module task {
 			$data.tags = ($data.tags | append $tags | uniq)
 		} else {
 			let tag_name = $data.tags | wrap 'name'
-			$data.tag | each {|tag|
+			$data.tag | par-each {|tag|
 				if ($tag_name | where name == $tag | is-empty) {
 					error make {
 						msg: "Non-existent tag was given."
@@ -95,7 +95,7 @@ export module task {
 	export def main [
 		--database : string = $default_database # Database path.
 	] {
-		open $database | get tasks | each {|data|
+		open $database | get tasks | par-each {|data|
 			mut task = $data
 			$task.duration = ($task.duration | into duration)
 			$task
@@ -224,7 +224,7 @@ export module group {
 		let i = if $at > 0 { $at mod $m } else {($m + $at mod $m) - 1}
 
 		# Update specific group by adding to it the given task.
-		$data.groups = ($data.groups | each {|element|
+		$data.groups = ($data.groups | par-each {|element|
 			if $element.name == $group {
 				mut changed = $element
 				$changed.tasks = ($changed.tasks | insert $i $task)

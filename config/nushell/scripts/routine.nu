@@ -208,13 +208,20 @@ export module group {
 		--database : string = $default_database # Database path.
 	] {
 		let groups = (open $database).groups
+
+		# When not given group name, return all groups.
 		if ($name | is-empty) {
 			return $groups
 		}
+
+		# Get the data of the group.
 		let data = ($groups | where name == $name)
+
+		# If empty, raise error.
 		if ($data | is-empty) {
 			raise_error (metadata $name).span false
 		}
+
 		$data
 	}
 }

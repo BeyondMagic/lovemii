@@ -7,7 +7,7 @@ const default_database = '~/storage/routine.json'
 # Each task will have as unique identifies its name, so doesn't allow repetitive task names.
 export module task {
 	# Make an empty or not defined variable error.
-	export def raise_error [
+	def raise_error [
 		name: string # Name of the variable.
 		span: record<start: int, end: int> # Span to create error from.
 	] -> nothing {

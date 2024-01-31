@@ -1,5 +1,6 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import LabelDate from 'ts/labels/date';
+//import { Workspaces, focusedTitle } from './hyprland';
 
 /*
  * The bar of the main monitor.

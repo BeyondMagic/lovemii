@@ -1,6 +1,5 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Utils from 'resource:///com/github/Aylur/ags/utils.js';
-
 const config_folder = App.configDir
 const scss_folder = `${config_folder}/scss`
 const scss = `${scss_folder}/main.scss`;

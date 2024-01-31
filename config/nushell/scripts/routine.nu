@@ -185,9 +185,14 @@ export module group {
 		#$data | save --force $database
 	}
 
+	# Get group name list.
+	def get_name_groups [] {
+		(open ~/storage/routine.json).groups.name
+	}
+
 	# Display group tasks.
 	export def main [
-		name?: string # Name of the group.
+		name?: string@get_name_groups # Name of the group.
 		--database : string = $default_database # Database path.
 	] {
 		let groups = (open $database).groups

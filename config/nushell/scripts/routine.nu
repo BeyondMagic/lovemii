@@ -4,6 +4,24 @@
 
 const default_database = '~/storage/routine.json'
 
+# TODO: Generalise this function.
+# Get task names.
+def get_name_tasks [context: string] -> list<string> {
+	# Transform into a list of arguments, trim the ones with spaces, remove the ones that are empty, and take the last.
+	# Because we need only valid arguments.
+	mut possible_database_path = ($context | split row ' ' | filter {|element| not ($element | str trim | is-empty)} | last)
+
+	mut database = $default_database
+
+	# If path exists, change the default to this one.
+	if ($possible_database_path | path exists) {
+		$database = $possible_database_path
+	}
+
+	# Return only names of groups.
+	(open $database).tasks.name | each {|name| '"' + $name + '"' }
+}
+
 # Each task will have as unique identifies its name, so doesn't allow repetitive task names.
 export module task {
 	# Make an empty or not defined variable error.

@@ -13,5 +13,5 @@ export def clear [] -> int {
 # Execute the compositor.
 export def --env main [] -> int {
 	log debug "Hyprland is being started."
-	exec Hyprland
+	Hyprland
 }

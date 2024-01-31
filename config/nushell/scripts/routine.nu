@@ -129,6 +129,23 @@ export module group {
 		}
 	}
 
+	# Get group name list.
+	def get_name_groups [context: string] {
+		# Transform into a list of arguments, trim the ones with spaces, remove the ones that are empty, and take the last.
+		# Because we need only valid arguments.
+		mut possible_database_path = ($context | split row ' ' | filter {|element| not ($element | str trim | is-empty)} | last)
+
+		mut database = $default_database
+
+		# If path exists, change the default to this one.
+		if ($possible_database_path | path exists) {
+			$database = $possible_database_path
+		}
+
+		# Return only names of groups.
+		(open $database).groups.name
+	}
+
 	# Delete group from routine.
 	export def delete [
 		name : string # Name of the group.
@@ -166,8 +183,8 @@ export module group {
 
 	# Add task to specific group.
 	export def add [
-		group : string # Group to add.
-		--task : string # Task to add (required.)
+		group : string@get_name_groups # Group to add.
+		--task : string@get_name_tasks # Task to add (required.)
 		--at : int = -1 # Which index to put at.
 		--database : string = $default_database # Database path.
 	] {
@@ -200,24 +217,23 @@ export module group {
 			}
 		}
 
-		#$data | save --force $database
-	}
+		# Length of tasks.
+		let m = $data.groups | where name == $group | length
 
-	# Get group name list.
-	def get_name_groups [context: string] {
-		# Transform into a list of arguments, trim the ones with spaces, remove the ones that are empty, and take the last.
-		# Because we need only valid arguments.
-		mut possible_database_path = ($context | split row ' ' | filter {|element| not ($element | str trim | is-empty)} | last)
+		# Define index.
+		let i = if $at > 0 { $at mod $m } else {($m + $at mod $m) - 1}
 
-		mut database = $default_database
+		# Update specific group by adding to it the given task.
+		$data.groups = ($data.groups | each {|element|
+			if $element.name == $group {
+				mut changed = $element
+				$changed.tasks = ($changed.tasks | insert $i $task)
+				return $changed
+			}
+			$element
+		})
 
-		# If path exists, change the default to this one.
-		if ($possible_database_path | path exists) {
-			$database = $possible_database_path
-		}
-
-		# Return only names of groups.
-		(open $database).groups.name
+		$data | save --force $database
 	}
 
 	# Display group tasks.

@@ -270,6 +270,13 @@ export def today [
 	group $day --database $database
 }
 
+# Delete routine database.
+export def delete [
+	--database : string = $default_database # Database path.
+] {
+	rm $database
+}
+
 # Create database.
 export def main [
 	--database : string = $default_database # Database path.

@@ -2,6 +2,8 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
+use random.nu
+
 const default_folder = "~/storage/images/paredepapel/"
 
 # Set wallpaper using program.
@@ -17,11 +19,10 @@ export def random [
 	--all = false # Get all files
 	--link : string # Link file.
 ] -> nothing {
-	let files = ls $folder
+	let files = if $all { ls --all $folder } else { ls $folder }
 
-	let random_number = random int 0..(($files | length) - 1)
+	let wallpaper = $files | get name | random item
 
-	let wallpaper = $files | get $random_number | get name
 	set $wallpaper
 
 	# Create hard link to chosen wallpaper file.

@@ -5,7 +5,7 @@ import Variable from 'resource:///com/github/Aylur/ags/variable.js'
  */
 const date = Variable('', {
 	poll: [1000,
-		"date '+%B%e%A %I時%M分%p'",
+		"date '+%B%d%A %I時%M分%p'",
 		(out : string) =>
 			out
 			.replace(/([^\s]+)/, '<span size="smaller" rise="1pt">$1</span>')

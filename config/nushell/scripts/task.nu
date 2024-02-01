@@ -54,7 +54,7 @@ export def spawn [
 	| str trim
   )
 
-  (pueue add --print-task-id $args $"nu --config '($nu.config-path)' --env-config '($nu.env-path)' --commands '($source_code)'")
+  (^pueue add --print-task-id ...$args $"nu --config '($nu.config-path)' --env-config '($nu.env-path)' --commands '($source_code)'")
 }
 
 # Remove tasks from the queue.
@@ -62,7 +62,7 @@ export def spawn [
 export def remove [
   ...ids: int # IDs of the tasks to remove from the status list.
 ] {
-  pueue remove $ids
+  ^pueue remove ...$ids
 }
 
 # Switches the queue position of two tasks.
@@ -71,7 +71,7 @@ export def switch [
   task_id_1: int # The first task ID.
   task_id_2: int # The second task ID.
 ] {
-  pueue switch $task_id_1 $task_id_2
+  ^pueue switch $task_id_1 $task_id_2
 }
 
 # Stash a task that is not currently running.
@@ -81,7 +81,7 @@ export def switch [
 export def stash [
   ...ids: int # IDs of the tasks to stash.
 ] {
-  pueue stash $ids
+  ^pueue stash ...$ids
 }
 
 # Queue stashed tasks for execution.
@@ -95,7 +95,7 @@ export def queue [
     []
   }
 
-  pueue enqueue $args $ids
+  ^pueue enqueue ...$args ...$ids
 }
 
 # Resume operation of specific tasks or groups of tasks.
@@ -116,7 +116,7 @@ export def start [
     $args = ($args | prepend "--all")
   }
 
-  pueue start $args
+  ^pueue start ...$args
 }
 
 # Restart failed or successful task(s).
@@ -168,7 +168,7 @@ export def restart [
     $args = ($args | prepend "--edit-label")
   }
 
-  pueue restart $args $ids
+  ^pueue restart ...$args ...$ids
 }
 
 # Either pause a running tasks or a specific groups of tasks.
@@ -194,7 +194,7 @@ export def pause [
     $args = ($args | prepend "--wait")
   }
 
-  pueue pause $args $ids
+  ^pueue pause ...$args ...$ids
 }
 
 # Kill specific running tasks or whole task groups.
@@ -218,7 +218,7 @@ export def kill [
     $args = ($args | prepend ["--signal" $signal])
   }
 
-  pueue kill $args $ids
+  ^pueue kill ...$args ...$ids
 }
 
 # Send something to a task. Useful for sending confirmations such as "y\n".
@@ -226,7 +226,7 @@ export def send [
   id: int # ID of the task to send something to.
   input: string # The input that should be sent to the process.
 ] {
-  pueue send $id $input
+  ^pueue send $id $input
 }
 
 # Edit the command, path or label of a stashed or queued task.
@@ -252,14 +252,14 @@ export def edit [
     $args = ($args | prepend "--label")
   }
 
-  pueue edit $args $id
+  ^pueue edit ...$args ...$id
 }
 
 # Use this to add or remove groups.
 #
 # By default, this will simply display all known groups.
 export def group [] {
-  pueue group --json | from json
+  ^pueue group --json | from json
 }
 
 # Create a new group with a name.
@@ -273,14 +273,14 @@ export def "group add" [
     []
   }
 
-  pueue group add $args $name
+  ^pueue group add ...$args $name
 }
 
 # Remove a group with a name.
 export def "group remove" [
   name: string # The name of the group to be removed.
 ] {
-  pueue group remove $name
+  ^pueue group remove $name
 }
 
 # Display the current status of all tasks.
@@ -288,7 +288,7 @@ export def status [
   --detailed (-d) # Return a table with more detailed information.
 ] {
   let output = (
-    pueue status --json
+    ^pueue status --json
     | from json
     | get tasks
     | transpose --ignore-titles status
@@ -337,7 +337,7 @@ export def log [
         []
       }
 
-      pueue follow $ids
+      ^pueue follow $ids
     } else {
       let args = if $last != null {
         ["--lines" $last]
@@ -345,7 +345,7 @@ export def log [
         []
       }
 
-      process_raw (pueue log --full --json $args $ids)
+      process_raw (^pueue log --full --json ...$args ...$ids)
       | first
     }
   } else {
@@ -360,7 +360,7 @@ export def log [
       []
     }
 
-    process_raw (pueue log --full --json $args $ids)
+    process_raw (^pueue log --full --json ...$args ...$ids)
   }
 }
 
@@ -389,7 +389,7 @@ export def wait [
     $args = ($args | prepend ["--status" $status])
   }
 
-  pueue wait $args $ids
+  ^pueue wait ...$args ...$ids
 }
 
 # Remove tasks from the status list.
@@ -406,12 +406,12 @@ export def clean [
     $args = ($args | prepend ["--group" $group])
   }
 
-  pueue clean $args
+  ^pueue clean ...$args
 }
 
 # Shutdown pueue and thus this module.
 export def shutdown [] {
-  pueue shutdown
+  ^pueue shutdown
 }
 
 # Set the maximum parallel tasks for a group.
@@ -428,5 +428,5 @@ export def set-parallel-limit [
     []
   }
 
-  pueue parallel $args $max
+  ^pueue parallel ...$args $max
 }

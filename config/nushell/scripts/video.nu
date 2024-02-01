@@ -2,7 +2,19 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-# Download videos
+# Download video.
+#
+# Dependes on:
+#	- yt-dlp : https://github.com/yt-dlp/yt-dlp
+#
+# Examples:
+#
+# Will use the piped link.
+#	$ 'https://www.youtube.com/watch?...' | video download
+#
+# Will use the current content from clipboard.
+#	$ 'https://www.youtube.com/watch?...' | wl-copy
+#	$ video download
 export def download [
 	name? : string # Name of the file.
 	--archive : string = './archive.txt' # Archive file.

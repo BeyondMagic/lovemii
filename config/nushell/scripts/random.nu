@@ -3,7 +3,7 @@
 # João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
 # Return a random item of the given data.
-export def item [] {
+export def item [] -> any {
 	let piped = $in
 	if ($piped | is-empty) {
 		error make {
@@ -14,5 +14,5 @@ export def item [] {
 			}
 		}
 	}
-	$piped | get (random int 0..($piped | length))
+	$piped | get (random int 0..(($piped | length) - 1))
 }

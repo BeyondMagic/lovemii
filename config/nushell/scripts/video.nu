@@ -28,7 +28,7 @@ export def download [
 	let piped = $in
 	let link = if ($piped | is-empty) { wl-paste } else { $piped }
 
-	yt-dlp ...[
+	^yt-dlp ...[
 		--download-archive $archive
 		--add-metadata
 		--embed-thumbnail

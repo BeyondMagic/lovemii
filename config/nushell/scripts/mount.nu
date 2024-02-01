@@ -24,3 +24,22 @@ export def pendrive [
 	}
 }
 
+# Return list of mountpoints that rae not SWAP or empty.
+def get_mountpoints [] -> list<string> {
+	^lsblk --json | from json | get blockdevices | par-each {|disk|
+		mut mountpoints = $disk.mountpoints
+
+		if not ($disk | get --ignore-errors children | is-empty) {
+			$mountpoints = ($mountpoints | append ($disk.children.mountpoints | flatten))
+		}
+
+		$mountpoints | filter {|disk| not ($disk | is-empty) or ($disk == '[SWAP]')}
+	} | flatten
+}
+
+# Remove mountpoint.
+export def remove [
+	mountpoint : string@get_mountpoints # Partition to mount.
+] -> nothing {
+	^doas -- umount $mountpoint
+}

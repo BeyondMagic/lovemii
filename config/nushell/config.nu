@@ -2,7 +2,7 @@
 #
 # My configuration file for my main shell.
 #
-# João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
+# João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
 # ---------------------------------------------------------------------------
 # Modules

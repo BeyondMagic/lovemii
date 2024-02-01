@@ -13,6 +13,14 @@ use task.nu
 use lovemii.nu
 use nnn.nu n
 use fork.nu
+use random.nu
+use routine.nu
+use file.nu
+use miscelanous.nu *
+use wallpaper.nu
+use video.nu
+use music.nu
+use mount.nu
 
 # ---------------------------------------------------------------------------
 # Alises
@@ -32,93 +40,6 @@ alias git-untracked = git ls-files --others --exclude-standard
 # ----------------------------------------------------------------------------
 
 source ~/projects/personal/competitive-programming/script/shell/aliases.nu
-
-# The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-let cfgHome = ($env | default $"($env.HOME)/.config" XDG_CONFIG_HOME | get XDG_CONFIG_HOME)
-$env.NNN_TMPFILE = $"($cfgHome)/nnn/.lastd"
-
-# Copy the content of the file into the Wayland clipboard.
-# Needs wl-copy.
-def wcp [fname] {
-	open $fname | wl-copy
-}
-# Copy the last content of the clipboard into a file.
-def wpt [fname] {
-	wl-paste | save $fname
-}
-
-# Copy the file path of the file.
-def pcp [fname] {
-	readlink -f $fname | wl-copy
-}
-
-# Mount a partition into /mnt/pendrive/.
-def pendrive [partition] {
-	doas -- mount -o umask=0,uid=nobody,gid=nobody $partition /mnt/pendrive
-
-	if $env.LAST_EXIT_CODE == 0 {
-		thunar /mnt/pendrive/
-	}
-}
-
-# Copies the actual path for clipboard.
-def cpdir [] {
-	pwd | wl-copy
-}
-
-# Set a random wallpaper.
-def random_wallpaper [] {
-	let wallpaper_folder = ($env.HOME | path join "storage/images/paredepapel")
-	let wallpaper = (ls $wallpaper_folder | get (random int 0..((ls | length | into int) - 1)) | get name)
-	swww img $wallpaper --transition-type any
-	ln -sf $wallpaper ($env.HOME | path join "linux/sddm/themes/sugar-candy/Backgrounds/wallpaper")
-}
-
-# Function to transform clipboard into an image
-def topng [...all] {
-	wl-paste | save ($all | append ".png" | str join)
-}
-
-# Rick roll in the terminal.
-def _rickroll [] {
-	curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash
-}
-
-# Download videos
-def dlp [--date (-d)] {
-	mut name = ""
-	if $date {
-		$name = (/usr/bin/date +%y-%m-%d_%H_%M_%S | split row (char newline) | append "_unnamed" | str join)
-	} else {
-		$name = "%(title)s.%(ext)s"
-	}
-	mut archive = 'archive.txt'
-	yt-dlp --download-archive $archive --add-metadata --embed-thumbnail --embed-metadata --embed-chapters --sub-langs 'all' --embed-subs -i -f 'bestvideo[height<=1080]+bestaudio' (wl-paste) -o $name
-}
-
-# Download all songs...
-#def _mdemonde [] {
-#
-#	# Download the new songs to the folder.
-#	yt-dlp \
-#		-o $"$HOME/storage/music/songs/youtube/%(title)s.%(ext)s" \
-#		--download-archive "$HOME/storage/music/youtube.log" \
-#		--add-metadata \
-#		--embed-thumbnail \
-#		--embed-metadata \
-#		--embed-chapters \
-#		--no-embed-info-json \
-#		--sub-langs 'all' \
-#		--embed-subs \
-#		--playlist-end 50 \
-#		--metadata-from-title "(?P<artist>.+?) - (?P<title>.+)" \
-#		-x \
-#		-i \
-#		"https://www.youtube.com/playlist?list=PLZx2EchsfnlgoXkZtHaNrAta_hIl4wkXA"
-#
-#	# Add the new songs to the MPD database.
-#	# mpc update --wait
-#}
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html

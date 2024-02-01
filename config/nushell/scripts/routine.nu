@@ -112,7 +112,7 @@ export module group {
 	def raise_error [
 		span: record<start: int, end: int> # Span to create error from.
 		exists # Whether group exists or not.
-	] {
+	] -> nothing {
 		if $exists {
 			error make {
 				msg: "Existent group was given."
@@ -289,7 +289,7 @@ export def delete [
 # Create database.
 export def main [
 	--database : string = $default_database # Database path.
-] {
+] -> int {
 	{
 		'tags': []
 		'tasks': []
@@ -323,5 +323,5 @@ export def main [
 				'tasks': []
 			}
 		]
-	}| save $database
+	} | save $database
 }

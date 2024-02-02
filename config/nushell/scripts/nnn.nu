@@ -23,7 +23,7 @@ export def --env n [
 
 	if ($env.NNN_TMPFILE | path exists) {
 		# Remove <cd '> from the first part of the string and the last single quote <'>.
-		let path = (open $env.NNN_TMPFILE | str substring 4..-1)
+		let path = (open $env.NNN_TMPFILE | str substring 4..-1 | str replace `'\''` `'`)
 
 		rm $env.NNN_TMPFILE
 

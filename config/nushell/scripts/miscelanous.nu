@@ -11,13 +11,16 @@ export def cpdir [
 
 # Function to take last clipboard into an image.
 export def to_image [
-	name: string # File name.
+	...name: string # File name.
 	--type : string = 'png' # Type extension file.
 	--force = false # Force save.
 ] -> nothing {
+
+	let file_name = ($name | str join ' ') + '.' + $type
+
 	if $force {
-		wl-paste | save ($name + '.' + $type)
+		wl-paste | save --force $file_name
 	} else {
-		wl-paste | save ($name + '.' + $type)
+		wl-paste | save $file_name
 	}
 }

@@ -1,6 +1,7 @@
 #!/usr/bin/env nu
 #
 # sgasse © 2023
+# João Farias © BeyondMagic <beyondmagic@mail.ru> 2024
 #
 # Custom command to conveniently edit commits in the history.
 #

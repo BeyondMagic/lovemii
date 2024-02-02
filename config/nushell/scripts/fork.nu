@@ -7,12 +7,16 @@
 #
 # Will launch into default POSIX shell first then redirect all output (stderr and stdout) to $log while self-executing into nushell nohup'd.
 export def main [
-	commands: closure, # The commands to run.
+	commands: any, # The commands to run.
 	--stdout (-o): string = '/dev/null', # Redirect stdout to file.
 	--stderr (-e): string = '/dev/null' # Redirect stderr to file.
 	--sh (-s): string = 'sh' # Shell to execute the commands.
-] -> int {
-	let source_code = (view source $commands | str substring 2..-2)
+] -> int {	
+	let source_code = if ($commands | describe) == 'closure' {
+		view source $commands | str substring 2..-2
+	} else {
+		($commands | str join '; ') + ';'
+	}
 
 	do {
 		sh -c -- $"exec nohup ($sh) -c \"($source_code)\" 1> ($stdout) 2> ($stderr) & echo $!"

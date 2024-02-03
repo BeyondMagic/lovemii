@@ -38,6 +38,30 @@ export module task {
 		}
 	}
 
+	# Delete task of routine.
+	export def delete [
+		name : string # Name of the task, be short and concise.
+		--database : string = $default_database # Database path.
+	] -> nothing {
+
+		mut data = open $database.
+
+		# If task does not exist, raise error.
+		if ($data.tasks | where name == $name | is-empty) {
+			error make {
+				msg: "Cannot found name in database."
+				label: {
+					text: "This task does not exist."
+					span: (metadata $name).span
+				}
+			}
+		}
+
+		$data.tasks = ($data.tasks | where name != $name)
+
+		$data | save --force $database
+	}
+
 	# Create task to routine.
 	export def create [
 		--name : string # Name of the task, be short and concise.

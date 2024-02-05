@@ -18,17 +18,17 @@
 export def download [
 	name? : string # Name of the file.
 	--archive : string = './archive.txt' # Archive file.
+	--format : string = 'bestvideo[height<=1080]+bestaudio' # Format of video and audio.
 ] -> nothing {
 	let file_name = if ($name | is-empty) {
-		(date now | format date '%y-%m-%d_%H_%M_%S') + '_unnamed'
+		[]
 	} else {
-		$name
+		[-o ((date now | format date '%y-%m-%d_%H_%M_%S') + '_' + $name)]
 	}
 	
-	let piped = $in
-	let link = if ($piped | is-empty) { wl-paste } else { $piped }
+	let link = ^wl-paste
 
-	^yt-dlp ...[
+	mut args = [
 		--download-archive $archive
 		--add-metadata
 		--embed-thumbnail
@@ -37,9 +37,13 @@ export def download [
 		--sub-langs 'all'
 		--embed-subs
 		-i
-		-f
-		'bestvideo[height<=1080]+bestaudio'
 		$link
-		-o $name
+		...$file_name
 	]
+
+	if not ($format | is-empty) {
+		$args = ($args | prepend [ -f $format ])
+	}
+
+	^yt-dlp ...$args
 }

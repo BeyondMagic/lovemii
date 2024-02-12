@@ -1,12 +1,11 @@
+# scripts
+/scripts/
+
 # Filers/folders to organise later.
 **/.organise/
 
-# ignore the scripts, instead redirect.
-/scripts/
-
-# services for executables
-/local/services/**/supervise
-/runit-services/**/supervise
+# Syncthing files.
+**.sync-conflict**
 
 # javascript package manager hell
 **/package-lock.json
@@ -14,43 +13,55 @@
 
 # 1. removing logs-or-history related files.
 # zsh
-/config/zsh/.zsh_history
+/configuração/local/zsh/.zsh_history
 
 # mpv
-/config/mpv/watch_later/
-/config/mpv/scripts/autosub.lua
+/configuração/local/mpv/watch_later/
+/configuração/local/mpv/scripts/autosub.lua
 
 # ncmpcpp
-/config/ncmpcpp/**
-!/config/ncmpcpp/config
+/configuração/local/ncmpcpp/**
+!/configuração/local/ncmpcpp/config
 
 # mpd
-/config/mpd/**
-!/config/mpd/mpd.conf
+/configuração/local/mpd/**
+!/configuração/local/mpd/mpd.conf
 
 # mpdscribble
-/config/mpdscribble
+/configuração/local/mpdscribble
 
 # mozc
-/config/mozc
+/configuração/local/mozc
 
 # mopidy
-/config/mopidy
+/configuração/local/mopidy
 
 # nvim
-/config/nvim/session.vim
+/configuração/local/nvim/session.vim
 
 # nushell
-/config/nushell/history.txt
+/configuração/local/nushell/history.txt
 
 # gimp
-/config/GIMP/2.10/**
-!/config/GIMP/2.10/themes
-!/config/GIMP/2.10/themes/**
-!/config/GIMP/2.10/splashes
-!/config/GIMP/2.10/splashes/**
+/configuração/local/GIMP/2.10/**
+!/configuração/local/GIMP/2.10/themes
+!/configuração/local/GIMP/2.10/themes/**
+!/configuração/local/GIMP/2.10/splashes
+!/configuração/local/GIMP/2.10/splashes/**
 
 # ags
-/config/ags/style.css
-/config/ags/config_old.js
-/config/ags/bun.lockb
+/configuração/local/ags/style.css
+**/bun.lockb
+**/node_modules
+
+# Ignore clipboard
+/subconfiguração/clipboard/
+
+# Ignore fonts (copyright).
+/subconfiguração/fontes/
+
+# Ignore icons (copyright).
+/subconfiguração/ícones/
+
+# Ignore nushell (needs organising)
+/subconfiguração/nushell/

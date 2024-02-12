@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=nnn
+Comment=A simple file manager just for you!
+Exec=foot nnn -radDoRJU -T t %U
+Icon=~/.local/share/icons/png/nnn.png
+Terminal=false
+Type=Application
+Categories=Utility
+MimeType=inode/directory

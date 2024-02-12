@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-#
-# Run fingerprint interface and server.
-#
-# João Farias © 2024 BeyondMagic <beyondmagic@mail.ru>
-
-export PYTHONPATH=/opt/python-validity
-
-exec /opt/python-validity/dbus_service/dbus-service > /dev/null 2>&1

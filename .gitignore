@@ -38,6 +38,7 @@
 
 # nvim
 /configuração/local/nvim/session.vim
+/configuração/local/nvim/lazy-lock.json
 
 # nushell
 /configuração/local/nushell/history.txt

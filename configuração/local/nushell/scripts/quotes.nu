@@ -2,7 +2,9 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-const default_database = '~/armazenamento/citações.json'
+const default_database = [
+	'~/armazenamento/citações.json'
+]
 
 # Add quote to database.
 export def add [
@@ -10,11 +12,22 @@ export def add [
 	--author : list<string> # Author(s) of the quote.
 	--source : list<string> # Source(s) of the quote.
 	--time : datetime # When quote was made.
-	--database : string = $default_database # The database to load from.
+	--database : string # The database to load from.
 ] -> nothing {
+
+	if ($database | describe) == nothing or not ($database | path exists) {
+		error make {
+			msg: "--database failed parsing."
+			label: {
+				text: "Empty or path does not exist."
+				span: (metadata $database).span
+			}
+		}
+	}
+
 	if ($words | is-empty) {
 		error make {
-			msg: "Empty quote given"
+			msg: "Empty quote given."
 			label: {
 				text: "Is empty."
 				span: (metadata $words).span
@@ -22,9 +35,7 @@ export def add [
 		}
 	}
 
-	mut data = open $database
-
-	$data = {
+	{
 		words: $words
 		author: $author
 		source: $source
@@ -32,21 +43,23 @@ export def add [
 			added: (date now)
 			time: $time
 		}
-	} ++ $data
-
-	$data | save --force $database
+	} ++ (open $database) | save --force $database
 }
 
 # Initialise database.
 export def setup [
-	database: string = $default_database # The database to load from.
+	database: list<string> = $default_database # The database(s) to load from.
 ] -> nothing {
-	[] | save $database
+	$database | par-each {|path|
+		[] | save $path
+	}
 }
 
-# List all quotes.
+# List all quotes of databases.
 export def main [
-	database: string = $default_database # The database to load from.
-] -> list<list<string>> {
-	open $default_database
+	database: list<string> = $default_database # The database(s) to load from.
+] -> list<any> {
+	$default_database | par-each {|path|
+		open $path
+	} | flatten
 }

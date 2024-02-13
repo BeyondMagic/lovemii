@@ -27,27 +27,28 @@ def link [
 	}
 }
 
-# Link all files 
+# Link all files.
 export def ligar [
 ] -> nothing {
 
 	let dados = open dados.json
-	if not ($dados.ligações.administrador | is-empty) {
-		print "Asking administrative permissions."
-		^doas true
+
+	if ($dados | get ligações.administrador | any {|it| $it == true }) {
+
+		print "Asking for administative access using doas for linking files."
+		let result = ^doas true | complete
+		if $result.exit_code != 0 {
+			error make {
+				msg: "Linking of administative data cannot be done."
+				label: {
+					text: "Polkit could not elevative permissions."
+					span: (metadata $result).span
+				}
+			}
+		}
 	}
 
-	let ligações = (($dados.ligações.local | par-each {|item|
-		mut ligação = $item
-		$ligação.administrador = false
-		$ligação
-	}) | append ($dados.ligações.administrador | par-each {|item|
-		mut ligação = $item
-		$ligação.administrador = true
-		$ligação
-	}))
-
-	$ligações | par-each {|ligação|
+	$dados.ligações | each {|ligação|
 		
 		let tipo = ($ligação.de | describe)
 

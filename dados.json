@@ -1,63 +1,62 @@
 {
-	"ligações": {
-		"administrador": [
-			{
-				"único": false,
-				"de": [
-					"./configuração/global/profile",
-					"./configuração/global/environment",
-					"./configuração/global/locale.conf"
-				],
-				"para": "/etc/"
-			},
-			{
-				"único": false,
-				"de": "./subconfiguração/ícones/",
-				"para": "/usr/share/icons/"
-			},
-			{
-				"único": false,
-				"de": {
-					"pasta": "./serviços/global/*",
-					"exclusão": "supervise"
-				},
-				"para": "/run/runit/service/"
-			}
-		],
-		"local": [
-			{
-				"único": false,
-				"de": {
-					"pasta": "./serviços/local/*",
-					"exclusão": "supervise"
-				},
-				"para": "~/.local/services/"
-			},
-			{
-				"único": false,
-				"de": "./configuração/local/",
-				"para": "~/.config/"
-			},
-			{
-				"único": true,
-				"de": "./subconfiguração/fontes",
-				"para": "~/.local/share/fonts"
-			},
-			{
-				"único": true,
-				"de": "./subconfiguração/nushell",
-				"para": "~/.local/share/nupm"
-			},
-			{
-				"único": true,
-				"de": "./subconfiguração/clipboard",
-				"para": "~/.cache/cliphist"
-			},
-			{
-				"único": false,
-				"de": "./subconfiguração/aplicativos/",
-				"para": "~/.local/share/applications/"
-			}
-		]
-	}
+	"ligações": [
+		{
+			"administrador": true,
+			"único": false,
+			"de": [
+				"./configuração/global/profile",
+				"./configuração/global/environment",
+				"./configuração/global/locale.conf"
+			],
+			"para": "/etc/"
+		},
+		{
+			"administrador": true,
+			"único": false,
+			"de": "./subconfiguração/ícones/",
+			"para": "/usr/share/icons/"
+		},
+		{
+			"administrador": true,
+			"único": false,
+			"de": "./serviços/global/*",
+			"para": "/run/runit/service/"
+		},
+		{
+			"administrador": false,
+			"único": false,
+			"de": "./serviços/local/*",
+			"para": "~/.local/services/"
+		},
+		{
+			"administrador": false,
+			"único": false,
+			"de": "./configuração/local/",
+			"para": "~/.config/"
+		},
+		{
+			"administrador": false,
+			"único": true,
+			"de": "./subconfiguração/fontes",
+			"para": "~/.local/share/fonts"
+		},
+		{
+			"administrador": false,
+			"único": true,
+			"de": "./subconfiguração/nushell",
+			"para": "~/.local/share/nupm"
+		},
+		{
+			"administrador": false,
+			"único": true,
+			"de": "./subconfiguração/clipboard",
+			"para": "~/.cache/cliphist"
+		},
+		{
+			"administrador": false,
+			"único": false,
+			"de": "./subconfiguração/aplicativos/",
+			"para": "~/.local/share/applications/"
+		}
+	]
 }

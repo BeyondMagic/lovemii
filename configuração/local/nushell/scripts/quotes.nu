@@ -55,6 +55,7 @@ export def setup [
 	$database | par-each {|path|
 		[] | save $path
 	}
+	null
 }
 
 # List all quotes of databases.

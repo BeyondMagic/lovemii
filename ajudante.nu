@@ -50,10 +50,41 @@ export def ligar [
 
 	$dados.ligações | each {|ligação|
 		
-		let tipo = ($ligação.de | describe)
+		let tipo = $ligação.de | describe
+
+		# Para copiar só os arquivos de uma uma pasta.
+		if $tipo == 'string' and $ligação.de ends-with '/*' {
+
+			# Criar pasta principal do serviço.
+			if $ligação.administrador {
+				^doas mkdir -p ($ligação.para | path expand)
+			} else {
+				mkdir ($ligação.para | path expand)
+			}
+
+			# Para cada pasta, pegar suas subpastas e retornar os arquivos dentros dela.
+			ls --all $ligação.de | get name | par-each {|pasta|
+				ls $pasta | get name
+			} | par-each {|grupo|
+				let serviço_pasta = ($ligação.para | path join ($grupo | first | path dirname | path basename)) | path expand
+
+				if $ligação.administrador {
+					^doas mkdir -p $serviço_pasta
+				} else {
+					mkdir $serviço_pasta
+				}
+				
+				$grupo | par-each {|arquivo|
+					let de_expandido = ($arquivo | path expand)
+					let para_expandido = ($ligação.para | path expand | path join ($arquivo | path dirname | path basename) | path join ($arquivo | path basename))
+
+					link --administrador $ligação.administrador $de_expandido $para_expandido
+				}
+			}
+
 
 		# Uma pasta, onde todos os arquivos presentes serão ligados.
-		if $tipo == 'string' {
+		} else if $tipo == 'string' {
 
 			# Se for pasta, pegar o nome dos arquivos na pasta.
 			let arquivos = if $ligação.único {

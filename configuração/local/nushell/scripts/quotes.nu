@@ -35,6 +35,8 @@ export def add [
 		}
 	}
 
+	let path = $database | path expand
+
 	{
 		words: $words
 		author: $author
@@ -43,7 +45,7 @@ export def add [
 			added: (date now)
 			time: $time
 		}
-	} ++ (open $database) | save --force $database
+	} ++ (open $path) | save --force $path
 }
 
 # Initialise database.

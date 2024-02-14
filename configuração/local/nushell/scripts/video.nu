@@ -47,3 +47,58 @@ export def download [
 
 	^yt-dlp ...$args
 }
+
+const default_video_flags = [
+	-c copy
+	-map 0
+	-reset_timestamps 1
+]
+
+# Split video by different segments with a duration.
+#
+# Dependes on:
+#	- ffmpeg
+#
+# Input path of file is piped in standard input.
+#
+# Examples:
+#	> 'video.mp4' | video split 2min new_video.mp4
+#
+# Read more information about flags in ffmpeg manual(s).
+export def split [
+	segment : duration # Duration of each segment.
+	out : string # Name of file to save in.
+	--flags : list<string> = $default_video_flags # Flags for ffmpeg.
+	--segment-format : string = '-%03d' # Specifier of each segmented video.
+	--extension : string # If not specified, will default to that of the file.
+] -> nothing {
+	let piped = $in
+
+	if not ($piped | path exists) or ($piped | path type) != 'file' {
+		error make {
+			msg: "Failed to parse input."
+			label: {
+				text: "Is not a file or does not exist."
+				span: (metadata $piped).span
+			}
+		}
+	}
+
+	let micro_seconds = (($segment | into int) / 1000) | into string
+
+	let type = if ($extension | describe) == nothing {
+		$piped | split row '.' | last
+	} else {
+		$extension
+	}
+
+	print $type
+
+	^ffmpeg ...[
+		-i $piped
+		...$flags
+		-segment_time ($micro_seconds + 'us')
+		-f segment
+		($out + $segment_format + '.' + $type)
+	]
+}

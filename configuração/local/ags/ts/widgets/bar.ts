@@ -1,5 +1,6 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import LabelDate from 'ts/labels/date';
+import widget_number from './bar/battery';
 //import { Workspaces, focusedTitle } from './hyprland';
 
 /*
@@ -7,18 +8,16 @@ import LabelDate from 'ts/labels/date';
  */
 const Bar = (monitor: number) => Widget.Window({
 	name: `bar-${monitor}`,
-	// layer: 'top',
 	exclusivity: 'exclusive',
 	visible: true,
 	anchor: ['top', 'left', 'right'],
 	child: Widget.CenterBox({
 		name: "container",
 		visible: true,
-		// spacing: 8,
 		vertical: false,
-		start_widget: Widget.Label(''),
+		start_widget: Widget.Label("🇦🇶"),
 		center_widget: LabelDate,
-		end_widget: Widget.Label(''),
+		end_widget: widget_number
 	}),
 });
 

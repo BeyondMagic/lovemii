@@ -5,12 +5,16 @@
 #bar-0 {
 	background-color: rgba(0, 0, 0, 1);
 	padding: 0 0.5rem;
+    color: white;
 
 	.label-date {
-		color: white;
 		font-size: 1.25rem;
 		font-weight: bold;
 	}
+
+    .battery {
+      font-weight: bolder;
+    }
 }
 
 /*

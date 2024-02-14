@@ -8,7 +8,7 @@ export const css = `${config_folder}/style.css`;
 // FIXIT: monitorFile is launching the anonymous function inside of Utils.monitorFile 12 times in less than a second. We can ignore 11 times.
 const MAGIC_NUMBER = 13;
 
-function reload () {
+function reload () : void {
 	console.log('[SCSS monitor] SCSS reloaded.');
 	Utils.exec(`sassc ${scss} ${css}`);
 	App.resetCss();

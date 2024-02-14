@@ -1,4 +1,4 @@
-import { Label } from 'resource:///com/github/Aylur/ags/widget.js';
+import { Label, Box } from 'resource:///com/github/Aylur/ags/widget.js';
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js'
 
 // Battery widget for the bar.
@@ -25,13 +25,31 @@ function colour (percentage : number) : string {
 		+ '</span>'
 }
 
-const widget_number =  Label({
+function charge (charging : boolean) : string {
+	return charging ? '⚡' : ''
+}
+
+const widget_number =  Box({
 	class_name: 'battery',
-	tooltipMarkup: 'Bateria.',
-	use_markup: true,
-	label: Battery
-		.bind('percent')
-		.transform(p => colour(p)),
+	children: [
+		Label({
+			hexpand: true,
+			class_name: 'number',
+			use_markup: true,
+			label: Battery
+				.bind('percent')
+				.transform(p => colour(p)),
+		}),
+		Label({
+			class_name: 'charging',
+			use_markup: true,
+			label: Battery
+				.bind('charging')
+				.transform(charging => charge(charging))
+		})
+	]
 })
 
-export default widget_number
+export default {
+	number: widget_number
+}

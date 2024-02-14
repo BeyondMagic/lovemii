@@ -1,42 +1,75 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 
-function dispatch (workspace: number) : void {
+function set_workspace (workspace: number) : void {
 	Hyprland.sendMessage('dispatch workspace ' + workspace)
 }
 
-export const focusedTitle = Widget.Label({
-	label: Hyprland.active.client.bind('title'),
-	visible: Hyprland.active.client.bind('address')
+const max_string_n = 100
+
+export const focused_title = Widget.Label({
+	label: Hyprland
+		.active
+		.client
+		.bind('title')
+		.transform(title => title.substring(0, max_string_n)),
+
+	visible: Hyprland
+		.active
+		.client
+		.bind('address')
 		.transform(addr => !!addr),
 });
 
-export const Workspaces = () => Widget.EventBox({
+const workspace_icons = [
+	'一',
+	'二',
+	'三',
+	'四',
+	'五',
+	'六',
+	'七',
+	'八',
+	'九',
+	'十',
+]
+
+function create_button (n : number) {
+
+	const widget = Widget.Button({
+
+		class_name: 'workspace',
+		attribute: n,
+		label: workspace_icons[n],
+
+		on_clicked () {
+			set_workspace(n)
+		}
+	})
+
+	return widget
+}
+
+
+export const workspaces = Widget.EventBox({
 	on_scroll_up () {
-		dispatch(1)
+		set_workspace(1)
 	},
 
 	on_scroll_down () {
-		dispatch(-1)
+		set_workspace(-1)
 	},
 
 	child: Widget.Box({
+		class_name: 'workspaces',
+		children: Array
+			.from({ length: 10 }, (_, i) => i)
+			.map(i => create_button(i)),
 
-		children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
-
-			attribute: i,
-
-			label: `${i}`,
-
-			on_clicked () {
-				dispatch(i)
-			}
-		})),
-
-			// remove this setup hook if you want fixed number of buttons
-			// setup: self => self.hook(Hyprland, () => {
-			// 	for (const btn of self.children)
-			// 		btn.visible = Hyprland.workspaces.some(ws => ws.id === btn.attribute);
-			// }),
+		// remove this setup hook if you want fixed number of buttons
+		// setup: self => self.hook(Hyprland, () => {
+		// 	for (const btn of self.children)
+		// 		btn.visible = Hyprland.workspaces.some(ws => ws.id === btn.attribute);
+		// }),
 	}),
 })

@@ -7,13 +7,40 @@
 	padding: 0 0.5rem;
     color: white;
 
+    .container {
+
+      .center {
+
+        .box {
+
+          .workspaces {
+
+            .workspace {
+              min-height: 2px;
+              min-width: 2px;
+              border-radius: 0px;
+              -gtk-outline-radius: 0px;
+
+              label {
+                font-weight: bolder;
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+
 	.label-date {
 		font-size: 1.25rem;
 		font-weight: bold;
 	}
 
     .battery {
-      font-weight: bolder;
+
+      .number {
+        font-weight: bolder;
+      }
     }
 }
 

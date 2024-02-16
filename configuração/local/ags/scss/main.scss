@@ -3,11 +3,18 @@
  */
 
 #bar-0 {
-	background-color: rgba(0, 0, 0, 1);
+	background-color: black;
+
 	padding: 0 0.5rem;
     color: white;
 
     .container {
+
+      .window {
+        .title {
+          opacity: 0.5;
+        }
+      }
 
       .center {
 
@@ -24,6 +31,19 @@
               label {
                 font-weight: bolder;
                 color: white;
+                opacity: 0.25;
+              }
+
+              &.occupied {
+                label {
+                  opacity: 0.5;
+                }
+              }
+
+              &.active {
+                label {
+                  opacity: 1;
+                }
               }
             }
           }

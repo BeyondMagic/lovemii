@@ -1,0 +1,7 @@
+[[common]]
+find = ["foot", "alacritty"]
+replace = "terminal"
+
+[[icons]]
+name = "terminal"
+icon = "./svg/terminal.svg"

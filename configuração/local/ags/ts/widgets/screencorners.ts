@@ -7,7 +7,8 @@ function RoundedCorner (vertical: 'top' | 'bottom', horizontal: 'left' | 'right'
 		class_name: classname,
 		vpack: vertical.includes('top') ? 'start' : 'end',
 		hpack: horizontal.includes('left') ? 'start' : 'end',
-		setup: (widget) => {
+
+		setup (widget) {
 			const c = widget.get_style_context().get_property('background-color', Gtk.StateFlags.NORMAL);
 			const r = widget.get_style_context().get_property('border-radius', Gtk.StateFlags.NORMAL);
 			widget.set_size_request(r, r);

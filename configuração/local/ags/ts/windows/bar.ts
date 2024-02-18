@@ -1,10 +1,10 @@
-import { CenterBox, Window, Box, Label } from 'resource:///com/github/Aylur/ags/widget.js';
+import { CenterBox, Window, Box, Label } from 'resource:///com/github/Aylur/ags/widget.js'
 
-import LabelDate from 'ts/labels/date';
-import Battery from './battery';
-import WindowManager from './window_manager';
+import LabelDate from '../labels/date'
+import battery from '../widgets/battery'
+import window_manager from '../widgets/window_manager'
 
-const left = WindowManager.window.title_and_class
+const left = window_manager.window.title_and_class
 
 const center = LabelDate
 
@@ -17,8 +17,8 @@ const right = CenterBox({
 	end_widget: Box({
 		class_name: "box",
 		children: [
-			Battery.number,
-			WindowManager.workspaces.collapsed
+			battery.number,
+			window_manager.workspaces.collapsed
 		]
 	})
 })

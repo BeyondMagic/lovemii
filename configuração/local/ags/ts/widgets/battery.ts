@@ -50,6 +50,8 @@ const widget_number =  Box({
 	]
 })
 
-export default {
+const battery = {
 	number: widget_number
 }
+
+export default battery

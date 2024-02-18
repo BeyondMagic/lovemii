@@ -2,7 +2,7 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 
 function set_workspace (workspace: string | number) : void {
-	Hyprland.sendMessage('dispatch workspace ' + workspace)
+	Hyprland.messageAsync('dispatch workspace ' + workspace)
 }
 
 const workspace_icons = [

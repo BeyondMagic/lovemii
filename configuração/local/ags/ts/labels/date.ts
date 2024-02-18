@@ -1,6 +1,6 @@
 import { EventBox, Label } from 'resource:///com/github/Aylur/ags/widget.js';
 import date from '../variables/date';
-import Gdk from 'node_modules/@girs/gdk-3.0/gdk-3.0';
+
 
 // Label
 const LabelDate = EventBox({

@@ -1,9 +1,9 @@
 import window from './window_manager/window'
 import workspaces from './window_manager/workspaces'
 
-const WindowManager = {
+const window_manager = {
 	workspaces,
 	window
 }
 
-export default WindowManager
+export default window_manager

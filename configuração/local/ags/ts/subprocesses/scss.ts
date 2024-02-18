@@ -1,4 +1,4 @@
-import App from 'resource:///com/github/Aylur/ags/app.js';
+import App from 'resource:///com/github/Aylur/ags/app.js'
 import { exec as execute, monitorFile as monitor} from 'resource:///com/github/Aylur/ags/utils.js';
 
 const config_folder = App.configDir

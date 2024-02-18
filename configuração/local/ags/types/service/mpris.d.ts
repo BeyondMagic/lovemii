@@ -47,15 +47,16 @@ export declare class MprisPlayer extends Service {
     set volume(value: number);
     get position(): number;
     set position(time: number);
-    playPause(): void;
-    play(): void;
-    stop(): void;
-    next(): void;
-    previous(): void;
-    shuffle(): void;
-    loop(): void;
+    readonly playPause: () => Promise<void>;
+    readonly play: () => Promise<void>;
+    readonly stop: () => Promise<void>;
+    readonly next: () => Promise<void>;
+    readonly previous: () => Promise<void>;
+    readonly shuffle: () => boolean;
+    readonly loop: () => void;
 }
 export declare class Mpris extends Service {
+    cacheCoverArt: boolean;
     private _proxy;
     private _players;
     get players(): MprisPlayer[];
@@ -63,7 +64,7 @@ export declare class Mpris extends Service {
     private _addPlayer;
     private _onProxyReady;
     private _onNameOwnerChanged;
-    getPlayer(name?: string): MprisPlayer | null;
+    readonly getPlayer: (name?: string) => MprisPlayer | null;
 }
 export declare const mpris: Mpris;
 export default mpris;

@@ -1,11 +1,11 @@
 import App from 'resource:///com/github/Aylur/ags/app.js'
-import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js'
+import { execAsync as execute } from 'resource:///com/github/Aylur/ags/utils.js'
 
 const entry = App.configDir + '/ts/main.ts'
 const outdir = '/tmp/ags/js'
 
 try {
-	await execAsync([
+	await execute([
 		'bun', 'build', entry,
 		'--outdir', outdir,
 		'--external', 'resource://*',

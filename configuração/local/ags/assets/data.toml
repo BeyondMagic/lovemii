@@ -1,7 +1,29 @@
+[settings]
+max_title_length = 75
+icon_size = 10
+
+[settings.windows.screen_corner]
+size = 25
+
+[settings.background]
+# Set values in the range of 0 to 1 (mathematically: [0, 1]).
+red = 0
+green = 0
+blue = 0
+alpha = 1
+
+# For every item in the `common` list you add,
+# make sure to add its equivalent replacement
+# in the `icons` object.
 [[common]]
-find = ["foot", "alacritty"]
+find = ["foot"]
 replace = "terminal"
 
-[[icons]]
-name = "terminal"
-icon = "./svg/terminal.svg"
+[[common]]
+find = ["firefox-nightly"]
+replace = "browser"
+
+[icons]
+terminal = "./svg/terminal.svg"
+browser = "./svg/browser.svg"
+_unknown = "./svg/question_mark.svg"

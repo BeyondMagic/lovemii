@@ -1,77 +1,77 @@
-/*
- * bar
- */
-
 #bar-0 {
-	background-color: black;
+  background-color: black;
 
-	padding: 0 0.5rem;
-    color: white;
+  padding: 0 0.5rem;
+  color: white;
 
-    .container {
+  .container {
 
-      .window {
-        .title {
-          opacity: 0.5;
-        }
+    .window {
+      .class {
+        font-weight: bolder;
       }
 
-      .center {
+      .title {
+        opacity: 0.5;
+      }
+    }
 
-        .box {
+    .center {
 
-          .workspaces {
+      .box {
 
-            .workspace {
-              min-height: 2px;
-              min-width: 2px;
-              border-radius: 0px;
-              -gtk-outline-radius: 0px;
+        .workspaces {
 
+          .workspace {
+            min-height: 2px;
+            min-width: 2px;
+            border-radius: 0px;
+            -gtk-outline-radius: 0px;
+
+            label {
+              font-weight: bolder;
+              color: white;
+              opacity: 0.25;
+            }
+
+            &.occupied {
               label {
-                font-weight: bolder;
-                color: white;
-                opacity: 0.25;
+                opacity: 0.5;
               }
+            }
 
-              &.occupied {
-                label {
-                  opacity: 0.5;
-                }
-              }
-
-              &.active {
-                label {
-                  opacity: 1;
-                }
+            &.active {
+              label {
+                opacity: 1;
               }
             }
           }
         }
       }
     }
+  }
 
-	.label-date {
-		font-size: 1.25rem;
-		font-weight: bold;
-	}
+  .label-date {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
 
-    .battery {
+  .battery {
 
-      .number {
-        font-weight: bolder;
-      }
+    .number {
+      font-weight: bolder;
     }
+  }
 }
 
 /*
  * screencorners
  */
-.widget-corner {
-	background-color: transparent;
-}
+  .widget-corner {
+    background-color: transparent;
+  }
 
-.corner-black {
-	background-color: black;
-	border-radius: 1.705rem;
-}
+  .corner-black {
+    background-color: black;
+    border-radius: 1.705rem;
+  }

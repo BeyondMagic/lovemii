@@ -1,6 +1,6 @@
 [settings]
 max_title_length = 75
-icon_size = 10
+icon_size = 22
 
 [settings.windows.screen_corner]
 size = 25
@@ -24,6 +24,6 @@ find = ["firefox-nightly"]
 replace = "browser"
 
 [icons]
-terminal = "./svg/terminal.svg"
-browser = "./svg/browser.svg"
-_unknown = "./svg/question_mark.svg"
+terminal = "command-terminal"
+browser = "internet-browser"
+_unknown = "question-mark"

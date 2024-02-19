@@ -8,7 +8,20 @@
 
     .window {
       .class {
-        font-weight: bolder;
+
+        // The name itself of the class.
+        .name {
+
+          font-weight: bolder;
+
+        }
+
+        // The icon.
+        .icon {
+          padding: 0 0.5rem;
+          color: white;
+        }
+
       }
 
       .title {

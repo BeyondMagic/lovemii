@@ -1,7 +1,41 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import data from "../../assets/data.toml"
 
-function RoundedCorner (vertical: 'top' | 'bottom', horizontal: 'left' | 'right', classname : string) {
+type Vertical = 'top' | 'bottom'
+type Horizontal = 'left' | 'right'
+
+function draw (context : any, vertical : Vertical, horizontal : Horizontal, size : number) {
+	switch (vertical + horizontal) {
+		case 'topleft':
+			context.arc(size, size, size, Math.PI, 3 * Math.PI / 2)
+			context.lineTo(0, 0)
+		break
+
+		case 'topright':
+			context.arc(0, size, size, 3 * Math.PI / 2, 2 * Math.PI)
+			context.lineTo(size, 0)
+		break
+
+		case 'bottomleft':
+			context.arc(size, 0, size, Math.PI / 2, Math.PI)
+			context.lineTo(0, size)
+		break
+
+		case 'bottomright':
+			context.arc(0, 0, size, 0, Math.PI / 2)
+			context.lineTo(size, size)
+		break
+	}
+
+	context.closePath()
+
+	const background = data.settings.background
+	context.setSourceRGBA(background.red, background.green, background.blue, background.alpha)
+	context.fill()
+
+}
+
+function RoundedCorner (vertical: Vertical, horizontal: Horizontal, classname : string) {
 	return Widget.DrawingArea({
 		class_name: classname,
 		vpack: vertical.includes('top') ? 'start' : 'end',
@@ -9,39 +43,11 @@ function RoundedCorner (vertical: 'top' | 'bottom', horizontal: 'left' | 'right'
 
 		setup (widget) {
 
-			const background = data.settings.background
 			const size = data.settings.windows.screen_corner.size
 
-			widget.set_size_request(size, size);
+			widget.set_size_request(size, size)
 
-			widget.connect('draw', (_, cr) => {
-
-				switch (vertical + horizontal) {
-					case 'topleft':
-						cr.arc(size, size, size, Math.PI, 3 * Math.PI / 2);
-						cr.lineTo(0, 0);
-					break;
-
-					case 'topright':
-						cr.arc(0, size, size, 3 * Math.PI / 2, 2 * Math.PI);
-						cr.lineTo(size, 0);
-					break;
-
-					case 'bottomleft':
-						cr.arc(size, 0, size, Math.PI / 2, Math.PI);
-						cr.lineTo(0, size);
-					break;
-
-					case 'bottomright':
-						cr.arc(0, 0, size, 0, Math.PI / 2);
-						cr.lineTo(size, size);
-					break;
-				}
-
-				cr.closePath();
-				cr.setSourceRGBA(background.red, background.green, background.blue, background.alpha);
-				cr.fill();
-			})
+			widget.connect('draw', (_, cr) => draw(cr, vertical, horizontal, size))
 		}
 	})
 }

@@ -1,3 +1,5 @@
+// import { Image } from "@girs/gtk-3.0"
+// import { Pixbuf } from "@girs/gdkpixbuf-2.0"
 import { Label, Box, Icon } from 'resource:///com/github/Aylur/ags/widget.js'
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js'
 import data from "../../../assets/data.toml"
@@ -21,11 +23,6 @@ const window_class_name = Label({
 
 	truncate: 'end',
 	max_width_chars: data.settings.max_title_length,
-
-	label: Hyprland
-		.active
-		.client
-		.bind('class')
 })
 
 // Make a map for each program class name to its respective kind.
@@ -38,26 +35,50 @@ for (const item of data.common)
 	for (const name of item.find)
 		class_to_icon.set(name, item.replace)
 
+// Set the name of icon apart.
+let _window_class_icon : any
+const window_class_icon = Icon({
+	hpack: 'center',
+	class_name: 'icon',
+	size: data.settings.icon_size,
+	icon: Hyprland
+		.active
+		.client
+		.bind('class')
+		.transform(name => {
+
+			const icon_name = class_to_icon.get(name)
+
+			// When failed to find an icon for the theme,
+			// - make label visible.
+			// - set label name.
+			// - make this icon invisible.
+			if (!icon_name)
+			{
+				window_class_name.visible = true
+				_window_class_icon.visible = false
+				window_class_name.label = name
+				return ''
+			}
+
+			// Found an icon from map, so:
+			// - Set label invisible.
+			// - Make this icon visible.
+			window_class_name.visible = false
+			_window_class_icon.visible = true
+
+			return data.icons[icon_name] + '-symbolic'
+		})
+})
+_window_class_icon = window_class_icon
+
 // Icon class of the active window.
-const window_class_icon = Box({
+const window_class_icon_name = Box({
 	class_name: 'class',
 
 	children: [
 		window_class_name,
-		// Icon({
-		// 	size: data.settings.icon_size,
-
-		// 	icon: Hyprland
-		// 		.active
-		// 		.client
-		// 		.bind('class')
-		// 		.transform(c => {
-		// 			const icon_name = class_to_icon.get(c)
-		// 			if (!icon_name)
-		// 				return data.icons._unknown
-		// 			return data.icons[icon_name]
-		// 		})
-		// })
+		window_class_icon,
 	]
 })
 
@@ -73,7 +94,7 @@ const window_class_title = Box({
 		.transform(addr => !!addr),
 
 	children: [
-		window_class_icon,
+		window_class_icon_name,
 		window_title
 	]
 })

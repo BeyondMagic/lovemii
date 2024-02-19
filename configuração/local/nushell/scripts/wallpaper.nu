@@ -4,7 +4,7 @@
 
 use random.nu
 
-const default_folder = "~/armazenamento/imagens/paredepapel/"
+const default_folder = "~/armazenamento/imagens/paredepapel/**/*"
 
 # Set wallpaper using program.
 export def set [

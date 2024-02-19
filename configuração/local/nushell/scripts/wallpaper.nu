@@ -2,32 +2,23 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-use random.nu
-
 const default_folder = "~/armazenamento/imagens/paredepapel/**/*"
 
-# Set wallpaper using program.
+# Set wallpaper using wallpaper manager.
 export def set [
-	file: string = # Wallpaper file.
+	file : string # Wallpaper file.
 ] -> nothing {
-	swww img $file --transition-type any
+	^swww img $file --transition-type any
 }
 
-# Set a random wallpaper.
-export def random [
+# List all wallapers
+export def main [
 	folder: string = $default_folder # Folder of wallpapers.
-	--all = false # Get all files
-	--link : string # Link file.
-] -> nothing {
-	let files = if $all { ls --all $folder } else { ls $folder }
-
-	let wallpaper = $files | get name | random item
-
-	set $wallpaper
-
-	# Create hard link to chosen wallpaper file.
-	if not ($link | is-empty) {
-		^ln -sf $wallpaper $link
+	--all = false # Return also hidden files.
+]: nothing -> list<string> {
+	if $all {
+		ls --all $folder | get name
+	} else {
+		ls $folder | get name
 	}
 }
-

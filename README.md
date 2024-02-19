@@ -4,16 +4,19 @@
 
 <h3 align="center">lovemii</h3>
 
+<img src="./.github/preview/system_information.png" align="center">
+
 ---
 
-The [nushell script](https://www.nushell.sh/) called [lovemii.sh](./lovemii.sh) is a helper for the desktop, it will list all software and little disclaimers for what I use them in this system of applications.
+The [*nushell* script](https://www.nushell.sh/) called [magick.sh](./magick.sh) is a helper for the desktop, it will list all software and little disclaimers for what I use them in this system of applications.
 
+---
 
-There's no install script because you should review and install carefully each configuration and software based on your needs.
+# Wayland
 
-Note folders of the unix architecture here, they reference their respective counterparts.
+## Evolution
 
-See [this repository called _starberry_](https://github.com/BeyondMagic/starberry) for linux tools I use along this desktop.
+<img src="./.github/preview/2024-02-19_10-09.png" align="center">
 
 ---
 

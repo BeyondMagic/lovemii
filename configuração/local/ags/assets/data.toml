@@ -12,18 +12,49 @@ green = 0
 blue = 0
 alpha = 1
 
-# For every item in the `common` list you add,
-# make sure to add its equivalent replacement
-# in the `icons` object.
+# This section determines how the classes of windows
+# are viewed i
+# Terminal such as foot.
 [[common]]
 find = ["foot"]
-replace = "terminal"
+replace = "command-terminal"
 
+# Browser such as Firefox.
 [[common]]
 find = ["firefox-nightly"]
-replace = "browser"
+replace = "internet-browser"
 
-[icons]
-terminal = "command-terminal"
-browser = "internet-browser"
-_unknown = "question-mark"
+# Image viewer such as swayimg.
+[[common]]
+find = ["swayimg"]
+replace = "any-image-viewer"
+
+# Social media applications such as Telegram, Mastodon, ...
+[[common]]
+find = ["org.telegram.desktop", "vesktop"]
+replace = "social-media"
+
+# Streaming applications such as Stremio.
+[[common]]
+find = ["com.stremio.stremio"]
+replace = "movie-streaming"
+
+# Email applications such as Thunderbird.
+[[common]]
+find = ["thunderbird"]
+replace = "email-manager"
+
+# Screen-shoting applications such as Flameshot.
+[[common]]
+find = ["flameshot"]
+replace = "tool-screenshot"
+
+# Note-taking applications such as Obsidian.
+[[common]]
+find = ["obsidian"]
+replace = "tool-notetaking"
+
+# Design applications such as Inkscape.
+[[common]]
+find = ["org.inkscape.Inkscape"]
+replace = "tool-designer"

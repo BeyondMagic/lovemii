@@ -1,5 +1,3 @@
-// import { Image } from "@girs/gtk-3.0"
-// import { Pixbuf } from "@girs/gdkpixbuf-2.0"
 import { Label, Box, Icon } from 'resource:///com/github/Aylur/ags/widget.js'
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js'
 import data from "../../../assets/data.toml"
@@ -35,6 +33,31 @@ for (const item of data.common)
 	for (const name of item.find)
 		class_to_icon.set(name, item.replace)
 
+// Load class icon.
+function load_class_icon (name : string ) : string {
+	const icon_name = class_to_icon.get(name)
+
+	// When failed to find an icon for the theme,
+	// - make label visible.
+	// - set label name.
+	// - make this icon invisible.
+	if (!icon_name)
+	{
+		window_class_name.visible = true
+		_window_class_icon.visible = false
+		window_class_name.label = name
+		return ''
+	}
+
+	// Found an icon from map, so:
+	// - Set label invisible.
+	// - Make this icon visible.
+	window_class_name.visible = false
+	_window_class_icon.visible = true
+
+	return icon_name + '-symbolic'
+}
+
 // Set the name of icon apart.
 let _window_class_icon : any
 const window_class_icon = Icon({
@@ -45,30 +68,7 @@ const window_class_icon = Icon({
 		.active
 		.client
 		.bind('class')
-		.transform(name => {
-
-			const icon_name = class_to_icon.get(name)
-
-			// When failed to find an icon for the theme,
-			// - make label visible.
-			// - set label name.
-			// - make this icon invisible.
-			if (!icon_name)
-			{
-				window_class_name.visible = true
-				_window_class_icon.visible = false
-				window_class_name.label = name
-				return ''
-			}
-
-			// Found an icon from map, so:
-			// - Set label invisible.
-			// - Make this icon visible.
-			window_class_name.visible = false
-			_window_class_icon.visible = true
-
-			return data.icons[icon_name] + '-symbolic'
-		})
+		.transform(name => load_class_icon(name))
 })
 _window_class_icon = window_class_icon
 

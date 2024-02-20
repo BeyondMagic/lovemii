@@ -58,3 +58,13 @@ replace = "tool-notetaking"
 [[common]]
 find = ["org.inkscape.Inkscape"]
 replace = "tool-designer"
+
+# Video viewer applications such as mpv.
+[[common]]
+find = ["mpv"]
+replace = "any-video-viewer"
+
+# Digital art tool such as Gimp, Krita...
+[[common]]
+find = ["krita", "Gimp"]
+replace = "digital-art-tool"

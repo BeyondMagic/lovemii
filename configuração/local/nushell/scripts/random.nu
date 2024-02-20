@@ -2,7 +2,7 @@
 #
 # João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
-# Return a random item of the given data.
+# Return a random item of the given list.
 export def item [] -> any {
 	let piped = $in
 	if ($piped | is-empty) {

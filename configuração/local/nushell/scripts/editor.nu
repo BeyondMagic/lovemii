@@ -1,6 +1,7 @@
 # Launch the default editor specified by $env.EDITOR.
 export def main [
-	...args: string # Arguments to launch along with it.
+	...files : string # Files to launch along with it.
+	--flags : list<string> = [] # Flags to launch with it.
 ] -> nothing {
-	^$env.EDITOR ...$args
+	^$env.EDITOR ...($files | path expand) ...$flags
 }

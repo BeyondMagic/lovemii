@@ -2,7 +2,7 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-const default_folder = "~/armazenamento/imagens/paredepapel/**/*"
+const default_folder = "~/armazenamento/imagens/paredepapel/desktop/**/*"
 
 # Set wallpaper using wallpaper manager.
 export def set [

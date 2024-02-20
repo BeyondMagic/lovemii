@@ -1,15 +1,14 @@
 import Variable from 'resource:///com/github/Aylur/ags/variable.js'
 
-/*
- * Will retrieve the current date of the system in a interval.
- */
+// Will retrieve the current date of the system in a interval.
 const date = Variable('', {
+	// 1000 miliseconds = 1 minute.
 	poll: [1000,
-		"date '+%B%d%A %I時%M分%p'",
+		'date \'+<span size="smaller" rise="1pt">%B%d%A</span> %I時%M分%p\'',
 		(out : string) =>
 			out
-			.replace(/([^\s]+)/, '<span size="smaller" rise="1pt">$1</span>')
+			// Make all Japanese characters with lower opacity.
 			.replace(/([一-龯]+)/g, '<span fgalpha="75%">$1</span>')],
 });
 
-export default date;
+export default date

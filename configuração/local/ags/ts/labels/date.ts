@@ -1,7 +1,6 @@
 import { EventBox, Label } from 'resource:///com/github/Aylur/ags/widget.js';
 import date from '../variables/date';
 
-
 // Label
 const LabelDate = EventBox({
 	class_name: 'eventbox-date',

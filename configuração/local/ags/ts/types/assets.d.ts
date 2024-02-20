@@ -20,10 +20,6 @@ type Assets = {
 		find : Array<string>
 		replace : string
 	}>
-	icons : {
-		[key: string] : string
-		_unknown : string
-	}
 }
 
 declare module "*.toml" {

@@ -1,0 +1,43 @@
+# Install packages in system.
+export def install [
+	...packages : string # Names of the packages.
+] : nothing -> nothing {
+	main [ -S ...$packages ]
+}
+
+# Remove all packages.
+export def remove [
+	...packages : string # Names of the packages.
+] : nothing -> nothing {
+	main [ -R ...$packages ]
+}
+
+# Upgrade all packages.
+export def upgrade [
+	--ignore : list<string> # Names of packages to ignore.
+	--refresh = true # Refresh packages database.
+	--force-refresh = false # Force-refrsh database.
+] : nothing -> nothing {
+	mut args = [ -Su ]
+
+	if $force_refresh {
+		$args = $args ++ [ -yy ]
+	} else if $refresh {
+		$args = $args ++ [ -y ]
+	}
+
+	if not ($ignore | is-empty) {
+		$args = $args ++ [ --ignore ...$ignore ]
+	}
+
+	main $args
+}
+
+# The command itself for the package manager.
+# See paru manual(1).
+def main [
+	arguments : list<string> # Arguments to pass for it.
+] : nothing -> nothing {
+	# Paru is a package manager that follows Arch package protocols.
+	^paru ...$arguments
+}

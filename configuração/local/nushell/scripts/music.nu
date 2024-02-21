@@ -8,6 +8,35 @@ const default_folder = '~/armazenamento/música/canções/'
 const default_format = '%(title)s.%(ext)s'
 const default_max = 50
 
+# Add cover to image.
+export module cover {
+
+	# FIXIT: find covers for us and shit.
+	export def download [
+		song : string
+		author : string
+	] -> nothing {
+	}
+
+	# FIXIT: make parameter and shit.
+	export def set [
+		file : string
+		video : string
+	] -> nothing {
+		^ffmpeg ...[
+			-i $video
+			-i $file
+			-map 0:0
+			-map 1:0
+			-c copy
+			-id3v2_version 3
+			-metadata:s:v title='Album cover'
+			-metadata:s:v comment='Cover (front)'
+			new-"$2"
+		]
+	}
+}
+
 # Download all songs from a playlist.
 #
 # Dependes on:

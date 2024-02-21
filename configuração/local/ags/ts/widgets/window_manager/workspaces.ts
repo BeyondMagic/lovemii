@@ -6,13 +6,13 @@ function set_workspace (workspace: string | number) : void {
 	Hyprland.messageAsync('dispatch workspace ' + workspace)
 }
 
-function create_button (n : number, name : string) {
+function create_button (id : number, name : string) {
 	return Button({
 		class_name: 'workspace',
 
 		label: name,
 
-		on_clicked: () => set_workspace(n + 1)
+		on_clicked: () => set_workspace(id)
 	})
 }
 

@@ -1,8 +1,7 @@
 import { EventBox, Label } from 'resource:///com/github/Aylur/ags/widget.js';
 import date from '../variables/date';
 
-// Label
-const LabelDate = EventBox({
+const label_date = EventBox({
 	class_name: 'eventbox-date',
 
 	child: Label({
@@ -22,4 +21,4 @@ const LabelDate = EventBox({
 // 	print("lol")
 // });
 
-export default LabelDate;
+export default label_date

@@ -1,12 +1,12 @@
 import { CenterBox, Window, Box, Label } from 'resource:///com/github/Aylur/ags/widget.js'
 
-import LabelDate from '../labels/date'
+import label_date from '../labels/date'
 import battery from '../widgets/battery'
 import window_manager from '../widgets/window_manager'
 
 const left = window_manager.window.title_and_class
 
-const center = LabelDate
+const center = label_date
 
 const right = CenterBox({
 	class_name: "center",

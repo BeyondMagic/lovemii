@@ -4,7 +4,7 @@
 #	> fork "echo lol" "exec /usr/bin/sleep 10" --stdout /home/dream/stdout --stderr /home/dream/stderr
 #	> const name = "cat"
 #	> fork $"notify-call ($name) meaw"
-#   > fork { notify-call $name }
+#	> fork { notify-call $name }
 #
 # Will launch into default POSIX shell first then redirect all output (stderr and stdout) to $log while self-executing into nushell nohup'd.
 export def main [
@@ -20,8 +20,21 @@ export def main [
 	} else {
 		($commands | str join '; ') + ';'
 	}
+	
+	# Spawner of the process.
+	let nohup = [
+		# Fork the spawner.
+		exec nohup
+		# Use chosen shell to execute the given command.
+		$sh -c
+		# Escape the command using double quotes.
+		'"' $source_code '"'
+		# Send standard output and error streams to chosen files.
+		# Uses POSIX syntax.
+		'1>' $stdout '2>' $stderr
+		# Print the PID.
+		& echo '$!'
+	] | str join ' '
 
-	do {
-		sh -c -- $"exec nohup ($sh) -c \"($source_code)\" 1> ($stdout) 2> ($stderr) & echo $!"
-	} | complete | get stdout
+	^sh -c -- $nohup | into int
 }

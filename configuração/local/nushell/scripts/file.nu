@@ -38,3 +38,17 @@ export module path {
 	}
 
 }
+
+const default_flags = [
+	-adDoRiJU
+	-T t
+]
+
+# Open default file manager.
+export def --env manager [
+	...args : string # Argument for file manager.
+	--flags : list<string> = $default_flags # Flags of file manager.
+] -> nothing {
+	use nnn.nu n
+	n ...$flags ...$args
+}

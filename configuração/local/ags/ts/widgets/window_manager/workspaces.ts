@@ -1,74 +1,163 @@
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import Widget, { Button, Box } from 'resource:///com/github/Aylur/ags/widget.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
+import data from "../../../assets/data.toml"
 
 function set_workspace (workspace: string | number) : void {
 	Hyprland.messageAsync('dispatch workspace ' + workspace)
 }
 
-const workspace_icons = [
-	'一',
-	'二',
-	'三',
-	'四',
-	'五',
-	'六',
-	'七',
-	'八',
-	'九',
-	'十',
-]
-
-function create_button (n : number) {
-	return Widget.Button({
-
+function create_button (n : number, name : string) {
+	return Button({
 		class_name: 'workspace',
 
-		label: workspace_icons[n],
+		label: name,
 
-		on_clicked () {
-			set_workspace(n + 1)
-		}
+		on_clicked: () => set_workspace(n + 1)
 	})
 }
 
-const buttons = Array
-	.from({ length: 10 }, (_, i) => create_button(i))
+type ReturnButton = ReturnType<typeof Button>
+
+const buttons = new Map<number, ReturnButton>()
+
+// Buttons that are going to be permanent.
+const permanent_buttons = new Map<number, true>()
+let hyprland_loaded = false
+
+function window_manager_setup (box: ReturnType<typeof Box>) : void {
+	
+	const workspaces = new Map<number, string>()
+	for (const { id, name } of data.settings.workspaces)
+	{
+		permanent_buttons.set(id, true)
+		workspaces.set(id, name)
+	}
+
+	for (const { id, name } of Hyprland.workspaces)
+		if (!workspaces.get(id))
+			workspaces.set(id, name)
+
+	// Create, add, and set default buttons (will not be removed).
+	const default_buttons : Array<ReturnType<typeof Button>> = []
+	for (const [ id, name ] of workspaces)
+	{
+		const button = create_button(id, name)
+		default_buttons.push(button)
+
+		// Also set in the map so we can reference later.
+		buttons.set(id, button)
+	}
+	box.children = default_buttons
+}
+
+function rename_workspace (data : string) {
+	const comma = data.indexOf(',')
+
+	const workspace = {
+		id: parseInt(data.substring(0, comma)),
+		name: data.substring(comma + 1)
+	}
+
+	const button = buttons.get(workspace.id)
+
+	if (!button)
+		return
+
+	button.label = workspace.name
+}
+
+function remove_workspace (data : string | undefined) {
+	if (!data)
+		return
+
+	const id = parseInt(data)
+
+	if (permanent_buttons.has(id))
+		return
+
+	const button = buttons.get(id)
+	button?.destroy()
+	buttons.delete(id)
+}
+
+function add_workspace (box : ReturnType<typeof Box>, data : string | undefined) {
+	if (!data)
+		return
+
+	const id = parseInt(data)
+
+	if (buttons.has(id))
+		return
+
+	for (const workspace of Hyprland.workspaces)
+		if (workspace.id === id)
+		{
+			const button = create_button(id, workspace.name)
+			buttons.set(id, button)
+			box.children = box.children.concat(button)
+			return
+		}
+}
+
+function event_handler (box : ReturnType<typeof Box>, event : string, data : string) {
+	// When Hyprland is fully loaded.
+	if (!hyprland_loaded)
+	{
+		hyprland_loaded = true
+		window_manager_setup(box)
+	}
+
+	// When a new workspace is renamed, set it in the bar.
+	if (event === 'renameworkspace')
+		rename_workspace(data)
+	if (!hyprland_loaded)
+	{
+		hyprland_loaded = true
+		window_manager_setup(box)
+	}
+
+	// When a new workspace is renamed, set it in the bar.
+	if (event === 'renameworkspace')
+		rename_workspace(data)
+}
+
+function workspace_switch () : void {
+	const occupied_map = new Map<number, boolean>()
+
+	for (const workspace of Hyprland.workspaces)
+		occupied_map.set(workspace.id, true)
+
+	for (const [ id, button ] of buttons)
+		button.toggleClassName('occupied', occupied_map.has(id))
+}
+
+function window_switch () : void {
+	const id = Hyprland.active.workspace.id
+	for (const [i, button] of buttons)
+		button.toggleClassName('active', i === id)
+}
 
 const collapsed = Widget.EventBox({
-	on_scroll_up () {
-		set_workspace('+1')
-	},
+	on_scroll_up: () => set_workspace('+1'),
 
-	on_scroll_down () {
-		set_workspace('-1')
-	},
+	on_scroll_down: () => set_workspace('-1'),
 
 	child: Widget.Box({
 		class_name: 'workspaces',
-		children: buttons,
-
 		setup: self => self
 
 			// Switching to another window
-			.hook(Hyprland.active.workspace, () => {
-				const id = Hyprland.active.workspace.id
-				for (const [i, button] of buttons.entries())
-					button.toggleClassName('active', i + 1 === id)
-			})
+			.hook(Hyprland.active.workspace, window_switch)
 
 			// When a new window is opened or closed.
-			.hook(Hyprland, () => {
+			.hook(Hyprland, workspace_switch, 'notify::workspaces')
 
-				const workspaces = Array(10).fill(false)
+			.hook(Hyprland, event_handler, 'event')
 
-				for (const workspace of Hyprland.workspaces)
-					workspaces[workspace.id - 1] = true
+			// When a new workspace is added.
+			.hook(Hyprland, add_workspace, 'workspace-added')
 
-				for (const [i, occupied] of workspaces.entries())
-					buttons[i].toggleClassName('occupied', occupied)
-
-			}, 'notify::workspaces')
-
+			.hook(Hyprland, (_, data : string | undefined) => remove_workspace(data), 'workspace-removed')
 	}),
 })
 

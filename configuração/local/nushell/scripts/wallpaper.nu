@@ -5,10 +5,10 @@
 const default_folder = "~/armazenamento/imagens/paredepapel/desktop/**/*"
 
 # List all wallapers
-export def main [
+export def list [
 	folder: string = $default_folder # Folder of wallpapers.
 	--all = false # Return also hidden files.
-]: nothing -> list<string> {
+] : nothing -> list<string> {
 	if $all {
 		ls --all $folder | get name
 	} else {

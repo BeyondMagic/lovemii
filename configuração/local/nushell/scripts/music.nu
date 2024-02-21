@@ -71,5 +71,57 @@ export def download [
 # Update database with new songs.
 export def update [] -> nothing {
 	# Add the new songs to the MPD database.
-	mpc update --wait
+	^mpc update --wait
 }
+
+# Manager/visualizer of music.
+export def manager [
+	--config : string = '~/.config/ncmpcpp/config' # Configuraiton file 
+] -> nothing {
+	^ncmpcpp -c $config --ignore-config-errors
+}
+
+# Find a song.
+## Load a song that you found from a playlist
+#find_song() {
+#
+#  # query get by dmenu
+#  query="$(printf '' | dmenu -p "Find a song:")"
+#
+#  # if empty doesn't continue
+#  [ "$query" ] || exit 1
+#
+#  # select all songs that it finds
+#  song_found="$(mpc search any "$query")"
+#
+#  # if it doesn't find any song
+#  [ "$song_found" ] || exit 1
+#
+#  # add songs
+#  song_found="$(echo "$song_found" | dmenu -i -l 10 -r )"
+#
+#  # only continue if it did find songs
+#  [ "$song_found" ] || exit 1
+#
+#  # last position to start counting from now (in case of multiple songs)
+#  position_last=$(mpc playlist | wc -l)
+#
+#  # loop through all the songs to add it to mpd
+#  echo "$song_found" | \
+#	  while IFS="" read -r song_path || [ -n "$song_path" ]; do
+#		  mpc add "$song_path"
+#	  done
+#
+#  # start from the first song added
+#  mpc play $((position_last + 1))
+#
+#}
+
+# Delete song.
+## Delete current song of mpd
+#del_cursong() {
+#
+#  # A direct call :)
+#  mpc del $(mpc playlist | grep -n "$(mpc current)" | cut -d : -f 1)
+#
+#}

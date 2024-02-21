@@ -66,7 +66,4 @@ export-env {
 
 	# Add global path for Bun.
 	$env.BUN_INSTALL = $"($env.HOME)/.bun"
-
-	# For having not to specify full path for launching user services.
-	$env.SVDIR = $"($env.HOME)/.local/services"
 }

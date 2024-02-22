@@ -15,6 +15,11 @@ type Assets = {
 			blue : number
 			alpha : number
 		}
+
+		workspaces : Array<{
+			id : number
+			name : string
+		}>
 	}
 	common : Array<{
 		find : Array<string>

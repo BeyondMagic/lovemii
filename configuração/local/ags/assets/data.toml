@@ -12,6 +12,49 @@ green = 0
 blue = 0
 alpha = 1
 
+# Default workspaces to be always shown.
+# The names can be changed by renaming with Hyprland setter (hyprctl).
+# This until https://github.com/hyprwm/Hyprland/issues/4492 is closed.
+[[settings.workspaces]]
+id = 1
+name = "一"
+
+[[settings.workspaces]]
+id = 2
+name = "二"
+
+[[settings.workspaces]]
+id = 3
+name = "三"
+
+[[settings.workspaces]]
+id = 4
+name = "四"
+
+[[settings.workspaces]]
+id = 5
+name = "五"
+
+[[settings.workspaces]]
+id = 6
+name = "六"
+
+[[settings.workspaces]]
+id = 7
+name = "七"
+
+[[settings.workspaces]]
+id = 8
+name = "八"
+
+[[settings.workspaces]]
+id = 9
+name = "九"
+
+[[settings.workspaces]]
+id = 10
+name = "十"
+
 # This section determines how the classes of windows
 # are viewed i
 # Terminal such as foot.

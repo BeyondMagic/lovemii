@@ -8,19 +8,13 @@ const left = window_manager.window.title_and_class
 
 const center = label_date
 
-const right = CenterBox({
-	class_name: "center",
-	center_widget: Label({
-		label: '',
-		hexpand: true
-	}),
-	end_widget: Box({
-		class_name: "box",
-		children: [
-			battery.number,
-			window_manager.workspaces.collapsed
-		]
-	})
+const right = Box({
+	class_name: "right",
+	hpack: 'end',
+	children: [
+		battery.number,
+		window_manager.workspaces.collapsed
+	]
 })
 
 const container = CenterBox({

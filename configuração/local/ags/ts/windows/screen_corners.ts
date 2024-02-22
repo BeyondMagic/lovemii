@@ -33,6 +33,8 @@ function draw (context : any, vertical : Vertical, horizontal : Horizontal, size
 	context.setSourceRGBA(background.red, background.green, background.blue, background.alpha)
 	context.fill()
 
+	// Freeing the context before returning from the callback
+	context.$dispose()
 }
 
 function RoundedCorner (vertical: Vertical, horizontal: Horizontal, classname : string) {

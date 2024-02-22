@@ -110,15 +110,6 @@ function event_handler (box : ReturnType<typeof Box>, event : string, data : str
 	// When a new workspace is renamed, set it in the bar.
 	if (event === 'renameworkspace')
 		rename_workspace(data)
-	if (!hyprland_loaded)
-	{
-		hyprland_loaded = true
-		window_manager_setup(box)
-	}
-
-	// When a new workspace is renamed, set it in the bar.
-	if (event === 'renameworkspace')
-		rename_workspace(data)
 }
 
 function workspace_switch () : void {

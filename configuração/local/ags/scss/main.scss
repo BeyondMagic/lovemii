@@ -1,90 +1,93 @@
 #bar-0 {
-  background-color: black;
+	background-color: black;
 
-  padding: 0 0.5rem;
-  color: white;
+	padding: 0 0.5rem;
+	color: white;
 
-  .container {
+	.container {
 
-    .window {
-      .class {
+		.window {
+			.class {
 
-        // The name itself of the class.
-        .name {
+				// The name itself of the class.
+				.name {
 
-          font-weight: bolder;
+					font-weight: bolder;
 
-        }
+				}
 
-        // The icon.
-        .icon {
-          padding: 0 0.5rem;
-          color: white;
-        }
+				// The icon.
+				.icon {
+					padding: 0 0.5rem;
+					color: white;
+				}
 
-      }
+			}
 
-      .title {
-        opacity: 0.5;
-      }
-    }
+			.title {
+				opacity: 0.5;
+			}
+		}
 
-    .center {
+		.right {
 
-      .box {
+			.battery {
+				font-weight: bolder;
+				padding: 0 0.7rem;
 
-        .workspaces {
+				&.charging {
+					font-style: italic;
+				}
+			}
 
-          .workspace {
-            min-height: 2px;
-            min-width: 2px;
-            border-radius: 0px;
-            -gtk-outline-radius: 0px;
+			.workspaces-event-box {
 
-            label {
-              font-weight: bolder;
-              color: white;
-              opacity: 0.25;
-            }
+				.workspaces {
 
-            &.occupied {
-              label {
-                opacity: 0.5;
-              }
-            }
+					.workspace {
 
-            &.active {
-              label {
-                opacity: 1;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+						box-shadow: none;
+						text-shadow: none;
+						background: transparent;
+						border: none;
 
-  .label-date {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
+						label {
+							font-weight: bolder;
+							opacity: 0.25;
+                            color: white;
+						}
 
-  .battery {
+						&.occupied {
+							label {
+								opacity: 0.5;
+							}
+						}
 
-    .number {
-      font-weight: bolder;
-    }
-  }
+						&.active {
+							label {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.label-date {
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
 }
 
 /*
  * screencorners
  */
-  .widget-corner {
-    background-color: transparent;
-  }
+	.widget-corner {
+		background-color: transparent;
+	}
 
-  .corner-black {
-    background-color: black;
-    border-radius: 1.705rem;
-  }
+	.corner-black {
+		background-color: black;
+		border-radius: 1.705rem;
+	}

@@ -1,4 +1,4 @@
-import { CenterBox, Window, Box, Label } from 'resource:///com/github/Aylur/ags/widget.js'
+import { CenterBox, Window, Box } from 'resource:///com/github/Aylur/ags/widget.js'
 
 import label_date from '../labels/date'
 import battery from '../widgets/battery'

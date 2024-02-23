@@ -129,6 +129,8 @@ function window_switch () : void {
 }
 
 const collapsed = Widget.EventBox({
+	class_name: 'workspaces-event-box',
+
 	on_scroll_up: () => set_workspace('+1'),
 
 	on_scroll_down: () => set_workspace('-1'),

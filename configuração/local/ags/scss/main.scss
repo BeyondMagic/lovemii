@@ -29,40 +29,34 @@
       }
     }
 
-    .right {
+    .center {
 
-      .battery {
-        font-weight: bolder;
-        padding: 0 0.7rem;
+      .box {
 
-        &.charging {
-          font-style: italic;
-        }
-      }
+        .workspaces {
 
-      .workspaces {
+          .workspace {
+            min-height: 2px;
+            min-width: 2px;
+            border-radius: 0px;
+            -gtk-outline-radius: 0px;
 
-        .workspace {
-          min-height: 2px;
-          min-width: 2px;
-          border-radius: 0px;
-          -gtk-outline-radius: 0px;
-
-          label {
-            font-weight: bolder;
-            color: white;
-            opacity: 0.25;
-          }
-
-          &.occupied {
             label {
-              opacity: 0.5;
+              font-weight: bolder;
+              color: white;
+              opacity: 0.25;
             }
-          }
 
-          &.active {
-            label {
-              opacity: 1;
+            &.occupied {
+              label {
+                opacity: 0.5;
+              }
+            }
+
+            &.active {
+              label {
+                opacity: 1;
+              }
             }
           }
         }
@@ -73,6 +67,13 @@
   .label-date {
     font-size: 1.25rem;
     font-weight: bold;
+  }
+
+  .battery {
+
+    .number {
+      font-weight: bolder;
+    }
   }
 }
 

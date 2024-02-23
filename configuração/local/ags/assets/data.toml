@@ -15,6 +15,8 @@ alpha = 1
 # Default workspaces to be always shown.
 # The names can be changed by renaming with Hyprland setter (hyprctl).
 # This until https://github.com/hyprwm/Hyprland/issues/4492 is closed.
+#
+# Special workspaces (with ids below 0) will be rendered with an icon instead.
 [[settings.workspaces]]
 id = 1
 name = "一"
@@ -54,6 +56,10 @@ name = "九"
 [[settings.workspaces]]
 id = 10
 name = "十"
+
+[[settings.workspaces]]
+id = -98
+name = "love-heart magic"
 
 # This section determines how the classes of windows
 # are viewed i

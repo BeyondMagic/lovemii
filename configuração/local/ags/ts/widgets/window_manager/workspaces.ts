@@ -1,4 +1,4 @@
-import Widget, { Button, Box } from 'resource:///com/github/Aylur/ags/widget.js';
+import Widget, { Button, Box, Label, Icon } from 'resource:///com/github/Aylur/ags/widget.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import data from "../../../assets/data.toml"
 
@@ -6,13 +6,40 @@ function set_workspace (workspace: string | number) : void {
 	Hyprland.messageAsync('dispatch workspace ' + workspace)
 }
 
+function set_special_workspace (workspace: string) : void {
+	Hyprland.messageAsync('dispatch togglespecialworkspace ' + workspace)
+}
+
 function create_button (id : number, name : string) {
 	return Button({
 		class_name: 'workspace',
+		hexpand_set: false,
+		hexpand: false,
 
-		label: name,
+		setup (self) {
+			if (id < 0)
+			{
+				const [ title, workspace ] = name.split(' ')
 
-		on_clicked: () => set_workspace(id)
+				self.on_clicked = () => set_special_workspace(workspace)
+
+				self.child = Icon({
+					hpack: 'center',
+					class_name: 'symbol icon',
+					icon: title + '-symbolic',
+					size: data.settings.icon_size,
+				})
+
+			} else {
+				self.on_clicked = () => set_workspace(id)
+
+				self.child = Label({
+					class_name: 'symbol',
+					hexpand: false,
+					label: name,
+				})
+			}
+		}
 	})
 }
 
@@ -66,11 +93,25 @@ function rename_workspace (data : string) {
 	button.label = workspace.name
 }
 
-function remove_workspace (data : string | undefined) {
-	if (!data)
+function workspace_switch () : void {
+	const occupied_map = new Map<number, boolean>()
+
+	for (const workspace of Hyprland.workspaces)
+		occupied_map.set(workspace.id, true)
+
+	for (const [ id, button ] of buttons)
+		button.toggleClassName('occupied', occupied_map.has(id))
+}
+
+function remove_workspace (id : number | undefined) {
+	if (id === undefined)
 		return
 
-	const id = parseInt(data)
+	if (id === 0)
+	{
+		workspace_switch()
+		return
+	}
 
 	if (permanent_buttons.has(id))
 		return
@@ -80,11 +121,16 @@ function remove_workspace (data : string | undefined) {
 	buttons.delete(id)
 }
 
-function add_workspace (box : ReturnType<typeof Box>, data : string | undefined) {
-	if (!data)
+
+function add_workspace (box : ReturnType<typeof Box>, id : number | undefined) {
+	if (id === undefined)
 		return
 
-	const id = parseInt(data)
+	if (id === 0)
+	{
+		workspace_switch()
+		return
+	}
 
 	if (buttons.has(id))
 		return
@@ -112,16 +158,6 @@ function event_handler (box : ReturnType<typeof Box>, event : string, data : str
 		rename_workspace(data)
 }
 
-function workspace_switch () : void {
-	const occupied_map = new Map<number, boolean>()
-
-	for (const workspace of Hyprland.workspaces)
-		occupied_map.set(workspace.id, true)
-
-	for (const [ id, button ] of buttons)
-		button.toggleClassName('occupied', occupied_map.has(id))
-}
-
 function window_switch () : void {
 	const id = Hyprland.active.workspace.id
 	for (const [i, button] of buttons)
@@ -139,10 +175,10 @@ const collapsed = Widget.EventBox({
 		class_name: 'workspaces',
 		setup: self => self
 
-			// Switching to another window
+			// When a new window is opened or closed.
 			.hook(Hyprland.active.workspace, window_switch)
 
-			// When a new window is opened or closed.
+			// Switching to another workspace
 			.hook(Hyprland, workspace_switch, 'notify::workspaces')
 
 			.hook(Hyprland, event_handler, 'event')
@@ -150,7 +186,7 @@ const collapsed = Widget.EventBox({
 			// When a new workspace is added.
 			.hook(Hyprland, add_workspace, 'workspace-added')
 
-			.hook(Hyprland, (_, data : string | undefined) => remove_workspace(data), 'workspace-removed')
+			.hook(Hyprland, (_, data : number | undefined) => remove_workspace(data), 'workspace-removed')
 	}),
 })
 

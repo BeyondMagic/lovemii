@@ -111,3 +111,18 @@ replace = "any-video-viewer"
 [[common]]
 find = ["krita", "Gimp"]
 replace = "digital-art-tool"
+
+# For note-taing tools such as Rnote.
+[[common]]
+find = ["com.github.flxzt.rnote", "rnote"]
+replace = "tool-note-taking"
+
+# File manager/explorers such as Thunar, xdg-desktop-open-portal, ...
+[[common]]
+find = ["xdg-desktop-portal-gtk"]
+replace = "tool-file-explorer"
+
+# Any downloader tool such as qBittorrent.
+[[common]]
+find = ["org.qbittorrent.qBittorrent"]
+replace = "tool-any-downloader"

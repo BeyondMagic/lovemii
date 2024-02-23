@@ -19,8 +19,8 @@ function draw_icon (label : ReturnType<typeof Label>, context : any) : void {
 
 	const background = {
 		red: 1 - Battery.percent / 100,
-		green: Battery.percent / 100,
-		blue: 0,
+		green: 1,
+		blue: Battery.percent / 100,
 	}
 
 	context.newSubPath()
@@ -60,8 +60,8 @@ const markup_percentage = '<span fgalpha="75%">%</span>'
 
 function colour (percentage : number) : string {
 	const red = (1 - percentage / 100) * 255
-	const green = percentage / 100 * 255
-	const blue = 0
+	const green = 255
+	const blue = percentage / 100 * 255
 
 	const number = '<span foreground="#'
 		+ to_hex(red)

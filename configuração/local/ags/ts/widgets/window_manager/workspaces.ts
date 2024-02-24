@@ -30,12 +30,15 @@ function create_button (id : number, name : string) {
 				// If it was assigned dynamically (not upon data.toml)
 				// we should use a label instead.
 				if (workspace)
-					return self.child = Icon({
+				{
+					self.child = Icon({
 						hpack: 'center',
 						class_name: class_name + ' icon ' + title,
 						icon: title + '-symbolic',
 						size: data.settings.icon_size,
 					})
+					return
+				}
 
 				// Remove the 'special:' substring of the special workspace's name.
 				name = name.substring(name.indexOf(':') + 1)
@@ -59,7 +62,6 @@ const buttons = new Map<number, ReturnButton>()
 
 // Buttons that are going to be permanent.
 const permanent_buttons = new Map<number, true>()
-let hyprland_loaded = false
 
 function window_manager_setup (box: ReturnType<typeof Box>) : void {
 	
@@ -113,7 +115,7 @@ function workspace_switch () : void {
 		button.toggleClassName('occupied', occupied_map.has(id))
 }
 
-function remove_workspace (id : number | undefined) {
+export function remove_workspace (id : number | undefined) {
 	// Some special workspace was removed.
 	if (id === 0)
 	{
@@ -148,8 +150,6 @@ function add_workspace (box : ReturnType<typeof Box>, id : number | undefined) {
 	if (id === undefined)
 		return
 
-	let workspace : typeof Hyprland.workspaces[0] | undefined
-
 	// Some special workspace was added.
 	if (id === 0)
 	{
@@ -164,12 +164,11 @@ function add_workspace (box : ReturnType<typeof Box>, id : number | undefined) {
 
 
 	// The normal workspace already exists.
-	else if (buttons.has(id))
+	if (buttons.has(id))
 		return
 
 	// The normal workspace does not exist, so we get its content.
-	else
-		workspace = Hyprland.workspaces.find(workspace => workspace.id === id)
+	const workspace = Hyprland.workspaces.find(workspace => workspace.id === id)
 
 	if (workspace)
 	{
@@ -177,19 +176,6 @@ function add_workspace (box : ReturnType<typeof Box>, id : number | undefined) {
 		buttons.set(workspace.id, button)
 		box.children = box.children.concat(button)
 	}
-}
-
-function event_handler (box : ReturnType<typeof Box>, event : string, data : string) {
-	// When Hyprland is fully loaded.
-	if (!hyprland_loaded)
-	{
-		hyprland_loaded = true
-		window_manager_setup(box)
-	}
-
-	// When a new workspace is renamed, set it in the bar.
-	if (event === 'renameworkspace')
-		rename_workspace(data)
 }
 
 function window_switch () : void {
@@ -215,8 +201,6 @@ const collapsed = Widget.EventBox({
 			// Switching to another workspace
 			.hook(Hyprland, workspace_switch, 'notify::workspaces')
 
-			.hook(Hyprland, event_handler, 'event')
-
 			// When a new workspace is added.
 			.hook(Hyprland, add_workspace, 'workspace-added')
 
@@ -225,7 +209,12 @@ const collapsed = Widget.EventBox({
 })
 
 const workspaces = {
-	collapsed
+	collapsed,
+	actions: {
+		window_manager_setup,
+		workspace_switch,
+		rename_workspace,
+	}
 }
 
 export default workspaces

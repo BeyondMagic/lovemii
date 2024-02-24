@@ -34,7 +34,9 @@ for (const item of data.common)
 		class_to_icon.set(name, item.replace)
 
 // Load class icon.
-function load_class_icon (name : string ) : string {
+function load_class_icon (icon : ReturnType<typeof Icon>) {
+	const name = Hyprland.active.client.class
+
 	const icon_name = class_to_icon.get(name)
 
 	// When failed to find an icon for the theme,
@@ -44,33 +46,29 @@ function load_class_icon (name : string ) : string {
 	if (!icon_name)
 	{
 		window_class_name.visible = true
-		_window_class_icon.visible = false
+		icon.visible = false
 		window_class_name.label = name
-		return ''
+		icon.icon = ''
+		return
 	}
 
 	// Found an icon from map, so:
 	// - Set label invisible.
 	// - Make this icon visible.
 	window_class_name.visible = false
-	_window_class_icon.visible = true
+	icon.visible = true
 
-	return icon_name + '-symbolic'
+	icon.icon = icon_name + '-symbolic'
 }
 
 // Set the name of icon apart.
-let _window_class_icon : any
 const window_class_icon = Icon({
 	hpack: 'center',
 	class_name: 'icon',
 	size: data.settings.icon_size,
-	icon: Hyprland
-		.active
-		.client
-		.bind('class')
-		.transform(name => load_class_icon(name))
+	setup: self => self
+		.hook(Hyprland.active.client, self => load_class_icon(self))
 })
-_window_class_icon = window_class_icon
 
 // Icon class of the active window.
 const window_class_icon_name = Box({
@@ -99,10 +97,18 @@ const window_class_title = Box({
 	]
 })
 
+function update_title_class () {
+	load_class_icon(window_class_icon)
+	window_title.label = Hyprland.active.client.title
+}
+
 const window = {
 	title: window_title,
-	class: window_class_title,
-	title_and_class: window_class_title
+	class: window_class_icon_name,
+	class_title: window_class_title,
+	actions: {
+		update_title_class
+	}
 }
 
 export default window

@@ -111,3 +111,29 @@ export def edit [
 		cd -
 	}
 }
+
+# Run command with elevated priviliges.
+#
+# Will run as the default priviged user for doas (root).
+#
+# Dependencies:
+# - doas
+export def main [
+	code : closure # Code to run
+	--args : list<string> = [] # The arguments to be passed to the closure.
+]: nothing -> nothing {
+	let closure_code = view source $code
+
+	let command = [
+		# To run the closure.
+		do
+		# The could itself.
+		$closure_code
+		# Enclose each argument with double quotes.
+		# NOTE: may need to escape its double quotes themselves.
+		...($args | par-each {|arg| '"' + $arg + '"' })
+	] | str join ' '
+
+	# Run the elevated access command.
+	^doas nu --commands $command
+}

@@ -3,8 +3,9 @@ import { CenterBox, Window, Box } from 'resource:///com/github/Aylur/ags/widget.
 import label_date from '../labels/date'
 import battery from '../widgets/battery'
 import window_manager from '../widgets/window_manager'
+import wifi from 'ts/widgets/wifi'
 
-const left = window_manager.window.title_and_class
+const left = window_manager.window.class_title
 
 const center = label_date
 
@@ -12,6 +13,7 @@ const right = Box({
 	class_name: "right",
 	hpack: 'end',
 	children: [
+		wifi.icon,
 		battery.number,
 		window_manager.workspaces.collapsed
 	]

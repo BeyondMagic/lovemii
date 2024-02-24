@@ -12,6 +12,21 @@ export def remove [
 	main [ -R ...$packages ]
 }
 
+# List files of a package.
+export def list [
+	package : string # Name of the package.
+] : nothing -> nothing {
+	main [
+		-Ql $package
+	] | lines | par-each {|item|
+		let data = $item | split row ' '
+		{
+			name: ($data | first)
+			path: ($data | last)
+		}
+	}
+}
+
 # Upgrade all packages.
 export def upgrade [
 	--ignore : list<string> # Names of packages to ignore.

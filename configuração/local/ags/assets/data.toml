@@ -135,3 +135,8 @@ replace = "tool-file-explorer"
 [[common]]
 find = ["org.qbittorrent.qBittorrent"]
 replace = "tool-any-downloader"
+
+# Book reader..
+[[common]]
+find = ["org.pwmt.zathura"]
+replace = "any-book-reader-symbolic"

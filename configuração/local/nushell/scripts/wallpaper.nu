@@ -4,7 +4,7 @@
 
 const default_folder = "~/armazenamento/imagens/paredepapel/desktop/**/*"
 
-# List all wallapers
+# List all wallpapers.
 export def list [
 	folder: string = $default_folder # Folder of wallpapers.
 	--all = false # Return also hidden files.
@@ -16,22 +16,24 @@ export def list [
 	}
 }
 
-# Set wallpaper using wallpaper manager.
-# TODO: Auto complete the types for the `--transition-type` flag.
+# Set wallpaper given path.
+#
+# TODO:
+#	- Auto complete the types for the `--transition-type` flag.
 export def set [
-	file : string # The image/video file path.
 	--transition-type : string = 'any' # In which to perform transition when setting the wallpaper.
-] : nothing -> nothing {
-	main ...[
+] : string -> nothing {
+	let $file = $in
+
+	[
 		img $file
-		--transition-type any
-	]
+		--transition-type $transition_type
+	] | main
 }
 
-# Run command of wallpaper manager.
-export def main [
-	...args : string # Arguments to launch with the main command.
-] : nothing -> nothing {
+# Run list of command of wallpaper manager.
+def main [] : list<string> -> nothing {
+	let args = $in
 	# See manual for swww(1).
 	# The repository can be found at: https://github.com/LGFae/swww
 	^swww ...$args

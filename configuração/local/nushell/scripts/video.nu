@@ -92,13 +92,18 @@ export def split [
 		$extension
 	}
 
-	print $type
-
-	^ffmpeg ...[
+	main [
 		-i $piped
 		...$flags
 		-segment_time ($micro_seconds + 'us')
 		-f segment
 		($out + $segment_format + '.' + $type)
 	]
+}
+
+# The main comand used for video.
+def main [
+	args : list<any> # Arguments to be given for the main command.
+] : nothing -> nothing {
+	^ffmpeg ...$args
 }

@@ -104,7 +104,7 @@ function draw_icon (label : ReturnType<typeof Label>, context : any) : void {
 		context,
 		x: x + padding,
 		y: y + padding,
-		width: width - padding * 2,
+		width: Battery.percent / 100 * (width - padding * 2),
 		height: height - padding * 2,
 		radius,
 		degrees,

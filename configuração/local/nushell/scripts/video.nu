@@ -48,6 +48,58 @@ export def download [
 	^yt-dlp ...$args
 }
 
+# Make subvideo from start to end.
+#
+# Examples:
+#	$ video subvideo `a.mkv` --start 00:00:01 --end 00:00:10
+export def subvideo [
+	file : string # Input file for video as path.
+	--start : string # Start time stamp of the video in format HH:MM:SS.MSE.
+	--end : string # End time stamp of the video in format HH:MM:SS.MSE.
+	--output : string # Output file for video as path.
+] : nothing -> nothing {
+
+	# Raise error when start timestamp is not given.
+	if ($start | is-empty) {
+		error make {
+			msg: "Not given start time stamp."
+		}
+	}
+
+	# Raise error when end timestamp is not given.
+	if ($end | is-empty) {
+		error make {
+			msg: "Not given end time stamp."
+		}
+	}
+
+	let out = if ($output | is-empty) {
+
+		# Get extension of file.
+		let extension = $file
+			| split row '.'
+			| last
+
+		# Make new output path with random chars.
+		($file
+			| str substring ..(
+				$file | str index-of '.' --end
+		)) + '-' + (
+			random chars --length 3
+		) + '.' + $extension
+	} else {
+		$output
+	}
+
+	main [
+		-ss $start
+		-i $file
+		-c copy
+		-to $end
+		$out
+	]
+}
+
 const default_video_flags = [
 	-c copy
 	-map 0

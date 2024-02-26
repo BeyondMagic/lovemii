@@ -14,17 +14,24 @@ export def remove [
 
 # List files of a package.
 export def list [
-	package : string # Name of the package.
+	...packages : string # Name of the package.
+	--long = true # Get all available columns for each entry (slower; columns are platform-dependent).
 ] : nothing -> nothing {
-	main [
-		-Ql $package
-	] | lines | par-each {|item|
-		let data = $item
-			| split row ' '
-		
+
+	$packages | par-each {|package|
+		let files = main [
+			-Ql $package
+		] | lines | par-each {|item|
+			let data = $item
+				| split row ' '
+			
+			ls --long=$long --directory $data.1
+			| first
+		}
+
 		{
-			name: ($data.0)
-			path: (ls --directory $data.1).0
+			name : $package
+			files : $files
 		}
 	}
 }

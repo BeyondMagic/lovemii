@@ -13,5 +13,5 @@ export def main [
 ] -> list<table<hieroglyph: string, tags: list<string>>> {
 	$default_database | par-each {|path|
 		open $path
-	} | flatten
+	} | flatten | flatten
 }

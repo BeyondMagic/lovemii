@@ -19,10 +19,12 @@ export def list [
 	main [
 		-Ql $package
 	] | lines | par-each {|item|
-		let data = $item | split row ' '
+		let data = $item
+			| split row ' '
+		
 		{
-			name: ($data | first)
-			path: ($data | last)
+			name: ($data.0)
+			path: (ls --directory $data.1).0
 		}
 	}
 }
@@ -50,9 +52,10 @@ export def upgrade [
 
 # The command itself for the package manager.
 # See paru manual(1).
+#
+# Paru is a package manager that follows Arch package protocols.
 def main [
 	arguments : list<string> # Arguments to pass for it.
 ] : nothing -> nothing {
-	# Paru is a package manager that follows Arch package protocols.
 	^paru ...$arguments
 }

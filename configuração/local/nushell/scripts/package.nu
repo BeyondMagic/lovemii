@@ -36,6 +36,15 @@ export def list-paths [
 	}
 }
 
+# List all packages of the system.
+export def list [] : nothing -> nothing {
+	main [
+		-Q
+	]
+	| detect columns --no-headers
+	| rename 'name' 'version'
+}
+
 # Upgrade all packages.
 export def upgrade [
 	--ignore : list<string> # Names of packages to ignore.

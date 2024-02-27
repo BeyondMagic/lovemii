@@ -13,7 +13,7 @@ export def remove [
 }
 
 # List files of a package.
-export def list [
+export def list-paths [
 	...packages : string # Name of the package.
 	--long = true # Get all available columns for each entry (slower; columns are platform-dependent).
 ] : nothing -> nothing {

@@ -10,7 +10,7 @@ export type BoxProps<Child extends Gtk.Widget = Gtk.Widget, Attr = unknown, Self
 export interface Box<Child, Attr> extends Widget<Attr> {
 }
 export declare class Box<Child extends Gtk.Widget, Attr> extends Gtk.Box {
-    constructor(propsOrChildren?: BoxProps<Child, Attr> | Child[], ...children: Child[]);
+    constructor(propsOrChildren?: BoxProps<Child, Attr> | Child[], ...children: Gtk.Widget[]);
     get child(): Child;
     set child(child: Child);
     get children(): Child[];

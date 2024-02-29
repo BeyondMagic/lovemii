@@ -14,8 +14,8 @@ const right = Box({
 	hpack: 'end',
 	children: [
 		wifi.icon,
-		battery.number,
-		window_manager.workspaces.collapsed
+		window_manager.workspaces.collapsed,
+		battery.box,
 	]
 })
 

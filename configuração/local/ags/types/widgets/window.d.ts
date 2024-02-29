@@ -34,9 +34,9 @@ export type WindowProps<Child extends Gtk.Widget = Gtk.Widget, Attr = unknown, S
     margins?: number[];
     monitor?: number;
     gdkmonitor?: Gdk.Monitor;
-    popup?: boolean;
     visible?: boolean;
     keymode?: Keymode;
+    popup?: boolean;
     exclusive?: boolean;
     focusable?: boolean;
 }, Attr>;

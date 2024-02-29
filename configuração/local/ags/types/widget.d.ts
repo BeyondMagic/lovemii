@@ -20,7 +20,7 @@ import { Window as WindowClass, type WindowProps } from './widgets/window.js';
 import { CircularProgress as CircularProgressClass, type CircularProgressProps } from './widgets/circularprogress.js';
 import * as Etc from './widgets/etc.js';
 export declare const Window: <Child extends Gtk.Widget, Attr = unknown>(props?: WindowProps<Child, Attr> | undefined, child?: Child | undefined) => WindowClass<Child, Attr>;
-export declare const Box: <Child extends Gtk.Widget, Attr = unknown>(props?: Child[] | BoxProps<Child, Attr> | undefined, ...children: Child[]) => BoxClass<Child, Attr>;
+export declare const Box: <Child extends Gtk.Widget, Attr = unknown>(props?: Child[] | BoxProps<Child, Attr> | undefined, ...children: Gtk.Widget[]) => BoxClass<Child, Attr>;
 export declare const Button: <Child extends Gtk.Widget, Attr = unknown>(props?: ButtonProps<Child, Attr> | undefined, child?: Child | undefined) => ButtonClass<Child, Attr>;
 export declare const CenterBox: <StartWidget extends Gtk.Widget, CenterWidget extends Gtk.Widget, EndWidget extends Gtk.Widget, Attr = unknown>(props?: CenterBoxProps<StartWidget, CenterWidget, EndWidget, Attr> | undefined, startWidget?: StartWidget | undefined, centerWidget?: CenterWidget | undefined, endWidget?: EndWidget | undefined) => CenterBoxClass<StartWidget, CenterWidget, EndWidget, Attr>;
 export declare const CircularProgress: <Child extends Gtk.Widget, Attr = unknown>(props?: CircularProgressProps<Child, Attr> | undefined, child?: Child | undefined) => CircularProgressClass<Child, Attr>;
@@ -28,9 +28,9 @@ export declare const Entry: <Attr>(props?: EntryProps<Attr> | undefined) => Entr
 export declare const EventBox: <Child extends Gtk.Widget, Attr = unknown>(props?: EventBoxProps<Child, Attr> | undefined, child?: Child | undefined) => EventBoxClass<Child, Attr>;
 export declare const Icon: <Attr>(props?: IconProps<Attr>) => IconClass<Attr>;
 export declare const Label: <Attr>(props?: LabelProps<Attr>) => LabelClass<Attr>;
-export declare const Menu: <Child extends Gtk.MenuItem, Attr = unknown>(props?: MenuProps<Child, Attr> | undefined, ...children: Child[]) => MenuClass<Child, Attr>;
+export declare const Menu: <Child extends Gtk.MenuItem, Attr = unknown>(props?: MenuProps<Child, Attr> | undefined, ...children: Gtk.MenuItem[]) => MenuClass<Child, Attr>;
 export declare const MenuItem: <Child extends Gtk.Widget, Attr = unknown>(props?: MenuItemProps<Child, Attr> | undefined, child?: Child | undefined) => MenuItemClass<Child, Attr>;
-export declare const Overlay: <Child extends Gtk.Widget, Attr = unknown>(props?: OverlayProps<Child, Attr> | undefined, ...children: Child[]) => OverlayClass<Child, Attr>;
+export declare const Overlay: <Child extends Gtk.Widget, Attr = unknown>(props?: OverlayProps<Child, Attr> | undefined, ...children: Gtk.Widget[]) => OverlayClass<Child, Attr>;
 export declare const ProgressBar: <Attr>(props?: ProgressBarProps<Attr> | undefined) => ProgressBarClass<Attr>;
 export declare const Revealer: <Child extends Gtk.Widget, Attr = unknown>(props?: RevealerProps<Child, Attr> | undefined, child?: Child | undefined) => RevealerClass<Child, Attr>;
 export declare const Scrollable: <Child extends Gtk.Widget, Attr = unknown>(props?: ScrollableProps<Child, Attr> | undefined, child?: Child | undefined) => ScrollableClass<Child, Attr>;
@@ -1627,7 +1627,7 @@ declare function W<T extends {
 declare namespace W {
     var register: typeof registerClass;
     var subclass: typeof W;
-    var Box: <Child extends Gtk.Widget, Attr = unknown>(props?: Child[] | BoxProps<Child, Attr> | undefined, ...children: Child[]) => BoxClass<Child, Attr>;
+    var Box: <Child extends Gtk.Widget, Attr = unknown>(props?: Child[] | BoxProps<Child, Attr> | undefined, ...children: Gtk.Widget[]) => BoxClass<Child, Attr>;
     var Button: <Child extends Gtk.Widget, Attr = unknown>(props?: ButtonProps<Child, Attr> | undefined, child?: Child | undefined) => ButtonClass<Child, Attr>;
     var CenterBox: <StartWidget extends Gtk.Widget, CenterWidget extends Gtk.Widget, EndWidget extends Gtk.Widget, Attr = unknown>(props?: CenterBoxProps<StartWidget, CenterWidget, EndWidget, Attr> | undefined, startWidget?: StartWidget | undefined, centerWidget?: CenterWidget | undefined, endWidget?: EndWidget | undefined) => CenterBoxClass<StartWidget, CenterWidget, EndWidget, Attr>;
     var CircularProgress: <Child extends Gtk.Widget, Attr = unknown>(props?: CircularProgressProps<Child, Attr> | undefined, child?: Child | undefined) => CircularProgressClass<Child, Attr>;
@@ -1635,9 +1635,9 @@ declare namespace W {
     var EventBox: <Child extends Gtk.Widget, Attr = unknown>(props?: EventBoxProps<Child, Attr> | undefined, child?: Child | undefined) => EventBoxClass<Child, Attr>;
     var Icon: <Attr>(props?: IconProps<Attr>) => IconClass<Attr>;
     var Label: <Attr>(props?: LabelProps<Attr>) => LabelClass<Attr>;
-    var Menu: <Child extends Gtk.MenuItem, Attr = unknown>(props?: MenuProps<Child, Attr> | undefined, ...children: Child[]) => MenuClass<Child, Attr>;
+    var Menu: <Child extends Gtk.MenuItem, Attr = unknown>(props?: MenuProps<Child, Attr> | undefined, ...children: Gtk.MenuItem[]) => MenuClass<Child, Attr>;
     var MenuItem: <Child extends Gtk.Widget, Attr = unknown>(props?: MenuItemProps<Child, Attr> | undefined, child?: Child | undefined) => MenuItemClass<Child, Attr>;
-    var Overlay: <Child extends Gtk.Widget, Attr = unknown>(props?: OverlayProps<Child, Attr> | undefined, ...children: Child[]) => OverlayClass<Child, Attr>;
+    var Overlay: <Child extends Gtk.Widget, Attr = unknown>(props?: OverlayProps<Child, Attr> | undefined, ...children: Gtk.Widget[]) => OverlayClass<Child, Attr>;
     var ProgressBar: <Attr>(props?: ProgressBarProps<Attr> | undefined) => ProgressBarClass<Attr>;
     var Revealer: <Child extends Gtk.Widget, Attr = unknown>(props?: RevealerProps<Child, Attr> | undefined, child?: Child | undefined) => RevealerClass<Child, Attr>;
     var Scrollable: <Child extends Gtk.Widget, Attr = unknown>(props?: ScrollableProps<Child, Attr> | undefined, child?: Child | undefined) => ScrollableClass<Child, Attr>;

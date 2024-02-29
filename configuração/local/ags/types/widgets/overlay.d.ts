@@ -10,7 +10,7 @@ export type OverlayProps<Child extends Gtk.Widget = Gtk.Widget, Attr = unknown, 
 export interface Overlay<Child, Attr> extends Widget<Attr> {
 }
 export declare class Overlay<Child extends Gtk.Widget, Attr> extends Gtk.Overlay {
-    constructor(props?: OverlayProps<Child, Attr>, ...overlays: Child[]);
+    constructor(props?: OverlayProps<Child, Attr>, ...overlays: Gtk.Widget[]);
     private _updatePassThrough;
     get pass_through(): boolean;
     set pass_through(passthrough: boolean);

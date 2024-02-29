@@ -7,14 +7,15 @@
 # ---------------------------------------------------------------------------
 # Modules
 # ---------------------------------------------------------------------------
-use package.nu
+use ./standard/random.nu
+use ./external/tokei.nu
+use ./package.nu
 use emojis.nu
 use nupm
 use nu-themes/tokyo-night.nu
 use task.nu
 use lovemii.nu
 use fork.nu
-use random.nu
 use routine.nu
 use file.nu
 use miscelanous.nu *
@@ -23,31 +24,23 @@ use video.nu
 use music.nu
 use mount.nu
 use admin.nu
-use ~/projetos/pessoal/programação-competitiva/script/shell/pc.nu
 use quotes.nu
 use editor.nu
 use prompt.nu
+use ~/projetos/pessoal/programação-competitiva/script/pc.nu
+use ~/projetos/pessoal/nincat/nincat.nu
 
 # ---------------------------------------------------------------------------
 # Alises
 # ---------------------------------------------------------------------------
 alias fm = file manager
 alias rm = rm -i
-alias pacman = doas -- pacman
-alias .. = cd ..
-alias .... = cd ../..
-alias cd-- = cd ..
-alias cd++ = cd -
-alias cp = advcp -g
-#alias mv = advmv -g
-alias git-untracked = git ls-files --others --exclude-standard
+alias git-untracked = ^git ls-files --others --exclude-standard
 #alias       game="PROTON_NO_ESYNC=1 PROTON_DUMP_DEBUG_COMMANDS=1 STEAM_COMPAT_DATA_PATH=$HOME/.config/proton/ proton run"
 
 # ----------------------------------------------------------------------------
 # Custom commands.
 # ----------------------------------------------------------------------------
-
-# source ~/projects/personal/competitive-programming/script/shell/aliases.nu
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -880,4 +873,4 @@ $env.config = {
     ]
 }
 
-^nincat --random
+nincat random ~/projetos/pessoal/nincat/data.json

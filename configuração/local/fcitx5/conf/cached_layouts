@@ -2853,11 +2853,6 @@ Description="Keyboard - Grego - Grego (simplificado)"
 Language=el
 Label="gr (simple)"
 
-[keyboard-gr-extended]
-Description="Keyboard - Grego - Grego (estendido)"
-Language=el
-Label="gr (extended)"
-
 [keyboard-gr-nodeadkeys]
 Description="Keyboard - Grego - Grego (sem teclas mortas)"
 Language=el
@@ -3278,11 +3273,6 @@ Description="Keyboard - Húngaro - Húngaro (QWERTY, 101 teclas, com ponto e sem
 Language=hu
 Label="hu (102_qwerty_dot_nodead)"
 
-[keyboard-hu-oldhun]
-Description="Keyboard - Húngaro - Húngaro antigo"
-Language=hu
-Label=oldhun
-
 [keyboard-hu-oldhunlig]
 Description="Keyboard - Húngaro - Húngaro antigo (para ligaturas)"
 Language=hu
@@ -3597,11 +3587,6 @@ Label="it (us)"
 Description="Keyboard - Italiano - Italiano (IBM 142)"
 Language=it
 Label="it (ibm)"
-
-[keyboard-it-intl]
-Description="Keyboard - Italiano - Italiano (intern., com teclas mortas)"
-Language=it
-Label="it (intl)"
 
 [keyboard-it-fur]
 Description="Keyboard - Italiano - Friulana (Itália)"

@@ -140,3 +140,8 @@ replace = "tool-any-downloader"
 [[common]]
 find = ["org.pwmt.zathura"]
 replace = "any-book-reader-symbolic"
+
+# Constant repetitive learning.
+[[common]]
+find = ["anki"]
+replace = "any-flashcard-learning-tool"

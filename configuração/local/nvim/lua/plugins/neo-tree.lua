@@ -31,7 +31,6 @@ return {
     -- popup_border_style is for input and confirmation dialogs.
     -- Configurtaion of floating window is done in the individual source sections.
     -- "NC" is a special style that works well with NormalNC set
-    close_floats_on_escape_key = true,
     default_source             = "filesystem",
     git_status_async           = true,
     log_level                  = "info", -- "trace", "debug", "info", "warn", "error", "fatal"
@@ -249,8 +248,10 @@ return {
       },
       find_by_full_path_words = true,
       bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
-      search_limit = 50, -- max number of search results when using filters
-      follow_current_file    = true, -- This will find and focus the file in the active buffer every
+		search_limit = 50, -- max number of search results when using filters
+		follow_current_file = {
+		  enabled = true, -- This will find and focus the file in the active buffer every
+		},
                                    -- time the current file is changed while the tree is open.
       hijack_netrw_behavior  = "open_default", -- netrw disabled, opening a directory opens neo-tree
                                               -- in whatever position is specified in window.position

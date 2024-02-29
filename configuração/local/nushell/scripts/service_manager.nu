@@ -27,18 +27,20 @@ export def check [
 	executable: string, # Basename of executable file.
 	name: string        # Name of the service you want to check.
 ] -> int {
-	let message_error = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_IS_NOT_RUNNING)"
-	let message_ok    = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_IS_RUNNING)"
-
-	let state = (do { sv status $executable } | complete | get stdout | split words | first)
-
-	if $state == 'down' {
-		log error $"[($SERVICE_MANAGER)] ($message_error)"
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RUN_ONCE)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
-		exit 1
-	}
-	fork $"exec notify-call --urgency low --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
 	exit 0
+
+	#let message_error = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_IS_NOT_RUNNING)"
+	#let message_ok    = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_IS_RUNNING)"
+
+	#let state = (do { sv status $executable } | complete | get stdout | split words | first)
+
+	#if $state == 'down' {
+	#	log error $"[($SERVICE_MANAGER)] ($message_error)"
+	#	fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RUN_ONCE)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
+	#	exit 1
+	#}
+	#fork $"exec notify-call --urgency low --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
+	#exit 0
 }
 
 # Finish a service.
@@ -47,19 +49,21 @@ export def finish [
 	executable: string, # Basename of executable file.
 	name: string        # Name of the service you want to check.
 ] -> int {
-	let message_critical = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_FAILED_START)"
-	let message_error    = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_FAILED_RUNNING)"
-	let message_ok       = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_SHUTDOWN)"
-
-	if number == $SERVICE_RUN_FAILED {
-		log critical $"[($SERVICE_MANAGER)] ($message_critical)."
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_TRY_AGAIN)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_critical)'"
-	} else if $number != 0 and $number != -1 {
-		log error $"[($SERVICE_MANAGER)] ($message_error)."
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RESTART)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
-	} else {
-		log debug $"[($SERVICE_MANAGER)] ($message_ok)."
-		fork $"exec notify-call --action 'sv once ($executable):($SERVICE_START_AGAIN)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
-	}
 	exit 0
+
+	#let message_critical = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_FAILED_START)"
+	#let message_error    = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_FAILED_RUNNING)"
+	#let message_ok       = $"($SERVICE_NAME) ($name) [($executable)] ($SERVICE_SHUTDOWN)"
+
+	#if number == $SERVICE_RUN_FAILED {
+	#	log critical $"[($SERVICE_MANAGER)] ($message_critical)."
+	#	fork $"exec notify-call --action 'sv once ($executable):($SERVICE_TRY_AGAIN)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_critical)'"
+	#} else if $number != 0 and $number != -1 {
+	#	log error $"[($SERVICE_MANAGER)] ($message_error)."
+	#	fork $"exec notify-call --action 'sv once ($executable):($SERVICE_RESTART)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_error)'"
+	#} else {
+	#	log debug $"[($SERVICE_MANAGER)] ($message_ok)."
+	#	fork $"exec notify-call --action 'sv once ($executable):($SERVICE_START_AGAIN)' --urgency critical --app-name '($DESKTOP_NAME)' '($SERVICE_MANAGER)' '($message_ok)'"
+	#}
+	#exit 0
 }

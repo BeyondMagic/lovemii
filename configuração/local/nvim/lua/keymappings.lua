@@ -204,3 +204,19 @@ key('n', '<Leader>rn', ':IncRename ', remap )
 
 -- Go to the directory of current file.
 key('n', '<Leader>cd', ':cd `dirname %`<CR>', remap )
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+	callback = function (ev)
+
+		local ops = { buffer = ev.buf }
+
+		vim.keymap.set('n', 'gD', function ()
+			vim.lsp.buf.declaration()
+		end, ops)
+
+		vim.keymap.set('n', 'gd', function ()
+			vim.lsp.buf.definition()
+		end, ops)
+	end
+})

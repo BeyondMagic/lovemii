@@ -12,7 +12,7 @@ export type MenuProps<MenuItem extends Gtk.MenuItem = Gtk.MenuItem, Attr = unkno
 export interface Menu<MenuItem, Attr> extends Widget<Attr> {
 }
 export declare class Menu<MenuItem extends Gtk.MenuItem, Attr> extends Gtk.Menu {
-    constructor(props?: MenuProps<MenuItem, Attr>, ...children: MenuItem[]);
+    constructor(props?: MenuProps<MenuItem, Attr>, ...children: Gtk.MenuItem[]);
     get on_popup(): MenuEventHandler<this>['on_popup'];
     set on_popup(callback: MenuEventHandler<this>['on_popup']);
     get on_move_scroll(): MenuEventHandler<this>['on_move_scroll'];

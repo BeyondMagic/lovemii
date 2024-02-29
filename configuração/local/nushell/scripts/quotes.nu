@@ -8,6 +8,7 @@ const default_database = [
 	'~/armazenamento/citações/geral.json'
 	'~/armazenamento/citações/tv.json'
 	'~/armazenamento/citações/livros.json'
+	'~/armazenamento/citações/estória.json'
 ]
 
 # Add quote to database.

@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+#
+# João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
+
+# Depends on dbus running.
+#sv check dbus > /dev/null || exit 1
+
+exec chpst -u prowlarr:prowlarr /usr/lib/prowlarr/bin/Prowlarr -nobrowser -data=/var/lib/prowlarr #> /dev/null 2>&1

@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+#
+# João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
+
+# Depends on dbus running.
+#sv check dbus > /dev/null || exit 1
+
+exec chpst -u radarr:radarr /usr/lib/radarr/bin/Radarr -nobrowser -data=/var/lib/radarr #> /dev/null 2>&1

@@ -1,0 +1,214 @@
+[["ligações"]]
+administrador = true
+de = ["./configuração/global/profile", "./configuração/global/environment", "./configuração/global/locale.conf"]
+para = "/etc/"
+"único" = false
+
+[["ligações"]]
+administrador = true
+de = "./subconfiguração/ícones/"
+para = "/usr/share/icons/"
+"único" = false
+
+[["ligações"]]
+administrador = true
+de = "./serviços/global/*"
+para = "/run/runit/service/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "./serviços/local/*"
+para = "~/.local/services/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "./configuração/local/"
+para = "~/.config/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "./subconfiguração/fontes"
+para = "~/.local/share/fonts"
+"único" = true
+
+[["ligações"]]
+administrador = false
+de = "./subconfiguração/nushell"
+para = "~/.local/share/nupm"
+"único" = true
+
+[["ligações"]]
+administrador = false
+de = "./subconfiguração/clipboard"
+para = "~/.cache/cliphist"
+"único" = true
+
+[["ligações"]]
+administrador = false
+de = "./subconfiguração/aplicativos/"
+para = "~/.local/share/applications/"
+"único" = false
+
+[[packages]]
+comments = ["cp and mv with progress bar."]
+names = ["advcpmv"]
+
+[[packages]]
+comments = ["Keyboard manager in Japanese."]
+names = ["fcitx5-configtool", "fcitx5-gtk", "fcitx5-material-color", "fcitx5-qt", "fcitx5-mozc-ut"]
+
+[[packages]]
+comments = ["Qalculate! is an arbitrary precision cross-platform software calculator. It supports complex mathematical operations and concepts such as derivation, integration, data plotting, and unit conversion."]
+names = ["qalculate"]
+
+[[packages]]
+comments = ["Sound and music creator."]
+names = ["lmms"]
+
+[[packages]]
+comments = ["To learn a lot of things."]
+names = ["anki"]
+
+[[packages]]
+comments = ["Manage multiple emails."]
+names = ["thunderbind"]
+
+[[packages]]
+comments = ["To manage LBRY and Odysee."]
+names = ["lbry-app-bin"]
+
+[[packages]]
+comments = ["Identify playing song."]
+names = ["songrec"]
+
+[[packages]]
+comments = ["Dynamic Menu for X11."]
+names = ["fuzzel"]
+
+[[packages]]
+comments = ["Common fonts."]
+names = ["ttf-jetbrains-mono 2.304-1", "ttf-jetbrains-mono-nerd 3.1.1-1", "ttf-roboto 2.138-4", "ttf-opensans 1.101-2", "ttf-unifont 15.1.04-1"]
+
+[[packages]]
+comments = ["Polkit manager."]
+names = ["polkit", "polkit-gnome"]
+
+[[packages]]
+comments = ["Editor of text."]
+names = ["neovim-nightly-bin"]
+
+[[packages]]
+comments = ["Sound manager."]
+names = ["libpipewire", "pipewire", "pipewire-alsa", "pipewire-audio", "pipewire-pulse", "pipewire-session-manager"]
+
+[[packages]]
+comments = ["Read source-code of software."]
+names = ["tokei"]
+
+[[packages]]
+comments = ["Download videos from many internet providers."]
+names = ["yt-dlp"]
+
+[[packages]]
+comments = ["Video viewer."]
+names = ["mpv"]
+
+[[packages]]
+comments = ["Telegram Desktop"]
+names = ["telegram-desktop"]
+
+[[packages]]
+comments = ["Image editor."]
+names = ["gimp"]
+
+[[packages]]
+comments = ["Digital art maker."]
+names = ["krita"]
+
+[[packages]]
+comments = ["Image viewer."]
+names = ["nsxiv"]
+
+[[packages]]
+comments = ["Take screenshot."]
+names = ["scrot"]
+
+[[packages]]
+comments = ["File manager."]
+names = ["nnn"]
+
+
+# [[packages]]
+# comments = ["Selection graphical."]
+# names = ["slop"]
+
+# [[packages]]
+# comments = ["Check spelling mistakes."]
+# names = ["aspell"]
+
+#[[packages]]
+#section "vale"
+#text    "Write better English..."
+
+
+# [[packages]]
+# comments = ["Preview-editor for latex."]
+# names = ["gummi"]
+
+[[packages]]
+names = ["latex-mk", "texlab", "perl-yaml-tiny", "perl-file-homedir"]
+comments = ["For latex (which means everything related to documents."]
+
+[[packages]]
+names = ["paru"]
+comments = ["Package manager for AUR."]
+
+[[packages]]
+names = ["dash", "dashbinsh"]
+comments = "Faster shell."
+
+[[packages]]
+names = ["typescript"]
+comments = "Typescript language."
+
+[[packages]]
+names = ["selectdefaultapplication"]
+comments = ["Select default application for xdg."]
+
+[[packages]]
+names = ["hyprpicker-git"]
+comments = ["Pick colour of the screen."]
+
+[[packages]]
+names = ["foliate", "zathura", "zathura-pdf-poppler", "zathura-cb"]
+comments = ["To read PDF and such documents."]
+
+# section ["libreoffice"]
+# text    ["To simply convert DOCX files to PDF... "]
+
+# section ["readarr-nightly "]
+# text    ["To organise books library and such. "]
+
+[[packages]]
+names = ["unifont-jp", "noto-fonts-cjk-jp"]
+comments = ["For Japanese characters."]
+
+[[packages]]
+names = ["ttf-joypixels"]
+comments = ["For emojis characters."]
+
+[[packages]]
+names = ["ncmpcpp"]
+comments = ["MPD  player viewer."]
+
+[[packages]]
+names = ["mpd", "mopidy"]
+pip = ["Mopidy-Listenbrainz", "Mopidy-Autoplay", "Mopidy-Iris", "Mopidy-Listenbrainz", "Mopidy-Local", "Mopidy-MPD", "Mopidy-Scrobbler", "Mopidy-Spotify", "Mopidy-YouTube"]
+comments = ["Music server."]
+
+[[packages]]
+names = ["vscode-css-language-server"]
+comments = ["Language servers for editors."]

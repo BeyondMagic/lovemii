@@ -1,6 +1,3 @@
-# scripts
-/scripts/
-
 # Filers/folders to organise later.
 **/.organise/
 
@@ -64,5 +61,8 @@
 # Ignore icons (copyright).
 /subconfiguração/ícones/
 
-# Ignore nushell (needs organising)
+# Ignore nushell (needs organising).
 /subconfiguração/nushell/
+
+# Ignore SSH.
+/configuração/local/ssh/

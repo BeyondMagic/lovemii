@@ -66,3 +66,6 @@
 
 # Ignore SSH.
 /configuração/local/ssh/
+
+# Organization files.
+/.organização

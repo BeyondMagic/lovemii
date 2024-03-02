@@ -14,8 +14,8 @@ const default_database = [
 # Add quote to database.
 export def add [
 	...words : string # The words
-	--author : list<string> # Author(s) of the quote.
-	--source : list<string> # Source(s) of the quote.
+	--authors : list<string> # Author(s) of the quote.
+	--sources : list<string> # Source(s) of the quote.
 	--time : datetime # When quote was made.
 	--database : string # The database to load from.
 ] -> nothing {
@@ -40,13 +40,14 @@ export def add [
 		}
 	}
 
-	let path = $database | path expand
+	let path = $database
+		| path expand
 
 	{
 		words: $words
-		author: $author
-		source: $source
-		date: {
+		authors: $authors
+		sources: $sources
+		dates: {
 			added: (date now)
 			time: $time
 		}
@@ -74,11 +75,11 @@ export def main [
 
 	if $sort {
 		$data
-			| update date.added {|context|
-				$context.date.added
+			| update dates.added {|context|
+				$context.dates.added
 					| into datetime
 			}
-			| sort-by date
+			| sort-by dates
 	} else {
 		$data
 	}

@@ -1,5 +1,3 @@
-#!/usr/bin/env nu
-#
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
 const default_folder = "~/armazenamento/imagens/paredepapel/desktop/**/*"

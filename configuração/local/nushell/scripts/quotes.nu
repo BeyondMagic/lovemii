@@ -2,13 +2,8 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-const default_database = [
-	'~/armazenamento/citações/pessoal.json'
-	'~/armazenamento/citações/música.json'
-	'~/armazenamento/citações/geral.json'
-	'~/armazenamento/citações/tv.json'
-	'~/armazenamento/citações/livros.json'
-	'~/armazenamento/citações/estória.json'
+const default_database: list<string> = [
+	'~/armazenamento/citações/*'
 ]
 
 # Add quote to database.
@@ -69,9 +64,13 @@ export def main [
 	database: list<string> = $default_database # The database(s) to load from.
 	--sort = true # Sort quotes by date added.
 ] -> list<any> {
-	let data = $default_database | par-each {|path|
-		open $path
-	} | flatten
+	let files = $database
+		| par-each {|item|
+			glob $item
+		}
+		| flatten
+
+	let data = open ...$files
 
 	if $sort {
 		$data

@@ -18,17 +18,18 @@ export def list [
 #	- Auto complete the types for the `--transition-type` flag.
 export def set [
 	--transition-type : string = 'any' # In which to perform transition when setting the wallpaper.
-] : string -> nothing {
+]: string -> nothing {
 	let $file = $in
 
 	[
 		img $file
 		--transition-type $transition_type
-	] | main
+	]
+	| main
 }
 
 # Run list of command of wallpaper manager.
-def main [] : list<string> -> nothing {
+def main []: list<string> -> nothing {
 	let args = $in
 	# See manual for swww(1).
 	# The repository can be found at: https://github.com/LGFae/swww

@@ -2,6 +2,18 @@
 
 const default_database = `~/armazenamento/afazeres/geral.json`
 
+# Set state of a todo.
+export def set [
+	id: int # The ID of the task.
+	done # Whether done is or not.
+	--database: string = $default_database # The database of the todos.
+]: nothing -> table<any> {
+	main
+	| update $id {
+		update done $done
+	}
+}
+
 # Add todo to database.
 export def add [
 	task: string # Activity to do.

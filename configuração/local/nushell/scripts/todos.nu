@@ -8,10 +8,13 @@ export def set [
 	done # Whether done is or not.
 	--database: string = $default_database # The database of the todos.
 ]: nothing -> table<any> {
-	main
+	main $database
 	| update $id {
 		update done $done
 	}
+	| save --force $database
+
+	main $database
 }
 
 # Add todo to database.

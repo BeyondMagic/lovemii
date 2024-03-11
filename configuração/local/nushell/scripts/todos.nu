@@ -51,5 +51,5 @@ export def main [
 		}
 	}
 	| sort-by due_at
-	| reverse
+	| sort-by done --reverse
 }

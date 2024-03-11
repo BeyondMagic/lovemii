@@ -2,15 +2,14 @@
 
 const default_database = `~/armazenamento/afazeres/geral.json`
 
-# Set state of a todo.
-export def set [
+# Set opposite done value of a todo.
+export def mark [
 	id: int # The ID of the task.
-	done # Whether done is or not.
 	--database: string = $default_database # The database of the todos.
 ]: nothing -> table<any> {
 	main $database
 	| update $id {
-		update done $done
+		update done (not $in.done)
 	}
 	| save --force $database
 

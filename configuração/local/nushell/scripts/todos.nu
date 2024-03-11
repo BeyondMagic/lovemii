@@ -5,6 +5,13 @@ const default = {
 	database : `~/armazenamento/afazeres/geral.json`
 }
 
+# List all completed todos.
+export def completed [
+	database: string = $default.sanctum
+]: nothing -> table<any> {
+	main $database
+}
+
 # Set opposite done value of a todo.
 export def mark [
 	id: int # The ID of the task.

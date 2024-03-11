@@ -12,8 +12,16 @@ export def mark [
 		update done (not $in.done)
 	}
 	| save --force $database
+}
 
+# Remove todo from database.
+export def remove [
+	task: any # ID of the task.
+	--database: string = $default_database # The database of the todos.
+]: nothing -> nothing {
 	main $database
+	| drop nth $task
+	| save --force $database
 }
 
 # Add todo to database.

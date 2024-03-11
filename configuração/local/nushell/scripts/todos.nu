@@ -1,11 +1,14 @@
 # João Farias © BeyondMagic <beyondmagic@mail.ru> 2024
 
-const default_database = `~/armazenamento/afazeres/geral.json`
+const default = {
+	sanctum : '~/armazenamento/afazeres/completado.json'
+	database : `~/armazenamento/afazeres/geral.json`
+}
 
 # Set opposite done value of a todo.
 export def mark [
 	id: int # The ID of the task.
-	--database: string = $default_database # The database of the todos.
+	--database: string = $default.database # The database of the todos.
 ]: nothing -> nothing {
 	main $database
 	| update $id {
@@ -17,7 +20,7 @@ export def mark [
 # Remove todo from database.
 export def remove [
 	task: any # ID of the task.
-	--database: string = $default_database # The database of the todos.
+	--database: string = $default.database # The database of the todos.
 ]: nothing -> nothing {
 	main $database
 	| drop nth $task
@@ -28,7 +31,7 @@ export def remove [
 export def add [
 	task: string # Activity to do.
 	due?: datetime # Data the entrega.
-	--database: string = $default_database # The database of the todos.
+	--database: string = $default.database # The database of the todos.
 ]: nothing -> nothing {
 	let data = open $database
 
@@ -45,9 +48,26 @@ export def add [
 	| save --force $database
 }
 
+# Move all done tasks for another database.
+export def clean [
+	sanctum: string = $default.sanctum # The database of the completed todos.
+	--database: string = $default.database # The database of the todos.
+]: nothing -> nothing {
+
+	let data = open $database
+
+	$data
+	| where { get done }
+	| save --force $sanctum
+
+	$data
+	| where { not $in.done }
+	| save --force $database
+}
+
 # List all todos.
 export def main [
-	database: string = $default_database # The database of the todos.
+	database: string = $default.database # The database of the todos.
 ]: nothing -> table<any> {
 	open $database
 	| update added_at {

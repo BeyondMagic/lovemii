@@ -6,7 +6,7 @@ const default_database = `~/armazenamento/afazeres/geral.json`
 export def mark [
 	id: int # The ID of the task.
 	--database: string = $default_database # The database of the todos.
-]: nothing -> table<any> {
+]: nothing -> nothing {
 	main $database
 	| update $id {
 		update done (not $in.done)

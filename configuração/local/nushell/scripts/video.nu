@@ -2,6 +2,14 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
+# Convert video MKV to MP4.
+export def mkv-to-mp4 [
+	input: string # Video MKV to convert.
+	output: string # Video MP4 made.
+]: nothing -> nothing {
+	^ffmpeg -i $input -c:a aac -c:v copy $output
+}
+
 # Download video.
 #
 # Dependes on:

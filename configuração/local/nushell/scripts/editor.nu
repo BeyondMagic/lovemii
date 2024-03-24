@@ -1,7 +1,7 @@
 export def restore [
 	...files: string # Files to launch along with it.
 	--session : string = '~/.config/nvim/session.vim' # Session to recover from.
-] -> nothing {
+]: nothing -> nothing {
 	main --flags [
 		-S $session
 	] ...$files
@@ -11,6 +11,6 @@ export def restore [
 export def main [
 	...files : string # Files to launch along with it.
 	--flags : list<string> = [] # Flags to launch with it.
-] -> nothing {
+]: nothing -> nothing {
 	^$env.EDITOR ...($files | path expand) ...$flags
 }

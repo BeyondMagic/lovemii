@@ -10,7 +10,7 @@ export def set [
 ]: nothing -> table<any> {
 	main $database
 	| update $id {
-		update done $done
+		update done (not $in.done)
 	}
 	| save --force $database
 

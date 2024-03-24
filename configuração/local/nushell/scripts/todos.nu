@@ -25,10 +25,14 @@ export def add [
 ]: nothing -> nothing {
 	let data = open $database
 
+	let due_timestamp = if ($due | is-not-empty) {
+		($due | into string) + " -03:00"
+	}
+
 	{
 		task: $task
 		done: false
-		due_at: $due
+		due_at: $due_timestamp
 		added_at: (date now)
 	} ++ $data
 	| save --force $database

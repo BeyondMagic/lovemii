@@ -10,6 +10,21 @@ export def mkv-to-mp4 [
 	^ffmpeg -i $input -c:a aac -c:v copy $output
 }
 
+# Convert video to MP3.
+export def to-mp3 [
+	input: string # Video to convert.
+]: nothing -> nothing {
+	let basename = $input
+		| path basename
+		| split row '.'
+		| drop 1
+		| get 0
+
+	let output_file = $basename + '.mp3'
+
+	^ffmpeg -i $input -q:a 0 -map a $output_file
+}
+
 # Download video.
 #
 # Dependes on:

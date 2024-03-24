@@ -20,3 +20,39 @@ export def to-image [
 	^wl-paste
 	| save --force=$force $file_name
 }
+
+# Return all magnet links from HTML page.
+export def get-magnets [
+]: string -> list<string> {
+	$in
+	| parse --regex 'href="magnet:(.*?)"'
+	| get capture0
+	| par-each --keep-order {
+		'magnet:' + $in
+	}
+}
+
+# From HTML page of `comandofilmes`, parse content.
+export def parse-page [
+]: string -> any {
+	$in
+	| lines
+	| find --multiline --regex ' href="magnet:.*"'
+	| parse --regex `<strong>(.*?):</strong>\s(.*)`
+	| par-each --keep-order {|item|
+		let titles = $item.capture1
+			| parse --regex '">(.*?)<'
+			| rename quality
+
+		let links = $item.capture1
+			| parse --regex ' href="(.*?)"'
+			| rename magnets
+
+		{
+			episode: $item.capture0
+			links: (
+				$titles | merge $links
+			)
+		}
+	}
+}

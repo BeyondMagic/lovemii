@@ -62,7 +62,7 @@ export-env {
 	$env.CARGO_HOME = $"($env.XDG_CONFIG_HOME)/cargo"
 
 	# For gnupg configuration files.
-	$env.GNUPGHOME = $"($env.XDG_CONFIG_HOME)/gnupg"
+	#$env.GNUPGHOME = $"($env.XDG_CONFIG_HOME)/gnupg"
 
 	# Add global path for Bun.
 	$env.BUN_INSTALL = $"($env.HOME)/.bun"

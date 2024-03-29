@@ -1,3 +1,4 @@
+
 -- To be used anywhere.
 local function job (command)
 

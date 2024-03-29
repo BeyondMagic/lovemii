@@ -7,16 +7,20 @@
 # ---------------------------------------------------------------------------
 # Modules
 # ---------------------------------------------------------------------------
+use ~/projetos/pessoal/UnB/matext/unb.nu
+use todos.nu
 use ./standard/random.nu
+use ./standard/str.nu
 use ./external/tokei.nu
 use ./package.nu
+use system.nu
 use emojis.nu
 use nupm
 use nu-themes/tokyo-night.nu
 use task.nu
 use lovemii.nu
 use fork.nu
-use routine.nu
+#use routine.nu
 use file.nu
 use miscelanous.nu *
 use wallpaper.nu

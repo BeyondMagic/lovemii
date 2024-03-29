@@ -47,6 +47,9 @@
 !/configuração/local/GIMP/2.10/splashes
 !/configuração/local/GIMP/2.10/splashes/**
 
+# Ignore SSH.
+/configuração/local/ssh
+
 # ags
 /configuração/local/ags/style.css
 **/bun.lockb
@@ -63,9 +66,6 @@
 
 # Ignore nushell (needs organising).
 /subconfiguração/nushell/
-
-# Ignore SSH.
-/configuração/local/ssh/
 
 # Organization files.
 /.organização

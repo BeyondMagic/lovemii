@@ -1,6 +1,6 @@
 return {
 	htmlArg = {fg = COLOUR.blue_0},
-	htmlBold = {fg = COLOUR.bg_1},
+	-- htmlBold = {fg = COLOUR.bg_1},
 	htmlTitle = {fg = COLOUR.fg_7, bold = true},
 	htmlEndTag = 'htmlTag',
 	htmlH1 = 'markdownH1',

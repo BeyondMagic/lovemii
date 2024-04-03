@@ -2,6 +2,15 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
+# Extract name from file.
+def extract-name []: string -> string {
+	$in
+	| path basename
+	| split row '.'
+	| drop 1
+	| get 0
+}
+
 # Convert video MKV to MP4.
 export def mkv-to-mp4 [
 	input: string # Video MKV to convert.
@@ -14,15 +23,10 @@ export def mkv-to-mp4 [
 export def to-mp3 [
 	input: string # Video to convert.
 ]: nothing -> nothing {
-	let basename = $input
-		| path basename
-		| split row '.'
-		| drop 1
-		| get 0
+	let out = $input
+		| extract-name
 
-	let output_file = $basename + '.mp3'
-
-	^ffmpeg -i $input -q:a 0 -map a $output_file
+	^ffmpeg -i $input -q:a 0 -map a ($out + '.webp')
 }
 
 # Download video.

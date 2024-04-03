@@ -19,6 +19,16 @@ export def mkv-to-mp4 [
 	^ffmpeg -i $input -c:a aac -c:v copy $output
 }
 
+# Convert GIF to WEBP.
+export def gif-to-webp [
+	input: string # Video to convert.
+]: nothing -> nothing {
+	let out = $input
+		| extract-name
+
+	^ffmpeg -i $input -vcodec webp -loop 0 -pix_fmt yuva420p ($out + '.webp')
+}
+
 # Convert video to MP3.
 export def to-mp3 [
 	input: string # Video to convert.

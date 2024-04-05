@@ -40,7 +40,7 @@ export def add [
 	due?: datetime # Data the entrega.
 	--database: string = $default.database # The database of the todos.
 ]: nothing -> nothing {
-	let data = open $database
+	let data = open ($database | into glob)
 
 	let due_timestamp = if ($due | is-not-empty) {
 		($due | into string) + " -03:00"
@@ -61,8 +61,8 @@ export def clean [
 	--database: string = $default.database # The database of the todos.
 ]: nothing -> nothing {
 
-	let data = open $database
-	let data_sanctum = open $sanctum
+	let data = open ($database | into glob)
+	let data_sanctum = open ($sanctum | into glob)
 
 	$data_sanctum ++ (
 		$data
@@ -79,7 +79,7 @@ export def clean [
 export def main [
 	database: string = $default.database # The database of the todos.
 ]: nothing -> table<any> {
-	open $database
+	open ($database | into glob)
 	| update added_at {
 		into datetime
 	}

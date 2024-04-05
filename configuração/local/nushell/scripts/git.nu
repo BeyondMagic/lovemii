@@ -23,7 +23,9 @@
 
 # Helper command to get commit of this branch only list to edit
 def "nu-complete git commits" [] {
-	^git log --pretty="%h %s" | lines | parse "{value} {description}"
+	^git log --pretty="%h %s"
+	| lines
+	| parse "{value} {description}"
 }
 
 # Edit a commit by selecting it as only commit to edit in an interactive rebase

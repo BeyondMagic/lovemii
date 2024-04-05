@@ -1,22 +1,44 @@
 # Install packages in system.
 export def install [
-	...packages : string # Names of the packages.
-] : nothing -> nothing {
-	main [ -S ...$packages ]
+	...packages: string # Names of the packages.
+]: nothing -> nothing {
+	main [
+		-S
+		...$packages
+	]
+}
+
+# Just get the names themselves.
+def "nu-complete old-packages" []: string -> list<string> {
+	$in
+	null
+
+	ls /var/cache/pacman/pkg/*.zst
+	| get name
+}
+
+# Downgrade package.
+export def downgrade [
+	package: string@'nu-complete old-packages' # Version and name of the package.
+]: nothing -> any {
+	main [
+		-U
+		$package
+	]
 }
 
 # Remove all packages.
 export def remove [
-	...packages : string # Names of the packages.
-] : nothing -> nothing {
+	...packages: string # Names of the packages.
+]: nothing -> nothing {
 	main [ -R ...$packages ]
 }
 
 # List files of a package.
 export def list-paths [
-	...packages : string # Name of the package.
+	...packages: string # Name of the package.
 	--long = true # Get all available columns for each entry (slower; columns are platform-dependent).
-] : nothing -> nothing {
+]: nothing -> table<any> {
 
 	$packages | par-each {|package|
 		let files = main [
@@ -37,7 +59,7 @@ export def list-paths [
 }
 
 # List all packages of the system.
-export def list [] : nothing -> nothing {
+export def list []: nothing -> any {
 	main [ -Q ]
 	| detect columns --no-headers
 	| rename 'name' 'version'
@@ -45,7 +67,7 @@ export def list [] : nothing -> nothing {
 
 # Upgrade all packages.
 export def upgrade [
-	--ignore : list<string> # Names of packages to ignore.
+	--ignore: list<string> # Names of packages to ignore.
 	--refresh = true # Refresh packages database.
 	--force-refresh = false # Force-refrsh database.
 ] : nothing -> nothing {
@@ -69,7 +91,7 @@ export def upgrade [
 #
 # Paru is a package manager that follows Arch package protocols.
 def main [
-	arguments : list<string> # Arguments to pass for it.
-] : nothing -> nothing {
+	arguments: list<string> # Arguments to pass for it.
+]: nothing -> any {
 	^paru ...$arguments
 }

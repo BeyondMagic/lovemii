@@ -10,5 +10,5 @@ export def clear []: nothing -> nothing {
 # Execute the compositor.
 export def --env main []: nothing -> nothing {
 	use environment.nu
-	exec Hyprland
+	exec dbus-launch Hyprland
 }

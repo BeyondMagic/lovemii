@@ -32,7 +32,7 @@ def "nu-complete git commits" [] {
 # run non-interactively.
 export def edit [
     commit: string@"nu-complete git commits" # Commit-hashed code to edit.
-] {
+]: nothing -> nothing {
 	# We use `sed` to replace `pick` with `edit`.
 	# `0,/pick/` restricts the sustitution to the range from the beginning until
 	# the first occurence of `pick`.

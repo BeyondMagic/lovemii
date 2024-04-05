@@ -34,7 +34,7 @@ $env.NUPM_HOME = ($env.XDG_DATA_HOME | path join "nupm")
 $env.TRASH = ($env.HOME | path join ".config")
 $env.PARU_CONF = ($env.XDG_CONFIG_HOME | path join "paru/paru.conf")
 $env.CARGO_HOME = ($env.XDG_CONFIG_HOME | path join "cargo")
-$env.GNUPGHOME = ($env.XDG_CONFIG_HOME | path join "gnupg")
+# $env.GNUPGHOME = ($env.XDG_CONFIG_HOME | path join "gnupg")
 $env.BUN_INSTALL = ($env.HOME | path join ".bun")
 
 $env.SVDIR = $"($env.HOME)/.local/services"

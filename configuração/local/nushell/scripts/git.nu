@@ -38,3 +38,9 @@ export def edit [
 	# the first occurence of `pick`.
 	GIT_SEQUENCE_EDITOR="sed -i -e '0,/pick/{s/pick/edit/}'" ^git rebase -i $"($commit)^1"
 }
+
+# List untracked files.
+export def untracked []: nothing -> list<string> {
+	^git ls-files --others --exclude-standard
+	| lines
+}

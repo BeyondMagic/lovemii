@@ -2,11 +2,11 @@ import { CenterBox, Window, Label } from 'resource:///com/github/Aylur/ags/widge
 import { icon } from 'ts/widgets/wifi'
 
 const container = Label({
-	label: "HOOOH"
+	label: "okkkkkkkk"
 })
 
 const wifi = Window({
-	name: 'wifi',
+	name: "wifi",
 	exclusivity: 'ignore',
 	visible: false,
 	child: container,

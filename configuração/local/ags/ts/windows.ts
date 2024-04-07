@@ -8,7 +8,7 @@ const windows = [
 	Corner('top', 'right'),
 	Corner('bottom', 'left'),
 	Corner('bottom', 'right'),
-	wifi,
+	// wifi,
 	// Calendar(),
 ]
 

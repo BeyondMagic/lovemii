@@ -9,6 +9,14 @@ export const button = Button({
 		execAsync([ 'screenshot' ])
 	},
 
+	on_hover(self, event) {
+		self.toggleClassName('hover', true)
+	},
+
+	on_hover_lost(self, event) {
+		self.toggleClassName('hover', false)
+	},
+
 	child: Icon({
 		class_name: 'icon',
 		size: data.settings.icon_size,

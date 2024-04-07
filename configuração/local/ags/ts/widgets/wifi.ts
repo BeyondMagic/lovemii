@@ -27,10 +27,6 @@ function get_main_icon (connectivity : string) : string {
 export const icon = Button({
 	class_name: 'network-button',
 
-	// on_primary_click(self, event) {
-	// 	App.ToggleWindow('bar')
-	// },
-
 	child: Icon({
 		class_name: 'network',
 		size: data.settings.icon_size,

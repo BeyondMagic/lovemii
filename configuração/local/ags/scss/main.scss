@@ -33,6 +33,10 @@
 
           .screenshot {
             color: rgb(63.5, 63.5, 63.5);
+
+            &.hover {
+              color: rgb(127, 127, 127);
+            }
           }
 
           .network-button {

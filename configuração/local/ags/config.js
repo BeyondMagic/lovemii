@@ -1,7 +1,6 @@
 // Add our icons for the whole GTK context.
 import Gtk from 'gi://Gtk'
 const theme = Gtk.IconTheme.get_default()
-
 const path = App.configDir + '/assets/icons/'
 theme.append_search_path(path)
 
@@ -25,4 +24,4 @@ try {
 
 const main = await import(`file://${outdir}/main.js`)
 
-export default main.default
+App.config(main)

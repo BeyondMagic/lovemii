@@ -7,6 +7,7 @@ export type BoxProps<Child extends Gtk.Widget = Gtk.Widget, Attr = unknown, Self
     children?: Child[];
     vertical?: boolean;
 }, Attr>;
+export declare function newBox<Child extends Gtk.Widget = Gtk.Widget, Attr = unknown>(...props: ConstructorParameters<typeof Box<Child, Attr>>): Box<Child, Attr>;
 export interface Box<Child, Attr> extends Widget<Attr> {
 }
 export declare class Box<Child extends Gtk.Widget, Attr> extends Gtk.Box {
@@ -16,6 +17,6 @@ export declare class Box<Child extends Gtk.Widget, Attr> extends Gtk.Box {
     get children(): Child[];
     set children(children: Child[]);
     get vertical(): boolean;
-    set vertical(vertical: boolean);
+    set vertical(v: boolean);
 }
 export default Box;

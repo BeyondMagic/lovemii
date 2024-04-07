@@ -1,18 +1,18 @@
 /// <reference types="@girs/dbusmenugtk3-0.4/node_modules/@girs/gtk-3.0/gtk-3.0-ambient.js" />
 /// <reference types="@girs/gtk-3.0/gtk-3.0-ambient.js" />
 import Gtk from 'node_modules/@girs/gtk-3.0/gtk-3.0';
-export interface Config<W extends Gtk.Window = Gtk.Window> {
-    windows?: W[];
+export interface Config {
+    windows?: Gtk.Window[] | (() => Gtk.Window[]);
     style?: string;
     icons?: string;
     gtkTheme?: string;
     iconTheme?: string;
     cursorTheme?: string;
-    onWindowToggled?: (windowName: string, visible: boolean) => void;
-    onConfigParsed?: (app: App) => void;
     closeWindowDelay?: {
         [key: string]: number;
     };
+    onWindowToggled?: (windowName: string, visible: boolean) => void;
+    onConfigParsed?: (app: App) => void;
     notificationPopupTimeout?: number;
     notificationForceTimeout?: boolean;
     cacheNotificationActions?: boolean;
@@ -55,6 +55,7 @@ export declare class App extends Gtk.Application {
     readonly removeWindow: (w: Gtk.Window | string) => void;
     readonly addWindow: (w: Gtk.Window) => void;
     readonly quit: () => void;
+    readonly config: (config: Config) => void;
     private _load;
     private _register;
     toJSON(): {

@@ -10,7 +10,7 @@ declare class PowerProfiles extends Service {
     get profiles(): {
         [key: string]: string;
     }[];
-    get actions(): [string];
+    get actions(): string[];
     get active_profile_holds(): {
         [key: string]: string;
     }[];

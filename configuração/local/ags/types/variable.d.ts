@@ -35,5 +35,5 @@ export declare class Variable<T> extends GObject.Object {
     bind<P extends keyof Props<this>>(): Binding<this, P, T>;
     bind<P extends keyof Props<this>>(prop?: P): Binding<this, P, this[P]>;
 }
-declare const _default: <T>(value: T, options?: Options<T> | undefined) => Variable<T>;
+declare const _default: <T>(value: T, options?: Options<T>) => Variable<T>;
 export default _default;

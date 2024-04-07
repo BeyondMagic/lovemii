@@ -8,7 +8,7 @@ export declare function derive<V, const Deps extends Variable<any>[], Args exten
     [K in keyof Deps]: Deps[K] extends Variable<infer T> ? T : never;
 }>(deps: Deps, fn: (...args: Args) => V): Variable<V>;
 type B<T> = Binding<Variable<T>, any, T>;
-export declare function watch<T>(init: T, objs: Array<Connectable | [Connectable, signal?: string]>, callback: () => T): B<T>;
+export declare function watch<T>(init: T, objs: Array<Connectable | [obj: Connectable, signal?: string]>, callback: () => T): B<T>;
 export declare function watch<T>(init: T, obj: Connectable, signal: string, callback: () => T): B<T>;
 export declare function watch<T>(init: T, obj: Connectable, callback: () => T): B<T>;
 export {};

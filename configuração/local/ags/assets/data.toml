@@ -145,3 +145,13 @@ replace = "any-book-reader-symbolic"
 [[common]]
 find = ["anki"]
 replace = "any-flashcard-learning-tool"
+
+# Japanese learning resource.
+[[common]]
+find = ["DaKanji_v1"]
+replace = "japanese-character"
+
+# Sound and music..
+[[common]]
+find = ["pavucontrol", "songrec"]
+replace = "sound-loud"

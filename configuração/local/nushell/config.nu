@@ -4,30 +4,16 @@
 #
 # João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
-# Just get the names themselves.
-def "nu-complete exec" []: string -> list<string> {
-	$env.PATH | par-each {|path|
-		if ($path | path type) == 'dir' {
-			ls --short-names $path
-		}
-	}
-	| flatten
-	| get name
-	| sort
-}
-
-export extern "exec" [
-    executable: string@"nu-complete exec",  # the name of the remote
-    ...args: string # the branch / refspec
-]
-
 # ---------------------------------------------------------------------------
 # Modules
 # ---------------------------------------------------------------------------
 use ~/projetos/pessoal/UnB/matext/unb.nu
 use todos.nu
+
 use ./standard/random.nu
 use ./standard/str.nu
+use ./standard/exec.nu *
+
 use ./external/tokei.nu
 use ./package.nu
 use system.nu
@@ -894,4 +880,4 @@ $env.config = {
     ]
 }
 
-nincat random ~/projetos/pessoal/nincat/data.json
+nincat random (glob '~/projetos/pessoal/nincat/data.json').0

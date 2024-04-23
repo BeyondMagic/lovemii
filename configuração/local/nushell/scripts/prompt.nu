@@ -4,10 +4,12 @@ export-env {
 		| lines
 		| random item
 
+	let indicator = ' ' + $symbol + ' '
+
 	# The prompt indicators are environmental variables that represent
-	# the state of the prompt
-	$env.PROMPT_INDICATOR = {|| " > " }
-	$env.PROMPT_INDICATOR_VI_INSERT = {|| ' ' + $symbol + ' ' }
-	$env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
+	# the state of the prompt.
+	$env.PROMPT_INDICATOR = {|| $indicator }
+	$env.PROMPT_INDICATOR_VI_INSERT = {|| $indicator }
+	$env.PROMPT_INDICATOR_VI_NORMAL = {|| $symbol + ' ' }
 	$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 }

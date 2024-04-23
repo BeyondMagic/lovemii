@@ -31,7 +31,13 @@
 
 		.right {
 
+          button {
+            border: none;
+            background-image: none;
+          }
+
           .screenshot {
+
             color: rgb(63.5, 63.5, 63.5);
 
             &.hover {

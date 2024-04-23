@@ -12,6 +12,6 @@ export def main [
 	database: list<string> = $default_database # List of paths of database
 ]: nothing -> list<table<hieroglyph: string, tags: list<string>>> {
 	$default_database | par-each {|path|
-		open $path
+		open (glob $path | first)
 	} | flatten | flatten
 }

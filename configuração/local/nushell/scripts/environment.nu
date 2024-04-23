@@ -61,6 +61,9 @@ export-env {
 	# For Rust installatio and configuration.
 	$env.CARGO_HOME = $"($env.XDG_CONFIG_HOME)/cargo"
 
+	# Possible fix for Steam.
+	$env.QT_QPA_PLATFORM = 'wayland'
+
 	# For gnupg configuration files.
 	#$env.GNUPGHOME = $"($env.XDG_CONFIG_HOME)/gnupg"
 

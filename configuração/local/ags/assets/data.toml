@@ -148,7 +148,7 @@ replace = "any-flashcard-learning-tool"
 
 # Japanese learning resource.
 [[common]]
-find = ["DaKanji_v1"]
+find = ["DaKanji"]
 replace = "japanese-character"
 
 # Sound and music..

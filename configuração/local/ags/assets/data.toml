@@ -62,7 +62,7 @@ name = "十"
 id = -98
 # The `love-heart` is the icon, which will be rendered with `-symbolic` with GTK.
 # And `magic` is the name of the special workspace (to be able to toggle by pressing the button).
-name = "love-heart magic"
+name = "love-heart scratchpad"
 
 # This section determines how the classes of windows
 # are viewed i

@@ -71,6 +71,12 @@ name = "love-heart scratchpad"
 find = ["foot"]
 replace = "command-terminal"
 
+
+# Android related tools.
+[[common]]
+find = ["io.github.whoozle.android-file-transfer"]
+replace = "tool-android-any"
+
 # Browser such as Firefox.
 [[common]]
 find = ["firefox-nightly"]

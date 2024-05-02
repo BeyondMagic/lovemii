@@ -43,4 +43,8 @@ export def edit [
 export def untracked []: nothing -> list<string> {
 	^git ls-files --others --exclude-standard
 	| lines
+	| par-each {|path|
+		ls --directory $path
+		| first
+	}
 }

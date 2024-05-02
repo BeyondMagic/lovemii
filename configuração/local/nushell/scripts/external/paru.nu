@@ -65,6 +65,11 @@ export def list []: nothing -> any {
 	| rename 'name' 'version'
 }
 
+# Clean all packages old files from the system.
+export def clean []: nothing -> any {
+	main [ -Scc ]
+}
+
 # Upgrade all packages.
 export def upgrade [
 	--ignore: list<string> # Names of packages to ignore.

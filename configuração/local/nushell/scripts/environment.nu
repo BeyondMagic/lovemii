@@ -6,7 +6,7 @@ export-env {
 	$env.DESKTOP_SERVICE_MANAGER = ($env.HOME | path join .config/nushell/scripts/service_manager.nu)
 
 	# Activate fcitx5.
-	#env = GTK_IM_MODULE,fcitx
+	#$env.GTK_IM_MODULE = fcitx
 	$env.QT_IM_MODULE = fcitx5
 	$env.XMODIFIERS = @im=fcitx5
 
@@ -51,6 +51,7 @@ export-env {
 
 	# XDG default folder for configuration files.
 	$env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
+	#$env.XDG_DATA_DIRS = $"($env.HOME)/.local/share"
 
 	# To put trash files in here instead of removing them out of existence.
 	$env.TRASH = $"($env.HOME)/.local/trash"

@@ -7,8 +7,11 @@ export-env {
 
 	# Activate fcitx5.
 	#$env.GTK_IM_MODULE = fcitx
-	$env.QT_IM_MODULE = fcitx5
-	$env.XMODIFIERS = @im=fcitx5
+	$env.QT_IM_MODULE = fcitx
+	$env.GLFW_IM_MODULE = ibus
+	$env.XMODIFIERS = @im=fcitx
+	$env.GTK_USE_PORTAL = 1
+
 
 	# History path for less.
 	$env.LESSHISTFILE = /dev/null
@@ -39,6 +42,7 @@ export-env {
 
 	# Enable Wayland for Firefox.
 	$env.MOZ_ENABLE_WAYLAND = 1
+	$env.MOZ_DBUS_REMOTE = 1
 
 	# Fix all Java issues.
 	$env._JAVA_AWT_WM_NONREPARENTING = 1

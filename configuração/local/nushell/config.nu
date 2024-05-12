@@ -12,10 +12,12 @@ use todos.nu
 
 use ./standard/random.nu
 use ./standard/str.nu
-use ./standard/exec.nu *
+#use ./standard/exec.nu *
 
 use ./external/tokei.nu
 use ./package.nu
+
+use git.nu
 use system.nu
 use emojis.nu
 use nupm
@@ -42,7 +44,7 @@ use ~/projetos/pessoal/nincat/nincat.nu
 # ---------------------------------------------------------------------------
 alias fm = file manager
 alias rm = rm -i
-alias git-untracked = ^git ls-files --others --exclude-standard
+#alias git-untracked = ^git ls-files --others --exclude-standard
 #alias       game="PROTON_NO_ESYNC=1 PROTON_DUMP_DEBUG_COMMANDS=1 STEAM_COMPAT_DATA_PATH=$HOME/.config/proton/ proton run"
 
 # ----------------------------------------------------------------------------

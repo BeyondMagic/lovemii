@@ -47,4 +47,5 @@ export def untracked []: nothing -> list<string> {
 		ls --directory $path
 		| first
 	}
+	| sort-by name modified
 }

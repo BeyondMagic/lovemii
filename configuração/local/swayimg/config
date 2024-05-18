@@ -4,6 +4,7 @@ size = 12
 
 [general]
 app_id = swayimg
+scale = fit
 
 [keys]
 Ctrl+c = exec echo "%" | wl-copy

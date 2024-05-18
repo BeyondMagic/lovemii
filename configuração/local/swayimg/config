@@ -7,4 +7,5 @@ app_id = swayimg
 scale = fit
 
 [keys]
-Ctrl+c = exec echo "%" | wl-copy
+Ctrl+c = exec cat "%" | wl-copy
+Ctrl+p = exec echo "%" | wl-copy

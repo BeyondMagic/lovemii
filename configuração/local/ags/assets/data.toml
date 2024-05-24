@@ -71,6 +71,10 @@ name = "love-heart scratchpad"
 find = ["foot"]
 replace = "command-terminal"
 
+# Android related tools.
+[[common]]
+find = ["blueman-manager"]
+replace = "tool-bluetooth-any"
 
 # Android related tools.
 [[common]]

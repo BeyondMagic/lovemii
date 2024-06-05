@@ -1,3 +1,5 @@
+use admin.nu
+
 # Suspend the machine to disk.
 export def hibernate []: nothing -> nothing {
 	^loginctl hibernate
@@ -6,6 +8,11 @@ export def hibernate []: nothing -> nothing {
 # Suspend the system to memory.
 export def suspend []: nothing -> nothing {
 	^loginctl suspend
+}
+
+# Restart the system.
+export def restart []: nothing -> nothing {
+	admin { ^shutdown -r now }
 }
 
 # List all fonts.

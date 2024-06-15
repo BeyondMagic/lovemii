@@ -75,3 +75,8 @@ export-env {
 	# Add global path for Bun.
 	$env.BUN_INSTALL = $"($env.HOME)/.bun"
 }
+
+# Load the environment variables of dune.
+export def dune_ocaml []: nothing -> any {
+	exec /home/dream/.opam/opam-init/init.sh
+}

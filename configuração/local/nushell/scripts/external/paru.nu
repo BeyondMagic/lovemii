@@ -85,7 +85,13 @@ export def upgrade [
 	}
 
 	if not ($ignore | is-empty) {
-		$args = $args ++ [ --ignore ...$ignore ]
+		let ignore_parsed = $ignore
+			| par-each {
+				[ --ignore ] ++ [ $in ]
+			}
+			| flatten
+
+		$args = $args ++ $ignore_parsed
 	}
 
 	main $args

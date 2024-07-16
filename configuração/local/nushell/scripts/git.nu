@@ -39,13 +39,44 @@ export def edit [
 	GIT_SEQUENCE_EDITOR="sed -i -e '0,/pick/{s/pick/edit/}'" ^git rebase -i $"($commit)^1"
 }
 
-# List untracked files.
-export def untracked []: nothing -> list<string> {
-	^git ls-files --others --exclude-standard
+# Root folder of the repository.
+export def root []: nothing -> string {
+	(^git rev-parse --show-cdup
+	| path expand
+	) + '/'
+}
+
+# Parse text of strings of files as paths.
+def parse-files [untracked : bool]: string -> list<string> {
+	let input = $in
+	let before = if $untracked { './' } else { root }
+
+	$input
 	| lines
 	| par-each {|path|
-		ls --directory $path
+		ls --directory ($before + $path)
 		| first
 	}
 	| sort-by name modified
+}
+
+# List untracked files.
+export def 'list untracked' []: nothing -> list<string> {
+	^git ls-files --others --exclude-standard
+	| parse-files true
+}
+
+# List files with changes.
+export def diff [
+	untracked: bool = true # Files not tracked yet by git.
+]: nothing -> list<string> {
+	mut tracked = ^git -c core.quotepath=false diff --name-only
+		| parse-files false
+		| default false untracked
+
+	if $untracked {
+		$tracked = $tracked ++ (list untracked | default true untracked)
+	}
+
+	$tracked
 }

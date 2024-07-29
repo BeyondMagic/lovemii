@@ -163,5 +163,5 @@ replace = "japanese-character"
 
 # Sound and music..
 [[common]]
-find = ["pavucontrol", "songrec"]
+find = ["pavucontrol", "songrec", "org.pulseaudio.pavucontrol"]
 replace = "sound-loud"

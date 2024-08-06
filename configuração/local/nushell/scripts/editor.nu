@@ -11,6 +11,14 @@ export def restore [
 export def main [
 	...files : string # Files to launch along with it.
 	--flags : list<string> = [] # Flags to launch with it.
-]: nothing -> nothing {
-	^$env.EDITOR ...($files | path expand) ...$flags
+]: [list<string> -> nothing, nothing -> nothing] {
+	let input = $in
+
+	let to = if ($input | is-not-empty) {
+		$input
+	} else {
+		$files
+	} | path expand
+
+	^$env.EDITOR ...$to ...$flags
 }

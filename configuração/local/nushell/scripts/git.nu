@@ -47,11 +47,10 @@ export def root []: nothing -> string {
 }
 
 # Parse text of strings of files as paths.
-def parse-files [untracked : bool]: string -> list<string> {
-	let input = $in
-	let before = if $untracked { './' } else { root }
+def parse-files []: string -> list<string> {
+	let before = root
 
-	$input
+	$in
 	| lines
 	| par-each {|path|
 		ls --directory ($before + $path)
@@ -62,8 +61,22 @@ def parse-files [untracked : bool]: string -> list<string> {
 
 # List untracked files.
 export def 'list untracked' []: nothing -> list<string> {
-	^git ls-files --others --exclude-standard
-	| parse-files true
+	let before = root
+
+	cd $before
+
+	let result = ^git -c core.quotepath=false ls-files --others --exclude-standard
+		| lines
+		| par-each {|path|
+			ls --directory ($before + $path)
+			| first
+		}
+		| sort-by name modified
+
+	cd -
+
+	$result
+	| update name { ^realpath -s --relative-to='./' $in }
 }
 
 # List files with changes.
@@ -71,11 +84,15 @@ export def diff [
 	untracked: bool = true # Files not tracked yet by git.
 ]: nothing -> list<string> {
 	mut tracked = ^git -c core.quotepath=false diff --name-only
-		| parse-files false
+		| parse-files
 		| default false untracked
+		| update name { ^realpath -s --relative-to="./" $in }
 
 	if $untracked {
-		$tracked = $tracked ++ (list untracked | default true untracked)
+		$tracked = $tracked ++ (
+			list untracked
+			| default true untracked
+		)
 	}
 
 	$tracked

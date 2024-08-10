@@ -56,7 +56,11 @@ def parse-files []: string -> list<string> {
 		ls --directory ($before + $path)
 		| first
 	}
-	| sort-by name modified
+}
+
+# Realpath fix.
+def realpath []: string -> string {
+	^realpath -s --relative-to='./' $in
 }
 
 # List untracked files.
@@ -66,17 +70,12 @@ export def 'list untracked' []: nothing -> list<string> {
 	cd $before
 
 	let result = ^git -c core.quotepath=false ls-files --others --exclude-standard
-		| lines
-		| par-each {|path|
-			ls --directory ($before + $path)
-			| first
-		}
-		| sort-by name modified
+		| parse-files
 
 	cd -
 
 	$result
-	| update name { ^realpath -s --relative-to='./' $in }
+	| update name { realpath }
 }
 
 # List files with changes.
@@ -85,15 +84,16 @@ export def diff [
 ]: nothing -> list<string> {
 	mut tracked = ^git -c core.quotepath=false diff --name-only
 		| parse-files
-		| default false untracked
-		| update name { ^realpath -s --relative-to="./" $in }
+		| default true tracked
+		| update name { realpath }
 
 	if $untracked {
 		$tracked = $tracked ++ (
 			list untracked
-			| default true untracked
+			| default false tracked
 		)
 	}
 
 	$tracked
+	| sort-by tracked modified
 }

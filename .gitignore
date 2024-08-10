@@ -67,5 +67,8 @@
 # Ignore nushell (needs organising).
 /subconfiguração/nushell/
 
+# Ignore themes (mostly are git repositories themselves).
+/subconfiguração/temas/
+
 # Organization files.
 /.organização

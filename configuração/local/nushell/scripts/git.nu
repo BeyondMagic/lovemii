@@ -53,8 +53,18 @@ def parse-files []: string -> list<string> {
 	$in
 	| lines
 	| par-each {|path|
-		ls --directory ($before + $path)
-		| first
+		let full = $before + $path
+		if ($full | path type | is-not-empty) {
+			ls --directory $full
+			| first
+		} else {
+			{
+				name: $full
+				type: 'deleted'
+				size: -1B
+				modified: (date now)
+			}
+		}
 	}
 }
 

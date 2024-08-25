@@ -17,9 +17,9 @@
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
-$env.READER = sioyek
-$env.BROWSER = firefox-nightly
-$env.FILE = nnn
+$env.READER = 'sioyek'
+$env.BROWSER = 'firefox-nightly'
+$env.FILE = 'nnn'
 
 $env.SSH_AGENT_PID = (pidof ssh-agent)
 $env.SSH_AUTH_SOCK = "/tmp/ssh-agent.socket"

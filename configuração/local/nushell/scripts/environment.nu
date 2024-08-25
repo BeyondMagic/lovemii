@@ -1,38 +1,38 @@
 export-env {
 	# For scripts of the desktop..
-	$env.DESKTOP_NAME = lovemii
+	$env.DESKTOP_NAME = 'lovemii'
 
 	# For faciliate reference of this folder.
 	$env.DESKTOP_SERVICE_MANAGER = ($env.HOME | path join .config/nushell/scripts/service_manager.nu)
 
 	# Activate fcitx5.
 	#$env.GTK_IM_MODULE = fcitx
-	$env.QT_IM_MODULE = fcitx
-	$env.GLFW_IM_MODULE = ibus
-	$env.XMODIFIERS = @im=fcitx
+	$env.QT_IM_MODULE = 'fcitx'
+	$env.GLFW_IM_MODULE = 'ibus'
+	$env.XMODIFIERS = '@im=fcitx'
 	$env.GTK_USE_PORTAL = 1
 
 
 	# History path for less.
-	$env.LESSHISTFILE = /dev/null
+	$env.LESSHISTFILE = '/dev/null'
 
 	# Supress accessibility warning from GNOME bus.
 	$env.NO_AT_BRIDGE = 1
 
 	# Defualt text editor.
-	$env.EDITOR = nvim
+	$env.EDITOR = 'nvim'
 
 	# Default visual editor.
-	$env.VISUAL = nvim
+	$env.VISUAL = 'nvim'
 
 	# Default application for file manager.
-	$env.FILE = nnn
+	$env.FILE = 'nnn'
 
 	# Default application for reading files.
-	$env.READER = foliate
+	$env.READER = 'foliate'
 
 	# Default application for browser.
-	$env.BROWSER = firefox-nightly
+	$env.BROWSER = 'firefox-nightly'
 
 	# Scale for Wayland (GTK)
 	$env.GDK_SCALE = 1

@@ -107,3 +107,8 @@ export def diff [
 	$tracked
 	| sort-by tracked modified
 }
+
+# See information of commits.
+export def log []: nothing -> nothing {
+	^git log --graph --reflog
+}

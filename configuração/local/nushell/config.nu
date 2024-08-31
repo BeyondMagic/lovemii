@@ -14,6 +14,7 @@ use ./standard/random.nu
 use ./standard/str.nu
 #use ./standard/exec.nu *
 
+use ./external/typst.nu
 use ./external/tokei.nu
 use ./package.nu
 

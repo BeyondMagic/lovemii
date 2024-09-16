@@ -196,6 +196,9 @@ key('v', '<BS>', '"_di', remap )
 -- Paste and delete the first.
 key('n', '<Leader>p', 'pggdd', remap )
 
+-- Disable the button F1 that opens Neovim's help page.
+key('n', '<F1>', '', remap )
+
 -- Rename
 key('n', '<Leader>rn', ':IncRename ', remap )
 

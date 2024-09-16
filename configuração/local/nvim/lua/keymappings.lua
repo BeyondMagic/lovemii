@@ -193,9 +193,6 @@ key('v', '>', '>gv', remap )
 -- Set 'Backspace' as 'delete selection' for the visual selection.
 key('v', '<BS>', '"_di', remap )
 
--- Set 'F36 + F35' as 'delete word' in Insert mode, specific for my build of Simple Terminal (suckless) called flarity.
-key('i', '<F36><F35>', '<C-w>', remap )
-
 -- Paste and delete the first.
 key('n', '<Leader>p', 'pggdd', remap )
 

@@ -12,6 +12,12 @@ para = "/usr/share/icons/"
 
 [["ligações"]]
 administrador = true
+de = "../subconfiguração/temas/"
+para = "/usr/share/themes/"
+"único" = false
+
+[["ligações"]]
+administrador = true
 de = "./serviços/global/*"
 para = "/run/runit/service/"
 "único" = false

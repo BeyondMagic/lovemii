@@ -6,6 +6,8 @@ size = 12
 app_id = swayimg
 scale = fit
 
-[keys]
+[keys.viewer]
 Ctrl+c = exec cat "%" | wl-copy
 Ctrl+p = exec echo "%" | wl-copy
+Delete = exec rm "%"; reload
+Ctrl+m = exec echo "%" | organize-fav

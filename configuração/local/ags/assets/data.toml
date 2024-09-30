@@ -165,3 +165,8 @@ replace = "japanese-character"
 [[common]]
 find = ["pavucontrol", "songrec", "org.pulseaudio.pavucontrol"]
 replace = "sound-loud"
+
+# Message servies overall..
+[[common]]
+find = ["Ferdium"]
+replace = "message-service"

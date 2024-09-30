@@ -16,6 +16,9 @@
 /configuração/local/mpv/watch_later/
 /configuração/local/mpv/scripts/autosub.lua
 
+# git
+/configuração/local/git
+
 # ncmpcpp
 /configuração/local/ncmpcpp/**
 !/configuração/local/ncmpcpp/config

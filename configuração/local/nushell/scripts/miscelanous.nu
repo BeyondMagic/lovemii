@@ -13,7 +13,7 @@ export def cpdir [
 export def to-image [
 	...name: string # File name.
 	--type : string = 'png' # Type extension file.
-	--force = false # Force save.
+	--force # Force save.
 ]: nothing -> nothing {
 	let file_name = ($name | str join ' ') + '.' + $type
 

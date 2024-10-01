@@ -47,13 +47,17 @@ export def root []: nothing -> string {
 }
 
 # Parse text of strings of files as paths.
-def parse-files []: string -> list<string> {
-	let before = root
+def parse-files [base?: string]: string -> list<string> {
+	let before = if ($base | is-empty) {
+		root
+	} else {
+		$base
+	}
 
 	$in
 	| lines
 	| par-each {|path|
-		let full = $before + $path
+		let full = $before | path join $path
 		if ($full | path type | is-not-empty) {
 			ls --directory $full
 			| first
@@ -74,13 +78,19 @@ def realpath []: string -> string {
 }
 
 # List untracked files.
-export def 'list untracked' []: nothing -> list<string> {
-	let before = root
+export def 'list untracked' [
+	base?: string # Root folder to find changes within.
+]: nothing -> list<string> {
+	let before = if ($base | is-empty) {
+		root
+	} else {
+		$base
+	}
 
 	cd $before
 
 	let result = ^git -c core.quotepath=false ls-files --others --exclude-standard
-		| parse-files
+		| parse-files $base
 
 	cd -
 
@@ -90,16 +100,24 @@ export def 'list untracked' []: nothing -> list<string> {
 
 # List files with changes.
 export def diff [
-	untracked: bool = true # Files not tracked yet by git.
+	base?: string # Root folder to find changes within.
+	--untracked = true # Files not tracked yet by git.
 ]: nothing -> list<string> {
-	mut tracked = ^git -c core.quotepath=false diff --name-only
+
+	let content_git = if ($base | is-empty) {
+		^git -c core.quotepath=false diff --name-only
+	} else {
+		^git -c core.quotepath=false diff --name-only $base
+	}
+
+	mut tracked = $content_git
 		| parse-files
 		| default true tracked
 		| update name { realpath }
 
 	if $untracked {
 		$tracked = $tracked ++ (
-			list untracked
+			list untracked $base
 			| default false tracked
 		)
 	}

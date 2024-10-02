@@ -1,12 +1,12 @@
 [["ligações"]]
 administrador = true
-de = ["./configuração/global/profile", "./configuração/global/environment", "./configuração/global/locale.conf"]
+de = ["../configuração/global/profile", "../configuração/global/environment", "../configuração/global/locale.conf"]
 para = "/etc/"
 "único" = false
 
 [["ligações"]]
 administrador = true
-de = "./subconfiguração/ícones/"
+de = "../subconfiguração/ícones/"
 para = "/usr/share/icons/"
 "único" = false
 
@@ -18,44 +18,76 @@ para = "/usr/share/themes/"
 
 [["ligações"]]
 administrador = true
-de = "./serviços/global/*"
+de = "../serviços/global/*"
 para = "/run/runit/service/"
 "único" = false
 
 [["ligações"]]
 administrador = false
-de = "./serviços/local/*"
+de = "../serviços/local/*"
 para = "~/.local/services/"
 "único" = false
 
 [["ligações"]]
 administrador = false
-de = "./configuração/local/"
+de = "../configuração/local/"
 para = "~/.config/"
 "único" = false
 
 [["ligações"]]
 administrador = false
-de = "./subconfiguração/fontes"
+de = "../subconfiguração/fontes"
 para = "~/.local/share/fonts"
 "único" = true
 
 [["ligações"]]
 administrador = false
-de = "./subconfiguração/nushell"
+de = "../subconfiguração/nushell"
 para = "~/.local/share/nupm"
 "único" = true
 
 [["ligações"]]
 administrador = false
-de = "./subconfiguração/clipboard"
+de = "../subconfiguração/clipboard"
 para = "~/.cache/cliphist"
 "único" = true
 
 [["ligações"]]
 administrador = false
-de = "./subconfiguração/aplicativos/"
+de = "../subconfiguração/ferdium/whatsapp/"
+para = "~/.config/Ferdium/recipes/whatsapp/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "../subconfiguração/ferdium/franz-custom-website/"
+para = "~/.config/Ferdium/recipes/franz-custom-website/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "../subconfiguração/aplicativos/"
 para = "~/.local/share/applications/"
+"único" = false
+
+# GTK:
+# Only file sthat that can be system-shared.
+[["ligações"]]
+administrador = false
+de = "../subconfiguração/gtk/2.0/"
+para = "~/.config/gtk-2.0/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "../subconfiguração/gtk/3.0/"
+para = "~/.config/gtk-3.0/"
+"único" = false
+
+[["ligações"]]
+administrador = false
+de = "../subconfiguração/gtk/4.0/"
+para = "~/.config/gtk-4.0/"
 "único" = false
 
 [[packages]]

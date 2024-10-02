@@ -6,37 +6,34 @@ def link-file [
 	de: string # O caminho para ligar.
 	para: string # Onde ligar.
 	--administrador = false # Se é preciso de permissões administrativas.
-] -> nothing {
-	if $administrador {
-		^doas ln ...[
-			--symbolic
-			--force
-			--no-target-directory
-			$de
-			$para
-		]
+]: nothing -> list<string> {
+	let args = [
+		--symbolic
+		--force
+		--no-target-directory
+		$de
+		$para
+	]
 
+	if $administrador {
+		^doas ln ...$args
 	} else {
-		^ln ...[
-			--symbolic
-			--force
-			--no-target-directory
-			$de
-			$para
-		]
+		^ln ...$args
 	}
+
+	[ $de $para ]
 }
 
 # List all packages to install.
-export def list-packages [] : nothing -> nothing {
+export def list-packages []: nothing -> nothing {
 	open ./dados.toml
 	| get packages
 }
 
 # Link all files.
-export def link [] : nothing > -> nothing {
+export def link []: nothing -> nothing {
 
-	let dados = open dados.json
+	let dados = open ./dados.toml
 
 	if ($dados | get ligações.administrador | any {|it| $it == true }) {
 
@@ -68,7 +65,7 @@ export def link [] : nothing > -> nothing {
 			}
 
 			# Para cada pasta, pegar suas subpastas e retornar os arquivos dentros dela.
-			ls --all $ligação.de | get name | par-each {|pasta|
+			glob $ligação.de | par-each {|pasta|
 				ls $pasta | get name
 			} | par-each {|grupo|
 				let serviço_pasta = ($ligação.para | path join ($grupo | first | path dirname | path basename)) | path expand
@@ -125,6 +122,4 @@ export def link [] : nothing > -> nothing {
 			}
 		}
 	}
-
-	null
 }

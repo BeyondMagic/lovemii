@@ -3,10 +3,6 @@
 def main []: string -> nothing {
 	let image = $in
 
-	if ($image | is-empty) {
-		exit 1
-	}
-
 	let to = [
 			'extensões/jpg'
 			'extensões/png'
@@ -17,6 +13,10 @@ def main []: string -> nothing {
 		]
 		| str join "\n"
 		| fuzzel --dmenu
+
+	if ($to | is-empty) {
+		exit 1
+	}
 	
 	let base = '/home/dream/compartilhado/armazenamento/imagens/'
 

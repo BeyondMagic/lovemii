@@ -4,7 +4,6 @@ size = 12
 
 [general]
 app_id = swayimg
-scale = fit
 
 [keys.viewer]
 Ctrl+c = exec cat "%" | wl-copy

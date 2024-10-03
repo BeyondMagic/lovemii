@@ -23,6 +23,12 @@ para = "/run/runit/service/"
 "único" = false
 
 [["ligações"]]
+administrador = true
+de = "../subconfiguração/aplicativos/"
+para = "/usr/share/applications/"
+"único" = false
+
+[["ligações"]]
 administrador = false
 de = "../serviços/local/*"
 para = "~/.local/services/"
@@ -62,12 +68,6 @@ para = "~/.config/Ferdium/recipes/whatsapp/"
 administrador = false
 de = "../subconfiguração/ferdium/franz-custom-website/"
 para = "~/.config/Ferdium/recipes/franz-custom-website/"
-"único" = false
-
-[["ligações"]]
-administrador = false
-de = "../subconfiguração/aplicativos/"
-para = "~/.local/share/applications/"
 "único" = false
 
 # GTK:

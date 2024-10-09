@@ -11,6 +11,7 @@ use ~/projetos/pessoal/UnB/matext/unb.nu
 use todos.nu
 
 use ./standard/random.nu
+use ./standard/filter.nu *
 use ./standard/str.nu
 #use ./standard/exec.nu *
 

@@ -168,5 +168,5 @@ replace = "sound-loud"
 
 # Message servies overall..
 [[common]]
-find = ["Ferdium"]
+find = ["Ferdium", "ferdium"]
 replace = "message-service"

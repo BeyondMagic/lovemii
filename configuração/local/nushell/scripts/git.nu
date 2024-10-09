@@ -126,6 +126,21 @@ export def diff [
 	| sort-by tracked modified
 }
 
+# Commit the changes.
+export def commit [
+	title?: string # Title of the commit.
+	message?: string # Message of the commit.
+]: nothing -> nothing {
+	# Edit the commit title and message using default editor.
+	if ($title | is-empty) {
+		^git commit -S
+	} else if ($message | is-empty) {
+		^git commit -S -m $title
+	} else {
+		^git commit -S -m $title $message
+	}
+}
+
 # See information of commits.
 export def log []: nothing -> nothing {
 	^git log --graph --reflog

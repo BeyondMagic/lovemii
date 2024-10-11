@@ -126,12 +126,26 @@ export def diff [
 	| sort-by tracked modified
 }
 
+# Add changes to the last commit and/or update subject and message manually.
+export def `commit amend` [
+	--edit # Do not edit the commit subject and message.
+]: nothing -> any {
+	mut args = [
+		'commit'
+		'--amend'
+	]
+
+	if not $edit {
+		$args = $args ++ [ "--no-edit" ]
+	}
+
+	main $args
+}
+
 # Commit the changes.
 export def commit [
 	title?: string # Title of the commit.
 	message?: string # Message of the commit.
-	#--amend: string # Amend the last commit?
-	#--no-edit: string # Edit the last commit?
 	--feat: string # New feature for the user, not a new feature for build script.
 	--fix: string # Bug fix for the user, not a fix to a build script.
 	--docs: string # Changes to the documentation.

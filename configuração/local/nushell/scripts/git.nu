@@ -23,7 +23,7 @@
 
 # Helper command to get commit of this branch only list to edit
 def "nu-complete git commits" [] {
-	^git log --pretty="%h %s"
+	main [ log --pretty="%h %s" ]
 	| lines
 	| parse "{value} {description}"
 }
@@ -36,12 +36,12 @@ export def edit [
 	# We use `sed` to replace `pick` with `edit`.
 	# `0,/pick/` restricts the sustitution to the range from the beginning until
 	# the first occurence of `pick`.
-	GIT_SEQUENCE_EDITOR="sed -i -e '0,/pick/{s/pick/edit/}'" ^git rebase -i $"($commit)^1"
+	GIT_SEQUENCE_EDITOR="sed -i -e '0,/pick/{s/pick/edit/}'" main [ rebase -i $"($commit)^1" ]
 }
 
 # Root folder of the repository.
 export def root []: nothing -> string {
-	(^git rev-parse --show-cdup
+	(main [ rev-parse --show-cdup ]
 	| path expand
 	) + '/'
 }
@@ -89,7 +89,7 @@ export def 'list untracked' [
 
 	cd $before
 
-	let result = ^git -c core.quotepath=false ls-files --others --exclude-standard
+	let result = main [ -c core.quotepath=false ls-files --others --exclude-standard ]
 		| parse-files $base
 
 	cd -
@@ -105,9 +105,9 @@ export def diff [
 ]: nothing -> list<string> {
 
 	let content_git = if ($base | is-empty) {
-		^git -c core.quotepath=false diff --name-only
+		main [ -c core.quotepath=false diff --name-only ]
 	} else {
-		^git -c core.quotepath=false diff --name-only $base
+		main [ -c core.quotepath=false diff --name-only $base ]
 	}
 
 	mut tracked = $content_git
@@ -130,18 +130,36 @@ export def diff [
 export def commit [
 	title?: string # Title of the commit.
 	message?: string # Message of the commit.
+	--amend # Amend the last commit?
+	--no-edit # Edit the last commit?
 ]: nothing -> nothing {
-	# Edit the commit title and message using default editor.
-	if ($title | is-empty) {
-		^git commit -S
-	} else if ($message | is-empty) {
-		^git commit -S -m $title
-	} else {
-		^git commit -S -m $title -m $message
+
+	mut args = [ commit -S ]
+
+	if ($title | is-not-empty) {
+		$args = $args ++ [ -m $title ]
+
+		if ($message | is-not-empty) {
+			$args = $args ++ [ -m $message ]
+		}
 	}
+
+	main $args
 }
 
 # See information of commits.
 export def log []: nothing -> nothing {
-	^git log --graph --reflog
+	main [ log --graph --reflog ]
+}
+
+# The command itself for the package manager.
+# See git manual(1).
+#
+# Git is a fast, scalable, distributed revision control
+# system with an unusually rich command set that provides
+# both high-level operations and full access to internals.
+def main [
+	arguments: list<string> # Arguments to pass for it.
+]: nothing -> any {
+	^git ...$arguments
 }

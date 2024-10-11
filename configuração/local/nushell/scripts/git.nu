@@ -144,7 +144,7 @@ export def commit [
 	--perf: string # Code change that improves performance.
 	--revert: string # Reverts previous commit(s).
 	--breaking-changes: list<string> # Breaking changes.
-	#--co-authors: list<record<name: string, email: string>> # Co-authors of this commit.
+	--co-authors: list<record<name: string, email: string>> # Co-authors of this commit.
 	#--closes: list<string> # Link issues and pull requests of the repository.
 ]: nothing -> any {
 
@@ -178,10 +178,22 @@ export def commit [
 
 	mut title = $title
 	mut message = if ($message | is-empty) {
-		''
+		""
 	} else {
-		# Add space for the footer.
-		$message + "\n\n"
+		$message
+	}
+
+	if ($co_authors |is-not-empty) {
+		let co_authors = $co_authors
+			| each {
+				'Co-authored-by: ' + $in.name + ' <' + $in.email + '>'
+			} | str join "\n"
+
+		$message = if ($message | is-empty) {
+			$co_authors
+		} else {
+			$co_authors + "\n\n" + $message
+		}
 	}
 
 	mut breaking_symbol = ''
@@ -194,7 +206,11 @@ export def commit [
 		let breaking_changes = $breaking_changes
 			| each { 'BREAKING CHANGE: ' + $in } | str join "\n"
 
-		$message = $message + $breaking_changes
+		$message = if ($message | is-empty) {
+			$breaking_changes
+		} else {
+			$message + "\n\n" + $breaking_changes
+		}
 	}
 
 	if ($semantics | is-not-empty) {

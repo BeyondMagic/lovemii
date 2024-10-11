@@ -137,7 +137,7 @@ export def commit [
 	} else if ($message | is-empty) {
 		^git commit -S -m $title
 	} else {
-		^git commit -S -m $title $message
+		^git commit -S -m $title -m $message
 	}
 }
 

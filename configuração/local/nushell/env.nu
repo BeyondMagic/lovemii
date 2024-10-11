@@ -21,7 +21,7 @@ $env.READER = 'sioyek'
 $env.BROWSER = 'firefox-nightly'
 $env.FILE = 'nnn'
 
-$env.SSH_AGENT_PID = (pidof ssh-agent)
+#$env.SSH_AGENT_PID = (pidof ssh-agent)
 $env.SSH_AUTH_SOCK = "/tmp/ssh-agent.socket"
 
 $env.XDG_DATA_HOME = ($env.HOME | path join ".local/share")

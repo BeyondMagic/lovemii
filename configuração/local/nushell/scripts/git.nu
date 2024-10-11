@@ -145,7 +145,7 @@ export def commit [
 	--revert: string # Reverts previous commit(s).
 	--breaking-changes: list<string> # Breaking changes.
 	--co-authors: list<record<name: string, email: string>> # Co-authors of this commit.
-	#--closes: list<string> # Link issues and pull requests of the repository.
+	--closes: list<string> # Link issues and pull requests of the repository.
 ]: nothing -> any {
 
 	let semantics = [
@@ -183,7 +183,7 @@ export def commit [
 		$message
 	}
 
-	if ($co_authors |is-not-empty) {
+	if ($co_authors | is-not-empty) {
 		let co_authors = $co_authors
 			| each {
 				'Co-authored-by: ' + $in.name + ' <' + $in.email + '>'
@@ -193,6 +193,18 @@ export def commit [
 			$co_authors
 		} else {
 			$co_authors + "\n\n" + $message
+		}
+	}
+
+	if ($closes | is-not-empty) {
+		let closes = $closes
+			| each { 'Closes ' + $in + '.' }
+			| str join "\n"
+
+		$message = if ($message | is-empty) {
+			$closes
+		} else {
+			$message + "\n\n" + $closes
 		}
 	}
 

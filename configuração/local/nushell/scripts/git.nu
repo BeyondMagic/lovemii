@@ -130,9 +130,71 @@ export def diff [
 export def commit [
 	title?: string # Title of the commit.
 	message?: string # Message of the commit.
-	--amend # Amend the last commit?
-	--no-edit # Edit the last commit?
-]: nothing -> nothing {
+	#--amend: string # Amend the last commit?
+	#--no-edit: string # Edit the last commit?
+	--feat: string # New feature for the user, not a new feature for build script.
+	--fix: string # Bug fix for the user, not a fix to a build script.
+	--docs: string # Changes to the documentation.
+	--style: string # Formatting, missing semi colons, etc; no production code change.
+	--refactor: string # Refactoring production code, eg. renaming a variable.
+	--test: string # Adding missing tests, refactoring tests; no production code change.
+	--chore: string # Updating grunt tasks etc; no production code change.
+	--build: string # Changes to the build script.
+	--ci: string # Changes to Continuous Integration files and scripts.
+	--perf: string # Code change that improves performance.
+	--revert: string # Reverts previous commit(s).
+	#--breaking-changes: list<string> # Breaking changes of the repository.
+	#--co-authors: string # Co-authors of this commit.
+	#--closes: list<string> # Link issues and pull requests of the repository.
+]: nothing -> any {
+
+	let semantics = [
+		['type', 'value'];
+		[ 'feat' $feat ]
+		[ 'fix' $fix ]
+		[ 'docs' $docs ]
+		[ 'style' $style ]
+		[ 'refactor' $refactor ]
+		[ 'test' $test ]
+		[ 'chore' $chore ]
+		[ 'build' $build ]
+		[ 'ci' $ci ]
+		[ 'perf' $perf ]
+		[ 'revert' $revert ]
+	] | filter { $in.value | is-not-empty }
+
+	if ($semantics | length) > 1 {
+		error make {
+			msg: "Could not parse multiple semantic types."
+			label: {
+				text: "More than one type of commit semantic was used. Only one is allowed."
+				span: (metadata $feat).span
+			}
+		}
+	}
+
+	# Has to take the metadata before it's assigned again.
+	let title_span = (metadata $title).span
+
+	mut title = $title
+
+	if ($semantics | is-not-empty) {
+
+		# It makes no sense to not have a title, but a semantic type of commit chosen.
+		if ($title | is-empty) {
+			error make {
+				msg: "Could not parse semantic and title."
+				label: {
+					text: "Empty title, but semantic type of commit specified."
+					span: $title_span
+				}
+			}
+		}
+
+		# Format the title and semantic type of commit.
+		let scope = $semantics | first
+		$title = $scope.type + '(' + $scope.value + '): ' + $title
+	}
 
 	mut args = [ commit -S ]
 

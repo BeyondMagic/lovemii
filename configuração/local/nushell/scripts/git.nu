@@ -271,7 +271,7 @@ export def commit [
 }
 
 # See information of commits.
-export def log []: nothing -> nothing {
+export def log []: nothing -> any {
 	main [ log --graph --reflog ]
 }
 

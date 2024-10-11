@@ -143,8 +143,8 @@ export def commit [
 	--ci: string # Changes to Continuous Integration files and scripts.
 	--perf: string # Code change that improves performance.
 	--revert: string # Reverts previous commit(s).
-	#--breaking-changes: list<string> # Breaking changes of the repository.
-	#--co-authors: string # Co-authors of this commit.
+	--breaking-changes: list<string> # Breaking changes.
+	#--co-authors: list<record<name: string, email: string>> # Co-authors of this commit.
 	#--closes: list<string> # Link issues and pull requests of the repository.
 ]: nothing -> any {
 
@@ -177,6 +177,25 @@ export def commit [
 	let title_span = (metadata $title).span
 
 	mut title = $title
+	mut message = if ($message | is-empty) {
+		''
+	} else {
+		# Add space for the footer.
+		$message + "\n\n"
+	}
+
+	mut breaking_symbol = ''
+
+	if ($breaking_changes | is-not-empty) {
+
+		# The exclamation to add before the semantic type.
+		$breaking_symbol = '!'
+
+		let breaking_changes = $breaking_changes
+			| each { 'BREAKING CHANGE: ' + $in } | str join "\n"
+
+		$message = $message + $breaking_changes
+	}
 
 	if ($semantics | is-not-empty) {
 
@@ -193,7 +212,7 @@ export def commit [
 
 		# Format the title and semantic type of commit.
 		let scope = $semantics | first
-		$title = $scope.type + '(' + $scope.value + '): ' + $title
+		$title = $scope.type + '(' + $scope.value + ')' + $breaking_symbol + ': ' + $title
 	}
 
 	mut args = [ commit -S ]

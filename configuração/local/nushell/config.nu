@@ -24,7 +24,6 @@ use system.nu
 use emojis.nu
 use nupm
 use nu-themes/tokyo-night.nu
-use task.nu
 use lovemii.nu
 use fork.nu
 #use routine.nu

@@ -161,6 +161,11 @@ replace = "any-flashcard-learning-tool"
 find = ["dakanji"]
 replace = "japanese-character"
 
+# Input method application (to set keyboard of different languages).
+[[common]]
+find = ["org.fcitx.fcitx5-config-qt"]
+replace = "input-method-set"
+
 # Sound and music..
 [[common]]
 find = ["pavucontrol", "songrec", "org.pulseaudio.pavucontrol"]

@@ -9,4 +9,4 @@ app_id = swayimg
 Ctrl+c = exec cat "%" | wl-copy
 Ctrl+p = exec echo -n "%" | wl-copy
 Delete = exec rm "%"; reload
-Ctrl+m = exec echo -n "%" | organize-fav
+Ctrl+m = exec echo -n "%" | organize-fav.nu

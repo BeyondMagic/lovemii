@@ -189,6 +189,11 @@ plugins = []
 comments = ["Record/stream/edit audio."]
 names = ["tenacity"]
 
+[[packages]]
+depends = []
+plugins = ["https://github.com/Jenrykster/animeo"]
+comments = ["Watch stremings."]
+names = ["stremio"]
 
 # [[packages]]
 # comments = ["Selection graphical."]

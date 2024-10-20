@@ -183,6 +183,13 @@ depends = ["glfw", "clang"]
 comments = ["Zoom-in application for desktop.", "Inspired from tscoding/boomer."]
 names = ["coomer"]
 
+[[packages]]
+depends = []
+plugins = []
+comments = ["Record/stream/edit audio."]
+names = ["tenacity"]
+
+
 # [[packages]]
 # comments = ["Selection graphical."]
 # names = ["slop"]

@@ -178,6 +178,10 @@ names = ["scrot"]
 comments = ["File manager."]
 names = ["nnn"]
 
+[[packages]]
+depends = ["glfw", "clang"]
+comments = ["Zoom-in application for desktop.", "Inspired from tscoding/boomer."]
+names = ["coomer"]
 
 # [[packages]]
 # comments = ["Selection graphical."]

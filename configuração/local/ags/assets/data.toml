@@ -149,7 +149,7 @@ replace = "tool-any-downloader"
 # Book reader..
 [[common]]
 find = ["org.pwmt.zathura", "com.github.johnfactotum.Foliate"]
-replace = "any-book-reader-symbolic"
+replace = "any-book-reader"
 
 # Constant repetitive learning.
 [[common]]

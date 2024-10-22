@@ -175,3 +175,8 @@ replace = "sound-loud"
 [[common]]
 find = ["Ferdium", "ferdium"]
 replace = "message-service"
+
+# Message servies overall..
+[[common]]
+find = ["PacketTracer"]
+replace = "network-wired-logical"

@@ -2,6 +2,13 @@
 #
 # João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
 
+# Share local database between diferent personal systems.
+# Useful for sioyek.
+$env.PDF_USER_DATABASE = 'hana'
+
+# NNN default opener for files.
+$env.NNN_OPENER = 'xdg-open.nu'
+
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.
 # This can be useful if you have a 2-line prompt and it's taking up a lot of space

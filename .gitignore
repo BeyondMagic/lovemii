@@ -67,6 +67,10 @@
 # Ignore icons (copyright).
 /subconfiguração/ícones/
 
+# Ignore siyoek (personal database).
+/subconfiguração/sioyek/**
+!/subconfiguração/sioyek/auto.config
+
 # Ignore nushell (needs organising).
 /subconfiguração/nushell/
 

@@ -1,13 +1,3 @@
-# Install packages in system.
-export def install [
-	...packages: string # Names of the packages.
-]: nothing -> nothing {
-	main [
-		-S
-		...$packages
-	]
-}
-
 # Just get the names themselves.
 def "nu-complete old-packages" []: string -> list<string> {
 	$in
@@ -27,11 +17,24 @@ export def downgrade [
 	]
 }
 
+# Install packages in system.
+export def add [
+	...packages: string # Names of the packages.
+]: nothing -> any {
+	main [
+		-S
+		...$packages
+	]
+}
+
 # Remove all packages.
 export def remove [
 	...packages: string # Names of the packages.
-]: nothing -> nothing {
-	main [ -R ...$packages ]
+]: nothing -> any {
+	main [
+		-R
+		...$packages
+	]
 }
 
 # List files of a package.

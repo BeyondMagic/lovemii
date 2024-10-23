@@ -47,7 +47,7 @@ $env.BUN_INSTALL = ($env.HOME | path join ".bun")
 $env.SVDIR = $"($env.HOME)/.local/services"
 
 $env.LC_TIME = 'ja_JP.UTF-8'
-$env.LANG = 'pt_BR.UTF-8'
+$env.LANG = 'en_GB.UTF-8'
 $env.LC_COLLATE = 'C.UTF-8'
 
 $env.PATH = ($env.PATH | split row (char esep) | append $'($env.CARGO_HOME)/bin')

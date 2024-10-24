@@ -35,6 +35,9 @@ $env.XDG_DATA_HOME = ($env.HOME | path join ".local/share")
 $env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
 $env.XDG_CACHE_HOME = ($env.HOME | path join ".cache")
 
+# Path of './.python_history':
+$env.PYTHON_HISTORY = ($env.XDG_DATA_HOME | path join 'python/history.txt')
+# Startup file for Python.
 $env.PYTHONSTARTUP = ($env.XDG_CONFIG_HOME | path join "python/startup.py")
 
 $env.NUPM_HOME = ($env.XDG_DATA_HOME | path join "nupm")

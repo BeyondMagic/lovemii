@@ -160,6 +160,7 @@ export def commit [
 	--breaking-changes: list<string> # Breaking changes.
 	--co-authors: list<record<name: string, email: string>> # Co-authors of this commit.
 	--closes: list<string> # Link issues and pull requests of the repository.
+	--refs: list<string> # Link commits (useful for reverting).
 ]: nothing -> any {
 
 	let semantics = [
@@ -219,6 +220,16 @@ export def commit [
 			$closes
 		} else {
 			$message + "\n\n" + $closes
+		}
+	}
+
+	if ($refs | is-not-empty) {
+		let refs = 'Refs: ' + ($refs | str join ', ') + '.'
+
+		$message = if ($message | is-empty) {
+			$refs
+		} else {
+			$message + "\n\n" + $refs
 		}
 	}
 

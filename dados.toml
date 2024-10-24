@@ -243,8 +243,32 @@ names = ["dash", "dashbinsh"]
 comments = "Faster shell."
 
 [[packages]]
+names = ["vscode-json-languageserver"]
+comments = "JSON language server."
+
+[[packages]]
+names = ["vscode-html-languageserver"]
+comments = "HTML language server."
+
+[[packages]]
+names = ["vscode-css-languageserver"]
+comments = "CSS language server."
+
+[[packages]]
+names = ["typescript-language-server"]
+comments = "Typescript/Javascript language server."
+
+[[packages]]
+names = ["python-lsp-server", "python-lsp-all", "python-lsp-black", "python-pylint", "flake8"]
+comments = "Python language server."
+
+[[packages]]
+names = ["biome-bin"]
+comments = "Javascript language server (linter)."
+
+[[packages]]
 names = ["typescript"]
-comments = "Typescript language."
+comments = "Typescript programming language."
 
 [[packages]]
 names = ["selectdefaultapplication"]

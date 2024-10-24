@@ -12,6 +12,9 @@
 # zsh
 /configuração/local/zsh/.zsh_history
 
+# fcitx5
+/configuração/local/fcitx5/conf/cached_layouts
+
 # mpv
 /configuração/local/mpv/watch_later/
 /configuração/local/mpv/scripts/autosub.lua

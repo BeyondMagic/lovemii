@@ -66,14 +66,20 @@ para = "~/.cache/cliphist"
 
 [["ligações"]]
 administrador = false
-de = "./organize-fav.nu"
+de = "./scripts/organize-fav.nu"
 para = "~/.local/bin/organize-fav.nu"
 "único" = true
 
 [["ligações"]]
 administrador = false
-de = "./xdg-open.nu"
+de = "./scripts/xdg-open.nu"
 para = "~/.local/bin/xdg-open.nu"
+"único" = true
+
+[["ligações"]]
+administrador = false
+de = "./scripts/dbus.nu"
+para = "~/.local/bin/dbus.nu"
 "único" = true
 
 [["ligações"]]

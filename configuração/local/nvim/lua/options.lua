@@ -24,7 +24,7 @@ vim.wo.wrap = true
 -- Always show tabs
 vim.o.showtabline = 2
 
--- Show xtra spaces
+-- Show extra spaces.
 vim.opt.list = true
 
 -- Set wildmenu for later use

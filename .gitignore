@@ -71,8 +71,7 @@
 /subconfiguração/ícones/
 
 # Ignore siyoek (personal database).
-/subconfiguração/sioyek/**
-!/subconfiguração/sioyek/auto.config
+/subconfiguração/sioyek/
 
 # Ignore nushell (needs organising).
 /subconfiguração/nushell/

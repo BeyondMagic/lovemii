@@ -80,6 +80,9 @@ vim.bo.shiftwidth = 4
 -- Space for tabs
 vim.o.shiftwidth = 4
 
+-- Disable Python recommended style, which is terrible.
+vim.g.python_recommended_style = 0
+
 -- Format options to not create new lines with comments
 vim.o.formatoptions = 'tqj'
 

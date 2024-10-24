@@ -12,13 +12,13 @@ CAPABILITIES = require('cmp_nvim_lsp').default_capabilities(CAPABILITIES)
 require 'lsp.lua'
 
 -- Latex
-require 'lsp.latex'
+-- require 'lsp.latex'
 
 -- C++ and C
 require 'lsp.c_c++'
 
 -- Rust
-require 'lsp.rust'
+-- require 'lsp.rust'
 
 -- JSON
 require 'lsp.json'
@@ -27,7 +27,7 @@ require 'lsp.json'
 require 'lsp.typescript'
 
 -- Bash Language Server
-require 'lsp.bash'
+-- require 'lsp.bash'
 
 -- CSS + Less + SCSS
 require 'lsp.scss'
@@ -39,10 +39,10 @@ require 'lsp.html'
 require 'lsp.python'
 
 -- zig
-require 'lsp.zig'
+-- require 'lsp.zig'
 
 -- typst
-require 'lsp.typst'
+-- require 'lsp.typst'
 
 -- nushell
 require 'lsp.nushell'
@@ -54,4 +54,4 @@ require 'lsp.nushell'
 require 'lsp.biome'
 
 -- elixir
-require 'lsp.elixir'
+-- require 'lsp.elixir'

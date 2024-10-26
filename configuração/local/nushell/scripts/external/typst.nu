@@ -1,6 +1,8 @@
 # Install packages in system.
 export def fonts []: nothing -> list<string> {
-	main [ fonts ] | lines
+	main [
+		'fonts'
+	] | lines
 }
 
 # The command itself for the package manager.

@@ -34,6 +34,7 @@ $env.FILE = 'nnn'
 $env.SSH_AGENT_PID = ^pidof ssh-agent | complete | get stdout | str trim
 $env.SSH_AUTH_SOCK = "/tmp/ssh-agent.socket"
 
+
 $env.XDG_DATA_HOME = ($env.HOME | path join ".local/share")
 $env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
 $env.XDG_CACHE_HOME = ($env.HOME | path join ".cache")
@@ -43,7 +44,7 @@ $env.PYTHON_HISTORY = ($env.XDG_DATA_HOME | path join 'python/history.txt')
 # Startup file for Python.
 $env.PYTHONSTARTUP = ($env.XDG_CONFIG_HOME | path join "python/startup.py")
 
-$env.NUPM_HOME = ($env.XDG_DATA_HOME | path join "nupm")
+#$env.NUPM_HOME = ($env.XDG_DATA_HOME | path join "nupm")
 $env.TRASH = ($env.HOME | path join ".config")
 $env.PARU_CONF = ($env.XDG_CONFIG_HOME | path join "paru/paru.conf")
 $env.CARGO_HOME = ($env.XDG_CONFIG_HOME | path join "cargo")
@@ -60,7 +61,6 @@ $env.PATH = ($env.PATH | split row (char esep) | append $'($env.CARGO_HOME)/bin'
 $env.PATH = ($env.PATH | split row (char esep) | append ".local/bin")
 $env.PATH = ($env.PATH | split row (char esep) | append ".bun/bin")
 $env.PATH = ($env.PATH | split row (char esep) | append $'($env.NUPM_HOME)/scripts' )
-$env.PATH = ($env.PATH | split row (char esep) | append "projects/personal/linux/scripts/bin/")
 
 
 # Specifies how environment variables are:

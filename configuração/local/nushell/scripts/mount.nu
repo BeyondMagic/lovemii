@@ -2,8 +2,6 @@
 #
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-use nnn.nu
-
 # Return list of disks.
 def get_disks [] -> list<string> {
 	ls --long /dev/disk/by-id | get target | each {|disk|

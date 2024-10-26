@@ -4,7 +4,7 @@
 
 # Kill all processes of the user launching the process.
 export def clear []: nothing -> nothing {
-	pkill -U (whoami)
+	^pkill -U (whoami)
 }
 
 # Execute the compositor.

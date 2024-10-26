@@ -2,6 +2,9 @@
 #
 # João Farias © BeyondMagic 2023 <beyondmagic@mail.ru>
 
+# Glob to all wallpaper files.
+$env.WALLPAPER_FILES = "~/armazenamento/imagens/paredepapel/desktop/**/*"
+
 # Share local database between diferent personal systems.
 # Useful for sioyek.
 $env.PDF_USER_DATABASE = 'hana'

@@ -1,12 +1,20 @@
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
-const default_folder = "~/armazenamento/imagens/paredepapel/desktop/**/*"
-
-# List all wallpapers.
+# List all wallpapers files.
+#
+# If folder glob is not passed, then use environment WALLPAPER_FILES variable.
 export def list [
-	folder: string = $default_folder # Folder of wallpapers.
-	--all = false # Return also hidden files.
+	folder?: string # Folder of wallpapers.
+	--all # Return also hidden files.
 ]: nothing -> list<string> {
+
+	# Use environment WALLPAPER_FILES to 
+	let folder = if ($folder | is-empty) {
+		$env.WALLPAPER_FILES
+	} else {
+		$folder
+	}
+
 	ls --all=$all ($folder | into glob)
 	| where type != dir
 	| get name

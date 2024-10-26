@@ -101,29 +101,42 @@ export def 'list untracked' [
 # List files with changes.
 export def diff [
 	base?: string # Root folder to find changes within.
-	--untracked = true # Files not tracked yet by git.
+	--untracked = true # List files not tracked by git.
+	--cached = true # List also staged files.
 ]: nothing -> list<string> {
 
 	let content_git = if ($base | is-empty) {
-		main [ -c core.quotepath=false diff --name-only ]
+		main [ '-c' 'core.quotepath=false' 'diff' '--name-only' ]
 	} else {
-		main [ -c core.quotepath=false diff --name-only $base ]
+		main [ '-c' 'core.quotepath=false' 'diff' '--name-only' $base ]
 	}
 
-	mut tracked = $content_git
+	mut result = $content_git
 		| parse-files
-		| default true tracked
+		| default true 'tracked'
+		| default false 'staged'
 		| update name { realpath }
-
+	
 	if $untracked {
-		$tracked = $tracked ++ (
+		$result = $result ++ (
 			list untracked $base
 			| default false tracked
+			| default false 'staged'
 		)
 	}
 
-	$tracked
-	| sort-by tracked modified
+	if $cached {
+		$result = $result ++ (
+			main [ 'diff' '--name-only' '--cached' ]
+			| parse-files
+			| default true 'tracked'
+			| default true 'staged'
+			| update 'name' { realpath }
+		)
+	}
+
+	$result
+	| sort-by 'staged' 'tracked' 'modified'
 }
 
 # Add changes to the last commit and/or update subject and message manually.

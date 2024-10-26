@@ -1,9 +1,0 @@
-#!/usr/bin/env nu
-#
-# João Farias © 2024 BeyondMagic <beyondmagic@mail.ru>
-
-use service_manager.nu
-
-def main [number: int, number2: int] -> int {
-	service_manager finish $number 'wireplumber' "Session and Policy manager for pipewire"
-}

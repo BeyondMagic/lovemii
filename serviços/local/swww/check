@@ -1,9 +1,0 @@
-#!/usr/bin/env nu
-#
-# João Farias © 2024 BeyondMagic <beyondmagic@mail.ru>
-
-use service_manager.nu
-
-def main [] -> int {
-	service_manager check 'swww' "wallpaper manager"
-}

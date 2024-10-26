@@ -15,6 +15,7 @@ use ./standard/filter.nu *
 use ./standard/str.nu
 #use ./standard/exec.nu *
 
+use ./external/sv.nu
 use ./external/typst.nu
 use ./external/tokei.nu
 use ./package.nu

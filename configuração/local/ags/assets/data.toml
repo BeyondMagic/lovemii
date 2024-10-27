@@ -128,7 +128,7 @@ replace = "any-video-viewer"
 
 # Digital art tool such as Gimp, Krita...
 [[common]]
-find = ["krita", "Gimp"]
+find = ["krita", "Gimp", "Gimp-2.10"]
 replace = "digital-art-tool"
 
 # For note-taing tools such as Rnote.

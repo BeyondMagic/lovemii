@@ -11,18 +11,18 @@ const left = window_manager.window.class_title
 
 const center = label_date
 
-const right = Box({
+const right = () => Box({
 	class_name: "right",
 	hpack: 'end',
 	children: [
 		screenshot,
 		wifi.icon,
 		window_manager.workspaces.collapsed,
-		battery.box,
+		battery.box(),
 	]
 })
 
-const container = CenterBox({
+const container = () => CenterBox({
 	class_name: "container",
 
 	visible: true,
@@ -32,7 +32,7 @@ const container = CenterBox({
 
 	center_widget: center,
 
-	end_widget: right,
+	end_widget: right(),
 })
 
 
@@ -45,7 +45,7 @@ function Bar (monitor: number) {
 		exclusivity: 'exclusive',
 		visible: true,
 		anchor: ['top', 'left', 'right'],
-		child: container
+		child: container()
 	})
 }
 

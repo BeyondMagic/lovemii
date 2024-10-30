@@ -46,21 +46,26 @@ function format_text ({
 
 const label = Label({
 	class_name: 'label',
-	visible: Battery.bind('available'),
 	width_chars: 4,
 	use_markup: true,
 	label: Battery
 		.bind('percent')
-		.transform(percentage => format_text({ percentage })),
+		.transform(percentage => {
+			return format_text({ percentage })
+		}),
 	//setup: self => self
 	//	.connect('draw', draw_icon)
 })
 
-const box = Box({
+console.log(Battery.available)
+
+const box = () => Box({
 
 	children: [
 		label
 	],
+
+	visible: Battery.bind('available'),
 
 	class_name: Battery.
 		bind('charging')

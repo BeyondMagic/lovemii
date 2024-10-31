@@ -2,16 +2,12 @@ export-env {
 	# For scripts of the desktop..
 	$env.DESKTOP_NAME = 'lovemii'
 
-	# For faciliate reference of this folder.
-	$env.DESKTOP_SERVICE_MANAGER = ($env.HOME | path join .config/nushell/scripts/service_manager.nu)
-
 	# Activate fcitx5.
 	#$env.GTK_IM_MODULE = fcitx
 	$env.QT_IM_MODULE = 'fcitx'
 	$env.GLFW_IM_MODULE = 'ibus'
 	$env.XMODIFIERS = '@im=fcitx'
 	$env.GTK_USE_PORTAL = 1
-
 
 	# History path for less.
 	$env.LESSHISTFILE = '/dev/null'

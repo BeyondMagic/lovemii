@@ -296,7 +296,7 @@ export def commit [
 
 # See information of commits.
 export def log []: nothing -> any {
-	main [ log --graph --reflog ]
+	main [ 'log' '--graph' '--reflog' ]
 }
 
 # Restore specified paths in the working tree with some contents from a restore source.

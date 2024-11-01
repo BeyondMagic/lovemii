@@ -2,38 +2,6 @@
 #
 # João V. Farias © BeyondMagic 2023-2024 <beyondmagic@mail.ru>
 
-# SSH: dynamic get the agent PID.
-$env.SSH_AGENT_PID = ^pidof ssh-agent | complete | get stdout | str trim
-
-# XDG default folder for configuration files.
-$env.XDG_CONFIG_HOME = $env.HOME + '/.config'
-
-# Rust: package manager home and configuration.
-$env.CARGO_HOME = $env.XDG_CONFIG_HOME + '/cargo'
-
-# Python: set virtual environment.
-$env.PYTHON_VENV = $env.XDG_CONFIG_HOME + 'python/packages/'
-
-# Bun: home and configuration files.
-$env.BUN_INSTALL = $env.XDG_CONFIG_HOME + '/bun'
-
-# Link user binaries.
-$env.PATH = ($env.PATH | split row (char esep)) ++ [
-	# User's local binaries.
-	($env.HOME + '/.local/bin/')
-	# Rust: binaries of cargo, package manager.
-	($env.CARGO_HOME + '/bin/')
-	# Python: binaries of virtual environment.
-	($env.PYTHON_VENV + '/bin/')
-	# Bun: binaries.
-	($env.BUN_INSTALL + '/bin/')
-	# Nushell: binaries of nupm, package manager.
-	#($env.NUPM_HOME + '/scripts/')
-]
-
-# $env.GNUPGHOME = ($env.XDG_CONFIG_HOME | path join "gnupg")
-$env.PATH = $env.PATH | append ".bun/bin"
-
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.
 # This can be useful if you have a 2-line prompt and it's taking up a lot of space

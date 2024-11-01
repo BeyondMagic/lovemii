@@ -7,11 +7,17 @@
 # sv runs this script to check whether the service is up and running;
 # it's considered to be up if ./check exits with 0.
 export def check [
-	path: string # Path of the service(s).
+	...path: string # Path of the service(s).
 ]: nothing -> list<any> {
+	let files = if ($path | length) == 1 {
+		glob $path
+	} else {
+		$path
+	}
+
 	main [
 		'check'
-		...(glob $path)
+		...$files
 	]
 	| lines
 	| str replace --all --regex `(\d+s)|,` `: $1`

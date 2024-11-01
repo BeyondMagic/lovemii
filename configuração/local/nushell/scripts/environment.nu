@@ -1,5 +1,5 @@
 export-env {
-	# For scripts of the desktop..
+	# For scripts of the desktop.
 	$env.DESKTOP_NAME = 'lovemii'
 
 	# Activate fcitx5.
@@ -39,7 +39,6 @@ export-env {
 	# Enable Wayland for Firefox.
 	$env.MOZ_ENABLE_WAYLAND = 1
 	$env.MOZ_DBUS_REMOTE = 1
-	#$env.DBUS_SESSION_BUS_ADDRESS = $"unix:path=($env.XDG_RUNTIME_DIR)/bus"
 
 	# Fix all Java issues.
 	$env._JAVA_AWT_WM_NONREPARENTING = 1
@@ -48,32 +47,52 @@ export-env {
 	$env.SSH_AUTH_SOCK = '/tmp/ssh-agent.socket'
 
 	# For Neovim MRU plugin (latest files).
-	$env.MRU_File = $"($env.HOME)/.cache/vim_mru_files"
+	$env.MRU_File = $env.HOME + '/.cache/vim_mru_files'
 
-	# XDG default folder for configuration files.
-	$env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
-	#$env.XDG_DATA_DIRS = $"($env.HOME)/.local/share"
+	# XDG default folder for data files.
+	$env.XDG_DATA_HOME = $env.HOME + '/.local/share'
+
+	# XDG cache folder.
+	$env.XDG_CACHE_HOME = $env.HOME + '/.cache'
 
 	# To put trash files in here instead of removing them out of existence.
-	$env.TRASH = $"($env.HOME)/.local/trash"
+	$env.TRASH = $env.HOME + '/.local/trash'
 
-	# AUR package manger configuration files.
-	$env.PARU_CONF = $"($env.XDG_CONFIG_HOME)/paru/paru.conf"
-
-	# For Rust installatio and configuration.
-	$env.CARGO_HOME = $"($env.XDG_CONFIG_HOME)/cargo"
+	# Paru: AUR package manager configuration.
+	$env.PARU_CONF = $env.XDG_CONFIG_HOME + '/paru/paru.conf'
 
 	# Possible fix for Steam.
 	$env.QT_QPA_PLATFORM = 'wayland'
 
-	# For gnupg configuration files.
-	#$env.GNUPGHOME = $"($env.XDG_CONFIG_HOME)/gnupg"
+	# Language unix settings.
+	$env.LC_TIME = 'ja_JP.UTF-8'
+	$env.LANG = 'en_GB.UTF-8'
+	$env.LC_COLLATE = 'C.UTF-8'
 
-	# Add global path for Bun.
-	$env.BUN_INSTALL = $"($env.HOME)/.bun"
+	# Glob to all wallpaper files.
+	$env.WALLPAPER_FILES = '~/armazenamento/imagens/paredepapel/desktop/**/*'
+
+	# Share local database between diferent personal systems.
+	# Useful for sioyek.
+	$env.PDF_USER_DATABASE = 'hana'
+
+	# nnn: default opener for files.
+	$env.NNN_OPENER = 'xdg-open.nu'
+
+	# Python: path of './.python_history':
+	$env.PYTHON_HISTORY = $env.XDG_DATA_HOME + '/python/history.txt'
+
+	# Python: startup file for Python.
+	$env.PYTHONSTARTUP = $env.XDG_CONFIG_HOME + '/python/startup.py'
+
+	# Runit: directory for serive manager (sv).
+	$env.SVDIR =  $env.HOME + '/.local/services'
+
+	# For gnupg configuration files.
+	#$env.GNUPGHOME = $env.XDG_CONFIG_HOME + '/gnupg'
 }
 
 # Load the environment variables of dune.
-export def dune_ocaml []: nothing -> any {
-	exec /home/dream/.opam/opam-init/init.sh
-}
+#export def dune_ocaml []: nothing -> any {
+#	exec /home/dream/.opam/opam-init/init.sh
+#}

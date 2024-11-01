@@ -299,6 +299,18 @@ export def log []: nothing -> any {
 	main [ log --graph --reflog ]
 }
 
+# Restore specified paths in the working tree with some contents from a restore source.
+export def unstage [
+	...paths: string # Paths to restore.
+	--patch (-p) # Interactively select hunks in the difference between the restore source and the restore location.
+]: nothing -> any {
+	let patch = if $patch {
+		'--patch'
+	}
+	
+	main [ 'restore' '--staged' $patch ...$paths ]
+}
+
 # The command itself for the package manager.
 # See git manual(1).
 #

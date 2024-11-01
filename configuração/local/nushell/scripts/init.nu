@@ -12,6 +12,7 @@ export use ./external/sv.nu
 export use ./external/typst.nu
 export use ./external/tokei.nu
 export use ./external/git.nu
+export use ./external/python.nu
 
 export use miscelanous.nu *
 export use package.nu
@@ -33,5 +34,7 @@ export use ~/projetos/pessoal/programação-competitiva/script/pc.nu
 export use ./themes/tokyo-night.nu
 
 export alias fm = file manager
+
+export alias rm = rm -i
 
 export alias rm = rm -i

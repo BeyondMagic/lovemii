@@ -115,7 +115,7 @@ export def link []: nothing -> nothing {
 				let para_expandido = if $ligação.único {
 					($ligação.para)
 				} else {
-					($ligação.para | path dirname | path expand | path join '/') + ($ligação.para | path basename) + '/' + ($arquivo | path basename)
+					($ligação.para | path expand --no-symlink) + ($arquivo | path basename)
 				}
 
 				link-file --administrador $ligação.administrador $de_expandido $para_expandido

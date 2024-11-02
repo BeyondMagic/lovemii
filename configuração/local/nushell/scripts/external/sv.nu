@@ -10,7 +10,7 @@ export def check [
 	...path: string # Path of the service(s).
 ]: nothing -> list<any> {
 	let files = if ($path | length) == 1 {
-		glob $path
+		glob $path.0
 	} else {
 		$path
 	}

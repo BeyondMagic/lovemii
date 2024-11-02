@@ -114,7 +114,7 @@ $env.SSH_AGENT_PID = ^pidof ssh-agent | complete | get stdout | str trim
 
 # Link user binaries.
 # By putting these new binary folders, they end up having higher priority.
-$env.PATH = [
+$env.PATH = ($env.PATH | split row (char esep)) ++ [
 	# User's local binaries.
 	($env.HOME + '/.local/bin/')
 	# Rust: binaries of cargo, package manager.
@@ -125,7 +125,7 @@ $env.PATH = [
 	($env.BUN_INSTALL + '/bin/')
 	# Nushell: binaries of nupm, package manager.
 	#($env.NUPM_HOME + '/scripts/')
-] ++ ($env.PATH | split row (char esep)) | str join (char esep)
+] | str join (char esep)
 
 # For gnupg configuration files.
 #$env.GNUPGHOME = $env.XDG_CONFIG_HOME + '/gnupg'

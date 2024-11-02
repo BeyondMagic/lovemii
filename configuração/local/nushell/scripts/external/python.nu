@@ -10,7 +10,7 @@ export def pip [
 ]: string -> any {
 	# Send input data.
 	$in
-	| ^($env.PYTHON_VENV | path join 'bin/pip') ...$arguments
+	| ^($env.VIRTUAL_ENV | path join 'bin/pip') ...$arguments
 }
 
 # An interpreted, interactive, object-oriented programming language.
@@ -29,5 +29,5 @@ export def main [
 ]: string -> any {
 	# Send input data.
 	$in
-	| ^($env.PYTHON_VENV | path join 'bin/python') ...$arguments
+	| ^($env.VIRTUAL_ENV | path join 'bin/python') ...$arguments
 }

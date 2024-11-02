@@ -9,20 +9,25 @@
 export def check [
 	...path: string # Path of the service(s).
 ]: nothing -> list<any> {
-	let files = if ($path | length) == 1 {
-		glob $path.0
-	} else {
-		$path
-	}
+	let services = $path
+		| par-each --keep-order {|name|
+			let paths = glob $name
+			if ($paths | is-empty) {
+				[ $name ]
+			} else {
+				$paths
+			}
+		}
+		| flatten
 
 	main [
 		'check'
-		...$files
+		...$services
 	]
 	| lines
 	| str replace --all --regex `(\d+s)|,` `: $1`
 	| str replace --all --regex ` normally| want|\(pid |\)` ``
-	| split column `: ` 'status' 'running' 'path' 'pid' 'uptime' 'normally' 'want'
+	| split column `: ` 'status' 'running' 'service' 'pid' 'uptime' 'normally' 'want'
 	| par-each --keep-order {
 		$in
 		| update 'running' {

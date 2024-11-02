@@ -18,7 +18,7 @@ $env.XDG_CONFIG_HOME = $env.HOME + '/.config'
 $env.CARGO_HOME = $env.XDG_CONFIG_HOME + '/cargo'
 
 # Python: set virtual environment.
-$env.PYTHON_VENV = $env.XDG_CONFIG_HOME + '/python/packages/'
+$env.VIRTUAL_ENV = $env.XDG_CONFIG_HOME + '/python/packages/'
 
 # Bun: home and configuration files.
 $env.BUN_INSTALL = $env.XDG_CONFIG_HOME + '/bun'
@@ -119,7 +119,7 @@ $env.PATH = ($env.PATH | split row (char esep)) ++ [
 	# Rust: binaries of cargo, package manager.
 	($env.CARGO_HOME + '/bin/')
 	# Python: binaries of virtual environment.
-	($env.PYTHON_VENV + '/bin/')
+	($env.VIRTUAL_ENV + '/bin/')
 	# Bun: binaries.
 	($env.BUN_INSTALL + '/bin/')
 	# Nushell: binaries of nupm, package manager.

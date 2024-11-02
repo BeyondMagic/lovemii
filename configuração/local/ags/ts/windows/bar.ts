@@ -44,6 +44,7 @@ function Bar (monitor: number) {
 		name: `bar-${monitor}`,
 		exclusivity: 'exclusive',
 		visible: true,
+		layer: 'bottom',
 		anchor: ['top', 'left', 'right'],
 		child: container()
 	})

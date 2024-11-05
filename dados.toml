@@ -1,9 +1,14 @@
 [["ligações"]]
 administrador = false
+de = "~/armazenamento/.compartilhado/sistema"
+para = "~/projetos/pessoal/lovemii"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = [
-	"~/compartilhado/projetos",
-	"~/compartilhado/sistema",
-	"~/compartilhado/aplicativos",
+	"~/armazenamento/.compartilhado/projetos",
+	"~/armazenamento/.compartilhado/aplicativos",
 ]
 para = "~/"
 "único" = false
@@ -11,46 +16,46 @@ para = "~/"
 [["ligações"]]
 administrador = false
 de = [
-	"~/compartilhado/contas.json",
-	"~/compartilhado/emojis.json",
-	"~/compartilhado/filmes.json",
-	"~/compartilhado/geral.json",
-	"~/compartilhado/jogos.json",
-	"~/compartilhado/kaomojis.json",
-	"~/compartilhado/livros.json",
-	"~/compartilhado/materias.json",
-	"~/compartilhado/people.json",
-	"~/compartilhado/rotina.json",
-	"~/compartilhado/series.json",
-	"~/compartilhado/techniques.json",
-	"~/compartilhado/youtube_creators.json",
-	"~/compartilhado/livros",
-	"~/compartilhado/jogos",
-	"~/compartilhado/citações",
-	"~/compartilhado/armazenamento/android",
-	"~/compartilhado/armazenamento/baixados",
-	"~/compartilhado/armazenamento/escrita",
-	"~/compartilhado/armazenamento/filosofia",
-	"~/compartilhado/armazenamento/imagens",
-	"~/compartilhado/armazenamento/japonês",
-	"~/compartilhado/armazenamento/línguistica",
-	"~/compartilhado/armazenamento/mext",
-	"~/compartilhado/armazenamento/sudoku",
-	"~/compartilhado/armazenamento/unb",
-	"~/compartilhado/armazenamento/vida"
+	"~/armazenamento/.compartilhado/contas.json",
+	"~/armazenamento/.compartilhado/emojis.json",
+	"~/armazenamento/.compartilhado/filmes.json",
+	"~/armazenamento/.compartilhado/geral.json",
+	"~/armazenamento/.compartilhado/jogos.json",
+	"~/armazenamento/.compartilhado/kaomojis.json",
+	"~/armazenamento/.compartilhado/livros.json",
+	"~/armazenamento/.compartilhado/materias.json",
+	"~/armazenamento/.compartilhado/people.json",
+	"~/armazenamento/.compartilhado/rotina.json",
+	"~/armazenamento/.compartilhado/series.json",
+	"~/armazenamento/.compartilhado/techniques.json",
+	"~/armazenamento/.compartilhado/youtube_creators.json",
+	"~/armazenamento/.compartilhado/livros",
+	"~/armazenamento/.compartilhado/jogos",
+	"~/armazenamento/.compartilhado/citações",
+	"~/armazenamento/.compartilhado/armazenamento/android",
+	"~/armazenamento/.compartilhado/armazenamento/baixados",
+	"~/armazenamento/.compartilhado/armazenamento/escrita",
+	"~/armazenamento/.compartilhado/armazenamento/filosofia",
+	"~/armazenamento/.compartilhado/armazenamento/imagens",
+	"~/armazenamento/.compartilhado/armazenamento/japonês",
+	"~/armazenamento/.compartilhado/armazenamento/línguistica",
+	"~/armazenamento/.compartilhado/armazenamento/mext",
+	"~/armazenamento/.compartilhado/armazenamento/sudoku",
+	"~/armazenamento/.compartilhado/armazenamento/unb",
+	"~/armazenamento/.compartilhado/armazenamento/vida"
 ]
 para = "~/armazenamento/"
 "único" = false
 
 [["ligações"]]
 administrador = false
-de = "~/compartilhado/armazenamento/videos"
+de = "~/armazenamento/.compartilhado/armazenamento/videos"
 para = "~/armazenamento/videos/compartilhado"
 "único" = true
 
 [["ligações"]]
 administrador = false
-de = "~/compartilhado/armazenamento/entreterimento"
+de = "~/armazenamento/.compartilhado/armazenamento/entreterimento"
 para = "~/armazenamento/entreterimento/compartilhado"
 "único" = true
 

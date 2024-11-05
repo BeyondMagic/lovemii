@@ -18,6 +18,7 @@
 # mpv
 /configuração/local/mpv/watch_later/
 /configuração/local/mpv/scripts/autosub.lua
+/configuração/local/mpv/playlists
 
 # git
 /configuração/local/git

@@ -112,6 +112,9 @@ $env.SVDIR =  $env.HOME + '/.local/services'
 # SSH: dynamic get the agent PID.
 $env.SSH_AGENT_PID = ^pidof ssh-agent | complete | get stdout | str trim
 
+# Render GDK for wayland! Useful for ags.
+$env.GDK_BACKEND = 'wayland'
+
 # Link user binaries.
 # By putting these new binary folders, they end up having higher priority.
 $env.PATH = ($env.PATH | split row (char esep)) ++ [

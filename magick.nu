@@ -1,5 +1,3 @@
-#!/usr/bin/env nu
-#
 # João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
 def link-file [

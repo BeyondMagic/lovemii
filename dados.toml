@@ -1,5 +1,11 @@
 [["ligações"]]
 administrador = false
+de = "~/armazenamento/.compartilhado/armazenamento/android/downloads"
+para = "~/armazenamento/baixados/android"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = "~/armazenamento/.compartilhado/sistema"
 para = "~/projetos/pessoal/lovemii"
 "único" = true

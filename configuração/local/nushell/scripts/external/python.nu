@@ -24,10 +24,13 @@ export def pip [
 # detail.
 # (These documents may be located via the INTERNET RESOURCES below;
 # they may be installed on your system as well.)
-export def main [
+export def --env main [
 	arguments: list<string> # Arguments to pass for python external command.
 ]: string -> any {
+	if ($in | is-not-empty) {
+		return ($in | ^($env.VIRTUAL_ENV | path join 'bin/python') ...$arguments)
+	}
+
 	# Send input data.
-	$in
-	| ^($env.VIRTUAL_ENV | path join 'bin/python') ...$arguments
+	^($env.VIRTUAL_ENV | path join 'bin/python') ...$arguments
 }

@@ -103,7 +103,7 @@ replace = "movie-streaming"
 
 # Email applications such as Thunderbird.
 [[common]]
-find = ["thunderbird"]
+find = ["thunderbird", "org.gnome.Evolution"]
 replace = "email-manager"
 
 # Screen-shoting applications such as Flameshot.
@@ -125,6 +125,26 @@ replace = "tool-designer"
 [[common]]
 find = ["mpv"]
 replace = "any-video-viewer"
+
+# Video editor applications such as Olive.
+[[common]]
+find = ["org.olivevideoeditor.Olive"]
+replace = "video-plus"
+
+# Android applications such as waydroid.
+[[common]]
+find = ["Waydroid"]
+replace = "android"
+
+# Game applications such as Steam.
+[[common]]
+find = ["steam"]
+replace = "game"
+
+# Code editor applications such as Visual Studio Code.
+[[common]]
+find = ["Code"]
+replace = "code-editor"
 
 # Digital art tool such as Gimp, Krita...
 [[common]]

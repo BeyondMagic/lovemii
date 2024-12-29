@@ -52,3 +52,10 @@ export def --env manager [
 	use external/nnn.nu n
 	n ...$flags ...$args
 }
+
+# Display tree-like structure for folders.
+export def tree [] -> any {
+	^ls -R
+	| grep ":$"
+	| sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+}

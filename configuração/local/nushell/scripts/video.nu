@@ -55,7 +55,7 @@ export def to-mp3 [
 export def download [
 	name? : string # Name of the file.
 	--archive : string = './archive.txt' # Archive file.
-	--format : string = 'bestvideo[height<=1080]+bestaudio' # Format of video and audio.
+	--format : string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
 ] -> nothing {
 	let file_name = if ($name | is-empty) {
 		[]
@@ -66,6 +66,8 @@ export def download [
 	let link = ^wl-paste
 
 	mut args = [
+		-S $format
+		--recode mp4
 		--download-archive $archive
 		--add-metadata
 		--embed-thumbnail
@@ -77,10 +79,6 @@ export def download [
 		$link
 		...$file_name
 	]
-
-	if not ($format | is-empty) {
-		$args = [ -f $format ] ++ $args
-	}
 
 	^yt-dlp ...$args
 }

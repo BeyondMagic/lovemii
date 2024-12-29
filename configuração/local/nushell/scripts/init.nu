@@ -34,7 +34,5 @@ export use ~/projetos/pessoal/programação-competitiva/script/pc.nu
 export use ./themes/tokyo-night.nu
 
 export alias fm = file manager
-
 export alias rm = rm -i
-
-export alias rm = rm -i
+export alias _ = echo $env.LAST

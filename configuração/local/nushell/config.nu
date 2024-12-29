@@ -133,18 +133,25 @@ $env.config = {
 			PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
 		}
 		# run before the repl input is run
-		pre_execution: [{
-			print "\b\b\b\b\b\b\b\bHH:MM:SS" --raw
-		}]
+		#pre_execution: [{
+		#	print "\b\b\b\b\b\b\b\bHH:MM:SS" --raw
+		#}]
 		# run to display the output of a pipeline
 		display_output: {
-			if (term size).columns >= 100 {
-				table -e
-			} else {
-				table
-			}
+			# Save last output and put in $env.LAST.
+			$env.LAST = $in
+
+			let out = $in
+				| if (term size).columns >= 100 {
+					table -e
+				} else {
+					table
+				}
+
+			$out
 		}
 		command_not_found: {( null )}
+
 	}
 
 	menus: [

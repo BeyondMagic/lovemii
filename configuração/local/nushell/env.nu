@@ -79,3 +79,5 @@ $env.PROMPT_COMMAND_RIGHT = {
 		''
 	}
 }
+
+$env.LAST = null

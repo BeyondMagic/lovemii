@@ -47,6 +47,9 @@
 # nushell
 /configuração/local/nushell/history.txt
 
+# nnn
+/configuração/local/nnn/bookmarks
+
 # gimp
 /configuração/local/GIMP/2.10/**
 !/configuração/local/GIMP/2.10/themes

@@ -4,7 +4,7 @@ export use lovemii.nu
 # Modules for standard commands of Nushell itself.
 export use ./standard/exec.nu *
 export use ./standard/random.nu
-export use ./standard/filter.nu *
+#export use ./standard/filter.nu *
 export use ./standard/str.nu
 
 # Modules for external commands.

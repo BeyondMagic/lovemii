@@ -68,7 +68,7 @@ para = "~/armazenamento/entreterimento/compartilhado"
 
 [["ligações"]]
 administrador = true
-de = ["./configuração/global/profile", "./configuração/global/environment", "./configuração/global/locale.conf"]
+de = ["./configuração/global/profile", "./configuração/global/environment", "./configuração/global/locale.conf", "./configuração/global/keyd"]
 para = "/etc/"
 "único" = false
 

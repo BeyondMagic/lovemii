@@ -5,6 +5,9 @@ size = 12
 [general]
 app_id = swayimg
 
+[list]
+all = yes
+
 [keys.viewer]
 Ctrl+c = exec cat "%" | wl-copy
 Ctrl+p = exec echo -n "%" | wl-copy

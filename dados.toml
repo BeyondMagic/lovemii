@@ -35,6 +35,7 @@ de = [
 	"~/armazenamento/.compartilhado/series.json",
 	"~/armazenamento/.compartilhado/techniques.json",
 	"~/armazenamento/.compartilhado/youtube_creators.json",
+	"~/armazenamento/.compartilhado/android_apps.json",
 	"~/armazenamento/.compartilhado/livros",
 	"~/armazenamento/.compartilhado/jogos",
 	"~/armazenamento/.compartilhado/citações",

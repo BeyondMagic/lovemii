@@ -13,3 +13,4 @@ Ctrl+c = exec cat "%" | wl-copy
 Ctrl+p = exec echo -n "%" | wl-copy
 Delete = exec rm "%"; reload
 Ctrl+k = exec echo -n "%" | organize-fav.nu
+Ctrl+g = exec gimp "%"

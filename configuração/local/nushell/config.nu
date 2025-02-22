@@ -1,7 +1,7 @@
 # João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
 # Initialization modules.
-use init.nu *
+use ./scripts/init.nu *
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {

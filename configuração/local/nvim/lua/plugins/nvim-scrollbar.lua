@@ -9,7 +9,7 @@
 
 return {
   'petertriho/nvim-scrollbar',
-  dependencies = 'kevinhwang91/nvim-hlslens',
+  -- dependencies = 'kevinhwang91/nvim-hlslens',
   config = {
     build_position_cb = function(plist)
       require("scrollbar").search_handler.show(plist.start_pos)
@@ -47,7 +47,7 @@ return {
     },
     handlers = {
       diagnostic = true,
-      search     = true, -- Requires hlslens to be loaded
+      search     = false, -- Requires hlslens to be loaded
     },
   },
 }

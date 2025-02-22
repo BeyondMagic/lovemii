@@ -18,7 +18,7 @@ def main []: string -> nothing {
 		exit 1
 	}
 	
-	let base = '/home/dream/compartilhado/armazenamento/imagens/'
+	let base = '/home/dream/armazenamento/imagens/'
 
 	mv $image ($base + $to)
 }

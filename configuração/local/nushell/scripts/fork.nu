@@ -9,7 +9,7 @@ export def main [
 	command: closure, # The commands to run.
 	--stdout: string = '/dev/null', # Redirect stdout to file.
 	--stderr: string = '/dev/null' # Redirect stderr to file.
-] -> int {
+]: nothing -> int {
 	let source_code = view source $command
 		| str replace --all `"` `\"`
 		| str substring 2..-2

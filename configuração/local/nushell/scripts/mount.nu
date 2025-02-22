@@ -3,7 +3,7 @@
 # BeyondMagic © João Farias 2024 <beyondmagic@mail.ru>
 
 # Return list of disks.
-def get_disks [] -> list<string> {
+def get_disks []: nothing -> list<string> {
 	ls --long /dev/disk/by-id | get target | each {|disk|
 		'/dev/' + ($disk | str substring 6..)
 	} | reverse
@@ -20,7 +20,7 @@ export def pendrive [
 }
 
 # Return list of mountpoints that rae not SWAP or empty.
-def get_mountpoints [] -> list<string> {
+def get_mountpoints []: nothing -> list<string> {
 	^lsblk --json | from json | get blockdevices | par-each {|disk|
 		mut mountpoints = $disk.mountpoints
 
@@ -35,6 +35,6 @@ def get_mountpoints [] -> list<string> {
 # Remove mountpoint.
 export def remove [
 	mountpoint : string@get_mountpoints # Partition to mount.
-] -> nothing {
+]: nothing -> nothing {
 	^doas -- umount $mountpoint
 }

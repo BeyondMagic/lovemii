@@ -13,7 +13,7 @@ export def add [
 	--sources : list<string> # Source(s) of the quote.
 	--time : datetime # When quote was made.
 	--database : string # The database to load from.
-] -> nothing {
+]: nothing -> nothing {
 
 	if ($database | describe) == nothing or not ($database | path exists) {
 		error make {
@@ -38,7 +38,7 @@ export def add [
 	let path = $database
 		| path expand
 
-	{
+	[{
 		words: $words
 		authors: $authors
 		sources: $sources
@@ -46,13 +46,13 @@ export def add [
 			added: (date now)
 			time: $time
 		}
-	} ++ (open $path) | save --force $path
+	}] ++ (open $path) | save --force $path
 }
 
 # Initialise database.
 export def setup [
 	database: list<string> = $default_database # The database(s) to load from.
-] -> nothing {
+]: nothing -> nothing {
 	$database | par-each {|path|
 		[] | save $path
 	}
@@ -63,7 +63,7 @@ export def setup [
 export def main [
 	database: list<string> = $default_database # The database(s) to load from.
 	--sort = true # Sort quotes by date added.
-] -> list<any> {
+]: nothing -> list<any> {
 	let files = $database
 		| par-each {|item|
 			glob $item

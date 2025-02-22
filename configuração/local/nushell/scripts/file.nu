@@ -9,7 +9,7 @@ export module content {
 	# Needs wl-copy.
 	export def copy [
 		name: string # File name.
-	] -> nothing {
+	]: nothing -> nothing {
 		open --raw $name | wl-copy
 	}
 
@@ -17,7 +17,7 @@ export module content {
 	export def paste [
 		name: string # File name.
 		--force = false # Save even if it exists.
-	] -> nothing {
+	]: nothing -> nothing {
 		if $force {
 			wl-paste | save --force $name
 		} else {
@@ -33,7 +33,7 @@ export module path {
 	# Copy the file path of the file.
 	export def copy [
 		name: string # File name
-	] -> void {
+	]: nothing -> nothing {
 		$name | path expand | wl-copy
 	}
 
@@ -48,13 +48,13 @@ const default_flags = [
 export def --env manager [
 	...args : string # Argument for file manager.
 	--flags : list<string> = $default_flags # Flags of file manager.
-] -> nothing {
+]: nothing -> nothing {
 	use external/nnn.nu n
 	n ...$flags ...$args
 }
 
 # Display tree-like structure for folders.
-export def tree [] -> any {
+export def tree []: nothing -> any {
 	^ls -R
 	| grep ":$"
 	| sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'

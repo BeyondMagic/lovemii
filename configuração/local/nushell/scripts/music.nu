@@ -15,14 +15,14 @@ export module cover {
 	export def download [
 		song : string
 		author : string
-	] -> nothing {
+	]: nothing -> nothing {
 	}
 
 	# FIXIT: make parameter and shit.
 	export def set [
 		file : string
 		video : string
-	] -> nothing {
+	]: nothing -> nothing {
 		^ffmpeg ...[
 			-i $video
 			-i $file
@@ -47,7 +47,7 @@ export def download [
 	--folder : string = $default_folder # Folder to save files in.
 	--format : string = $default_format # Format of files. See yt-dlp help page.
 	--max : int = $default_max # Max videos to download from most updated.
-] -> nothing {
+]: nothing -> nothing {
 
 	# Download the new songs to the folder.
 	^yt-dlp ...[
@@ -69,7 +69,7 @@ export def download [
 }
 
 # Update database with new songs.
-export def update [] -> nothing {
+export def update []: nothing -> nothing {
 	# Add the new songs to the MPD database.
 	^mpc update --wait
 }
@@ -77,7 +77,7 @@ export def update [] -> nothing {
 # Manager/visualizer of music.
 export def manager [
 	--config : string = '~/.config/ncmpcpp/config' # Configuraiton file 
-] -> nothing {
+]: nothing -> nothing {
 	^ncmpcpp -c $config --ignore-config-errors
 }
 

@@ -56,7 +56,7 @@ export def download [
 	name? : string # Name of the file.
 	--archive : string = './archive.txt' # Archive file.
 	--format : string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
-] -> nothing {
+]: nothing -> nothing {
 	let file_name = if ($name | is-empty) {
 		[]
 	} else {
@@ -92,7 +92,7 @@ export def subvideo [
 	--start : string # Start time stamp of the video in format HH:MM:SS.MSE.
 	--end : string # End time stamp of the video in format HH:MM:SS.MSE.
 	--output : string # Output file for video as path.
-] : nothing -> nothing {
+]: nothing -> nothing {
 
 	# Raise error when start timestamp is not given.
 	if ($start | is-empty) {
@@ -158,7 +158,7 @@ export def split [
 	--flags : list<string> = $default_video_flags # Flags for ffmpeg.
 	--segment-format : string = '-%03d' # Specifier of each segmented video.
 	--extension : string # If not specified, will default to that of the file.
-] -> nothing {
+]: string -> nothing {
 	let piped = $in
 
 	if not ($piped | path exists) or ($piped | path type) != 'file' {
@@ -191,6 +191,6 @@ export def split [
 # The main comand used for video.
 def main [
 	args : list<any> # Arguments to be given for the main command.
-] : nothing -> nothing {
+]: nothing -> nothing {
 	^ffmpeg ...$args
 }

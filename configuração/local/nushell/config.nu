@@ -142,8 +142,8 @@ $env.config = {
 			$env.LAST = $in
 
 			let out = $in
-				| if (term size).columns >= 100 {
-					table -e
+				| if (term size).columns >= 80 {
+					table --expand
 				} else {
 					table
 				}

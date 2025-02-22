@@ -61,7 +61,7 @@ function Corner (anchor_vertical : 'top' | 'bottom', anchor_horizontal: 'left' |
 	return Widget.Window({
 		class_name: 'widget-corner',
 		name: `corner-${anchor_vertical}-${anchor_horizontal}`,
-		layer: 'top',
+		layer: 'bottom',
 		anchor: [anchor_vertical, anchor_horizontal],
 		exclusivity: 'normal',
 		visible: true,

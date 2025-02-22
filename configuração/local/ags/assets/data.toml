@@ -143,7 +143,7 @@ replace = "game"
 
 # Code editor applications such as Visual Studio Code.
 [[common]]
-find = ["Code"]
+find = ["Code", "code"]
 replace = "code-editor"
 
 # Digital art tool such as Gimp, Krita...

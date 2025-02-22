@@ -14,15 +14,15 @@ export def main [
 ]: nothing -> any {
 
 	# Transform user PDF files' path to a immutable user to share local database.
-	let path = if $path ends-with '.pdf' and $path starts-with '/home/' and ($path | path exists) {
-		$path
-		| path expand
-		| split row '/'
-		| update 2 $env.PDF_USER_DATABASE
-		| str join '/'
-	} else {
-		$path
-	}
+	#let path = if $path ends-with '.pdf' and $path starts-with '/home/' and ($path | path exists) {
+	#	$path
+	#	| path expand
+	#	| split row '/'
+	#	| update 2 $env.PDF_USER_DATABASE
+	#	| str join '/'
+	#} else {
+	#	$path
+	#}
 
 	^xdg-open $path
 }

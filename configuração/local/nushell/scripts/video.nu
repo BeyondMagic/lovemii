@@ -69,6 +69,8 @@ export def download [
 		-S $format
 		--recode mp4
 		--download-archive $archive
+		--cookies-from-browser firefox
+		--extractor-arg "youtube:player_client=tv"
 		--add-metadata
 		--embed-thumbnail
 		--embed-metadata

@@ -115,6 +115,9 @@ $env.SSH_AGENT_PID = ^pidof ssh-agent | complete | get stdout | str trim
 # Render GDK for wayland! Useful for ags.
 $env.GDK_BACKEND = 'wayland'
 
+# Go path for binaries, etc.
+$env.GOPATH = $env.HOME + '/.config/go'
+
 # Link user binaries.
 # By putting these new binary folders, they end up having higher priority.
 $env.PATH = ($env.PATH | split row (char esep)) ++ [
@@ -126,6 +129,8 @@ $env.PATH = ($env.PATH | split row (char esep)) ++ [
 	($env.VIRTUAL_ENV + '/bin/')
 	# Bun: binaries.
 	($env.BUN_INSTALL + '/bin/')
+	# Go: binaries.
+	($env.GOPATH + '/bin/')
 	# Nushell: binaries of nupm, package manager.
 	#($env.NUPM_HOME + '/scripts/')
 ] | str join (char esep)

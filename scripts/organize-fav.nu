@@ -9,6 +9,9 @@ def main []: string -> nothing {
 			'arte/extensões/jpg'
 			'arte/extensões/png'
 			'arte/poemas'
+			'arte/gl'
+			'arte/bandeiras'
+			'arte/design'
 			'fotos'
 		]
 		| str join "\n"

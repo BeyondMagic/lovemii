@@ -87,7 +87,7 @@ $env.QT_QPA_PLATFORM = 'wayland'
 
 # Language unix settings.
 $env.LC_TIME = 'ja_JP.UTF-8'
-$env.LANG = 'en_GB.UTF-8'
+$env.LANG = 'ja_JP.UTF-8'
 $env.LC_COLLATE = 'C.UTF-8'
 
 # Glob to all wallpaper files.

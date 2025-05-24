@@ -12,6 +12,8 @@ export use ./external/sv.nu
 export use ./external/typst.nu
 export use ./external/tokei.nu
 export use ./external/git.nu
+export use ./external/anac.nu
+export use ./external/oracle.nu
 #export use ./external/python.nu
 
 export use miscelanous.nu *

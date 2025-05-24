@@ -30,6 +30,7 @@ return {
 	violet_0 = { "#c678dd", 176, "hue_3"        },
 	violet_1 = { "#9990ff", 213, "Magenta"      },
 	violet_2 = { "#50345D", 243, "DarkMagenta"  },
+	violet_3 = { "#D8A5BC", 250, "MagentaLight" },
 
 	orange_0 = { '#E85705', 214, 'darkyellow'  },
 	orange_1 = { '#f27059', 214, 'darkyellow'  },

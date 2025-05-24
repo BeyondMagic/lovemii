@@ -13,7 +13,11 @@ return {
 	htmlString = {fg = COLOUR.blue_1},
 	htmlValue = {fg = COLOUR.fg_4},
 	htmlSpecialTagName = {fg = COLOUR.red_1},
+	-- tag = { fg = COLOUR.violet_0 },
 	htmlTag = {fg = COLOUR.violet_0},
 	htmlTagN = {fg = COLOUR.red_2},
 	htmlTagName = {fg = COLOUR.red_0, bold = true},
+	["@tag"] = { fg = COLOUR.red_1 }, -- Tags like html tag names.
+	["@tag.attribute"] = { fg = COLOUR.blue_0 }, -- Tags like html tag names.
+	["@tag.delimiter"] = { fg = COLOUR.red_0 }, -- Tag delimiter like < > /
 }

@@ -1,4 +1,4 @@
-use fork.nu
+use ../fork.nu
 
 # Run browser (firefox-nightly) that can be enabled with VPN.
 export def main []: nothing -> any {

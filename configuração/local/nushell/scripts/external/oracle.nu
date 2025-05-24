@@ -1,4 +1,4 @@
-use fork.nu
+use ../fork.nu
 
 # Run Oracle SQL Developer with appropriate environment variables set.
 export def sql-developer []: nothing -> any {

@@ -56,6 +56,12 @@ para = "~/armazenamento/"
 
 [["ligações"]]
 administrador = false
+de = "~/armazenamento/.compartilhado/sistema/subconfiguração/vscode/projects.json"
+para = "~/.config/Code/User/globalStorage/alefragnani.project-manager/projects.json"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = "~/armazenamento/.compartilhado/armazenamento/videos"
 para = "~/armazenamento/videos/compartilhado"
 "único" = true

@@ -1,0 +1,9 @@
+# settings
+
+(GimpGegl-gegl-edge-config "2024-06-08 13:53:29"
+    (time 1717865609)
+    (algorithm prewitt)
+    (amount 5.3150000000000004)
+    (border-behavior clamp))
+
+# end of settings

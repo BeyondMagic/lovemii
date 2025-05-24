@@ -1,0 +1,11 @@
+# GIMP gimp-ink-tool options
+
+(foreground
+    (color "R'G'B'A u8" 4 "\0\211\100\377" 0))
+(background
+    (color "R'G'B'A double" 32 "\0\0\0\240\223\23\263\77\0\0\0\0\363\320\320\77\0\0\0\0\333\231\311\77\0\0\0\0\0\0\360\77" 0))
+(pattern "Leopard")
+(brush-size 51)
+(brush-hardness 0.5)
+
+# end of gimp-ink-tool options

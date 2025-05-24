@@ -1,0 +1,218 @@
+
+# Stack traces obtained from PID 19396 - Thread 19396 #
+
+[New LWP 19406]
+[New LWP 19407]
+[New LWP 19408]
+[New LWP 19409]
+[New LWP 19410]
+[New LWP 19412]
+[New LWP 19413]
+[New LWP 19415]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007fbf0f6ee56c in read () from /usr/lib/libc.so.6
+  Id   Target Id                                          Frame 
+* 1    Thread 0x7fbf0de22480 (LWP 19396) "gimp-2.10"      0x00007fbf0f6ee56c in read () from /usr/lib/libc.so.6
+  2    Thread 0x7fbf0d4a86c0 (LWP 19406) "worker"         0x00007fbf0f6f973d in syscall () from /usr/lib/libc.so.6
+  3    Thread 0x7fbf0cca76c0 (LWP 19407) "worker"         0x00007fbf0f6f973d in syscall () from /usr/lib/libc.so.6
+  4    Thread 0x7fbf0c4a66c0 (LWP 19408) "worker"         0x00007fbf0f6f973d in syscall () from /usr/lib/libc.so.6
+  5    Thread 0x7fbf0bc706c0 (LWP 19409) "pool-spawner"   0x00007fbf0f6f973d in syscall () from /usr/lib/libc.so.6
+  6    Thread 0x7fbf0b46f6c0 (LWP 19410) "gmain"          0x00007fbf0f6edf6f in poll () from /usr/lib/libc.so.6
+  7    Thread 0x7fbf0ac6e6c0 (LWP 19412) "gdbus"          0x00007fbf0f6edf6f in poll () from /usr/lib/libc.so.6
+  8    Thread 0x7fbede5ff6c0 (LWP 19413) "async"          0x00007fbf0f6f973d in syscall () from /usr/lib/libc.so.6
+  9    Thread 0x7fbedddfe6c0 (LWP 19415) "pool-gimp-2.10" 0x00007fbf0f6f973d in syscall () from /usr/lib/libc.so.6
+
+Thread 9 (Thread 0x7fbedddfe6c0 (LWP 19415) "pool-gimp-2.10"):
+#0  0x00007fbf0f6f973d in syscall () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9accd3 in g_cond_wait_until () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0f91e185 in  () at /usr/lib/libglib-2.0.so.0
+#3  0x00007fbf0f91e2e7 in g_async_queue_timeout_pop () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f98737e in  () at /usr/lib/libglib-2.0.so.0
+#5  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#6  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#7  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 8 (Thread 0x7fbede5ff6c0 (LWP 19413) "async"):
+#0  0x00007fbf0f6f973d in syscall () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9ac2f7 in g_cond_wait () at /usr/lib/libglib-2.0.so.0
+#2  0x000055d65bcbbd77 in  ()
+#3  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#5  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 7 (Thread 0x7fbf0ac6e6c0 (LWP 19412) "gdbus"):
+#0  0x00007fbf0f6edf6f in poll () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9b12b6 in  () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0f953b97 in g_main_loop_run () at /usr/lib/libglib-2.0.so.0
+#3  0x00007fbf0fbf219c in  () at /usr/lib/libgio-2.0.so.0
+#4  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#5  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#6  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 6 (Thread 0x7fbf0b46f6c0 (LWP 19410) "gmain"):
+#0  0x00007fbf0f6edf6f in poll () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9b12b6 in  () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0f951162 in g_main_context_iteration () at /usr/lib/libglib-2.0.so.0
+#3  0x00007fbf0f9511b2 in  () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#5  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#6  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 5 (Thread 0x7fbf0bc706c0 (LWP 19409) "pool-spawner"):
+#0  0x00007fbf0f6f973d in syscall () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9ac2f7 in g_cond_wait () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0f91e1b4 in  () at /usr/lib/libglib-2.0.so.0
+#3  0x00007fbf0f986a8e in  () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#5  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#6  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 4 (Thread 0x7fbf0c4a66c0 (LWP 19408) "worker"):
+#0  0x00007fbf0f6f973d in syscall () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9ac2f7 in g_cond_wait () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0fefdc94 in  () at /usr/lib/libgegl-0.4.so.0
+#3  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#5  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 3 (Thread 0x7fbf0cca76c0 (LWP 19407) "worker"):
+#0  0x00007fbf0f6f973d in syscall () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9ac2f7 in g_cond_wait () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0fefdc94 in  () at /usr/lib/libgegl-0.4.so.0
+#3  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#5  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 2 (Thread 0x7fbf0d4a86c0 (LWP 19406) "worker"):
+#0  0x00007fbf0f6f973d in syscall () at /usr/lib/libc.so.6
+#1  0x00007fbf0f9ac2f7 in g_cond_wait () at /usr/lib/libglib-2.0.so.0
+#2  0x00007fbf0fefdc94 in  () at /usr/lib/libgegl-0.4.so.0
+#3  0x00007fbf0f984a05 in  () at /usr/lib/libglib-2.0.so.0
+#4  0x00007fbf0f6779eb in  () at /usr/lib/libc.so.6
+#5  0x00007fbf0f6fb7cc in  () at /usr/lib/libc.so.6
+
+Thread 1 (Thread 0x7fbf0de22480 (LWP 19396) "gimp-2.10"):
+#0  0x00007fbf0f6ee56c in read () at /usr/lib/libc.so.6
+#1  0x00007fbf108a5220 in gimp_stack_trace_print () at /usr/lib/libgimpbase-2.0.so.0
+#2  0x000055d65b9e6032 in  ()
+#3  0x000055d65b9e63fe in  ()
+#4  0x000055d65b9e6462 in  ()
+#5  0x00007fbf0f629710 in <signal handler called> () at /usr/lib/libc.so.6
+#6  0x00007fbf0fa8071d in g_type_check_instance () at /usr/lib/libgobject-2.0.so.0
+#7  0x00007fbf0fa779ec in  () at /usr/lib/libgobject-2.0.so.0
+#8  0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#9  0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#10 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#11 0x00007fbf0fa87a36 in  () at /usr/lib/libgobject-2.0.so.0
+#12 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#13 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#14 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#15 0x00007fbf10554b51 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#16 0x00007fbf105409e7 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#17 0x00007fbf0fa59626 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#18 0x00007fbf0fa87b7a in  () at /usr/lib/libgobject-2.0.so.0
+#19 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#20 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#21 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#22 0x00007fbf10670a49 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#23 0x00007fbf0fa67900 in g_object_run_dispose () at /usr/lib/libgobject-2.0.so.0
+#24 0x00007fbf1054c74d in  () at /usr/lib/libgtk-x11-2.0.so.0
+#25 0x00007fbf104b5c7c in  () at /usr/lib/libgtk-x11-2.0.so.0
+#26 0x00007fbf0fa59626 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#27 0x00007fbf0fa88056 in  () at /usr/lib/libgobject-2.0.so.0
+#28 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#29 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#30 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#31 0x00007fbf105601e7 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#32 0x00007fbf0fa677e3 in g_object_unref () at /usr/lib/libgobject-2.0.so.0
+#33 0x00007fbf0fa845b1 in g_value_unset () at /usr/lib/libgobject-2.0.so.0
+#34 0x00007fbf0fa7849d in  () at /usr/lib/libgobject-2.0.so.0
+#35 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#36 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#37 0x00007fbf10670a49 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#38 0x00007fbf0fa677e3 in g_object_unref () at /usr/lib/libgobject-2.0.so.0
+#39 0x000055d65bbea7ca in  ()
+#40 0x000055d65bbf06a2 in  ()
+#41 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#42 0x00007fbf0fa880ea in  () at /usr/lib/libgobject-2.0.so.0
+#43 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#44 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#45 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#46 0x00007fbf1066a79b in  () at /usr/lib/libgtk-x11-2.0.so.0
+#47 0x00007fbf106149cf in  () at /usr/lib/libgtk-x11-2.0.so.0
+#48 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#49 0x00007fbf10614ad7 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#50 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#51 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#52 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#53 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#54 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#55 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#56 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#57 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#58 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#59 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#60 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#61 0x00007fbf10569b64 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#62 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#63 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#64 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#65 0x00007fbf10478e05 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#66 0x00007fbf1066a7df in  () at /usr/lib/libgtk-x11-2.0.so.0
+#67 0x00007fbf1066d554 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#68 0x00007fbf10670856 in gtk_widget_unparent () at /usr/lib/libgtk-x11-2.0.so.0
+#69 0x00007fbf10478d85 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#70 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#71 0x00007fbf0fa87b7a in  () at /usr/lib/libgobject-2.0.so.0
+#72 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#73 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#74 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#75 0x00007fbf10670a49 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#76 0x00007fbf0fa67900 in g_object_run_dispose () at /usr/lib/libgobject-2.0.so.0
+#77 0x00007fbf104b5c7c in  () at /usr/lib/libgtk-x11-2.0.so.0
+#78 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#79 0x00007fbf0fa88056 in  () at /usr/lib/libgobject-2.0.so.0
+#80 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#81 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#82 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#83 0x00007fbf105601e7 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#84 0x00007fbf0fa67900 in g_object_run_dispose () at /usr/lib/libgobject-2.0.so.0
+#85 0x000055d65bac43a1 in gimp_display_delete ()
+#86 0x000055d65b9e9512 in  ()
+#87 0x000055d65bca6fdb in gimp_marshal_BOOLEAN__BOOLEAN ()
+#88 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#89 0x00007fbf0fa87a36 in  () at /usr/lib/libgobject-2.0.so.0
+#90 0x00007fbf0fa78335 in  () at /usr/lib/libgobject-2.0.so.0
+#91 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#92 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#93 0x000055d65bcb23c5 in gimp_exit ()
+#94 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#95 0x00007fbf0fa87a36 in  () at /usr/lib/libgobject-2.0.so.0
+#96 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#97 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#98 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#99 0x000055d65bb1d148 in  ()
+#100 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#101 0x00007fbf0fa87b7a in  () at /usr/lib/libgobject-2.0.so.0
+#102 0x00007fbf0fa78a42 in  () at /usr/lib/libgobject-2.0.so.0
+#103 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#104 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#105 0x00007fbf10470f92 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#106 0x000055d65bbca1de in gimp_ui_manager_activate_action ()
+#107 0x000055d65bade3c0 in  ()
+#108 0x00007fbf10538f08 in  () at /usr/lib/libgtk-x11-2.0.so.0
+#109 0x00007fbf0fa596c0 in g_closure_invoke () at /usr/lib/libgobject-2.0.so.0
+#110 0x00007fbf0fa880ea in  () at /usr/lib/libgobject-2.0.so.0
+#111 0x00007fbf0fa78335 in  () at /usr/lib/libgobject-2.0.so.0
+#112 0x00007fbf0fa78c77 in g_signal_emit_valist () at /usr/lib/libgobject-2.0.so.0
+#113 0x00007fbf0fa78d34 in g_signal_emit () at /usr/lib/libgobject-2.0.so.0
+#114 0x00007fbf1066d88d in  () at /usr/lib/libgtk-x11-2.0.so.0
+#115 0x00007fbf1053f62b in gtk_main_do_event () at /usr/lib/libgtk-x11-2.0.so.0
+#116 0x00007fbf10971dbc in  () at /usr/lib/libgdk-x11-2.0.so.0
+#117 0x00007fbf0f952f69 in  () at /usr/lib/libglib-2.0.so.0
+#118 0x00007fbf0f9b1367 in  () at /usr/lib/libglib-2.0.so.0
+#119 0x00007fbf0f953b97 in g_main_loop_run () at /usr/lib/libglib-2.0.so.0
+#120 0x000055d65b9ead73 in app_run ()
+#121 0x000055d65b9e0662 in main ()
+[Inferior 1 (process 19396) detached]

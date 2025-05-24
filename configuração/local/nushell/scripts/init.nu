@@ -37,3 +37,4 @@ export alias fm = file manager
 export alias rm = rm -i
 export alias _ = echo $env.LAST
 export alias find = find --no-highlight
+export alias prolog = ^swipl

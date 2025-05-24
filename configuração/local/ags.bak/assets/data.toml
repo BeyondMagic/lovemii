@@ -83,7 +83,7 @@ replace = "tool-android-any"
 
 # Browser such as Firefox.
 [[common]]
-find = ["firefox-nightly"]
+find = ["firefox-nightly", "Brave-browser"]
 replace = "internet-browser"
 
 # Image viewer such as swayimg.

@@ -1,8 +1,10 @@
 // Add our icons for the whole GTK context.
 import Gtk from 'gi://Gtk'
 const theme = Gtk.IconTheme.get_default()
-const path = App.configDir + '/assets/icons/'
+const path = App.configDir + '/../ags/assets/'
 theme.append_search_path(path)
+
+console.log(theme.get_search_path())
 
 // Execute application.
 import App from 'resource:///com/github/Aylur/ags/app.js'

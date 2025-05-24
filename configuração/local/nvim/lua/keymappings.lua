@@ -225,3 +225,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- key("i", "<C-j>", 'copilot#Previous("<CR>")', remap)
 -- key("i", "<C-k>", 'copilot#Next("<CR>")', remap)
 -- key("i", "<C-l>", 'copilot#Accept("<CR>")', remap)
+
+-- 
+key('n', '<C-k>', '', {
+  noremap = true,
+  silent  = true,
+  desc    = "Open the NeoTree without any warning messages...",
+  callback = function ()
+	local result = vim.treesitter.get_captures_at_cursor(0)
+	print(vim.inspect(result))
+  end
+})

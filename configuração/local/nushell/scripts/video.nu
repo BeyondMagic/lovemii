@@ -56,6 +56,7 @@ export def download [
 	name? : string # Name of the file.
 	--archive : string = './archive.txt' # Archive file.
 	--format : string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
+	--list-formats # List formats of the video.
 ]: nothing -> nothing {
 	let file_name = if ($name | is-empty) {
 		[]
@@ -70,7 +71,7 @@ export def download [
 		--recode mp4
 		--download-archive $archive
 		--cookies-from-browser firefox
-		--extractor-arg "youtube:player_client=tv"
+		#--extractor-arg "youtube:player_client=tv"
 		--add-metadata
 		--embed-thumbnail
 		--embed-metadata
@@ -81,6 +82,12 @@ export def download [
 		$link
 		...$file_name
 	]
+
+	if $list_formats {
+		$args = $args ++ [
+			--list-formats
+		]
+	}
 
 	^yt-dlp ...$args
 }

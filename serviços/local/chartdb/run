@@ -2,7 +2,7 @@
 #
 # João Farias © 2024 BeyondMagic <beyondmagic@mail.ru>
 
-export DIST='/mnt/armazenamento/.compartilhado/projetos/usando/chartdb/dist'
+export DIST='/mnt/kaguya/projetos/usando/chartdb/dist'
 
 cd $DIST
 

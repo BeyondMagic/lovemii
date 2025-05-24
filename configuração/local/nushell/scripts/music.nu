@@ -57,6 +57,7 @@ export def download [
 		--embed-thumbnail
 		--embed-metadata
 		--embed-chapters
+		#--cookies-from-browser firefox
 		--no-embed-info-json
 		--sub-langs 'all'
 		--embed-subs

@@ -222,9 +222,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Copilot keybinds.
--- key("i", "<C-j>", 'copilot#Previous("<CR>")', remap)
--- key("i", "<C-k>", 'copilot#Next("<CR>")', remap)
--- key("i", "<C-l>", 'copilot#Accept("<CR>")', remap)
+key("i", "<C-j>", 'copilot#Previous("<CR>")', remap)
+key("i", "<C-k>", 'copilot#Next("<CR>")', remap)
+key("i", "<C-l>", 'copilot#Accept("<CR>")', remap)
 
 -- 
 key('n', '<C-k>', '', {

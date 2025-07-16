@@ -39,6 +39,27 @@ export def to-mp3 [
 	^ffmpeg -i $input -q:a 0 -map a ($out + '.webp')
 }
 
+# Get the duration of a video.
+export def get-duration [
+	input: string # Video to get duration from.
+]: nothing -> float {
+	# Get the duration in seconds.
+	let data = (
+		^ffprobe
+		-v error
+		-show_entries
+		format=duration
+		-of
+		default=noprint_wrappers=1:nokey=1
+		$input
+	) | complete
+
+	let duration = $data.stdout
+
+	# Convert to integer.
+	$duration
+}
+
 # Download video.
 #
 # Dependes on:

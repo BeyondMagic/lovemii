@@ -75,8 +75,9 @@ export def get-duration [
 #	$ video download
 export def download [
 	name? : string # Name of the file.
-	--archive : string = './archive.txt' # Archive file.
-	--format : string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
+	--link: string # Link of the video to download (taken from clipboard if empty).
+	--archive: string = './archive.txt' # Archive file.
+	--format: string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
 	--list-formats # List formats of the video.
 ]: nothing -> nothing {
 	let file_name = if ($name | is-empty) {
@@ -85,7 +86,11 @@ export def download [
 		[-o ((date now | format date '%y-%m-%d_%H_%M_%S') + '_' + $name)]
 	}
 	
-	let link = ^wl-paste
+	let link = if ($link | is-empty) {
+		^wl-paste
+	} else {
+		$link
+	}
 
 	mut args = [
 		-S $format

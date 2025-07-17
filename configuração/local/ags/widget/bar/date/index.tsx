@@ -1,13 +1,11 @@
 import { execAsync } from "ags/process"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
-import { createPoll } from "ags/time"
+import { text } from "./text"
 
 export function Date ()
 {
-	const time = createPoll("", 1000, "date")
-
 	return <menubutton $type="end" hexpand halign={Gtk.Align.CENTER}>
-		<label label={time} />
+		<label use_markup label={text()} />
 		<popover>
 			<Gtk.Calendar />
 		</popover>

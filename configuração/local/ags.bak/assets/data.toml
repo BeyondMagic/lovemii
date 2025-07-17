@@ -83,7 +83,7 @@ replace = "tool-android-any"
 
 # Browser such as Firefox.
 [[common]]
-find = ["firefox-nightly", "Brave-browser"]
+find = ["firefox-nightly", "Brave-browser", "Google-chrome"]
 replace = "internet-browser"
 
 # Image viewer such as swayimg.
@@ -93,7 +93,7 @@ replace = "any-image-viewer"
 
 # Social media applications such as Telegram, Mastodon, ...
 [[common]]
-find = ["org.telegram.desktop", "vesktop"]
+find = ["org.telegram.desktop", "vesktop", "Beeper", "BeeperTexts"]
 replace = "social-media"
 
 # Streaming applications such as Stremio.

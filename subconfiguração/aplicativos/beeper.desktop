@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Beeper
+GenericName=Unified Messenger
+Comment=The ultimate messaging app
+Exec=beeper --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U
+Icon=beepertexts
+Terminal=false
+StartupWMClass=Beeper
+X-AppImage-Version=4.0.710
+MimeType=x-scheme-handler/beeper;x-scheme-handler/matrix;x-scheme-handler/element;
+Categories=Network;InstantMessaging;

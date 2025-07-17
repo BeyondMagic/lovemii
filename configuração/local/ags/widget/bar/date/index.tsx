@@ -4,7 +4,7 @@ import { text } from "./text"
 
 export function Date ()
 {
-	return <menubutton $type="end" hexpand halign={Gtk.Align.CENTER}>
+	return <menubutton $type="center" hexpand halign={Gtk.Align.CENTER}>
 		<label use_markup label={text()} />
 		<popover>
 			<Gtk.Calendar />

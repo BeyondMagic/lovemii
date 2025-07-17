@@ -1,7 +1,7 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
 
-import { Title } from "./title/title"
+import { Title } from "./title"
 import { Date } from "./date"
 import { Tray } from "./tray"
 

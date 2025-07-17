@@ -21,6 +21,13 @@
 		"enabled": true
 	},
 	{
+		"name": "Typst: Transcriptions",
+		"rootPath": "/mnt/kaguya/projetos/pessoal/transcriptions",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
 		"name": "-----------------------",
 		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/---",
 		"paths": [],

@@ -28,7 +28,7 @@ def get_mountpoints []: nothing -> list<string> {
 			$mountpoints = ($mountpoints | append ($disk.children.mountpoints | flatten))
 		}
 
-		$mountpoints | filter {|disk| not ($disk | is-empty) or ($disk == '[SWAP]')}
+		$mountpoints | where {|disk| not ($disk | is-empty) or ($disk == '[SWAP]')}
 	} | flatten
 }
 

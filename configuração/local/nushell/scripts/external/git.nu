@@ -189,7 +189,7 @@ export def commit [
 		[ 'ci' $ci ]
 		[ 'perf' $perf ]
 		[ 'revert' $revert ]
-	] | filter { $in.value | is-not-empty }
+	] | where { $in.value | is-not-empty }
 
 	if ($semantics | length) > 1 {
 		error make {

@@ -41,7 +41,6 @@ de = [
 	"~/armazenamento/.compartilhado/citações",
 	"~/armazenamento/.compartilhado/armazenamento/android",
 	"~/armazenamento/.compartilhado/armazenamento/baixados",
-	"~/armazenamento/.compartilhado/armazenamento/escrita",
 	"~/armazenamento/.compartilhado/armazenamento/filosofia",
 	"~/armazenamento/.compartilhado/armazenamento/imagens",
 	"~/armazenamento/.compartilhado/armazenamento/japonês",
@@ -49,7 +48,6 @@ de = [
 	"~/armazenamento/.compartilhado/armazenamento/mext",
 	"~/armazenamento/.compartilhado/armazenamento/sudoku",
 	"~/armazenamento/.compartilhado/armazenamento/unb",
-	"~/armazenamento/.compartilhado/armazenamento/vida"
 ]
 para = "~/armazenamento/"
 "único" = false

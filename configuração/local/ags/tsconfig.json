@@ -11,6 +11,20 @@
 		// "checkJs": true,
 		// "allowJs": true,
 		"jsx": "react-jsx",
-		"jsxImportSource": "ags/gtk4"
-	}
+		"jsxImportSource": "ags/gtk4",
+		// Best practices
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitAny": true, // Error on implicit 'any' types
+		"strictNullChecks": true, // Strict null checks
+		"strictFunctionTypes": true, // Strict function type checks
+		"strictBindCallApply": true, // Strict 'bind/call/apply' checks
+
+	},
+	// "paths": {
+	// 	"@/*": [
+	// 		"./*"
+	// 	]
+	// },
 }

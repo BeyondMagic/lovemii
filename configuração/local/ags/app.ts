@@ -3,20 +3,26 @@ import Hyprland from "gi://AstalHyprland";
 
 import style from "./scss/style.scss";
 
-import Corner from "./widget/components/Corner";
+import { Corner, position } from "./widget/components/Corner";
 import Bar from "./widget/Bar";
 
+/**
+ * Handle application.
+ */
 App.start({
-  icons: `${SRC}/assets`,
+  instanceName: "lovemii",
+  icons: `${SRC}/assets/`,
   css: style,
   main() {
+
     const hyprland = Hyprland.get_default();
-    hyprland.get_monitors().map((monitor) => {
+    hyprland.get_monitors().forEach((monitor) => {
       Bar(monitor.id);
-      Corner('top-left', monitor.id);
-      Corner('top-right', monitor.id);
-      Corner('bottom-left', monitor.id);
-      Corner('bottom-right', monitor.id);
+      
+      ['top-left', 'top-right', 'bottom-left', 'bottom-right']
+        .forEach(position =>
+          Corner(position as position, monitor.id)
+        );
     });
   },
   requestHandler(request: string, res: (response: any) => void) {

@@ -11,13 +11,14 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 
 	return (
 		<window
-			visible
 			name="bar"
 			class="Bar"
-			gdkmonitor={gdkmonitor}
 			exclusivity={Astal.Exclusivity.EXCLUSIVE}
+			gdkmonitor={gdkmonitor}
 			anchor={TOP | LEFT | RIGHT}
 			application={app}
+			layer={Astal.Layer.BOTTOM}
+			visible
 		>
 			<centerbox cssName="centerbox">
 				{/* Title of current window. */}

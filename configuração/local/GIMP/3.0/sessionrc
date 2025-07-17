@@ -34,8 +34,8 @@
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 213)
-            (current-page 1)
+            (position 211)
+            (current-page 4)
             (dockable "gimp-brush-grid"
                 (tab-style icon)
                 (aux-info
@@ -61,7 +61,7 @@
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 591)
+            (position 584)
             (current-page 0)
             (dockable "gimp-layer-list"
                 (tab-style icon)
@@ -85,18 +85,21 @@
 (session-info "toplevel"
     (factory-entry "gimp-file-export-dialog")
     (position 0 0)
-    (size 1000 477)
+    (size 1056 477)
     (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-toolbox-color-dialog")
-    (position 730 321))
+    (position 379 249)
+    (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-operation-tool-dialog")
-    (position 918 507))
+    (position 0 0)
+    (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-curves-tool-dialog")
-    (position 815 223)
-    (size 431 594))
+    (position 0 0)
+    (size 636 595)
+    (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-image-new-dialog")
     (position 756 391))
@@ -123,8 +126,9 @@
     (size 452 613))
 (session-info "toplevel"
     (factory-entry "gimp-levels-tool-dialog")
-    (position 664 171)
-    (size 401 553))
+    (position 0 0)
+    (size 644 553)
+    (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-offset-tool-dialog")
     (position 627 102))

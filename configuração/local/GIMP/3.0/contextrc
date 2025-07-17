@@ -3,9 +3,9 @@
 (tool "gimp-rect-select-tool")
 (paint-info "gimp-paintbrush")
 (foreground
-    (color "R'G'B'A u8" 4 "\0\211\100\377" 0))
+    (color "R'G'B'A u8" 4 "\377\377\377\377" 0))
 (background
-    (color "R'G'B'A double" 32 "\0\0\0\240\220\23\263\77\0\0\0\40\362\320\320\77\0\0\0\300\331\231\311\77\0\0\0\0\0\0\360\77" 0))
+    (color "R'G'B'A double" 32 "\0\0\0\340Q\24\263\77\0\0\0\140\43\321\320\77\0\0\0\0\75\232\311\77\0\0\0\0\0\0\360\77" 0))
 (brush "2. Hardness 050")
 (dynamics "Pressure Size")
 (mybrush "100% Opaque")

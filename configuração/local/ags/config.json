@@ -2,6 +2,12 @@
     "root_size": 16,
     "corner": 32,
     "max_title_length": 75,
+	"background_color": {
+		"red": 239,
+		"green": 241,
+		"blue": 245,
+		"alpha": 1
+	},
     "kinds": [
         {
             "find": [

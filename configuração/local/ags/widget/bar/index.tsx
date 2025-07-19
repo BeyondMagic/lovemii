@@ -19,7 +19,7 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 			gdkmonitor={gdkmonitor}
 			anchor={TOP | LEFT | RIGHT}
 			application={app}
-			layer={Astal.Layer.BOTTOM}
+			layer={Astal.Layer.BACKGROUND}
 			visible
 		>
 			<centerbox cssName="centerbox">

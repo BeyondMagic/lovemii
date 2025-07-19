@@ -14,7 +14,7 @@ export function Corner (vertical: Vertical, horizontal: Horizontal, gdkmonitor: 
             gdkmonitor={gdkmonitor}
             anchor={vertical_anchor | horizontal_anchor}
             application={app}
-            layer={Astal.Layer.BOTTOM}
+            layer={Astal.Layer.BACKGROUND}
             visible
         >
             {drawing_area(vertical, horizontal)}

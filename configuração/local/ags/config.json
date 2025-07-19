@@ -119,7 +119,8 @@
         {
             "find": [
                 "com.github.flxzt.rnote",
-                "rnote"
+                "rnote",
+				"Frame0"
             ],
             "replace": "tool-note-taking"
         },

@@ -2,4 +2,4 @@
 #
 # João Farias © 2021-2024 BeyondMagic <beyondmagic@mail.ru>
 
-exec ags
+exec ags run

@@ -2,7 +2,7 @@
 Name=Frame0
 Comment=A Balsamiq-alternative wireframming tool for modern apps
 GenericName=Frame0
-Exec=frame0 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U
+Exec=frame0 --enable-features=WebRTCPipeWireCapturer --enable-features=UseOzonePlatform --ozone-platform-hint=auto --enable-wayland-ime --enable-features=WaylandWindowDecorations %U
 Icon=frame0
 Type=Application
 StartupNotify=true

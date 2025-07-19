@@ -7,7 +7,7 @@ import { Workspace } from "./workspace";
 
 const workspaces = createBinding(hyprland, "workspaces")
 
-export function Workspaces ( {length: length = config.workspaces} : {length: number} )
+export function Workspaces ( {length: length = config.workspaces} : {length?: number} )
 {
 	const fixed = workspaces(() =>
 		Array.from(

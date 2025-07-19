@@ -154,18 +154,6 @@ de = "./scripts/dbus.nu"
 para = "~/.local/bin/dbus.nu"
 "único" = true
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/ferdium/whatsapp/"
-para = "~/.config/Ferdium/recipes/whatsapp/"
-"único" = false
-
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/ferdium/franz-custom-website/"
-para = "~/.config/Ferdium/recipes/franz-custom-website/"
-"único" = false
-
 # GTK:
 # Only file sthat that can be system-shared.
 [["ligações"]]

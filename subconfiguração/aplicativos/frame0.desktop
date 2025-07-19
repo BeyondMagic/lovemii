@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Frame0
+Comment=A Balsamiq-alternative wireframming tool for modern apps
+GenericName=Frame0
+Exec=frame0 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U
+Icon=frame0
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;
+

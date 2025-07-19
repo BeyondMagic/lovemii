@@ -3,13 +3,13 @@
 (GimpDeviceInfo "Core Pointer"
     (icon-name "gimp-cursor")
     (name "Core Pointer")
-    (tool-options "GimpRectangleSelectOptions"
-        (aspect-denominator 41.919532905967799)
-        (aspect-numerator 78.291893403067775)
-        (desired-fixed-size-height 0)
-        (desired-fixed-size-width 0)
-        (tool "gimp-rect-select-tool"))
-    (use-fg-bg no)
+    (tool-options "GimpColorPickerOptions"
+        (tool "gimp-color-picker-tool")
+        (foreground
+            (color "R'G'B'A u8" 4 "\362\362\362\377" 0))
+        (background
+            (color "R'G'B'A double" 32 "\0\0\0\40\202\24\263\77\0\0\0\0\57\321\320\77\0\0\0\200S\232\311\77\0\0\0\0\0\0\360\77" 0)))
+    (use-fg-bg yes)
     (use-opacity-paint-mode no)
     (use-brush no)
     (use-dynamics no)
@@ -34,9 +34,9 @@
     (tool-options "GimpPaintOptions"
         (tool "gimp-paintbrush-tool")
         (foreground
-            (color "R'G'B'A double" 32 "\0\0\0\240\216\26\266\77\0\0\0\240\207\20\260\77\0\0\0\240\222\31\271\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\232\26\266\77\0\0\0\200\223\20\260\77\0\0\0\40\237\31\271\77\0\0\0\0\0\0\360\77" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\40\213\23\263\77\0\0\0\200\360\320\320\77\0\0\0\300\326\231\311\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\226\23\263\77\0\0\0\340\363\320\320\77\0\0\0\200\334\231\311\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (pattern "Leopard")
@@ -68,9 +68,9 @@
     (tool-options "GimpPaintOptions"
         (tool "gimp-paintbrush-tool")
         (foreground
-            (color "R'G'B'A double" 32 "\0\0\0\240\221\26\266\77\0\0\0\200\212\20\260\77\0\0\0\240\225\31\271\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\235\26\266\77\0\0\0\200\226\20\260\77\0\0\0\140\242\31\271\77\0\0\0\0\0\0\360\77" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\340\215\23\263\77\0\0\0\100\361\320\320\77\0\0\0\100\330\231\311\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\231\23\263\77\0\0\0\200\364\320\320\77\0\0\0\0\336\231\311\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (pattern "Leopard")
@@ -306,7 +306,7 @@
         (foreground
             (color "R'G'B'A u8" 4 "\0\211\100\377" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\340\261\23\263\77\0\0\0\100\372\320\320\77\0\0\0\0\352\231\311\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\275\23\263\77\0\0\0\100\375\320\320\77\0\0\0\200\360\231\311\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (pattern "Leopard")
@@ -341,7 +341,7 @@
         (foreground
             (color "R'G'B'A u8" 4 "\0\211\100\377" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\340\261\23\263\77\0\0\0\100\372\320\320\77\0\0\0\0\352\231\311\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\275\23\263\77\0\0\0\100\375\320\320\77\0\0\0\200\360\231\311\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (palette "Standard")
@@ -373,7 +373,7 @@
         (foreground
             (color "R'G'B'A u8" 4 "\0\211\100\377" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\340\264\23\263\77\0\0\0\0\373\320\320\77\0\0\0\300\353\231\311\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\300\23\263\77\0\0\0\0\376\320\320\77\0\0\0\0\362\231\311\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (pattern "Leopard")
@@ -407,7 +407,7 @@
         (foreground
             (color "R'G'B'A u8" 4 "\0\211\100\377" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\340\261\23\263\77\0\0\0\100\372\320\320\77\0\0\0\0\352\231\311\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\240\275\23\263\77\0\0\0\100\375\320\320\77\0\0\0\200\360\231\311\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (pattern "Leopard")
@@ -1048,7 +1048,7 @@
     (tool-options "GimpEraserOptions"
         (tool "gimp-eraser-tool")
         (foreground
-            (color "R'G'B'A double" 32 "\0\0\0\240\300\263\343\77\0\0\0\140\137R\342\77\0\0\0\240\77\70\350\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\300\301\263\343\77\0\0\0\140\140R\342\77\0\0\0\240\77\70\350\77\0\0\0\0\0\0\360\77" 0))
         (background
             (color "R'G'B'A double" 32 "\0\0\0\340\45\35\355\77\0\0\0\40\0\375\354\77\0\0\0\300\177\174\354\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
@@ -1082,9 +1082,9 @@
     (tool-options "GimpEraserOptions"
         (tool "gimp-eraser-tool")
         (foreground
-            (color "R'G'B'A double" 32 "\0\0\0\0\304\221\301\77\0\0\0\0K\24\304\77\0\0\0\200\332\236\316\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\0\311\221\301\77\0\0\0\300P\24\304\77\0\0\0\0\340\236\316\77\0\0\0\0\0\0\360\77" 0))
         (background
-            (color "R'G'B'A double" 32 "\0\0\0\200\304\222\302\77\0\0\0\300\53\24\324\77\0\0\0\100\42\30\350\77\0\0\0\0\0\0\360\77" 0))
+            (color "R'G'B'A double" 32 "\0\0\0\100\312\222\302\77\0\0\0\100\56\24\324\77\0\0\0\100\42\30\350\77\0\0\0\0\0\0\360\77" 0))
         (brush "2. Hardness 050")
         (dynamics "Pressure Size")
         (palette "Standard")

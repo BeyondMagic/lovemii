@@ -12,7 +12,7 @@
 (session-info "toplevel"
     (factory-entry "gimp-single-image-window")
     (position 0 0)
-    (size 1880 1004)
+    (size 1880 1000)
     (monitor 0)
     (open-on-exit)
     (aux-info
@@ -34,7 +34,7 @@
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 211)
+            (position 219)
             (current-page 4)
             (dockable "gimp-brush-grid"
                 (tab-style icon)
@@ -61,7 +61,7 @@
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 584)
+            (position 608)
             (current-page 0)
             (dockable "gimp-layer-list"
                 (tab-style icon)
@@ -112,8 +112,9 @@
     (size 818 503))
 (session-info "toplevel"
     (factory-entry "gimp-file-save-dialog")
-    (position 535 277)
-    (size 849 588))
+    (position 0 0)
+    (size 1056 477)
+    (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-brightness-contrast-tool-dialog")
     (position 744 389))

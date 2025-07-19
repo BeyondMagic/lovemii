@@ -1,10 +1,8 @@
 import app from "ags/gtk4/app"
 import style from "./style.scss"
+import config from "./config.json";
 import { Bar } from "./widget/bar"
 import { Corner, Vertical, Horizontal } from "./widget/corner";
-import config from "./config.json";
-import { Gtk } from "ags/gtk4";
-
 
 export {
 	config
@@ -12,6 +10,7 @@ export {
 
 app.start({
 	css: style,
+	icons: `${SRC}/assets/`,
 	main() {
 		app.get_monitors().map(gdkmonitor => {
 			Bar(gdkmonitor)

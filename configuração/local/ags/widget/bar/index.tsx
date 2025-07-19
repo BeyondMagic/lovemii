@@ -1,9 +1,11 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
 
+import { Icon } from "./icon"
 import { Title } from "./title"
 import { Date } from "./date"
 import { Tray } from "./tray"
+import { Workspaces } from "./workspaces"
 
 export function Bar (gdkmonitor: Gdk.Monitor)
 {
@@ -12,7 +14,7 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 	return (
 		<window
 			name="bar"
-			class="Bar"
+			class="bar"
 			exclusivity={Astal.Exclusivity.EXCLUSIVE}
 			gdkmonitor={gdkmonitor}
 			anchor={TOP | LEFT | RIGHT}
@@ -21,14 +23,25 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 			visible
 		>
 			<centerbox cssName="centerbox">
-				{/* Title of current window. */}
-				<Title/>
+				{/* Information of current window. */}
+				<box
+					$type="start"
+				>
+					<Icon />
+					<Title />
+				</box>
 
 				{/* Date and time. */}
 				<Date />
 
-				{/* System trays. */}
-				<Tray />
+				{/* Workspaces and system trays. */}
+				<box
+					$type="end"
+				>
+					<Workspaces />
+					<Tray />
+				</box>
+				
 			</centerbox>
 		</window>
 	)

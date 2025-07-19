@@ -8,7 +8,7 @@
 		"blue": 245,
 		"alpha": 1
 	},
-    "kinds": [
+    "categories": [
         {
             "find": [
                 "foot"
@@ -171,8 +171,8 @@
         },
         {
             "find": [
-                "Ferdium",
-                "ferdium"
+                "Beeper",
+                "BeeperTexts"
             ],
             "replace": "message-service"
         },

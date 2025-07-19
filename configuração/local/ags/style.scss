@@ -15,4 +15,25 @@ window.bar {
 		border-radius: 8px;
 		margin: 2px;
 	}
+
+	.workspaces {
+	
+		.workspace {
+	
+			&.empty {
+				color: #A0A0A0;
+			}
+	
+			&.focus {
+				color: #497F9E;	
+			}
+
+			&:hover {
+				color: #FC7688;
+			}
+	
+		}
+	
+	
+	}
 }

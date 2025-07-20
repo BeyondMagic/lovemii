@@ -78,7 +78,7 @@ para = "/etc/"
 
 [["ligações"]]
 administrador = true
-de = "./subconfiguração/ícones/"
+de = "./subconfiguração/icons/"
 para = "/usr/share/icons/"
 "único" = false
 

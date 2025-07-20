@@ -76,7 +76,7 @@
 /configuração/local/thunderbird/
 
 # Ignore icons (copyright).
-/subconfiguração/ícones/
+/subconfiguração/icons/
 
 # Ignore siyoek (personal database).
 /subconfiguração/sioyek/

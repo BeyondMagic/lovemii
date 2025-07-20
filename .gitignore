@@ -49,6 +49,7 @@
 
 # nnn
 /configuração/local/nnn/bookmarks
+/configuração/local/nnn/.selection
 
 # gimp
 /configuração/local/GIMP/2.10/**

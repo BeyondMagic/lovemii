@@ -38,8 +38,8 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 				<box
 					$type="end"
 				>
-					<Workspaces />
 					<Tray />
+					<Workspaces />
 				</box>
 				
 			</centerbox>

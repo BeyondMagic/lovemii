@@ -10,6 +10,26 @@
 		"alpha": 1
 	},
 	"workspaces": 10,
+	"trays": [
+		{
+			"title": "SysTray-X",
+			"add": [
+				{
+					"label": "Show/Hide",
+					"args": [
+						"minimize.nu",
+						"--class",
+						"thunderbird",
+						"--type",
+						"toggle"
+					]
+				}
+			],
+			"remove_at": [
+				0
+			]
+		}
+	],
 	"categories": [
 		{
 			"find": [
@@ -58,7 +78,8 @@
 		{
 			"find": [
 				"thunderbird",
-				"org.gnome.Evolution"
+				"org.gnome.Evolution",
+				"SysTray-X"
 			],
 			"replace": "email-manager"
 		},
@@ -185,6 +206,12 @@
 				"PacketTracer"
 			],
 			"replace": "network-wired-logical"
+		},
+		{
+			"find": [
+				"Lxappearance"
+			],
+			"replace": "idea-theme"
 		}
 	]
 }

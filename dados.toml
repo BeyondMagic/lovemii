@@ -138,6 +138,12 @@ para = "~/.cache/cliphist"
 
 [["ligações"]]
 administrador = false
+de = "./scripts/minimize.nu"
+para = "~/.local/bin/minimize.nu"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = "./scripts/organize-fav.nu"
 para = "~/.local/bin/organize-fav.nu"
 "único" = true
@@ -173,6 +179,12 @@ administrador = false
 de = "./subconfiguração/gtk/4.0/"
 para = "~/.config/gtk-4.0/"
 "único" = false
+
+[["ligações"]]
+administrador = false
+de = "~/.config/thunderbird"
+para = "~/.thunderbird"
+"único" = true
 
 [[packages]]
 comments = ["cp and mv with progress bar."]

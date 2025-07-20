@@ -72,6 +72,9 @@
 # Ignore fonts (copyright).
 /subconfiguração/fontes/
 
+# Ignore Thunderbird
+/configuração/local/thunderbird/
+
 # Ignore icons (copyright).
 /subconfiguração/ícones/
 

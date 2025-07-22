@@ -159,6 +159,7 @@ export def `commit amend` [
 export def commit [
 	title?: string # Title of the commit.
 	message?: string # Message of the commit.
+	--datetime: datetime # Date and time of the commit.
 	--feat: string # New feature for the user, not a new feature for build script.
 	--fix: string # Bug fix for the user, not a fix to a build script.
 	--docs: string # Changes to the documentation.
@@ -283,6 +284,13 @@ export def commit [
 
 	mut args = [ commit -S ]
 
+	if ($datetime | is-not-empty) {
+		$env.LC_ALL = 'C'
+		$env.GIT_COMMITTER_DATE = $datetime
+		$env.GIT_AUTHOR_DATE = $datetime
+		$args = $args ++ [ '--date' $datetime ]
+	}
+
 	if ($title | is-not-empty) {
 		$args = $args ++ [ -m $title ]
 
@@ -318,7 +326,7 @@ export def unstage [
 # system with an unusually rich command set that provides
 # both high-level operations and full access to internals.
 def main [
-	arguments: list<string> # Arguments to pass for it.
+	arguments: list<any> # Arguments to pass for it.
 ]: nothing -> any {
 	^git ...$arguments
 }

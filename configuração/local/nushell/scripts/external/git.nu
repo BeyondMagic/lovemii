@@ -142,6 +142,7 @@ export def diff [
 # Add changes to the last commit and/or update subject and message manually.
 export def `commit amend` [
 	--edit # Do not edit the commit subject and message.
+	--datetime: datetime # Date and time of the commit.
 ]: nothing -> any {
 	mut args = [
 		'commit'
@@ -150,6 +151,13 @@ export def `commit amend` [
 
 	if not $edit {
 		$args = $args ++ [ "--no-edit" ]
+	}
+
+	if ($datetime | is-not-empty) {
+		$env.LC_ALL = 'C'
+		$env.GIT_COMMITTER_DATE = $datetime
+		$env.GIT_AUTHOR_DATE = $datetime
+		$args = $args ++ [ '--date' $datetime ]
 	}
 
 	main $args

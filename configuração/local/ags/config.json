@@ -209,7 +209,8 @@
 		},
 		{
 			"find": [
-				"Lxappearance"
+				"Lxappearance",
+				"hyprland-update-screen"
 			],
 			"replace": "idea-theme"
 		}

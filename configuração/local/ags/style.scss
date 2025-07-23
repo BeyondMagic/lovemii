@@ -36,4 +36,12 @@ window.bar {
 	
 	
 	}
+
+	.menu {
+		.battery, .icon {
+			&:hover {
+				color: #F0A6C8;
+			}
+		}
+	}
 }

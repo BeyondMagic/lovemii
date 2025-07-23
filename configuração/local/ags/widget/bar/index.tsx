@@ -6,6 +6,7 @@ import { Title } from "./title"
 import { Date } from "./date"
 import { Tray } from "./tray"
 import { Workspaces } from "./workspaces"
+import { Battery} from "./battery"
 
 export function Bar (gdkmonitor: Gdk.Monitor)
 {
@@ -40,6 +41,7 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 				>
 					<Tray />
 					<Workspaces />
+					<Battery />
 				</box>
 				
 			</centerbox>

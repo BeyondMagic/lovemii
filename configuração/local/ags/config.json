@@ -212,6 +212,12 @@
 				"hyprland-update-screen"
 			],
 			"replace": "idea-theme"
+		},
+		{
+			"find": [
+				"hyprland-dialog"
+			],
+			"replace": "urgent"
 		}
 	]
 }

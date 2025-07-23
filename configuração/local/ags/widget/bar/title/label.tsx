@@ -17,15 +17,7 @@ export function Label ()
 				css_classes={[
 					"title"
 				]}
-				label={client && client_title(title => {
-					if (!title)
-						return "";
-
-					else if (title.length > config.max_title_length)
-						return title.slice(0, config.max_title_length) + "...";
-					
-					return title;
-				})}
+				label={client && client_title(title => title ?? "")}
 			/>
 		}}
 	</With>

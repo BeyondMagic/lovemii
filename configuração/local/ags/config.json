@@ -2,7 +2,6 @@
 	"title_max_width": 400,
 	"root_size": 16,
 	"corner": 32,
-	"max_title_length": 75,
 	"background_color": {
 		"red": 239,
 		"green": 241,

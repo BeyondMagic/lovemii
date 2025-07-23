@@ -134,6 +134,7 @@
 		{
 			"find": [
 				"krita",
+				"gimp",
 				"Gimp",
 				"Gimp-2.10"
 			],

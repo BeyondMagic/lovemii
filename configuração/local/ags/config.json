@@ -9,6 +9,7 @@
 		"alpha": 1
 	},
 	"workspaces": 10,
+	"tray_separator": 8,
 	"trays": [
 		{
 			"title": "SysTray-X",

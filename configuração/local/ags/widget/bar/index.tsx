@@ -7,6 +7,7 @@ import { Date } from "./date"
 import { Tray } from "./tray"
 import { Workspaces } from "./workspaces"
 import { Battery} from "./battery"
+import { config } from "../../app"
 
 export function Bar (gdkmonitor: Gdk.Monitor)
 {
@@ -39,8 +40,16 @@ export function Bar (gdkmonitor: Gdk.Monitor)
 				<box
 					$type="end"
 				>
-					<Tray />
+					
 					<Workspaces />
+					{/* To-do: The height is 100%, so commenting this for now. */}
+					{/* <Gtk.Separator
+						orientation={Gtk.Orientation.VERTICAL}
+						height_request={5}
+						visible={true}
+					/> */}
+					<Tray />
+					
 					<Battery />
 				</box>
 				

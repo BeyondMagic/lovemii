@@ -80,8 +80,9 @@
                     (show-button-bar "true"))))))
 (session-info "toplevel"
     (factory-entry "gimp-file-open-dialog")
-    (position 374 268)
-    (size 850 550))
+    (position 0 0)
+    (size 1027 587)
+    (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-file-export-dialog")
     (position 0 0)
@@ -132,7 +133,8 @@
     (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-offset-tool-dialog")
-    (position 627 102))
+    (position 0 0)
+    (monitor 0))
 
 (hide-docks no)
 (single-window-mode yes)

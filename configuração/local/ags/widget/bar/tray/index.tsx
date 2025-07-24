@@ -8,6 +8,7 @@ import { Gtk } from "ags/gtk4"
 
 export function Tray() {
 	const tray_items = createBinding(AstalTray, "items");
+	let arrow_image: Gtk.Image;
 
 	// Create the popover with content
 	const popover_content = (
@@ -58,6 +59,15 @@ export function Tray() {
 	const popover = new Gtk.Popover();
 	popover.set_position(Gtk.PositionType.BOTTOM);
 	popover.set_child(popover_content as any);
+	
+	// Connect to popover visibility changes
+	popover.connect("notify::visible", () => {
+		if (arrow_image) {
+			arrow_image.set_from_icon_name(
+				popover.visible ? "arrow-up-symbolic" : "arrow-down-symbolic"
+			);
+		}
+	});
 
 	return (
 		<menubutton
@@ -68,7 +78,8 @@ export function Tray() {
 		>
 			<image
 				css_classes={["icon"]}
-				icon_name="applications-system-symbolic"
+				icon_name="arrow-down-symbolic"
+				$={self => arrow_image = self}
 			/>
 		</menubutton>
 	)

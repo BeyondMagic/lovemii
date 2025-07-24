@@ -177,7 +177,8 @@
 		},
 		{
 			"find": [
-				"dakanji"
+				"dakanji",
+				"DaKanji"
 			],
 			"replace": "japanese-character"
 		},

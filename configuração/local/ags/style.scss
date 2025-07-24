@@ -14,6 +14,16 @@ window.bar {
 	button {
 		border-radius: 8px;
 		margin: 2px;
+
+		color: $fg-color;
+
+		&:checked {
+			outline: none;
+			color: #FC7688;
+		}
+		&:focus {
+			outline: none;
+		}
 	}
 
 	.workspaces {

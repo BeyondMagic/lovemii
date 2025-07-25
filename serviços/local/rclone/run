@@ -1,0 +1,17 @@
+#!/usr/bin/env nu
+#
+# João Farias © 2025 BeyondMagic <beyondmagic@mail.ru>
+
+let name = if ('RCLONE_GDRIVE' in $env) {
+    $env.RCLONE_GDRIVE
+} else {
+    'drive'
+}
+
+let root = if ('GDRIVE_ROOT' in $env) {
+    $env.GDRIVE_ROOT
+} else {
+    '~/armazenamento/gdrive'
+} | path expand
+
+exec rclone mount $"($name):" $root

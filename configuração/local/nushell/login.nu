@@ -8,6 +8,12 @@
 #
 # João V. Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
 
+# Name of the Google Drive remote.
+$env.RCLONE_GDRIVE = 'drive'
+
+# Set the directory for Google Drive mount
+$env.GDRIVE_ROOT = '~/armazenamento/gdrive'
+
 # For scripts of the desktop.
 $env.DESKTOP_NAME = 'lovemii'
 

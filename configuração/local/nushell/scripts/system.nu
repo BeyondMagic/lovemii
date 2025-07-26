@@ -1,3 +1,7 @@
+# System management commands for Nushell.
+# 
+# João Farias © 2025 BeyondMagic <beyondmagic@mail.ru>
+
 use admin.nu
 
 # Shutdown the system.

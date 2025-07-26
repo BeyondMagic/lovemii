@@ -13,6 +13,20 @@
 	"trays": [
 		{
 			"title": "SysTray-X",
+			"disabled": {
+				"icon_name": "thunderbird",
+				"tooltip": "Email client, but it is not running.",
+				"buttons": [	
+					{
+						"label": "Start",
+						"args": [
+							"sv",
+							"once",
+							"thunderbird"
+						]
+					}
+				]
+			},
 			"add": [
 				{
 					"label": "Show/Hide",
@@ -28,6 +42,25 @@
 			"remove_at": [
 				0
 			]
+		},
+		{
+			"title": "nm-applet",
+			"disabled": {
+				"icon_name": "network-wireless-signal-excellent-symbolic",
+				"tooltip": "Network Manager Applet - WiFi management (not running)",
+				"buttons": [
+					{
+						"label": "Start WiFi Manager",
+						"args": [
+							"sv",
+							"once",
+							"nm-applet"
+						]
+					}
+				]
+			},
+			"add": [],
+			"remove_at": []
 		}
 	],
 	"categories": [

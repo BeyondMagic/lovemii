@@ -54,4 +54,17 @@ window.bar {
 			}
 		}
 	}
+
+	.tray-popover-content {
+		.mock-tray-item {
+			.mock-icon {
+				opacity: 0.6;
+				
+				&:hover {
+					opacity: 0.8;
+					color: #F0A6C8;
+				}
+			}
+		}
+	}
 }

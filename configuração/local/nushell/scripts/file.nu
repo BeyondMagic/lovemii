@@ -40,7 +40,7 @@ export module path {
 }
 
 const default_flags = [
-	'-adDoRiJU'
+	'-adDoRJUr'
 	'-T' 't'
 ]
 

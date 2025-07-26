@@ -7,6 +7,8 @@ const custom = {
     group: "custom",
 }
 
+export const popover_position = Gtk.PositionType.BOTTOM;
+
 function extract_menumodel (item: service.TrayItem, remove?: Set<number>) : Gio.Menu | null
 {
     if (!item.menu_model)
@@ -138,17 +140,37 @@ export function init (btn: Gtk.MenuButton, item: service.TrayItem, tray_config?:
 	// Set the combined menu
 	btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
 
+	// Set the popover position to LEFT
+	const popover = btn.get_popover();
+	if (popover) {
+		popover.set_position(popover_position);
+	}
+
 	const conns = [
 		item.connect(
 			"notify::action-group",
 			() => {
 				btn.insert_action_group("dbusmenu", item.action_group)
 				btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
+				
+				// Set popover position after updating menu model
+				const popover = btn.get_popover();
+				if (popover) {
+					popover.set_position(popover_position);
+				}
 			}
 		),
 		item.connect(
 			"notify::menu-model",
-			() => btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
+			() => {
+				btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
+				
+				// Set popover position after updating menu model
+				const popover = btn.get_popover();
+				if (popover) {
+					popover.set_position(popover_position);
+				}
+			}
 		)
 	]
 

@@ -1,7 +1,7 @@
 import { For, createBinding } from "ags"
 import { AstalTray } from "../../../services/tray"
 import { config } from "../../../app"
-import { init } from "./init"
+import { init, popover_position } from "./init"
 import { execAsync } from "ags/process"
 import { map_trays } from "./map"
 import { Gtk } from "ags/gtk4"
@@ -57,7 +57,7 @@ export function Tray() {
 
 	// Create and configure the popover
 	const popover = new Gtk.Popover();
-	popover.set_position(Gtk.PositionType.BOTTOM);
+	popover.set_position(popover_position);
 	popover.set_child(popover_content as any);
 	
 	// Connect to popover visibility changes

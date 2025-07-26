@@ -1,5 +1,10 @@
 use admin.nu
 
+# Shutdown the system.
+export def shutdown []: nothing -> nothing {
+	admin { ^poweroff }
+}
+
 # Suspend the machine to disk.
 export def hibernate []: nothing -> nothing {
 	^loginctl hibernate

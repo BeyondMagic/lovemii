@@ -13,6 +13,7 @@
 	"trays": [
 		{
 			"title": "SysTray-X",
+			"users": "*",
 			"disabled": {
 				"icon_name": "thunderbird",
 				"tooltip": "Email client, but it is not running.",
@@ -45,6 +46,9 @@
 		},
 		{
 			"title": "nm-applet",
+			"users": [
+				"dream"
+			],
 			"disabled": {
 				"icon_name": "network-wireless-signal-excellent-symbolic",
 				"tooltip": "Network Manager Applet - WiFi management (not running)",

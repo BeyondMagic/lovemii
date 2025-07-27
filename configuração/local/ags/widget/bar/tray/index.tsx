@@ -3,9 +3,10 @@ import { AstalTray } from "../../../services/tray"
 import { config } from "../../../app"
 import { init, popover_position } from "./init"
 import { execAsync } from "ags/process"
-import { map_trays } from "./map"
+import { map_trays, is_user_allowed } from "./map"
 import { MockTrayItem } from "./mock"
-import { Gtk } from "ags/gtk4"
+import { Gdk, Gtk } from "ags/gtk4"
+import GLib from "gi://GLib"
 
 export function Tray() {
 	const tray_items = createBinding(AstalTray, "items");
@@ -54,14 +55,18 @@ export function Tray() {
 		</box>
 	);
 
+	const username = GLib.get_user_name();
+
 	// Add mock items logic in a separate reactive computation
 	const mock_items = tray_items(items => {
 		const active_titles = new Set(items.map(item => item.title));
 		const mocks = [];
 		
 		for (const [title, tray_config] of map_trays.entries()) {
-			// If the tray is not active and has disabled config, create a mock item
-			if (!active_titles.has(title) && tray_config.disabled) {
+			// Check if the tray is not active, has disabled config, and user is allowed
+			if (!active_titles.has(title) && 
+				tray_config.disabled && 
+				is_user_allowed(tray_config, username)) {
 				mocks.push(
 					<MockTrayItem 
 						disabled_config={tray_config.disabled} 

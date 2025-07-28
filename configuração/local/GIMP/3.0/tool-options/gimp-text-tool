@@ -1,8 +1,0 @@
-# GIMP gimp-text-tool options
-
-(foreground
-    (color "R'G'B'A u8" 4 "\362\362\362\377" 0))
-(palette "Standard")
-(font "Sans-serif")
-
-# end of gimp-text-tool options

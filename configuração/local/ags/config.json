@@ -15,7 +15,7 @@
 			"title": "SysTray-X",
 			"users": "*",
 			"disabled": {
-				"icon_name": "thunderbird",
+				"icon_name": "email-manager",
 				"tooltip": "Email client, but it is not running.",
 				"buttons": [	
 					{
@@ -43,6 +43,64 @@
 			"remove_at": [
 				0
 			]
+		},
+		{
+			"title": "blueman",
+			"users": "*",
+			"disabled": {
+				"icon_name": "bluetooth-slash-symbolic",
+				"tooltip": "Bluetooth Manager - Bluetooth management (not running)",
+				"buttons": [
+					{
+						"label": "Start Bluetooth Manager",
+						"args": [
+							"sv",
+							"once",
+							"blueman-applet"
+						]
+					}
+				]
+			},
+			"add": [],
+			"remove_at": []
+		},
+		{
+			"title": "qBittorrent",
+			"users": "*",
+			"disabled": {
+				"icon_name": "tool-any-downloader-symbolic",
+				"tooltip": "qBittorrent - Torrent client (not running)",
+				"buttons": [
+					{
+						"label": "Start qBittorrent",
+						"args": [
+							"gtk-launch",
+							"org.qbittorrent.qBittorrent"
+						]
+					}
+				]
+			},
+			"add": [],
+			"remove_at": []
+		},
+		{
+			"title": "Beeper",
+			"users": "*",
+			"disabled": {
+				"icon_name": "message-service",
+				"tooltip": "Beeper - Messaging client (not running)",
+				"buttons": [
+					{
+						"label": "Start Beeper",
+						"args": [
+							"gtk-launch",
+							"beeper"
+						]
+					}
+				]
+			},
+			"add": [],
+			"remove_at": []
 		},
 		{
 			"title": "nm-applet",

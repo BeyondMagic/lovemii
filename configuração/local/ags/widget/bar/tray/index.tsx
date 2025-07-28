@@ -24,7 +24,7 @@ export function Tray() {
 					<menubutton
 						class="tray-item"
 						$={tray_self => {
-							const tray_config = map_trays.get(item.title);
+							const tray_config = map_trays.get(item.title) ?? map_trays.get(item.tooltip_text);
 
 							if (tray_config) {
 								// Convert config actions to tray actions
@@ -59,7 +59,13 @@ export function Tray() {
 
 	// Add mock items logic in a separate reactive computation
 	const mock_items = tray_items(items => {
-		const active_titles = new Set(items.map(item => item.title));
+		const active_titles = new Set();
+		// Add both title and tooltip_text to the active set
+		for (const item of items) {
+			if (item.title) active_titles.add(item.title);
+			if (item.tooltip_text) active_titles.add(item.tooltip_text);
+		}
+		
 		const mocks = [];
 		
 		for (const [title, tray_config] of map_trays.entries()) {
@@ -91,7 +97,7 @@ export function Tray() {
 					<menubutton
 						class="tray-item"
 						$={tray_self => {
-							const tray_config = map_trays.get(item.title);
+							const tray_config = map_trays.get(item.title) ?? map_trays.get(item.tooltip_text);
 
 							if (tray_config) {
 								// Convert config actions to tray actions

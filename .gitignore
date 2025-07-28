@@ -52,11 +52,11 @@
 /configuração/local/nnn/.selection
 
 # gimp
-/configuração/local/GIMP/2.10/**
-!/configuração/local/GIMP/2.10/themes
-!/configuração/local/GIMP/2.10/themes/**
-!/configuração/local/GIMP/2.10/splashes
-!/configuração/local/GIMP/2.10/splashes/**
+/configuração/local/GIMP/3.0/**
+!/configuração/local/GIMP/3.0/themes
+!/configuração/local/GIMP/3.0/themes/**
+!/configuração/local/GIMP/3.0/splashes
+!/configuração/local/GIMP/3.0/splashes/**
 
 # Ignore SSH.
 /configuração/local/ssh

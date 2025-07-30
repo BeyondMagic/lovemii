@@ -24,7 +24,7 @@ def get_mountpoints []: nothing -> list<string> {
 	^lsblk --json | from json | get blockdevices | par-each {|disk|
 		mut mountpoints = $disk.mountpoints
 
-		if not ($disk | get --ignore-errors children | is-empty) {
+		if not ($disk | get --optional children | is-empty) {
 			$mountpoints = ($mountpoints | append ($disk.children.mountpoints | flatten))
 		}
 

@@ -28,6 +28,13 @@
 		"enabled": true
 	},
 	{
+		"name": "Lean: Mathematics",
+		"rootPath": "/mnt/kaguya/projetos/pessoal/lean",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
 		"name": "-----------------------",
 		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/---",
 		"paths": [],

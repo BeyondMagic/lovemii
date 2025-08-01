@@ -239,7 +239,7 @@
 	},
 	{
 		"name": "Firefox CSS Store",
-		"rootPath": "/mnt/armazenamento/.compartilhado/projetos/contribuindo/firefoxstore",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/firefoxstore",
 		"paths": [],
 		"tags": [],
 		"enabled": true

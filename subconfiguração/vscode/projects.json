@@ -56,6 +56,13 @@
 		"enabled": true
 	},
 	{
+		"name": "Site: server (rewrite)",
+		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/pessoal/site/server-rewrite",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
 		"name": "Site: petalize (module)",
 		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/pessoal/site/module/petalize",
 		"paths": [],

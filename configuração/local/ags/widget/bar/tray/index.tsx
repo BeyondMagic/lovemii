@@ -26,6 +26,8 @@ export function Tray() {
 						$={tray_self => {
 							const tray_config = map_trays.get(item.title) ?? map_trays.get(item.tooltip_text);
 
+							console.log(`item.title: "${item.title}" and "${item.tooltip_text}"`)
+
 							if (tray_config) {
 								// Convert config actions to tray actions
 								const tray_actions = tray_config.add.map(action => ({

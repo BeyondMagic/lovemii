@@ -1,9 +1,14 @@
 -------------------Less words-----------------------
 
-local option = vim.api.nvim_set_option
+local option = vim.api.nvim_set_option_value
 local set    = vim.api.nvim_set_var
 
 --------------------Windows------------------------
+
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- Fix moving through lines 'gk' and 'gj'
 vim.wo.linebreak = true
@@ -124,19 +129,23 @@ set('MRU_File', '~/.cache/vim_mru_files')
 -- option('title', true)
 
 -- Set clipboard to be global across the system
-option('clipboard', 'unnamedplus')
+option('clipboard', 'unnamedplus', {})
 
 -- Basic fold column
-option('foldcolumn', '1')
+option('foldcolumn', '1', {})
 
 -- Set dictionary to language spell
-option('dictionary', '/usr/share/dict/words')
+option('dictionary', '/usr/share/dict/words', {})
 
 -- Wildignore for when opening files :0
-option('wildignore', '*/tmp*/,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*,*/.vim$,~$,*/.log')
+option('wildignore', '*/tmp*/,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*,*/.vim$,~$,*/.log', {})
 
 -- Folding
-option('foldmethod', 'manual')
+option('foldmethod', 'manual', {})
 
 -- File format for neovim reading
-option('fileformat', 'unix')
+option('fileformat', 'unix', {})
+
+-- Fold text:
+-- vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+-- vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)

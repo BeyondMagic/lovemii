@@ -226,7 +226,7 @@ key("i", "<C-j>", 'copilot#Previous("<CR>")', remap)
 key("i", "<C-k>", 'copilot#Next("<CR>")', remap)
 key("i", "<C-l>", 'copilot#Accept("<CR>")', remap)
 
--- 
+-- Open Neotree
 key('n', '<C-k>', '', {
   noremap = true,
   silent  = true,

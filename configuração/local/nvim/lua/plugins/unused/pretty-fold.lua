@@ -1,5 +1,3 @@
--- Fold code.
-
 return {
   'anuvyklack/pretty-fold.nvim',
   config = {

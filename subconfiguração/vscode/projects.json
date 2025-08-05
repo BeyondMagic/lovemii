@@ -243,5 +243,12 @@
 		"paths": [],
 		"tags": [],
 		"enabled": true
+	},
+	{
+		"name": "Thunderbird: Minimize on Hyprland",
+		"rootPath": "/mnt/kaguya/projetos/usando/thunderbird-minimizeonclose",
+		"paths": [],
+		"tags": [],
+		"enabled": true
 	}
 ]

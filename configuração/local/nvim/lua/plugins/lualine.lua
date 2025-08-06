@@ -105,16 +105,16 @@ return {
         refresh = {
 
           -- 1. The refresh option sets minimum time that lualine tries
-              statusline = 50,
+          statusline = 50,
 
           -- 2. To maintain between refresh. It's not guarantied if situation
-              tabline = 1000,
+          tabline = 1000,
 
           -- 3. rises that lualine needs to refresh itself before this time
-              winbar = 1000
+          winbar = 1000
 
-           -- Also you can force lualine's refresh by calling refresh function
-           --   like require('lualine').refresh()
+          -- Also you can force lualine's refresh by calling refresh function
+          --   like require('lualine').refresh()
         }
 
       },
@@ -129,7 +129,37 @@ return {
         -- These will be filled later
         lualine_c = {},
         lualine_d = {},
-        lualine_x = {},
+        lualine_x = {
+          {
+              'copilot',
+              -- Default values
+              symbols = {
+                  status = {
+                      icons = {
+                          enabled = " ",
+                          sleep = " ",   -- auto-trigger disabled
+                          disabled = " ",
+                          warning = " ",
+                          unknown = " "
+                      },
+                      hl = {
+                          enabled = "#50FA7B",
+                          sleep = "#AEB7D0",
+                          disabled = "#6272A4",
+                          warning = "#FFB86C",
+                          unknown = "#FF5555"
+                      }
+                  },
+                  spinners = "dots", -- has some premade spinners
+                  spinner_color = "#6272A4"
+              },
+              show_colors = false,
+              show_loading = true
+          },
+          'encoding',
+          'fileformat',
+          'filetype'
+        },
       },
 
       -- Just remove the defaults.
@@ -140,7 +170,7 @@ return {
         lualine_z = {},
         lualine_c = {},
         lualine_d = {},
-        lualine_x = {},
+        lualine_x = {}
       },
 
       --tabline = {},
@@ -244,18 +274,18 @@ return {
       symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
       cond = conditions.hide_in_width,
       source   = nil, -- A function that works as a data source for diff.
-                    -- It must return a table as such:
-                    --   { added = add_count, modified = modified_count, removed = removed_count }
-                    -- or nil on failure. count <= 0 won't be displayed.
+      -- It must return a table as such:
+      --   { added = add_count, modified = modified_count, removed = removed_count }
+      -- or nil on failure. count <= 0 won't be displayed.
     })
 
     -- Function to show the spell_language if spell si activated.
     insert.status.left({
-        function()
-          return '  ' .. vim.api.nvim_get_option('spelllang')
-        end,
-        cond = conditions.spell_activated,
-        color = { fg = COLOUR.green_3, gui = 'bold' },
+      function()
+        return '  ' .. vim.api.nvim_get_option('spelllang')
+      end,
+      cond = conditions.spell_activated,
+      color = { fg = COLOUR.green_3, gui = 'bold' },
     })
 
     -- Insert mid section. You can make any number of sections in neovim :)
@@ -353,25 +383,27 @@ return {
     --  cond = conditions.hide_in_width,
     --})
 
-    --insert.status.right({
-    --  function()
-    --    return '▊'
-    --  end,
-    --  color = { fg = COLOUR.bar },
-    --  padding = { left = 1 },
-    --})
+    insert.status.right({
+      function()
+        return '▊'
+      end,
+      color = { fg = COLOUR.bar },
+      padding = { left = 1 },
+    })
+
+    -- Copilot Status:
 
     ----------------------------------------------------
 
     -- 2. Winbar.
     ----------------------------------------------------
 
-    --insert.window.left({
-    --  function ()
-    --    return " I feel like dreaming!"
-    --  end,
-    --  color = { fg = COLOUR.fg, bg = COLOUR.bg_light, gui = 'bold' },
-    --})
+    -- insert.window.left({
+    --   function ()
+    --     return " I feel like dreaming!"
+    --   end,
+    --   color = { fg = COLOUR.fg, bg = COLOUR.bg_light, gui = 'bold' },
+    -- })
 
     ----------------------------------------------------
 

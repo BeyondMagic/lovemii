@@ -4,6 +4,19 @@
 return {
   'sindrets/diffview.nvim',
   dependencies = 'nvim-lua/plenary.nvim',
+  config = {
+    enhanced_diff_hl = true,
+    hooks = {
+      diff_buf_read = function(bufnr)
+        vim.opt_local.foldlevel = 99
+        vim.opt_local.foldenable = false
+      end,
+      diff_buf_win_enter = function(bufnr)
+        vim.opt_local.foldlevel = 99
+        vim.opt_local.foldenable = false
+      end
+    }
+  }
   --config = {
   --  diff_binaries    = false,    -- Show diffs for binaries
   --  enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'

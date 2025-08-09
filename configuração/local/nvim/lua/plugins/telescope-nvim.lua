@@ -11,7 +11,7 @@ return {
     local sorters    = require 'telescope.sorters'
     local previewers = require 'telescope.previewers'
 
-    require'telescope'.setup {
+    require 'telescope'.setup {
       defaults = {
         mappings = {
           i = {

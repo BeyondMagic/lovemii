@@ -146,33 +146,53 @@ export function init (btn: Gtk.MenuButton, item: service.TrayItem, tray_config?:
 		popover.set_position(popover_position);
 	}
 
-	const conns = [
+	/*const conns = [
 		item.connect(
 			"notify::action-group",
 			() => {
+				// Check if popover is currently visible before updating
+				const popover = btn.get_popover();
+				const was_visible = popover ? popover.get_visible() : false;
+
+				// print(`Popover was ${was_visible ? 'visible' : 'hidden'}`);
+				
 				btn.insert_action_group("dbusmenu", item.action_group)
 				btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
 				
-				// Set popover position after updating menu model
-				const popover = btn.get_popover();
-				if (popover) {
-					popover.set_position(popover_position);
-				}
+				// Get a fresh popover reference after updating the menu model
+				   const new_popover = btn.get_popover();
+				   if (new_popover) {
+					   new_popover.set_position(popover_position);
+					   // Only popup if it was visible and is mapped/realized
+					   if (was_visible && typeof new_popover.get_mapped === 'function' && new_popover.get_mapped()) {
+						   new_popover.popup();
+					   }
+				   }
 			}
 		),
 		item.connect(
 			"notify::menu-model",
 			() => {
+				// Check if popover is currently visible before updating
+				const popover = btn.get_popover();
+				const was_visible = popover ? popover.get_visible() : false;
+
+				// console.debug(`Popover was ${was_visible ? 'visible' : 'hidden'}`);
+
 				btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
 				
-				// Set popover position after updating menu model
-				const popover = btn.get_popover();
-				if (popover) {
-					popover.set_position(popover_position);
-				}
+				   // Get a fresh popover reference after updating the menu model
+				   const new_popover = btn.get_popover();
+				   if (new_popover) {
+					   new_popover.set_position(popover_position);
+					   // Only popup if it was visible and is mapped/realized
+					   if (was_visible && typeof new_popover.get_mapped === 'function' && new_popover.get_mapped()) {
+						   new_popover.popup();
+					   }
+				   }
 			}
 		)
-	]
+	]*/
 
 	onCleanup(() => {
 		// Disconnect all signal connections

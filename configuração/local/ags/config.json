@@ -147,7 +147,8 @@
 		{
 			"find": [
 				"firefox-nightly",
-				"Google-chrome"
+				"Google-chrome",
+				"google-chrome"
 			],
 			"replace": "internet-browser"
 		},

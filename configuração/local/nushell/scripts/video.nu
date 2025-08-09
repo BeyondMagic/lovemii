@@ -78,8 +78,9 @@ export def download [
 	--link: string # Link of the video to download (taken from clipboard if empty).
 	--archive: string = './archive.txt' # Archive file.
 	--format: string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
+	--cookies-from-browser: string = 'firefox' # Use cookies from browser.
 	--list-formats # List formats of the video.
-]: nothing -> nothing {
+]: nothing -> any {
 	let file_name = if ($name | is-empty) {
 		[]
 	} else {
@@ -96,7 +97,6 @@ export def download [
 		-S $format
 		--recode mp4
 		--download-archive $archive
-		--cookies-from-browser firefox
 		#--extractor-arg "youtube:player_client=tv"
 		--add-metadata
 		--embed-thumbnail
@@ -108,6 +108,13 @@ export def download [
 		$link
 		...$file_name
 	]
+
+	if ($cookies_from_browser | is-not-empty) {
+		$args = $args ++ [
+			--cookies-from-browser $cookies_from_browser
+			--extractor-args youtubetab:skip=authcheck
+		]
+	}
 
 	if $list_formats {
 		$args = $args ++ [

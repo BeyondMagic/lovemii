@@ -14,6 +14,7 @@ export use ./external/tokei.nu
 export use ./external/git.nu
 export use ./external/anac.nu
 export use ./external/oracle.nu
+export use ./external/gcal.nu *
 #export use ./external/python.nu
 
 export use miscelanous.nu *
@@ -40,3 +41,4 @@ export alias rm = rm -i
 export alias _ = echo $env.LAST
 export alias find = find --no-highlight
 export alias prolog = ^swipl
+export alias calendar = gcal

@@ -180,12 +180,6 @@ de = "./subconfiguração/gtk/4.0/"
 para = "~/.config/gtk-4.0/"
 "único" = false
 
-[["ligações"]]
-administrador = false
-de = "~/.config/thunderbird"
-para = "~/.thunderbird"
-"único" = true
-
 [[packages]]
 comments = ["cp and mv with progress bar."]
 names = ["advcpmv"]

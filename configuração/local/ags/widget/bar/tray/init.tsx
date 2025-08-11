@@ -88,6 +88,38 @@ function create_combined_menu (item: service.TrayItem, tray_actions: TrayAction[
     return menu
 }
 
+// Rebuild the combined menu IN PLACE to preserve the popover, instead of replacing the model
+function rebuild_combined_menu (target: Gio.Menu, item: service.TrayItem, tray_actions: TrayAction[], remove_actions?: Set<number>)
+{
+	// clear existing items (from the end to the start)
+	for (let i = target.get_n_items() - 1; i >= 0; i--) {
+		target.remove(i)
+	}
+
+	// Add our custom menu items first
+	for (const tray_action of tray_actions) {
+		target.append(tray_action.label, `${custom.group}.${tray_action.label}`)
+	}
+
+	// Add the original menu as a section if it exists and has items
+	if (item.menu_model && item.menu_model.get_n_items() > 0)
+	{
+		// Add a separator by creating an empty section
+		const separator = new Gio.Menu()
+		target.append_section(null, separator)
+
+		if (remove_actions && remove_actions.size > 0)
+		{
+			const modified_menu = extract_menumodel(item, remove_actions);
+			if (modified_menu)
+				target.append_section(null, modified_menu);
+		} else {
+			// Add the original menu model as a section (unchanged)
+			target.append_section(null, item.menu_model)
+		}
+	}
+}
+
 type TrayAction = {
 	label: string;
 	action: () => void;
@@ -137,8 +169,11 @@ export function init (btn: Gtk.MenuButton, item: service.TrayItem, tray_config?:
 	// Insert both action groups
 	btn.insert_action_group("dbusmenu", item.action_group)
 
-	// Set the combined menu
-	btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
+	// Create a persistent combined menu and bind it once
+	const combined_menu = new Gio.Menu()
+	btn.set_menu_model(combined_menu)
+	// Populate it in place so future updates don't recreate the popover
+	rebuild_combined_menu(combined_menu, item, tray_actions, remove_actions)
 
 	// Set the popover position to LEFT
 	const popover = btn.get_popover();
@@ -146,53 +181,17 @@ export function init (btn: Gtk.MenuButton, item: service.TrayItem, tray_config?:
 		popover.set_position(popover_position);
 	}
 
-	/*const conns = [
-		item.connect(
-			"notify::action-group",
-			() => {
-				// Check if popover is currently visible before updating
-				const popover = btn.get_popover();
-				const was_visible = popover ? popover.get_visible() : false;
-
-				// print(`Popover was ${was_visible ? 'visible' : 'hidden'}`);
-				
-				btn.insert_action_group("dbusmenu", item.action_group)
-				btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
-				
-				// Get a fresh popover reference after updating the menu model
-				   const new_popover = btn.get_popover();
-				   if (new_popover) {
-					   new_popover.set_position(popover_position);
-					   // Only popup if it was visible and is mapped/realized
-					   if (was_visible && typeof new_popover.get_mapped === 'function' && new_popover.get_mapped()) {
-						   new_popover.popup();
-					   }
-				   }
-			}
-		),
-		item.connect(
-			"notify::menu-model",
-			() => {
-				// Check if popover is currently visible before updating
-				const popover = btn.get_popover();
-				const was_visible = popover ? popover.get_visible() : false;
-
-				// console.debug(`Popover was ${was_visible ? 'visible' : 'hidden'}`);
-
-				btn.set_menu_model(create_combined_menu(item, tray_actions, remove_actions))
-				
-				   // Get a fresh popover reference after updating the menu model
-				   const new_popover = btn.get_popover();
-				   if (new_popover) {
-					   new_popover.set_position(popover_position);
-					   // Only popup if it was visible and is mapped/realized
-					   if (was_visible && typeof new_popover.get_mapped === 'function' && new_popover.get_mapped()) {
-						   new_popover.popup();
-					   }
-				   }
-			}
-		)
-	]*/
+	const conns = [
+		// Update action group binding and rebuild in place
+		item.connect("notify::action-group", () => {
+			btn.insert_action_group("dbusmenu", item.action_group)
+			rebuild_combined_menu(combined_menu, item, tray_actions, remove_actions)
+		}),
+		// Underlying menu model changed: rebuild our combined menu in place
+		item.connect("notify::menu-model", () => {
+			rebuild_combined_menu(combined_menu, item, tray_actions, remove_actions)
+		})
+	]
 
 	onCleanup(() => {
 		// Disconnect all signal connections

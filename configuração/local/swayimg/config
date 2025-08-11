@@ -4,6 +4,7 @@ size = 12
 
 [general]
 app_id = swayimg
+overlay = no
 
 [list]
 all = yes

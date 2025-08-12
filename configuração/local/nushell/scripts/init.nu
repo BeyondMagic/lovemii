@@ -42,3 +42,5 @@ export alias _ = echo $env.LAST
 export alias find = find --no-highlight
 export alias prolog = ^swipl
 export alias calendar = gcal
+export alias mv = mv --progress --verbose
+export alias cp = cp --progress --verbose

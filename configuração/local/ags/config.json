@@ -123,6 +123,26 @@
 			},
 			"add": [],
 			"remove_at": []
+		},
+		{
+			"title": "入力メソッド",
+			"users": "*",
+			"disabled": {
+				"icon_name": "keyboard-symbolic",
+				"tooltip": "Input Method - Not running",
+				"buttons": [
+					{
+						"label": "Start Input Method",
+						"args": [
+							"sv",
+							"once",
+							"fcitx5"
+						]
+					}
+				]
+			},
+			"add": [],
+			"remove_at": []
 		}
 	],
 	"categories": [

@@ -139,7 +139,7 @@ export def diff [
 	| sort-by 'staged' 'tracked' 'modified'
 }
 
-# Add changes to the last commit and/or update subject and message manually.
+# Add changes to the last commit and/or update subject and message manually, keep the datetime if not specified.
 export def `commit amend` [
 	--edit # Do not edit the commit subject and message.
 	--datetime: datetime # Date and time of the commit.
@@ -153,12 +153,22 @@ export def `commit amend` [
 		$args = $args ++ [ "--no-edit" ]
 	}
 
-	if ($datetime | is-not-empty) {
+	let datetime = if ($datetime | is-not-empty) {
 		$env.LC_ALL = 'C'
 		$env.GIT_COMMITTER_DATE = $datetime
 		$env.GIT_AUTHOR_DATE = $datetime
-		$args = $args ++ [ '--date' $datetime ]
+		$datetime
+	} else {
+		let last_commit_datetime = main [
+			log -1 --format='%cd'
+		]
+		$env.LC_ALL = 'C'
+		$env.GIT_COMMITTER_DATE = $last_commit_datetime
+		$env.GIT_AUTHOR_DATE = $last_commit_datetime
+		$last_commit_datetime
 	}
+
+	$args = $args ++ [ '--date' $datetime ]
 
 	main $args
 }

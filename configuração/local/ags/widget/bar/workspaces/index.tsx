@@ -5,16 +5,16 @@ import { config } from "../../../app";
 import Hyprland from "gi://AstalHyprland";
 import { Workspace } from "./workspace";
 
-const workspaces = createBinding(hyprland, "workspaces")
+const workspaces = createBinding(hyprland(), "workspaces")
 
 export function Workspaces ( {length: length = config.workspaces} : {length?: number} )
 {
-	const fixed = workspaces(() =>
-		Array.from(
-			{ length },
-			(_, i) => hyprland.get_workspace(i + 1) || Hyprland.Workspace.dummy(i + 1, null),
-		),
-	)
+	   const fixed = workspaces(() =>
+		   Array.from(
+			   { length },
+			   (_, i) => hyprland().get_workspace(i + 1) || Hyprland.Workspace.dummy(i + 1, null),
+		   ),
+	   )
 
 	return <box
 		class={"workspaces"}

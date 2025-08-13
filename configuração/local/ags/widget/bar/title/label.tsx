@@ -5,10 +5,10 @@ import { config } from "../../../app"
 
 export function Label ()
 {
-	return <With
-		$type='end'
-		value={focused_client}
-	>
+	   return <With
+		   $type='end'
+		   value={focused_client()}
+	   >
 		{client => {
 			const client_title = createBinding(client, "title");
 

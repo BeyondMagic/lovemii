@@ -1,5 +1,5 @@
 import { For, createBinding } from "ags"
-import { AstalTray } from "../../../services/tray"
+import { astal_tray } from "../../../services/tray"
 import { config } from "../../../app"
 import { init, popover_position } from "./init"
 import { execAsync } from "ags/process"
@@ -9,7 +9,7 @@ import { Gdk, Gtk } from "ags/gtk4"
 import GLib from "gi://GLib"
 
 export function Tray() {
-	const tray_items = createBinding(AstalTray, "items");
+		const tray_items = createBinding(astal_tray(), "items");
 	let arrow_image: Gtk.Image;
 
 	// Create the popover with content

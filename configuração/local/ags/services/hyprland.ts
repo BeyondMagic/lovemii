@@ -1,14 +1,12 @@
 import Hyprland from "gi://AstalHyprland";
 import { createBinding } from "ags"
 
-const service = Hyprland.get_default();
+// Return a fresh reference to the Hyprland service when needed
+export function hyprland() {
+	return Hyprland.get_default();
+}
 
-const focused_client = createBinding(
-	service,
-	"focused_client"
-);
-
-export {
-	focused_client,
-	service as hyprland,
+// Create a binding to the currently focused client using a fresh service reference
+export function focused_client() {
+	return createBinding(hyprland(), "focused_client");
 }

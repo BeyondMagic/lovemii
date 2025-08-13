@@ -4,7 +4,7 @@ import { createBinding, createComputed, For } from "ags"
 import { config } from "../../../app";
 import Hyprland from "gi://AstalHyprland";
 
-const focused = createBinding(hyprland, "focused_workspace")
+const focused = createBinding(hyprland(), "focused_workspace")
 
 export function Workspace ({ ws } : { ws: Hyprland.Workspace })
 {
@@ -24,12 +24,12 @@ export function Workspace ({ ws } : { ws: Hyprland.Workspace })
 			width_request={config.corner}
 			height_request={config.corner}
 		>
-			<Gtk.GestureClick
-				button={Gdk.BUTTON_PRIMARY}
-				onPressed={() => {
-					hyprland.message(`dispatch workspace ${ws.id}`)
-				}}
-			/>
+			   <Gtk.GestureClick
+				   button={Gdk.BUTTON_PRIMARY}
+				   onPressed={() => {
+					   hyprland().message(`dispatch workspace ${ws.id}`)
+				   }}
+			   />
 		</label>
 	)
 

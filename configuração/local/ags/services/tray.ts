@@ -1,7 +1,5 @@
 import Tray from "gi://AstalTray"
 
-const service = Tray.get_default();
-
-export {
-	service as AstalTray,
+export function astal_tray() {
+	return Tray.get_default();
 }

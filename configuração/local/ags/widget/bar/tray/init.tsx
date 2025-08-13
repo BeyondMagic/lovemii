@@ -11,10 +11,10 @@ export const popover_position = Gtk.PositionType.BOTTOM;
 
 function extract_menumodel (item: service.TrayItem, remove?: Set<number>) : Gio.Menu | null
 {
-    if (!item.menu_model)
+	if (!item.menu_model)
 		return null;
 
-    const menu = new Gio.Menu();
+	const menu = new Gio.Menu();
     const n_items = item.menu_model.get_n_items();
 
     for (let i = 0; i < n_items; i++)
@@ -44,9 +44,9 @@ function extract_menumodel (item: service.TrayItem, remove?: Set<number>) : Gio.
             const submenu = item.menu_model.get_item_link(i, Gio.MENU_LINK_SUBMENU);
             const section = item.menu_model.get_item_link(i, Gio.MENU_LINK_SECTION);
 
-            if (submenu) {
-                const submenu_label = label ? label.get_string()[0] : null;
-                menu.append_submenu(submenu_label, submenu);
+			if (submenu) {
+				const submenu_label = label ? label.get_string()[0] : null;
+				menu.append_submenu(submenu_label, submenu);
             } else if (section) {
                 const section_label = label ? label.get_string()[0] : null;
                 menu.append_section(section_label, section);
@@ -67,23 +67,17 @@ function create_combined_menu (item: service.TrayItem, tray_actions: TrayAction[
         menu.append(tray_action.label, `${custom.group}.${tray_action.label}`)
     }
 
-    // Add the original menu as a section if it exists and has items
-    if (item.menu_model && item.menu_model.get_n_items() > 0)
+	// Add the original menu as a section if it exists and has items
+	if (item.menu_model && item.menu_model.get_n_items() > 0)
 	{
-        // Add a separator by creating an empty section
-        const separator = new Gio.Menu()
-        menu.append_section(null, separator)
+		// Add a separator by creating an empty section
+		const separator = new Gio.Menu()
+		menu.append_section(null, separator)
 
-        if (remove_actions && remove_actions.size > 0)
-		{
-			const modified_menu = extract_menumodel(item, remove_actions);
-			if (modified_menu)
-            	menu.append_section(null, modified_menu);
-        } else {
-            // Add the original menu model as a section (unchanged)
-            menu.append_section(null, item.menu_model)
-        }
-    }
+		const modified_menu = extract_menumodel(item, remove_actions);
+		if (modified_menu)
+			menu.append_section(null, modified_menu);
+	}
 
     return menu
 }
@@ -108,15 +102,9 @@ function rebuild_combined_menu (target: Gio.Menu, item: service.TrayItem, tray_a
 		const separator = new Gio.Menu()
 		target.append_section(null, separator)
 
-		if (remove_actions && remove_actions.size > 0)
-		{
-			const modified_menu = extract_menumodel(item, remove_actions);
-			if (modified_menu)
-				target.append_section(null, modified_menu);
-		} else {
-			// Add the original menu model as a section (unchanged)
-			target.append_section(null, item.menu_model)
-		}
+		const modified_menu = extract_menumodel(item, remove_actions);
+		if (modified_menu)
+			target.append_section(null, modified_menu);
 	}
 }
 
@@ -150,6 +138,7 @@ function cleanup_action_group(action_group: Gio.SimpleActionGroup, action_names:
 
 export function init (btn: Gtk.MenuButton, item: service.TrayItem, tray_config?: TrayConfig)
 {
+	// Generation token to make submenu ids unique across rebuilds
 	// Clean up any existing action groups first
 	btn.insert_action_group("dbusmenu", null)
 	btn.insert_action_group("custom", null)

@@ -80,6 +80,7 @@ export def download [
 	--format: string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
 	--cookies-from-browser: string = 'firefox' # Use cookies from browser.
 	--list-formats # List formats of the video.
+	--extra-args : list<string> = [] # Extra arguments to pass to yt-dlp.
 ]: nothing -> any {
 	let file_name = if ($name | is-empty) {
 		[]
@@ -120,6 +121,10 @@ export def download [
 		$args = $args ++ [
 			--list-formats
 		]
+	}
+
+	if ($extra_args | is-not-empty) {
+		$args = $args ++ $extra_args
 	}
 
 	^yt-dlp ...$args

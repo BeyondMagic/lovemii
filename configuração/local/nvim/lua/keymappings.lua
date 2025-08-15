@@ -203,7 +203,7 @@ key('n', '<F1>', '', remap)
 key('n', '<Leader>rn', ':IncRename ', remap)
 
 -- Go to the directory of current file.
-key('n', '<Leader>cd', ':cd `dirname %`<CR>', remap)
+key('n', '<Leader>cd', ':cd %:p:h<CR>', remap)
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),

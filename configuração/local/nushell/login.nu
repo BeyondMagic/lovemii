@@ -6,7 +6,10 @@
 #
 # The file login.nu is sourced after env.nu and config.nu, so that you can overwrite those configurations if you need. There is an environment variable $nu.loginshell-path containing the path to this file.
 #
-# João V. Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
+# João V. Farias © BeyondMagic 2025 <beyondmagic@mail.ru>
+
+# Path for neovim's last working directory.
+$env.NEOVIM_CD = '/tmp/neovim_cd'
 
 # Name of the Google Drive remote.
 $env.RCLONE_GDRIVE = 'drive'

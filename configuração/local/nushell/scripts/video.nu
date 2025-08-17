@@ -95,13 +95,6 @@ export def download [
 		$link
 	}
 
-	# Remove the playlist from the link if not downloading a playlist.
-	let link = if $playlist {
-		$link
-	} else {
-		$link | str replace --regex `\&list=.+` ``
-	}
-
 	mut args = [
 		-S $format
 		--recode mp4
@@ -113,6 +106,10 @@ export def download [
 		--embed-chapters
 		--sub-langs 'all'
 		--embed-subs
+		# Remove the playlist from the link if not downloading a playlist.
+		(if not $playlist {
+			'--no-playlist'
+		})
 		-i
 		$link
 		...$file_name

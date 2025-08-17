@@ -114,6 +114,12 @@ para = "~/.config/"
 
 [["ligações"]]
 administrador = false
+de = "./magick.nu"
+para = "~/.config/nushell/scripts/external/magick.nu"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = "./subconfiguração/fontes"
 para = "~/.local/share/fonts"
 "único" = true

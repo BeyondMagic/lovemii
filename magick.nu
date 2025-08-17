@@ -31,6 +31,10 @@ export def list-packages []: nothing -> nothing {
 # Link all files.
 export def link []: nothing -> nothing {
 
+	cd ($nu.config-path | path dirname)
+
+	cd (git root)
+
 	let dados = open ./dados.toml
 
 	if ($dados | get ligações.administrador | any {|it| $it == true }) {

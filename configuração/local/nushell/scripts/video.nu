@@ -76,7 +76,8 @@ export def get-duration [
 export def download [
 	name? : string # Name of the file.
 	--link: string # Link of the video to download (taken from clipboard if empty).
-	--archive: string = './archive.txt' # Archive file.
+	--archive: string = './archive.txt' # Archive file for successful downloads.
+	--archive-failed: string = './archive-failed.txt' # Archive file for failed downloads.
 	--format: string = 'vcodec:h264,res,acodec:m4a' # Format of video and audio.
 	--cookies-from-browser: string = 'firefox' # Use cookies from browser.
 	--list-formats # List formats of the video.
@@ -94,6 +95,9 @@ export def download [
 	} else {
 		$link
 	}
+
+	let archive_failed_path = $archive_failed
+		| path expand
 
 	mut args = [
 		-S $format
@@ -132,7 +136,53 @@ export def download [
 		$args = $args ++ $extra_args
 	}
 
-	^yt-dlp ...$args
+	# Run yt-dlp with the given arguments.
+	# Capture the output and print it line by line.
+	let result = (run-external yt-dlp ...$args) o+e>| lines | each {|line|
+		print $line
+
+		if ($line starts-with 'ERROR: ') {
+			let failed_id = $line
+			| parse --regex `\[(.*?)\] (.*?):`
+			| rename 'platform' 'id'
+			| each {$in.platform + ' ' + $in.id}
+
+			# If any IDs were found, append them to the failed archive file
+			if ($failed_id | is-not-empty) {
+				let ids = if ($archive_failed_path | path exists) {
+					(open $archive_failed_path | lines) ++ $failed_id
+				} else {
+					$failed_id
+				}
+
+				$ids | uniq | save --force $archive_failed_path
+			}
+		}
+
+		$line
+	}
+
+	# let errors = $result
+	# | where {$in starts-with 'ERROR: '}
+
+	#if ($errors | is-not-empty) {
+
+	#	let failed_ids = $errors
+	#	| parse --regex `\[(.*?)\] (.*?):`
+	#	| rename 'platform' 'id'
+	#	| each {$in.platform + ' ' + $in.id}
+
+		# If any IDs were found, append them to the failed archive file
+	#	if ($failed_ids | is-not-empty) {
+	#		let ids = if ($archive_failed | path exists) {
+	#			(open $archive_failed) ++ $failed_ids
+	#		} else {
+	#			$failed_ids
+	#		}
+
+	#		$ids | save $archive_failed
+	#	}
+	#}
 }
 
 # Make subvideo from start to end.

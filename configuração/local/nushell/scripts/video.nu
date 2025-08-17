@@ -81,6 +81,7 @@ export def download [
 	--cookies-from-browser: string = 'firefox' # Use cookies from browser.
 	--list-formats # List formats of the video.
 	--extra-args : list<string> = [] # Extra arguments to pass to yt-dlp.
+	--playlist # Download playlist.
 ]: nothing -> any {
 	let file_name = if ($name | is-empty) {
 		[]
@@ -92,6 +93,13 @@ export def download [
 		^wl-paste
 	} else {
 		$link
+	}
+
+	# Remove the playlist from the link if not downloading a playlist.
+	let link = if $playlist {
+		$link
+	} else {
+		$link | str replace --regex `\&list=.+` ``
 	}
 
 	mut args = [

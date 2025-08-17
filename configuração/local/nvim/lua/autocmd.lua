@@ -2,6 +2,7 @@
 -- autocmd! VimLeavePre * :mks! ~/.config/nvim/session.vim
 vim.api.nvim_create_autocmd( 'VimLeavePre', {
   pattern = '*',
+  desc = 'Save session on exit',
   command = ":mks! ~/.config/nvim/session.vim"
 })
 

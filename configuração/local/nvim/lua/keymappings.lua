@@ -244,3 +244,4 @@ key('n', '=F', '', {
     vim.lsp.buf.format { async = true }
   end
 })
+

@@ -4,6 +4,7 @@
 
 const default_playlist = 'https://www.youtube.com/playlist?list=PLZx2EchsfnlgoXkZtHaNrAta_hIl4wkXA'
 const default_archive = '~/armazenamento/música/youtube.log'
+const default_archive_failed = '~/armazenamento/música/youtube_failed.log'
 const default_folder = '~/armazenamento/música/canções/'
 const default_format = '%(title)s.%(ext)s'
 const default_max = 50
@@ -44,20 +45,23 @@ export module cover {
 export def download [
 	playlist : string = $default_playlist # Playlist link to download from.
 	--archive : string = $default_archive # Archive to save all files.
+	--archive-failed : string = $default_archive_failed # Archive to save all failed IDs.
 	--folder : string = $default_folder # Folder to save files in.
 	--format : string = $default_format # Format of files. See yt-dlp help page.
 	--max : int = $default_max # Max videos to download from most updated.
 ]: nothing -> nothing {
 
-	# Download the new songs to the folder.
-	^yt-dlp ...[
+	let archive_failed_path = $archive_failed
+		| path expand
+
+	let args = [
 		-o ($folder | path join $format)
 		--download-archive $archive
 		--add-metadata
 		--embed-thumbnail
 		--embed-metadata
 		--embed-chapters
-		#--cookies-from-browser firefox
+		# --cookies-from-browser firefox
 		--no-embed-info-json
 		--sub-langs 'all'
 		--embed-subs
@@ -66,7 +70,34 @@ export def download [
 		-x
 		-i $playlist
 	]
-		
+
+	# Download the new songs to the folder.
+	# Run yt-dlp with the given arguments.
+	# Capture the output and print it line by line.
+	let result = (run-external yt-dlp ...$args) o+e>| lines | each {|line|
+		print $line
+
+		if ($line starts-with 'ERROR: ') {
+			let failed_id = $line
+			| parse --regex `\[(.*?)\] (.*?):`
+			| rename 'platform' 'id'
+			| each {$in.platform + ' ' + $in.id}
+
+			# If any IDs were found, append them to the failed archive file
+			if ($failed_id | is-not-empty) {
+
+				let ids = if ($archive_failed_path | path exists) {
+					(open $archive_failed_path | lines) ++ $failed_id
+				} else {
+					$failed_id
+				}
+
+				$ids | uniq | save --force $archive_failed_path
+			}
+		}
+
+		$line
+	}
 }
 
 # Update database with new songs.

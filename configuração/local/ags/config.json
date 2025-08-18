@@ -148,6 +148,12 @@
 	"categories": [
 		{
 			"find": [
+				"nm-applet"
+			],
+			"replace": "network-wireless-signal-level-7-symbolic"
+		},
+		{
+			"find": [
 				"foot"
 			],
 			"replace": "command-terminal"

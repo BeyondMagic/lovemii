@@ -5,10 +5,10 @@ import { config } from "../../../app";
 import Hyprland from "gi://AstalHyprland";
 import { Workspace } from "./workspace";
 
-const workspaces = createBinding(hyprland(), "workspaces")
-
 export function Workspaces ( {length: length = config.workspaces} : {length?: number} )
 {
+	const workspaces = createBinding(hyprland(), "workspaces")
+	
 	   const fixed = workspaces(() =>
 		   Array.from(
 			   { length },

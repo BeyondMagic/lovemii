@@ -1,6 +1,7 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk, Gdk } from "ags/gtk4";
 import { Horizontal, Vertical, drawing_area } from "./math";
+import { onCleanup } from "ags";
 
 export function Corner ({vertical, horizontal, gdkmonitor}: {vertical: Vertical, horizontal: Horizontal, gdkmonitor: Gdk.Monitor})
 {
@@ -15,6 +16,7 @@ export function Corner ({vertical, horizontal, gdkmonitor}: {vertical: Vertical,
             application={app}
             layer={Astal.Layer.BACKGROUND}
             visible
+            $={(self) => onCleanup(() => self.destroy())}
         >
             {drawing_area(vertical, horizontal)}
     </window>

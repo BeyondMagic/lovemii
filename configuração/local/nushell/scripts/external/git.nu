@@ -109,6 +109,38 @@ export def history [
 	] | lines | parse "{id} {description}"
 }
 
+# See changes made in a path up to a commit (HEAD by default).
+export def compare [
+	path: string # Path to compare.
+	--from: string # Commit to compare from.
+	--to: string # Commit to compare to.
+]: nothing -> any {
+
+	mut args = [
+		diff
+		--color=always
+		$path
+	]
+
+	if (($from | is-not-empty) and ($to | is-empty)) or (($to | is-empty) and ($from | is-not-empty)) {
+		error make {
+			msg: "Invalid arguments."
+			label: {
+				text: "You have to specify both `--from` and `--to` or none of them."
+				span: (metadata $from).span
+			}
+		}
+	}
+
+	let from = if ($from | is-not-empty) {
+		$args = $args
+		| insert 1 $from
+		| insert 2 $to
+	}
+
+	main $args
+}
+
 # List files with changes.
 export def diff [
 	base?: string # Root folder to find changes within.

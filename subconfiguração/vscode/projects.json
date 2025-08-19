@@ -161,6 +161,13 @@
 		"enabled": true
 	},
 	{
+		"name": "UnB: matricula",
+		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/pessoal/unb/matricula",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
 		"name": "UnB: matext",
 		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/pessoal/unb/matext",
 		"paths": [],

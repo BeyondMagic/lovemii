@@ -98,6 +98,17 @@ export def 'list untracked' [
 	| update name { realpath }
 }
 
+# See history changes of a path.
+export def history [
+	path: string # path to see history of.
+]: nothing -> table<id: string, description: string> {
+	main [
+		log
+		"--pretty=%h %s"
+		$path
+	] | lines | parse "{id} {description}"
+}
+
 # List files with changes.
 export def diff [
 	base?: string # Root folder to find changes within.

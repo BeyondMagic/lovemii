@@ -1,41 +1,33 @@
 import app from "ags/gtk4/app"
 import style from "./style.scss"
 import config from "./config.json";
-// import { Corner, Vertical, Horizontal } from "./widget/corner";
 import { For, This, createBinding, onCleanup } from "ags"
-import { Astal, Gdk, Gtk } from "ags/gtk4";
+import { Gtk } from "ags/gtk4";
 import { Bar } from "./widget/bar";
 import { interval, timeout, idle, createPoll } from "ags/time"
-import GLib from "gi://GLib";
-import Gio from "gi://Gio";
-import GObject from "gi://GObject?version=2.0";
 import { Corner } from "./widget/corner";
-
-async function sleep(ms: number) {
-	return new Promise(resolve => timeout(ms, resolve as () => void));
-}
+import { monitors as get_hypr_monitors } from "./services/hyprland";
 
 export {
-	config,
-	sleep
+	config
 };
 
 function main() {
-	const monitors = createBinding(app, "monitors")
+	const hypr_monitors = get_hypr_monitors();
 
 	return (
-		<For each={monitors} cleanup={win => {
+		<For each={hypr_monitors} cleanup={win => {
 			if (win instanceof Gtk.Window)
 				win.destroy()
 		}}>
 			{(monitor) => <This
 				this={app}
 			>
-				<Bar gdkmonitor={monitor} />
-				<Corner vertical="bottom" horizontal="left" gdkmonitor={monitor} />
-				<Corner vertical="bottom" horizontal="right" gdkmonitor={monitor} />
-				<Corner vertical="top" horizontal="right" gdkmonitor={monitor} />
-				<Corner vertical="top" horizontal="left" gdkmonitor={monitor} />
+				<Bar monitor={monitor.id} />
+				<Corner vertical="bottom" horizontal="left" monitor={monitor.id} />
+				<Corner vertical="bottom" horizontal="right" monitor={monitor.id} />
+				<Corner vertical="top" horizontal="right" monitor={monitor.id} />
+				<Corner vertical="top" horizontal="left" monitor={monitor.id} />
 			</This>}
 		</For>
 	)

@@ -10,7 +10,7 @@ import { Workspaces } from "./workspaces"
 import { Battery} from "./battery"
 // import { config } from "../../app"
 
-export function Bar ({gdkmonitor}: {gdkmonitor: Gdk.Monitor})
+export function Bar ({monitor}: {monitor: number})
 {
 	const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -18,7 +18,7 @@ export function Bar ({gdkmonitor}: {gdkmonitor: Gdk.Monitor})
 		name={"bar"}
 		class="bar"	
 		exclusivity={Astal.Exclusivity.EXCLUSIVE}
-		gdkmonitor={gdkmonitor}
+		monitor={monitor}
 		anchor={TOP | LEFT | RIGHT}
 		application={app}
 		layer={Astal.Layer.BACKGROUND}

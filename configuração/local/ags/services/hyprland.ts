@@ -10,3 +10,8 @@ export function hyprland() {
 export function focused_client() {
 	return createBinding(hyprland(), "focused_client");
 }
+
+// Create a binding to the monitors
+export function monitors() {
+	return createBinding(hyprland(), "monitors");
+}

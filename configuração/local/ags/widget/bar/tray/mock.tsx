@@ -1,4 +1,5 @@
 import { execAsync } from "ags/process";
+import { onCleanup } from "ags";
 import { config } from "../../../app";
 import { Gtk } from "ags/gtk4";
 import Gio from "gi://Gio";
@@ -62,6 +63,11 @@ export function MockTrayItem({ disabled_config, title }: { disabled_config: Disa
                 if (popover) {
                     popover.set_position(Gtk.PositionType.BOTTOM);
                 }
+
+                onCleanup(() => {
+                    try { self.insert_action_group("mock", null) } catch {}
+                    try { self.set_menu_model(null) } catch {}
+                })
             }}
         >
             <image

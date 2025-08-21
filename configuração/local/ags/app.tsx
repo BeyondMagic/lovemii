@@ -16,12 +16,10 @@ function main() {
 	const hypr_monitors = get_hypr_monitors();
 
 	return (
-		<For each={hypr_monitors} cleanup={win => {
-			if (win instanceof Gtk.Window)
-				win.destroy()
-		}}>
+		<For each={hypr_monitors} >
 			{(monitor) => <This
 				this={app}
+				
 			>
 				<Bar monitor={monitor.id} />
 				<Corner vertical="bottom" horizontal="left" monitor={monitor.id} />

@@ -173,6 +173,7 @@
 		},
 		{
 			"find": [
+				"firefox",
 				"firefox-nightly",
 				"Google-chrome",
 				"google-chrome"

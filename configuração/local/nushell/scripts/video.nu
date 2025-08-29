@@ -162,27 +162,6 @@ export def download [
 		$line
 	}
 
-	# let errors = $result
-	# | where {$in starts-with 'ERROR: '}
-
-	#if ($errors | is-not-empty) {
-
-	#	let failed_ids = $errors
-	#	| parse --regex `\[(.*?)\] (.*?):`
-	#	| rename 'platform' 'id'
-	#	| each {$in.platform + ' ' + $in.id}
-
-		# If any IDs were found, append them to the failed archive file
-	#	if ($failed_ids | is-not-empty) {
-	#		let ids = if ($archive_failed | path exists) {
-	#			(open $archive_failed) ++ $failed_ids
-	#		} else {
-	#			$failed_ids
-	#		}
-
-	#		$ids | save $archive_failed
-	#	}
-	#}
 }
 
 # Make subvideo from start to end.

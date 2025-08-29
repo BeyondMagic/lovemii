@@ -315,7 +315,8 @@
 			"find": [
 				"pavucontrol",
 				"songrec",
-				"org.pulseaudio.pavucontrol"
+				"org.pulseaudio.pavucontrol",
+				"SoulseekQt"
 			],
 			"replace": "sound-loud"
 		},

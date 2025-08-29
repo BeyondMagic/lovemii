@@ -32,7 +32,7 @@ export function Tray() {
 		})
 	}
 
-	return (
+	const trays = (
 		<box>
 			<For each={items}>
 				{(item) => (
@@ -42,5 +42,36 @@ export function Tray() {
 				)}
 			</For>
 		</box>
+	)
+
+	// Create and configure the popover
+	const popover = new Gtk.Popover();
+	popover.set_position(Gtk.PositionType.BOTTOM);
+	popover.set_child(trays as any);
+
+	let arrow_image: Gtk.Image;
+
+	// Connect to popover visibility changes
+	popover.connect("notify::visible", () => {
+		if (arrow_image) {
+			arrow_image.set_from_icon_name(
+				popover.visible ? "arrow-up-symbolic" : "arrow-down-symbolic"
+			);
+		}
+	});
+
+	return (
+		<menubutton
+			class="tray-button"
+			width_request={config.corner}
+			height_request={config.corner}
+			$={self => self.set_popover(popover)}
+		>
+			<image
+				css_classes={["icon"]}
+				icon_name="arrow-down-symbolic"
+				$={self => arrow_image = self}
+			/>
+		</menubutton>
 	)
 }

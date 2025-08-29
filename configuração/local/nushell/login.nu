@@ -144,6 +144,11 @@ $env.PATH = ($env.PATH | split row (char esep)) ++ [
 	#($env.NUPM_HOME + '/scripts/')
 ] | str join (char esep)
 
+# For QT applications, disable GPU usage if Intel CPU is detected.
+if (sys cpu | get brand | any { $in =~ 'Intel' }) {
+	$env.QTWEBENGINE_CHROMIUM_FLAGS = "--use-gl=disabled"
+}
+
 # For gnupg configuration files.
 #$env.GNUPGHOME = $env.XDG_CONFIG_HOME + '/gnupg'
 

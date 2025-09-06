@@ -11,7 +11,8 @@ export def shutdown []: nothing -> nothing {
 
 # Suspend the machine to disk.
 export def hibernate []: nothing -> nothing {
-	^loginctl hibernate
+	# ^loginctl hibernate
+	^doas zzz
 }
 
 # Suspend the system to memory.

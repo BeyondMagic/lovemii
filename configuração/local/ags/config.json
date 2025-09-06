@@ -352,6 +352,12 @@
 				"hyprland-donate-screen"
 			],
 			"replace": "love-heart"
+		},
+		{
+			"find": [
+				"DBeaver"
+			],
+			"replace": "database"
 		}
 	]
 }

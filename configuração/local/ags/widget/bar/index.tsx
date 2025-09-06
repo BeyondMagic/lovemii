@@ -7,7 +7,7 @@ import { Title } from "./title"
 import { Date } from "./date"
 import { Tray } from "./tray"
 import { Workspaces } from "./workspaces"
-import { Battery} from "./battery"
+import { Menu } from "./menu"
 // import { config } from "../../app"
 
 export function Bar ({monitor}: {monitor: number})
@@ -51,7 +51,7 @@ export function Bar ({monitor}: {monitor: number})
 					/> */}
 				<Tray />
 
-				<Battery />
+				<Menu />
 			</box>
 
 		</centerbox>

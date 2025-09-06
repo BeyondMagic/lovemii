@@ -5,7 +5,7 @@ import { get_color_at_percentage } from "./color"
 
 import Service from "gi://AstalBattery"
 
-export function Battery ()
+export function Menu ()
 {
 	const service = Service.get_default()
 	

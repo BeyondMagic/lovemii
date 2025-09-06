@@ -1,12 +1,7 @@
 import { For, createBinding, onCleanup } from "ags"
-import { astal_tray } from "../../../services/tray"
 import AstalTray from "gi://AstalTray"
 import { config } from "../../../app"
-import { execAsync } from "ags/process"
-import { map_trays, is_user_allowed } from "./map"
-import { MockTrayItem } from "./mock"
 import { Gdk, Gtk } from "ags/gtk4"
-import GLib from "gi://GLib"
 
 export function Tray() {
 

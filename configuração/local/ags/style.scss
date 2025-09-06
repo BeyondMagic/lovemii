@@ -2,6 +2,18 @@
 $fg-color: #{"@theme_fg_color"};
 $bg-color: #{"@theme_bg_color"};
 
+window#launcher {
+  background: transparent;
+  color: $fg-color;
+
+  box#launcher-content {
+    background: $bg-color;
+    min-width: 400px;
+    border-radius: 12px;
+    padding: 6px;
+  }
+}
+
 window.bar {
 	background: transparent;
 	color: $fg-color;

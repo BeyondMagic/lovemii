@@ -203,6 +203,13 @@
 		"enabled": true
 	},
 	{
+		"name": "UnB: Compiladores",
+		"rootPath": "/mnt/kaguya/projetos/pessoal/g7comp2025",
+		"paths": [],
+		"tags": [""],
+		"enabled": true
+	},
+	{
 		"name": "-----------------------",
 		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/---",
 		"paths": [],

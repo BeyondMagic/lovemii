@@ -23,7 +23,7 @@ function main()
 	const hypr_monitors = get_hypr_monitors();
 
 	app_launcher = Launcher() as Gtk.Window;
-	app.add_window(app_launcher);
+	app.add_window(app_launcher); 
 
 	return (
 		<For each={hypr_monitors} >

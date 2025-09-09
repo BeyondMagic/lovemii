@@ -15,8 +15,10 @@ export function Launcher ()
 	const [list, setList] = createState(new Array<AstalApps.Application>())
 
 	function search(text: string) {
-		if (text === "") setList([])
-		else setList(apps.fuzzy_query(text).slice(0, 8))
+		if (text === "")
+			setList([]);
+		else
+			setList(apps.fuzzy_query(text).slice(0, 8));
 	}
 
 	function launch(app?: AstalApps.Application) {
@@ -39,12 +41,42 @@ export function Launcher ()
 			return
 		}
 
-		if (mod === Gdk.ModifierType.ALT_MASK) {
+		if (mod === Gdk.ModifierType.ALT_MASK)
 			for (const i of [1, 2, 3, 4, 5, 6, 7, 8, 9] as const) {
-				if (keyval === Gdk[`KEY_${i}`]) {
+				if (keyval === Gdk[`KEY_${i}`])
 					return launch(list.get()[i - 1])
-				}
 			}
+
+		// focus the search entry, if it's
+		// a-z
+		// A-Z
+		// 0-9
+		// space
+		// backspace
+		if (
+			searchentry && (
+				(keyval >= Gdk.KEY_a && keyval <= Gdk.KEY_z) ||
+				(keyval >= Gdk.KEY_A && keyval <= Gdk.KEY_Z) ||
+				(keyval >= Gdk.KEY_0 && keyval <= Gdk.KEY_9) ||
+				keyval === Gdk.KEY_space ||
+				keyval === Gdk.KEY_BackSpace
+			)
+		) {
+			searchentry.grab_focus()
+
+			let text = searchentry.get_text()
+
+			// if backspace, remove last char
+			if (keyval === Gdk.KEY_BackSpace) {
+				text = text.slice(0, -1)
+			} else {
+				// insert the key into the entry
+				const char = String.fromCharCode(Gdk.keyval_to_unicode(keyval))
+				text += char
+			}
+			searchentry.set_text(text)
+			searchentry.set_position(text.length)
+			search(text)
 		}
 	}
 
@@ -83,12 +115,16 @@ export function Launcher ()
 				<entry
 					$={(ref) => (searchentry = ref)}
 					onNotifyText={({ text }) => search(text)}
+					onActivate={() => {
+						const l = list.get();
+						if (l.length > 0) launch(l[0]);
+					}}
 					placeholderText="Start typing to search"
 				/>
 				<Gtk.Separator visible={list((l) => l.length > 0)} />
 				<box orientation={Gtk.Orientation.VERTICAL}>
 					<For each={list}>
-						{(app, index) => (
+						{(app, index) => ( 
 							<button onClicked={() => launch(app)}>
 								<box>
 									<image iconName={app.iconName} />

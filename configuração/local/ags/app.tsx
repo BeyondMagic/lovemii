@@ -12,6 +12,8 @@ import { Bar } from "./widget/bar";
 import { Corner } from "./widget/corner";
 import { Launcher } from "./widget/launcher";
 
+import { NotificationPopups } from "./widget/notification"
+
 export {
 	config
 };
@@ -31,6 +33,7 @@ function main()
 				this={app}
 				
 			>
+				<NotificationPopups monitor={monitor.id}/>
 				<Bar monitor={monitor.id} />
 				<Corner vertical="bottom" horizontal="left" monitor={monitor.id} />
 				<Corner vertical="bottom" horizontal="right" monitor={monitor.id} />

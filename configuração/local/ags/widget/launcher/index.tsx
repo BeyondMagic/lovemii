@@ -1,4 +1,5 @@
 import { For, createState } from "ags"
+import { execAsync } from "ags/process"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
 import AstalApps from "gi://AstalApps"
 import Graphene from "gi://Graphene"
@@ -21,10 +22,25 @@ export function Launcher ()
 			setList(apps.fuzzy_query(text).slice(0, 8));
 	}
 
-	function launch(app?: AstalApps.Application) {
-		if (app) {
-			win.hide()
-			app.launch()
+	async function launch(app?: AstalApps.Application) {
+		if (!app) return;
+		win.hide();
+		// Prefer gtk-launch with the application entry name so desktop file Exec flags are honored
+		// and we avoid manually parsing the Exec field.
+		const entry = app.entry || app.get_entry?.();
+		if (entry) {
+			try {
+				await execAsync(["gtk-launch", entry]);
+				return;
+			} catch (e) {
+				printerr(`gtk-launch failed for ${entry}: ${e}`);
+			}
+		}
+		// Fallback to underlying API if gtk-launch not available or failed.
+		try {
+			app.launch();
+		} catch (e) {
+			printerr(`Fallback app.launch() failed: ${e}`);
 		}
 	}
 
@@ -35,7 +51,7 @@ export function Launcher ()
 		keyval: number,
 		_: number,
 		mod: number,
-	) {
+	) : void {
 		if (keyval === Gdk.KEY_Escape) {
 			win.visible = false
 			return
@@ -43,8 +59,10 @@ export function Launcher ()
 
 		if (mod === Gdk.ModifierType.ALT_MASK)
 			for (const i of [1, 2, 3, 4, 5, 6, 7, 8, 9] as const) {
-				if (keyval === Gdk[`KEY_${i}`])
-					return launch(list.get()[i - 1])
+				if (keyval === (Gdk as any)[`KEY_${i}`]) {
+					void launch(list.get()[i - 1]);
+					return;
+				}
 			}
 
 		// focus the search entry, if it's

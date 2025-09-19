@@ -8,4 +8,8 @@ let root = if ('GDRIVE_ROOT' in $env) {
     '~/armazenamento/gdrive'
 } | path expand
 
-^fusermount -uz $root
+try {
+    ^fusermount -uz $root
+}
+
+rm $root

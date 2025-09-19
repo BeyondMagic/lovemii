@@ -14,8 +14,11 @@ let root = if ('GDRIVE_ROOT' in $env) {
     '~/armazenamento/gdrive'
 } | path expand
 
-fusermount -uz $root
+mkdir $root
 
-sleep 1sec
+try {
+    ^fusermount -uz $root
+    sleep 1sec
+}
 
 exec rclone mount $"($name):" $root

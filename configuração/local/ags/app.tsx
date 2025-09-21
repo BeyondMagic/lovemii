@@ -14,11 +14,16 @@ import { Launcher } from "./widget/launcher";
 
 import { NotificationPopups } from "./widget/notification"
 
-export {
-	config
-};
-
 let app_launcher: Gtk.Window;
+
+print("Astal Desktop starting...");
+const dbus_address = GLib.getenv("DBUS_SESSION_BUS_ADDRESS") ?? "unix:path=/tmp/dbus";
+print("DBUS_SESSION_BUS_ADDRESS:", dbus_address);
+
+export {
+	config,
+	dbus_address
+};
 
 function main()
 {

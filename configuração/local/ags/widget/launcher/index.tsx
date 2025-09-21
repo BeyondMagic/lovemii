@@ -1,8 +1,12 @@
 import { For, createState } from "ags"
 import { execAsync } from "ags/process"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
+
 import AstalApps from "gi://AstalApps"
 import Graphene from "gi://Graphene"
+
+import { dbus_address } from "../../app"
+import GLib from "gi://GLib"
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
 
@@ -25,12 +29,13 @@ export function Launcher ()
 	async function launch(app?: AstalApps.Application) {
 		if (!app) return;
 		win.hide();
+
 		// Prefer gtk-launch with the application entry name so desktop file Exec flags are honored
 		// and we avoid manually parsing the Exec field.
 		const entry = app.entry || app.get_entry?.();
 		if (entry) {
 			try {
-				print("Launching via gtk-launch:", entry);
+				GLib.setenv("DBUS_SESSION_BUS_ADDRESS", dbus_address, true);
 				await execAsync([
 					"fork.nu",
 					`exec gtk-launch ${entry}`

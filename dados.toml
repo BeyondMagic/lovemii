@@ -166,6 +166,12 @@ de = "./scripts/dbus.nu"
 para = "~/.local/bin/dbus.nu"
 "único" = true
 
+[["ligações"]]
+administrador = false
+de = "./scripts/zoom.nu"
+para = "~/.local/bin/zoom.nu"
+"único" = true
+
 # GTK:
 # Only file sthat that can be system-shared.
 [["ligações"]]

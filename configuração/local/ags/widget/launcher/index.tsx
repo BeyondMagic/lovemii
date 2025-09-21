@@ -27,10 +27,14 @@ export function Launcher ()
 		win.hide();
 		// Prefer gtk-launch with the application entry name so desktop file Exec flags are honored
 		// and we avoid manually parsing the Exec field.
-		const entry = app.entry || app.get_entry?.();
+		const entry = app.executable || app.get_executable?.();
 		if (entry) {
 			try {
-				await execAsync(["gtk-launch", entry]);
+				print("Launching via gtk-launch:", entry);
+				await execAsync([
+					"fork.nu",
+					`exec ${entry}`
+				]);
 				return;
 			} catch (e) {
 				printerr(`gtk-launch failed for ${entry}: ${e}`);

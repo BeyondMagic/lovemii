@@ -2,7 +2,7 @@
 
 export def main [
 	--type: string # Type of action to perform: 'in', 'out', 'reset', 'screenshot'.
-	--difference: float = 0.1 # Difference percentage for zooming in or out.
+	--difference: float = 0.15 # Difference percentage for zooming in or out.
 ]: nothing -> any {
 
 	use fork.nu

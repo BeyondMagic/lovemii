@@ -106,7 +106,10 @@ export def history [
 		log
 		"--pretty=%h %s"
 		$path
-	] | lines | parse "{id} {description}"
+	]
+	| lines
+	| parse "{id} {description}"
+	| reverse
 }
 
 # See changes made in a path up to a commit (HEAD by default).

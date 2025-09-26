@@ -110,14 +110,16 @@ export def download [
 		--embed-chapters
 		--sub-langs 'all'
 		--embed-subs
-		# Remove the playlist from the link if not downloading a playlist.
-		(if not $playlist {
-			'--no-playlist'
-		})
 		-i
 		$link
 		...$file_name
 	]
+
+	if (not $playlist) {
+		$args = $args ++ [
+			--no-playlist
+		]
+	}
 
 	if ($cookies_from_browser | is-not-empty) {
 		$args = $args ++ [

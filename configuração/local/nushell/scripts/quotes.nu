@@ -8,7 +8,7 @@ const default_database: list<string> = [
 
 # Add quote to database.
 export def add [
-	...words : string # The words
+	words : list<string> # The words
 	--authors : list<string> # Author(s) of the quote.
 	--sources : list<string> # Source(s) of the quote.
 	--time : datetime # When quote was made.

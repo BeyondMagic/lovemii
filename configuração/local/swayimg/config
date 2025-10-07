@@ -8,6 +8,7 @@ overlay = no
 
 [list]
 all = yes
+order = mtime
 
 [keys.viewer]
 Delete = exec rm "%"; skip_file

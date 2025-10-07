@@ -91,8 +91,11 @@ $env.TRASH = $env.HOME + '/.local/trash'
 # Paru: AUR package manager configuration.
 $env.PARU_CONF = $env.XDG_CONFIG_HOME + '/paru/paru.conf'
 
-# Possible fix for Steam.
-$env.QT_QPA_PLATFORM = 'wayland'
+# Possible fix for Steam
+$env.QT_QPA_PLATFORM = 'wayland;xcb'
+
+# Render GDK for wayland! Useful for ags.
+$env.GDK_BACKEND = 'wayland'
 
 # Language unix settings.
 $env.LC_TIME = 'ja_JP.UTF-8'
@@ -120,9 +123,6 @@ $env.SVDIR =  $env.HOME + '/.local/services'
 
 # SSH: dynamic get the agent PID.
 $env.SSH_AGENT_PID = ^pidof ssh-agent | complete | get stdout | str trim
-
-# Render GDK for wayland! Useful for ags.
-$env.GDK_BACKEND = 'wayland'
 
 # Go path for binaries, etc.
 $env.GOPATH = $env.HOME + '/.config/go'

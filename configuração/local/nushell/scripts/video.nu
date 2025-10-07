@@ -115,6 +115,17 @@ export def download [
 		...$file_name
 	]
 
+	# Fix ffmpeg bug with nicovideo links due to disallowed extensions.
+	# https://github.com/yt-dlp/yt-dlp/issues/12700
+	if $link =~ 'nicovideo' {
+		$args = $args ++ [
+			--downloader-arg
+			"ffmpeg_i1:-extension_picky 0"
+			--downloader-arg
+			"ffmpeg_i2:-extension_picky 0"
+		]
+	}
+
 	if (not $playlist) {
 		$args = $args ++ [
 			--no-playlist

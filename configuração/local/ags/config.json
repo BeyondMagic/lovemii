@@ -330,7 +330,8 @@
 		},
 		{
 			"find": [
-				"PacketTracer"
+				"PacketTracer",
+				"F5 VPN"
 			],
 			"replace": "network-wired-logical"
 		},

@@ -2,7 +2,7 @@
 Name=Visual Studio Code
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %F
+Exec=/usr/bin/code %F
 Icon=visual-studio-code
 Type=Application
 StartupNotify=false

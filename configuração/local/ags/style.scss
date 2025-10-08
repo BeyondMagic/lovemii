@@ -6,7 +6,9 @@
 
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
 $fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+// $bg-color: #{"@theme_bg_color"};
+$bg-color: #FEFEFE;
+$error: red;
 
 window#launcher {
 	background: transparent;
@@ -76,26 +78,20 @@ window.bar {
 		}
 	}
 
-	.tray-popover-content {
-		.mock-tray-item {
-			.mock-icon {
-				opacity: 0.6;
+	.tray-button {
 
-				&:hover {
-					opacity: 0.8;
-					color: #F0A6C8;
-				}
+		.icon {
+			color: $fg-color;
+
+			&:hover {
+				opacity: 0.8;
+				color: #F0A6C8;
 			}
 		}
 	}
 }
 
 // notification/
-
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
-$error: red;
 
 window.NotificationPopups {
 	all: unset;

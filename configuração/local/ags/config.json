@@ -3,9 +3,9 @@
 	"root_size": 16,
 	"corner": 32,
 	"background_color": {
-		"red": 239,
-		"green": 241,
-		"blue": 245,
+		"red": 254,
+		"green": 254,
+		"blue": 254,
 		"alpha": 1
 	},
 	"workspaces": 10,
@@ -17,7 +17,7 @@
 			"disabled": {
 				"icon_name": "email-manager",
 				"tooltip": "Email client, but it is not running.",
-				"buttons": [	
+				"buttons": [
 					{
 						"label": "Start",
 						"args": [

@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z" fill="#0F0F0F"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800"
+   height="800"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <path
+     d="m 18.2929,15.2893 c 0.3905,-0.3905 0.3905,-1.0237 0,-1.4142 L 13.4007,8.98766 c -0.7812,-0.7804 -2.047,-0.78009 -2.8278,6.9e-4 L 5.68257,13.8787 c -0.39052,0.3905 -0.39052,1.0237 0,1.4142 0.39053,0.3906 1.02369,0.3906 1.41422,0 l 4.18561,-4.1856 c 0.3906,-0.3905 1.0237,-0.3905 1.4142,0 l 4.1821,4.182 c 0.3905,0.3905 1.0237,0.3905 1.4142,0 z"
+     fill="#0F0F0F"
+     id="path1"
+     style="fill:#000000;fill-opacity:1" />
 </svg>

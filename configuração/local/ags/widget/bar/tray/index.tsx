@@ -21,9 +21,9 @@ export function Tray() {
 
 		// ensure we cleanup when this menubutton unmounts
 		onCleanup(() => {
-			try { item.disconnect(conn) } catch {}
-			try { btn.insert_action_group("dbusmenu", null) } catch {}
-			try { (btn as any).set_menu_model?.(null) ?? (btn.menuModel = null as any) } catch {}
+			try { item.disconnect(conn) } catch { }
+			try { btn.insert_action_group("dbusmenu", null) } catch { }
+			try { (btn as any).set_menu_model?.(null) ?? (btn.menuModel = null as any) } catch { }
 		})
 	}
 
@@ -63,7 +63,7 @@ export function Tray() {
 			$={self => self.set_popover(popover)}
 		>
 			<image
-				css_classes={["icon"]}
+				class="icon"
 				icon_name="arrow-down-symbolic"
 				$={self => arrow_image = self}
 			/>

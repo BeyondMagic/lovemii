@@ -10,8 +10,7 @@ import GLib from "gi://GLib"
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
 
-export function Launcher ()
-{
+export function Launcher() {
 	let contentbox: Gtk.Box
 	let searchentry: Gtk.Entry
 	let win: Astal.Window
@@ -35,7 +34,6 @@ export function Launcher ()
 		const entry = app.entry || app.get_entry?.();
 		if (entry) {
 			try {
-				GLib.setenv("DBUS_SESSION_BUS_ADDRESS", dbus_address, true);
 				await execAsync([
 					"fork.nu",
 					`exec gtk-launch ${entry}`
@@ -60,7 +58,7 @@ export function Launcher ()
 		keyval: number,
 		_: number,
 		mod: number,
-	) : void {
+	): void {
 		if (keyval === Gdk.KEY_Escape) {
 			win.visible = false
 			return
@@ -151,7 +149,7 @@ export function Launcher ()
 				<Gtk.Separator visible={list((l) => l.length > 0)} />
 				<box orientation={Gtk.Orientation.VERTICAL}>
 					<For each={list}>
-						{(app, index) => ( 
+						{(app, index) => (
 							<button onClicked={() => launch(app)}>
 								<box>
 									<image iconName={app.iconName} />

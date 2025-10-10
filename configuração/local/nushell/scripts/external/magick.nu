@@ -1,1 +1,1 @@
-/mnt/kaguya/sistema/magick.nu
+/home/dream/armazenamento/.compartilhado/sistema/magick.nu

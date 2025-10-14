@@ -1,12 +1,32 @@
 import { config } from "../../../app";
 
-// We map the class to a predefined category set.
-const map_category = new Map<string, string>();
+type CategoryMatcher = {
+	pattern: RegExp;
+	replace: string;
+};
 
-for (const category_name of config.categories)
-	for (const find of category_name.find)
-		map_category.set(find, category_name.replace);
+const categoryMatchers: CategoryMatcher[] = config.categories.flatMap((category) =>
+	category.find.map((pattern) => ({
+		pattern: new RegExp(pattern, "i"),
+		replace: category.replace,
+	}))
+);
 
-export {
-	map_category
+export function resolveCategory({
+	className,
+	title,
+}: {
+	className?: string | null;
+	title?: string | null;
+}): string | null {
+	const candidates = [className, title].filter((value): value is string => Boolean(value && value.length));
+
+	for (const candidate of candidates) {
+		for (const { pattern, replace } of categoryMatchers) {
+			if (pattern.test(candidate))
+				return replace;
+		}
+	}
+
+	return null;
 }

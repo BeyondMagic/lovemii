@@ -9,142 +9,6 @@
 		"alpha": 1
 	},
 	"workspaces": 10,
-	"tray_separator": 8,
-	"trays": [
-		{
-			"title": "SysTray-X",
-			"users": "*",
-			"disabled": {
-				"icon_name": "email-manager",
-				"tooltip": "Email client, but it is not running.",
-				"buttons": [
-					{
-						"label": "Start",
-						"args": [
-							"sv",
-							"once",
-							"thunderbird"
-						]
-					}
-				]
-			},
-			"add": [
-				{
-					"label": "Show/Hide",
-					"args": [
-						"minimize.nu",
-						"--class",
-						"thunderbird",
-						"--type",
-						"toggle"
-					]
-				}
-			],
-			"remove_at": [
-				0
-			]
-		},
-		{
-			"title": "blueman",
-			"users": "*",
-			"disabled": {
-				"icon_name": "bluetooth-slash-symbolic",
-				"tooltip": "Bluetooth Manager - Bluetooth management (not running)",
-				"buttons": [
-					{
-						"label": "Start Bluetooth Manager",
-						"args": [
-							"sv",
-							"once",
-							"blueman-applet"
-						]
-					}
-				]
-			},
-			"add": [],
-			"remove_at": []
-		},
-		{
-			"title": "qBittorrent",
-			"users": "*",
-			"disabled": {
-				"icon_name": "tool-any-downloader-symbolic",
-				"tooltip": "qBittorrent - Torrent client (not running)",
-				"buttons": [
-					{
-						"label": "Start qBittorrent",
-						"args": [
-							"gtk-launch",
-							"org.qbittorrent.qBittorrent"
-						]
-					}
-				]
-			},
-			"add": [],
-			"remove_at": []
-		},
-		{
-			"title": "Beeper",
-			"users": "*",
-			"disabled": {
-				"icon_name": "message-service",
-				"tooltip": "Beeper - Messaging client (not running)",
-				"buttons": [
-					{
-						"label": "Start Beeper",
-						"args": [
-							"gtk-launch",
-							"beeper"
-						]
-					}
-				]
-			},
-			"add": [],
-			"remove_at": []
-		},
-		{
-			"title": "ネットワーク",
-			"users": [
-				"dream"
-			],
-			"disabled": {
-				"icon_name": "network-wireless-signal-excellent-symbolic",
-				"tooltip": "Network Manager Applet - WiFi management (not running)",
-				"buttons": [
-					{
-						"label": "Start WiFi Manager",
-						"args": [
-							"sv",
-							"once",
-							"nm-applet"
-						]
-					}
-				]
-			},
-			"add": [],
-			"remove_at": []
-		},
-		{
-			"title": "入力メソッド",
-			"users": "*",
-			"disabled": {
-				"icon_name": "keyboard-symbolic",
-				"tooltip": "Input Method - Not running",
-				"buttons": [
-					{
-						"label": "Start Input Method",
-						"args": [
-							"sv",
-							"once",
-							"fcitx5"
-						]
-					}
-				]
-			},
-			"add": [],
-			"remove_at": []
-		}
-	],
 	"categories": [
 		{
 			"find": [
@@ -356,7 +220,8 @@
 		},
 		{
 			"find": [
-				"DBeaver"
+				"DBeaver",
+				"^Oracle SQL Developer.*"
 			],
 			"replace": "database"
 		}

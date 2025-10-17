@@ -157,7 +157,7 @@ export function Launcher() {
 									<label
 										hexpand
 										halign={Gtk.Align.END}
-										label={index((i) => `󰘳${i + 1}`)}
+										label={index((i) => `∷${i + 1}`)}
 									/>
 								</box>
 							</button>

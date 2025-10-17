@@ -10,13 +10,12 @@ import { Workspaces } from "./workspaces"
 import { Menu } from "./menu"
 // import { config } from "../../app"
 
-export function Bar ({monitor}: {monitor: number})
-{
+export function Bar({ monitor }: { monitor: number }) {
 	const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
 	return <window
 		name={"bar"}
-		class="bar"	
+		class="bar"
 		exclusivity={Astal.Exclusivity.EXCLUSIVE}
 		monitor={monitor}
 		anchor={TOP | LEFT | RIGHT}

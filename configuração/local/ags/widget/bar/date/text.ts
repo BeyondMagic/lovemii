@@ -3,13 +3,13 @@ import { createPoll } from "ags/time"
 import GLib from "gi://GLib";
 
 const cycle_kanji = {
-    total: 4,
-    current: 0
+	total: 4,
+	current: 0
 }
 
-export function text () {
+export function text() {
 	return createPoll(
-		"", 
+		"",
 		1000,
 		() => {
 			const date = GLib.DateTime.new_now_local().format('%B%d%A###%I時%M分')!;

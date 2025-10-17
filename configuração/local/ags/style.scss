@@ -93,11 +93,11 @@ window.bar {
 
 // notification/
 
-window.NotificationPopups {
+window.notifications {
 	all: unset;
 }
 
-.Notification {
+.notification {
 	border-radius: 13px;
 	background-color: $bg-color;
 	margin: 0.5rem 1rem 0.5rem 1rem;

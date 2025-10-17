@@ -38,16 +38,19 @@ export default function Notification({
 	notification: AstalNotifd.Notification
 	onHoverLost: () => void
 }) {
+
+	const width = 400;
+
 	return (
-		<Adw.Clamp maximumSize={400}>
+		<Adw.Clamp maximumSize={width}>
 			<box
-				widthRequest={400}
-				class={`Notification ${urgency(n)}`}
+				widthRequest={width}
+				class={`notification ${urgency(n)}`}
 				orientation={Gtk.Orientation.VERTICAL}
 			>
-				{ /* <Gtk.EventControllerMotion
+				{/* <Gtk.EventControllerMotion
 					onLeave={onHoverLost}
-				/> */ }
+				/> */}
 				<box class="header">
 					{(n.appIcon || isIcon(n.desktopEntry)) && (
 						<image

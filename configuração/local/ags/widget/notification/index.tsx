@@ -4,8 +4,7 @@ import AstalNotifd from "gi://AstalNotifd"
 import Notification from "./util"
 import { createBinding, For, createState, onCleanup } from "ags"
 
-export function NotificationPopups ({monitor}: {monitor: number})
-{
+export function NotificationPopups({ monitor }: { monitor: number }) {
 
 	const notifd = AstalNotifd.get_default()
 
@@ -37,7 +36,7 @@ export function NotificationPopups ({monitor}: {monitor: number})
 
 	return (
 		<window
-			class="NotificationPopups"
+			class="notifications"
 			monitor={monitor}
 			visible={notifications((ns) => ns.length > 0)}
 			anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
@@ -47,11 +46,12 @@ export function NotificationPopups ({monitor}: {monitor: number})
 					{(notification) => (
 						<Notification
 							notification={notification}
-							onHoverLost={() =>
-								setNotifications((ns) =>
-									ns.filter((n) => n.id !== notification.id),
-								)
-							}
+							onHoverLost={() => {
+								print(`Hover lost for notification id ${notification.id}`)
+								// setNotifications((ns) =>
+								// 	ns.filter((n) => n.id !== notification.id),
+								// )
+							}}
 						/>
 					)}
 				</For>

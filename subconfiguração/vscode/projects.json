@@ -192,21 +192,41 @@
 		"name": "UnB: Algencan Interfaces",
 		"rootPath": "/mnt/armazenamento/.compartilhado/projetos/contribuindo/pibic/algencan-interfaces",
 		"paths": [],
-		"tags": ["research", "scientific", "interfaces", "typst", "markdown", "python", "fortran", "c++"],
+		"tags": [
+			"research",
+			"scientific",
+			"interfaces",
+			"typst",
+			"markdown",
+			"python",
+			"fortran",
+			"c++"
+		],
 		"enabled": false
 	},
 	{
 		"name": "UnB: Typst Template",
 		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos/contribuindo/unb-typst",
 		"paths": [],
-		"tags": ["research", "scientific", "interfaces", "typst", "markdown", "python", "fortran", "c++"],
+		"tags": [
+			"research",
+			"scientific",
+			"interfaces",
+			"typst",
+			"markdown",
+			"python",
+			"fortran",
+			"c++"
+		],
 		"enabled": true
 	},
 	{
 		"name": "UnB: Compiladores",
 		"rootPath": "/mnt/kaguya/projetos/pessoal/g7comp2025",
 		"paths": [],
-		"tags": [""],
+		"tags": [
+			""
+		],
 		"enabled": true
 	},
 	{
@@ -261,6 +281,41 @@
 	{
 		"name": "Thunderbird: Minimize on Hyprland",
 		"rootPath": "/mnt/kaguya/projetos/usando/thunderbird-minimizeonclose",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "-----------------------",
+		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "ANAC: DEP_SAR",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/anac/dep_sar",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "ANAC: Robo SCDP (Selenium)",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/anac/scdp_selenium",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "ANAC: Robo SCDP (Playwright)",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/anac/scdp_playwright",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "ANAC: Web Components",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/anac/web",
 		"paths": [],
 		"tags": [],
 		"enabled": true

@@ -221,7 +221,8 @@
 		{
 			"find": [
 				"DBeaver",
-				"^Oracle SQL Developer.*"
+				"^Oracle SQL Developer.*",
+				"oracle-ide-osgi-boot-OracleIdeLauncher"
 			],
 			"replace": "database"
 		}

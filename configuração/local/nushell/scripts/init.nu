@@ -6,6 +6,7 @@ export use lovemii.nu
 export use ./standard/random.nu
 #export use ./standard/filter.nu *
 export use ./standard/str.nu
+export use ./standard/transform.nu
 
 # Modules for external commands.
 export use ./external/sv.nu

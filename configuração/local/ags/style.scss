@@ -91,6 +91,57 @@ window.bar {
 	}
 }
 
+// calendar
+
+box.calendar {
+	// background-color: white;
+
+	padding: 0.5rem;
+
+	label,
+	button {
+		all: unset;
+	}
+
+	.navigation {
+
+		>.section {
+
+			>* {
+				padding: 0.3rem 0.5rem;
+			}
+
+			>button {
+				>label {
+					font-size: 0.5rem;
+				}
+			}
+		}
+	}
+
+
+	.days {
+		// background-color: green;
+
+		>.row {
+
+			label {
+				&.inactive {
+					color: gtkalpha($fg-color, 0.3);
+				}
+			}
+
+			&.header {
+				label {
+					&:hover {
+						color: #F0A6C8;
+					}
+				}
+			}
+		}
+	}
+}
+
 // notification/
 
 window.notifications {

@@ -73,7 +73,7 @@ def parse-timestamp [
 	timestamp: string
 ]: nothing -> duration {
 	use ./standard/transform.nu
-	
+
 	$timestamp
 	| split row --regex ':|\.'
 	| transform (timestamp-transforms)
@@ -207,7 +207,6 @@ export def subvideo [
 	--end : string # End timestamp in HH:mm:ss.SSS format.
 	--output : string # Output file for video as path.
 ]: nothing -> nothing {
-
 	# Raise error when start timestamp is not given.
 	if ($start | is-empty) {
 		error make {
@@ -260,19 +259,16 @@ export def subvideo [
 	)
 
 	let out = if ($output | is-empty) {
+		let parsed = $file | path parse
+		let random_suffix = random chars --length 3
+		let ext = if ($parsed.extension | is-empty) { '' } else { '.' + $parsed.extension }
+		let filename = $parsed.stem + '-' + $random_suffix + $ext
 
-		# Get extension of file.
-		let extension = $file
-			| split row '.'
-			| last
-
-		# Make new output path with random chars.
-		($file
-			| str substring ..(
-				$file | str index-of '.' --end
-		)) + '-' + (
-			random chars --length 3
-		) + '.' + $extension
+		if ($parsed.parent | is-empty) {
+			$filename
+		} else {
+			[$parsed.parent $filename] | path join
+		}
 	} else {
 		$output
 	}

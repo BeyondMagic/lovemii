@@ -60,6 +60,26 @@ export def get-duration [
 	$duration
 }
 
+def timestamp-transforms []: nothing -> list<closure> {
+	[
+		{ $in | into duration --unit 'hr' }
+		{ $in | into duration --unit 'min' }
+		{ $in | into duration --unit 'sec' }
+		{ $in | into duration --unit 'ms' }
+	]
+}
+
+def parse-timestamp [
+	timestamp: string
+]: nothing -> duration {
+	use ./standard/transform.nu
+	
+	$timestamp
+	| split row --regex ':|\.'
+	| transform (timestamp-transforms)
+	| math sum
+}
+
 # Download video.
 #
 # Dependes on:
@@ -183,8 +203,8 @@ export def download [
 #	$ video subvideo `a.mkv` --start 00:00:01 --end 00:00:10
 export def subvideo [
 	file : string # Input file for video as path.
-	--start : string # Start time stamp of the video in format HH:MM:SS.MSE.
-	--end : string # End time stamp of the video in format HH:MM:SS.MSE.
+	--start : string # Start timestamp in HH:mm:ss.SSS format.
+	--end : string # End timestamp in HH:mm:ss.SSS format.
 	--output : string # Output file for video as path.
 ]: nothing -> nothing {
 
@@ -192,6 +212,10 @@ export def subvideo [
 	if ($start | is-empty) {
 		error make {
 			msg: "Not given start time stamp."
+			label: {
+				text: "You must specify the start time stamp of the video."
+				span: (metadata $start).span
+			}
 		}
 	}
 
@@ -199,8 +223,41 @@ export def subvideo [
 	if ($end | is-empty) {
 		error make {
 			msg: "Not given end time stamp."
+			label: {
+				text: "You must specify the end time stamp of the video."
+				span: (metadata $end).span
+			}
 		}
 	}
+
+	let start_duration = parse-timestamp $start
+	let end_duration = parse-timestamp $end
+
+	let duration = $end_duration - $start_duration
+
+	if $duration < 0sec {
+		error make {
+			msg: "End time stamp is before start time stamp."
+			label: {
+				text: "The end time stamp must be after the start time stamp."
+				span: (metadata $end).span
+			}
+		}
+	}
+
+	let duration_time = {
+		hr: ($duration // 1hr)
+		min: ($duration // 1min)
+		sec: ($duration // 1sec)
+		ms: ($duration // 1ms // 10)
+	}
+
+	let formatted_duration = (
+		($duration_time.hr | into string | fill --alignment 'right' --character '0' --width 2) + ':' +
+		($duration_time.min | into string | fill --alignment 'right' --character '0' --width 2) + ':' +
+		($duration_time.sec | into string | fill --alignment 'right' --character '0' --width 2) + '.' +
+		($duration_time.ms | into string | fill --alignment 'right' --character '0' --width 3)
+	)
 
 	let out = if ($output | is-empty) {
 
@@ -224,7 +281,7 @@ export def subvideo [
 		-ss $start
 		-i $file
 		-c copy
-		-to $end
+		-to $formatted_duration
 		$out
 	]
 }

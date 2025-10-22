@@ -225,6 +225,13 @@
 				"oracle-ide-osgi-boot-OracleIdeLauncher"
 			],
 			"replace": "database"
+		},
+		{
+			"find": [
+				"virt-manager",
+				"virt-viewer"
+			],
+			"replace": "virtual-machine"
 		}
 	]
 }

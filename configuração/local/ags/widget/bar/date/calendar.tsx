@@ -101,7 +101,7 @@ export function Calendar() {
 
 	return (
 		<box
-			class="calendar"
+			class="box"
 			orientation={Gtk.Orientation.VERTICAL}
 			spacing={DEFAULT_SPACING}
 		>
@@ -109,36 +109,53 @@ export function Calendar() {
 				class="navigation"
 				spacing={DEFAULT_SPACING * 2}
 			>
-				<centerbox class="section">
-					<button $type="start" onClicked={() => shift_month(-1)}>
-						<label label={nav_arrows.left} />
-					</button>
-					<label $type="center" label={calendar_view((calendar_state: CalendarView) => calendar_state.month_label)} />
-					<button $type="end" onClicked={() => shift_month(1)}>
-						<label label={nav_arrows.right} />
-					</button>
-				</centerbox>
+				<box
+					class="section"
+					spacing={DEFAULT_SPACING / 2}
+				>
+					<button
+						onClicked={() => shift_month(-1)}
+						label={nav_arrows.left}
+					/>
+					<label
+						vexpand
+						valign={Gtk.Align.CENTER}
+						label={calendar_view((calendar_state: CalendarView) => calendar_state.month_label)}
+					/>
+					<button
+						onClicked={() => shift_month(1)}
+						label={nav_arrows.right}
+					/>
+				</box>
 				<box hexpand />
-				<centerbox class="section">
-					<button $type="start" onClicked={() => shift_year(-1)}>
-						<label label={nav_arrows.left} />
-					</button>
-					<label $type="center" label={calendar_view((calendar_state: CalendarView) => calendar_state.year_label)} />
-					<button $type="end" onClicked={() => shift_year(1)}>
-						<label label={nav_arrows.right} />
-					</button>
-				</centerbox>
+				<box
+					class="section"
+					spacing={DEFAULT_SPACING / 2}
+				>
+					<button
+						onClicked={() => shift_year(-1)}
+						label={nav_arrows.left}
+					/>
+					<label
+						valign={Gtk.Align.CENTER}
+						label={calendar_view((calendar_state: CalendarView) => calendar_state.year_label)}
+					/>
+					<button
+						onClicked={() => shift_year(1)}
+						label={nav_arrows.right}
+					/>
+				</box>
 			</box>
 			<Gtk.Separator />
 			<box
 				orientation={Gtk.Orientation.VERTICAL}
-				spacing={DEFAULT_SPACING * 2}
+				// spacing={DEFAULT_SPACING * 2}
 				class="days"
 			>
 				<box
 					css_classes={["row", "header"]}
 					homogeneous
-					spacing={DEFAULT_SPACING * 2}
+				// spacing={DEFAULT_SPACING * 2}
 				>
 					{WEEKDAY_LABELS.map((weekday_label) => (
 						<label label={weekday_label} />
@@ -149,7 +166,7 @@ export function Calendar() {
 						<box
 							css_classes={["row"]}
 							homogeneous
-							spacing={DEFAULT_SPACING * 2}
+						// spacing={DEFAULT_SPACING * 2}
 						>
 							{week_cells.map((day_cell: DayCell) => (
 								<label

@@ -1,4 +1,5 @@
 @use "sass:string";
+@use "sass:color";
 
 @function gtkalpha($c, $a) {
 	@return string.unquote("alpha(#{$c},#{$a})");
@@ -7,8 +8,30 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
 $fg-color: #{"@theme_fg_color"};
 // $bg-color: #{"@theme_bg_color"};
-$bg-color: #FEFEFE;
-$error: red;
+$bg-color: #ffffff;
+$error-color: red;
+
+// Layout metrics
+$radius-small: 8px;
+$radius-medium: 12px;
+$radius-large: 13px;
+
+$spacing-xsmall: 0.2rem;
+$spacing-small: 0.3rem;
+$spacing-medium: 0.5rem;
+$spacing-large: 1rem;
+
+$button-hover-color: #FC7688;
+$button-accent-color: #F0A6C8;
+$workspace-empty-color: #A0A0A0;
+$workspace-focus-color: #497F9E;
+$workspace-hover-color: $button-hover-color;
+$calendar-hover-color: $button-accent-color;
+$calendar-border-color: $workspace-focus-color;
+
+* {
+	all: unset;
+}
 
 window#launcher {
 	background: transparent;
@@ -17,8 +40,8 @@ window#launcher {
 	box#launcher-content {
 		background: $bg-color;
 		min-width: 400px;
-		border-radius: 12px;
-		padding: 6px;
+		border-radius: $radius-medium;
+		padding: $spacing-small * 2;
 	}
 }
 
@@ -32,14 +55,16 @@ window.bar {
 	}
 
 	button {
-		border-radius: 8px;
+		border: none;
+		outline: none;
+		background: none;
+		color: inherit;
+		border-radius: $radius-small;
 		margin: 2px;
-
 		color: $fg-color;
 
 		&:checked {
-			outline: none;
-			color: #FC7688;
+			color: $button-hover-color;
 		}
 
 		&:focus {
@@ -52,15 +77,15 @@ window.bar {
 		.workspace {
 
 			&.empty {
-				color: #A0A0A0;
+				color: $workspace-empty-color;
 			}
 
 			&.focus {
-				color: #497F9E;
+				color: $workspace-focus-color;
 			}
 
 			&:hover {
-				color: #FC7688;
+				color: $workspace-hover-color;
 			}
 
 		}
@@ -73,7 +98,7 @@ window.bar {
 		.battery,
 		.icon {
 			&:hover {
-				color: #F0A6C8;
+				color: $button-accent-color;
 			}
 		}
 	}
@@ -85,7 +110,7 @@ window.bar {
 
 			&:hover {
 				opacity: 0.8;
-				color: #F0A6C8;
+				color: $button-accent-color;
 			}
 		}
 	}
@@ -93,52 +118,118 @@ window.bar {
 
 // calendar
 
-box.calendar {
-	// background-color: white;
+popover.calendar {
+	// box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 
-	padding: 0.5rem;
+	$darker: #00000011;
+	$darker-2: #00000022;
+	$lighter: #FFFFFF11;
 
-	label,
-	button {
-		all: unset;
-	}
+	margin-top: 0.3rem;
 
-	.navigation {
+	>arrow {
+		border-width: 1px;
+		border-style: solid;
+		border-color: $darker-2;
 
-		>.section {
-
-			>* {
-				padding: 0.3rem 0.5rem;
-			}
-
-			>button {
-				>label {
-					font-size: 0.5rem;
-				}
-			}
-		}
+		background-color: $bg-color;
 	}
 
 
-	.days {
-		// background-color: green;
+	/* Optional: for a shadow */
+	>contents {
+		border-width: 1px;
+		border-style: solid;
+		border-color: $darker-2;
 
-		>.row {
+		padding: 0.5rem;
+		border-radius: 0.5rem;
 
-			label {
-				&.inactive {
-					color: gtkalpha($fg-color, 0.3);
+		background-color: $bg-color;
+
+		>box {
+
+			// Gtk separator
+			>separator {
+				background-color: $darker;
+				min-height: 2px;
+			}
+
+			>.navigation {
+
+				padding: 0;
+
+				>.section {
+
+					padding: 0;
+					// background-color: yellowgreen;
+
+					>label {
+						padding: 0;
+
+						font-size: 1rem;
+						font-weight: 400;
+						font-family: 'Noto Sans CJK JP';
+					}
+
+					>box.month {
+						// background-color: red;
+					}
+
+
+					>button {
+						padding: 0.65rem 0.8rem;
+
+						&:hover {
+							background-color: $darker;
+						}
+
+						>label {
+							padding: 0;
+							font-size: 0.5rem;
+
+						}
+					}
 				}
 			}
 
-			&.header {
-				label {
-					&:hover {
-						color: #F0A6C8;
+			.days {
+
+				font-family: 'Noto Sans CJK JP';
+
+				>.row {
+					padding: 0;
+
+					label {
+
+						padding: 0.25rem 0;
+						margin: 0;
+						border-radius: 0.2rem;
+						font-weight: 500;
+
+						&:hover {
+							background-color: $darker;
+							color: $fg-color;
+						}
+
+						&.inactive {
+							color: gtkalpha($fg-color, 0.3);
+						}
+					}
+
+					&.header {
+						label {
+							&:hover {
+								background-color: transparent;
+								color: $button-accent-color;
+							}
+						}
 					}
 				}
 			}
 		}
+
+
 	}
 }
 
@@ -149,28 +240,28 @@ window.notifications {
 }
 
 .notification {
-	border-radius: 13px;
+	border-radius: $radius-large;
 	background-color: $bg-color;
-	margin: 0.5rem 1rem 0.5rem 1rem;
+	margin: $spacing-medium $spacing-large;
 	box-shadow: 2px 3px 8px 0 gtkalpha(black, 0.4);
 	border: 1pt solid gtkalpha($fg-color, 0.03);
 
 	&.critical {
-		border: 1pt solid gtkalpha($error, 0.4);
+		border: 1pt solid gtkalpha($error-color, 0.4);
 
 		.header {
 			.app-name {
-				color: gtkalpha($error, 0.8);
+				color: gtkalpha($error-color, 0.8);
 			}
 
 			.app-icon {
-				color: gtkalpha($error, 0.6);
+				color: gtkalpha($error-color, 0.6);
 			}
 		}
 	}
 
 	.header {
-		padding: 0.5rem;
+		padding: $spacing-medium;
 		color: gtkalpha($fg-color, 0.5);
 
 		.app-icon {
@@ -178,7 +269,7 @@ window.notifications {
 		}
 
 		.app-name {
-			margin-right: 0.3rem;
+			margin-right: $spacing-small;
 			font-weight: bold;
 
 			&:first-child {
@@ -203,8 +294,8 @@ window.notifications {
 	}
 
 	.content {
-		margin: 1rem;
-		margin-top: 0.5rem;
+		margin: $spacing-large;
+		margin-top: $spacing-medium;
 
 		.summary {
 			font-size: 1.2em;
@@ -217,7 +308,7 @@ window.notifications {
 
 		.image {
 			border: 1px solid gtkalpha($fg-color, 0.02);
-			margin-right: 0.5rem;
+			margin-right: $spacing-medium;
 			border-radius: 9px;
 			min-width: 100px;
 			min-height: 100px;
@@ -227,11 +318,11 @@ window.notifications {
 	}
 
 	.actions {
-		margin: 1rem;
+		margin: $spacing-large;
 		margin-top: 0;
 
 		button {
-			margin: 0 0.3rem;
+			margin: 0 $spacing-small;
 
 			&:first-child {
 				margin-left: 0;

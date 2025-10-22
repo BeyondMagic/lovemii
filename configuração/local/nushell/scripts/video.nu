@@ -246,9 +246,9 @@ export def subvideo [
 
 	let duration_time = {
 		hr: ($duration // 1hr)
-		min: ($duration // 1min)
-		sec: ($duration // 1sec)
-		ms: ($duration // 1ms // 10)
+		min: (($duration mod 1hr) // 1min)
+		sec: (($duration mod 1min) // 1sec)
+		ms: (($duration mod 1sec) // 1ms)
 	}
 
 	let formatted_duration = (

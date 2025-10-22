@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">
-<style type="text/css">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   version="1.1"
+   id="Uploaded to svgrepo.com"
+   width="800"
+   height="800"
+   viewBox="0 0 32 32"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs1" />
+<style
+   type="text/css"
+   id="style1">
 	.linesandangles_een{fill:#111918;}
 </style>
-<path class="linesandangles_een" d="M20,20.854c0-1.136,0.642-2.175,1.658-2.683L24,17L17,3h-2L8,17l2.342,1.171
-	C11.358,18.679,12,19.718,12,20.854V21h-2v8h12v-8h-2V20.854z M11.236,16.382l-0.553-0.276L15,7.472V15h2V7.472l4.317,8.633
-	l-0.553,0.276C19.059,17.234,18,18.948,18,20.854V21h-4v-0.146C14,18.948,12.941,17.234,11.236,16.382z M20,27h-8v-4h8V27z"/>
+<path
+   class="linesandangles_een"
+   d="m 20,20.854 c 0,-1.136 0.642,-2.175 1.658,-2.683 L 24,17 17,3 h -2 l -7,14 2.342,1.171 C 11.358,18.679 12,19.718 12,20.854 V 21 h -2 v 8 H 22 V 21 H 20 Z M 11.236,16.382 10.683,16.106 15,7.472 V 15 h 2 V 7.472 l 4.317,8.633 -0.553,0.276 C 19.059,17.234 18,18.948 18,20.854 V 21 h -4 v -0.146 c 0,-1.906 -1.059,-3.62 -2.764,-4.472 z M 20,27 h -8 v -4 h 8 z"
+   id="path1"
+   style="fill:#000000" />
 </svg>

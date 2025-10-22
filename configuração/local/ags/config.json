@@ -85,7 +85,8 @@
 		},
 		{
 			"find": [
-				"org.inkscape.Inkscape"
+				"org.inkscape.Inkscape",
+				"gjs"
 			],
 			"replace": "tool-designer"
 		},

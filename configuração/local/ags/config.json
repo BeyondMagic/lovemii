@@ -3,9 +3,9 @@
 	"root_size": 16,
 	"corner": 32,
 	"background_color": {
-		"red": 254,
-		"green": 254,
-		"blue": 254,
+		"red": 5,
+		"green": 5,
+		"blue": 5,
 		"alpha": 1
 	},
 	"workspaces": 10,

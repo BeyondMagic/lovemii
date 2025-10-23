@@ -132,10 +132,10 @@ export function Launcher() {
 			<Gtk.GestureClick onPressed={onClick} />
 			<box
 				$={(ref) => (contentbox = ref)}
-				name="launcher-content"
 				valign={Gtk.Align.CENTER}
 				halign={Gtk.Align.CENTER}
 				orientation={Gtk.Orientation.VERTICAL}
+				spacing={5}
 			>
 				<entry
 					$={(ref) => (searchentry = ref)}
@@ -151,10 +151,15 @@ export function Launcher() {
 					<For each={list}>
 						{(app, index) => (
 							<button onClicked={() => launch(app)}>
-								<box>
+								<box
+									spacing={8}
+								>
 									<image iconName={app.iconName} />
-									<label label={app.name} maxWidthChars={40} wrap />
 									<label
+										class="app"
+										label={app.name} maxWidthChars={40} wrap />
+									<label
+										class="shortcut"
 										hexpand
 										halign={Gtk.Align.END}
 										label={index((i) => `∷${i + 1}`)}

@@ -1,9 +1,12 @@
-require('lspconfig').jsonls.setup({
+---@diagnostic disable: undefined-global
+
+vim.lsp.config("jsonls", {
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
       validate = { enable = true },
     },
   },
-  capabilities = CAPABILITIES
 })
+
+vim.lsp.enable("jsonls")

@@ -1,4 +1,6 @@
-require 'lspconfig'.typst_lsp.setup {
+---@diagnostic disable: undefined-global
+
+vim.lsp.config("typst_lsp", {
 
 	-- Default.
 	capabilities = CAPABILITIES,
@@ -6,5 +8,7 @@ require 'lspconfig'.typst_lsp.setup {
 		if client.server_capabilities.documentSymbolProvider then
 			require("nvim-navic").attach(client, bufnr)
 		end
-	end
-}
+	end,
+})
+
+vim.lsp.enable("typst_lsp")

@@ -1,9 +1,11 @@
-require('lspconfig').rls.setup({
+---@diagnostic disable: undefined-global
+
+vim.lsp.config("rls", {
   settings = {
     rust = {
       unstable_features = true,
-      build_on_save     = false,
-      all_features      = true,
+      build_on_save = false,
+      all_features = true,
     },
   },
   capabilities = CAPABILITIES,
@@ -13,3 +15,5 @@ require('lspconfig').rls.setup({
     end
   end,
 })
+
+vim.lsp.enable("rls")

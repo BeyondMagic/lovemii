@@ -1,39 +1,42 @@
-require('lspconfig').texlab.setup({
+---@diagnostic disable: undefined-global
 
-  cmd                 = { "texlab" },
-  filetypes           = { "tex", "bib" },
+vim.lsp.config("texlab", {
+
+  cmd = { "texlab" },
+  filetypes = { "tex", "bib" },
   single_file_support = true,
   --root_dir = '',
   settings = {
     texlab = {
-      auxDirectory    = '.',
+      auxDirectory = '.',
       bibtexFormatter = "texlab",
       build = {
-        args  =
-          { "-pdf",
-            --"-output-directory=" .. cache_latex,
-            "-interaction=nonstopmode",
-            "-synctex=1",
-            "%f" },
-        executable         = "latexmk",
+        args = {
+          "-pdf",
+          --"-output-directory=" .. cache_latex,
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "%f",
+        },
+        executable = "latexmk",
         forwardSearchAfter = false,
-        onSave             = false
+        onSave = false,
       },
       chktex = {
-        onEdit        = false,
-        onOpenAndSave = false
+        onEdit = false,
+        onOpenAndSave = false,
       },
-      diagnosticsDelay    = 300,
+      diagnosticsDelay = 300,
       formatterLineLength = 80,
       forwardSearch = {
-        args = {}
+        args = {},
       },
       -- TODO: Using as a way to actually pass PDF files.
       latexFormatter = "latexindent",
       latexindent = {
-        modifyLineBreaks = false
-      }
-    }
+        modifyLineBreaks = false,
+      },
+    },
   },
   capabilities = CAPABILITIES,
   on_attach = function(client, bufnr)
@@ -43,3 +46,5 @@ require('lspconfig').texlab.setup({
   end,
 
 })
+
+vim.lsp.enable("texlab")

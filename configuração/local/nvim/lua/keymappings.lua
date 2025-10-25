@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local key = vim.api.nvim_set_keymap
 local remap = { noremap = true, silent = true }
 
@@ -25,7 +27,9 @@ local function stage_selected_range()
   end
   local start_line, end_line = get_visual_line_range()
   exit_visual_mode()
-  gitsigns.stage_hunk({ start_line, end_line })
+  vim.defer_fn(function()
+    gitsigns.stage_hunk({ start_line, end_line })
+  end, 0)
 end
 
 local function unstage_selected_range()
@@ -34,17 +38,26 @@ local function unstage_selected_range()
     vim.notify('gitsigns.nvim not available', vim.log.levels.WARN)
     return
   end
-  if type(gitsigns.reset_hunk) ~= 'function' then
-    vim.notify('gitsigns.reset_hunk missing; cannot unstage selection', vim.log.levels.ERROR)
+  if type(gitsigns.stage_hunk) ~= 'function' then
+    vim.notify('gitsigns.stage_hunk missing; cannot unstage selection', vim.log.levels.ERROR)
     return
   end
   local start_line, end_line = get_visual_line_range()
   exit_visual_mode()
-  gitsigns.reset_hunk({ start_line, end_line }, { target = 'index' })
+  vim.defer_fn(function()
+    gitsigns.stage_hunk({ start_line, end_line }, { invert = true })
+  end, 0)
 end
 
-vim.keymap.set('v', ',', stage_selected_range, { silent = true, desc = 'Stage selected range' })
-vim.keymap.set('v', '.', unstage_selected_range, { silent = true, desc = 'Unstage selected range' })
+vim.keymap.set('x', ',', stage_selected_range, {
+  silent = true,
+  desc = 'Stage selected range'
+})
+
+vim.keymap.set('x', '.', unstage_selected_range, {
+  silent = true,
+  desc = 'Unstage selected range'
+})
 
 ---------------------------Leader Keys---------------------------
 

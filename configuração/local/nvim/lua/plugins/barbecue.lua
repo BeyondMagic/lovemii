@@ -2,7 +2,7 @@
 return {
   'utilyre/barbecue.nvim',
   dependencies = {
-    'neovim/nvim-lspconfig',
+    -- 'neovim/nvim-lspconfig',
     'SmiteshP/nvim-navic',
     'kyazdani42/nvim-web-devicons', -- Optional
   },

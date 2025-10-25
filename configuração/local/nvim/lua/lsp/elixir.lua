@@ -1,4 +1,6 @@
-require 'lspconfig'.elixirls.setup {
+---@diagnostic disable: undefined-global
+
+vim.lsp.config("elixirls", {
 	-- Unix
 	cmd = { "elixir-ls" },
 
@@ -10,5 +12,7 @@ require 'lspconfig'.elixirls.setup {
 	elixirLS = {
 		dialyzerEnabled = false,
 		fetchDeps = false,
-	}
-}
+	},
+})
+
+vim.lsp.enable("elixirls")

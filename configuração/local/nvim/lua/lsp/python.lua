@@ -1,4 +1,6 @@
-require 'lspconfig'.pylsp.setup({
+---@diagnostic disable: undefined-global
+
+vim.lsp.config("pylsp", {
 	on_attach = on_attach,
 	settings = {
 		pylsp = {
@@ -7,11 +9,12 @@ require 'lspconfig'.pylsp.setup({
 				isort = { enabled = true, profile = "black" },
 				pycodestyle = {
 					ignore = {
-						'W191'
+						'W191',
 					},
-				}
+				},
 			},
 		},
 	},
 })
 
+vim.lsp.enable("pylsp")

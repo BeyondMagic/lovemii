@@ -1,14 +1,16 @@
--- Completion for snippets.
-CAPABILITIES = vim.lsp.protocol.make_client_capabilities()
-CAPABILITIES = require('cmp_nvim_lsp').default_capabilities(CAPABILITIES)
--- CAPABILITIES.textDocument.completion.completionItem.snippetSupport = true
-
---CAPABILITIES.offsetEncoding = 'utf-8'
+-- Defined in init.lua
+vim.lsp.config('*', {
+	capabilities = {
+		textDocument = {
+			semanticTokens = {
+				multilineTokenSupport = true,
+			}
+		}
+	},
+	root_markers = { '.git' },
+})
 
 -- LSP Lua (build from source without telemetry (use grep to find config)
---    https://github.com/sumneko/lua-language-server
---    cd lua-language-server
--- Then change the path to your 'lua-language-server' build
 require 'lsp.lua'
 
 -- Latex
@@ -23,14 +25,14 @@ require 'lsp.c_c++'
 -- JSON
 require 'lsp.json'
 
--- Typescript + Javascript
-require 'lsp.typescript'
+-- Javascript + Typescript
+require 'lsp.javascript'
 
 -- Bash Language Server
 -- require 'lsp.bash'
 
 -- CSS + Less + SCSS
-require 'lsp.scss'
+require 'lsp.css'
 
 -- HTML
 require 'lsp.html'

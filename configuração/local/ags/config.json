@@ -170,7 +170,7 @@
 				"dakanji",
 				"DaKanji"
 			],
-			"replace": "japanese-character"
+			"replace": "japanese-character-phrase"
 		},
 		{
 			"find": [

@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 10.5H16M8 14.5H11M21.0039 12C21.0039 16.9706 16.9745 21 12.0039 21C9.9675 21 3.00463 21 3.00463 21C3.00463 21 4.56382 17.2561 3.93982 16.0008C3.34076 14.7956 3.00391 13.4372 3.00391 12C3.00391 7.02944 7.03334 3 12.0039 3C16.9745 3 21.0039 7.02944 21.0039 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800"
+   height="800"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <path
+     style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#ff0000;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+     d="M 12.003906,2 C 6.4929055,2 2.0039062,6.4890006 2.0039063,12 c 0,1.593453 0.3751515,3.105715 1.0410156,4.445312 -0.00609,-0.01224 0.066171,0.317108 0.017578,0.75586 -0.048593,0.438752 -0.1719602,0.982947 -0.3183594,1.496094 -0.2927983,1.026293 -0.6621093,1.917968 -0.6621093,1.917968 A 1.0001,1.0001 0 0 0 3.0039063,22 h 8.9999997 c 5.511031,0 10,-4.488969 10,-10 0,-5.5109954 -4.488963,-10 -10,-10 z m 0,2 c 4.430164,0 8,3.5698754 8,8 0,4.430169 -3.569831,8 -8,8 H 4.40625 C 4.5210285,19.670957 4.551322,19.654955 4.6679687,19.246094 4.8333671,18.666353 4.9825262,18.038157 5.0507812,17.421875 5.1190363,16.805593 5.1540231,16.196533 4.8359375,15.556641 4.3036816,14.485838 4.0039063,13.280947 4.0039062,12 c 0,-4.4301206 3.5698808,-8 7.9999998,-8 z M 8,9.5 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z m 0,4 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 3 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z"
+     id="path1" />
 </svg>

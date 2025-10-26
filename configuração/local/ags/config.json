@@ -46,7 +46,8 @@
 		},
 		{
 			"find": [
-				"swayimg"
+				"swayimg",
+				"file-png"
 			],
 			"replace": "any-image-viewer"
 		},

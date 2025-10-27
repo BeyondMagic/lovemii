@@ -61,7 +61,9 @@ export def download [
 		--embed-thumbnail
 		--embed-metadata
 		--embed-chapters
-		# --cookies-from-browser firefox
+		--cookies-from-browser firefox
+		--extractor-args youtubetab:skip=authcheck
+		--extractor-args youtube:player_js_version=actual
 		--no-embed-info-json
 		--sub-langs 'all'
 		--embed-subs

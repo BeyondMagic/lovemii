@@ -1,0 +1,62 @@
+@use "sass:string";
+@use "sass:map";
+
+@function gtkalpha($c, $a) {
+	@return string.unquote("alpha(#{$c},#{$a})");
+}
+
+@function color-var($name) {
+	@return string.unquote("var(--#{$name})");
+}
+
+$themes: (
+	light: (fg-color: #{"@theme_fg_color"},
+		bg-color: #ffffff,
+		error-color: #ff4d6d,
+		button-hover-color: #fc7688,
+		button-accent-color: #f0a6c8,
+		workspace-empty-color: #a0a0a0,
+		workspace-focus-color: #497f9e,
+		workspace-hover-color: #fc7688,
+		calendar-hover-color: #f0a6c8,
+		calendar-border-color: #497f9e,
+		overlay-darker: #00000011,
+		overlay-darker-2: #00000022,
+		overlay-lighter: #ffffff11,
+	),
+	black: (fg-color: #f4f4f7,
+		bg-color: #050505,
+		error-color: #ff6b6b,
+		button-hover-color: #ff8ba7,
+		button-accent-color: #b48ef2,
+		workspace-empty-color: #5a5a5a,
+		workspace-focus-color: #7aa2f7,
+		workspace-hover-color: #ff8ba7,
+		calendar-hover-color: #b48ef2,
+		calendar-border-color: #7aa2f7,
+		overlay-darker: #ffffff0d,
+		overlay-darker-2: #ffffff1a,
+		overlay-lighter: #1a1a1a33,
+	),
+);
+
+@function theme($name) {
+	@return map.get($themes, $name);
+}
+
+@mixin theme-variables($selector, $theme) {
+	#{$selector} {
+		@each $name, $value in $theme {
+			--#{$name}: #{$value};
+		}
+	}
+}
+
+$radius-small: 8px;
+$radius-medium: 12px;
+$radius-large: 13px;
+
+$spacing-xsmall: 0.2rem;
+$spacing-small: 0.3rem;
+$spacing-medium: 0.5rem;
+$spacing-large: 1rem;

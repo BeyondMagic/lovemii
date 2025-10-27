@@ -1,0 +1,50 @@
+@use "./tokens";
+
+window#launcher {
+	background: transparent;
+	color: tokens.color-var("fg-color");
+
+	>box {
+		padding: tokens.$spacing-medium * 3;
+		background: tokens.color-var("bg-color");
+		min-width: 30rem;
+		border-radius: tokens.$radius-medium;
+		padding: tokens.$spacing-small;
+		border-width: 1px;
+		border-style: solid;
+		border-color: tokens.color-var("overlay-darker-2");
+
+		>entry {
+			background-color: tokens.color-var("overlay-darker");
+			padding: 0 0.5rem;
+			border-radius: 0.5rem;
+
+			>text {
+				color: tokens.color-var("fg-color");
+
+				>placeholder {
+					color: tokens.color-var("overlay-darker-2");
+				}
+			}
+		}
+
+		>separator {
+			min-height: 2px;
+			background-color: tokens.color-var("overlay-darker");
+		}
+
+		>box {
+			>button {
+				&:focus {
+					background-color: tokens.color-var("overlay-darker-2");
+				}
+
+				>box {
+					>.shortcut {
+						min-width: 2rem;
+					}
+				}
+			}
+		}
+	}
+}

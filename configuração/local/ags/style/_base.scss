@@ -1,0 +1,10 @@
+@use "./tokens";
+
+@include tokens.theme-variables(":root", tokens.theme(black));
+@include tokens.theme-variables(":root.theme-light", tokens.theme(light));
+@include tokens.theme-variables(".theme-light", tokens.theme(light));
+@include tokens.theme-variables(".theme-black", tokens.theme(black));
+
+* {
+	all: unset;
+}

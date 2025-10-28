@@ -26,7 +26,8 @@
 	"categories": [
 		{
 			"find": [
-				"nm-applet"
+				"nm-applet",
+				"nm-connection-editor"
 			],
 			"replace": "network-wireless-signal-level-7-symbolic"
 		},

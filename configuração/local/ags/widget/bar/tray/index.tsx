@@ -28,7 +28,9 @@ export function Tray() {
 	}
 
 	const trays = (
-		<box>
+		<box
+			class={'items'}
+		>
 			<For each={items}>
 				{(item) => (
 					<menubutton $={(self) => setup_item(self, item)}>

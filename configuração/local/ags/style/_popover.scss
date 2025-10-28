@@ -1,0 +1,23 @@
+@use "./tokens";
+
+popover {
+
+	margin-top: tokens.color-var("popover-margin");
+
+	>arrow,
+	>contents {
+		border-width: tokens.color-var("popover-border-width");
+		border-style: solid;
+		border-color: tokens.color-var("popover-border-color");
+		background-color: tokens.color-var("popover-bg-color");
+	}
+
+	>arrow {
+		background-color: tokens.color-var("popover-arrow-color");
+	}
+
+	>contents {
+		padding: tokens.color-var("popover-padding");
+		border-radius: tokens.color-var("popover-border-radius");
+	}
+}

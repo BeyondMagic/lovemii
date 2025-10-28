@@ -54,13 +54,171 @@ window.bar {
 	}
 
 	.tray-button {
-		.icon {
-			color: tokens.color-var("fg-color");
 
-			&:hover {
-				opacity: 0.8;
-				color: tokens.color-var("button-accent-color");
+		.items {
+
+			>menubutton {
+				// background-color: green;
+
+				>button {
+					// background-color: blue;
+
+					>box {
+						// background-color: red;
+
+						>contents {
+							// background-color: yellow;
+						}
+
+						>arrow {
+							// background-color: orange;
+						}
+					}
+				}
+
+				>popover {
+					// background-color: red;
+					margin-top: calc(#{tokens.color-var("popover-margin")} * 3);
+
+					>arrow {
+						// background-color: blue;
+					}
+
+					>contents {
+						// background-color: blue;
+
+						>scrolledwindow {
+							// background-color: yellow;
+
+							>scrollbar {
+								// background-color: green;
+
+								>range {
+									// background-color: yellowgreen;
+
+									>trough {
+										// background-color: blue;
+
+										>slider {
+											// background-color: red;
+										}
+									}
+								}
+							}
+
+							>viewport {
+								// background-color: palevioletred;
+
+								>stack {
+									// background-color: orange;
+
+									>box {
+										// background-color: purple;
+
+										>modelbutton {
+											// background-color: red;
+
+											opacity: 0.8;
+
+											>box {
+												>arrow {
+													background-color: white;
+												}
+											}
+
+											>label {
+												// background-color: black;
+											}
+										}
+
+										>box {
+											// background-color: pink;
+
+											>box {
+												// background-color: brown;
+
+												>separator {
+													background-color: tokens.color-var("overlay-darker-2");
+													min-height: 2px;
+												}
+
+												>box {
+													// background-color: gray;
+
+													>modelbutton {
+														// background-color: cyan;
+
+														>accelerator {
+															opacity: 0.75;
+														}
+
+
+														>box {
+
+															>check {
+
+																border-width: 2px;
+																border-style: solid;
+																border-color: red;
+
+																&:checked {
+																	border-color: green;
+																}
+															}
+														}
+
+														>arrow {
+															background-color: red;
+
+															&.left {
+																background-color: blue;
+															}
+
+															&.right {
+																color: black;
+																background-color: white;
+															}
+														}
+
+														>label {
+															// background-color: blue;
+
+															&:hover {
+																// background-color: blue;
+															}
+														}
+
+														&:disabled {
+															opacity: 0.5;
+														}
+
+														&:hover {
+															background-color: tokens.color-var("overlay-darker");
+
+															>label {
+																color: tokens.color-var("button-hover-color");
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
+		}
+	}
+
+	.icon {
+		color: tokens.color-var("fg-color");
+
+		&:hover {
+			opacity: 0.8;
+			color: tokens.color-var("button-accent-color");
 		}
 	}
 }

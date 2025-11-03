@@ -1,0 +1,64 @@
+@use "../tokens";
+
+window.bar {
+	background: transparent;
+	color: tokens.color-var("fg-color");
+	font-weight: bold;
+
+	>centerbox {
+		background: tokens.color-var("bg-color");
+	}
+
+	button {
+		border: none;
+		outline: none;
+		background: none;
+		color: inherit;
+		border-radius: tokens.$radius-small;
+		margin: 2px;
+		color: tokens.color-var("fg-color");
+
+		&:checked {
+			color: tokens.color-var("button-hover-color");
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.workspaces {
+		.workspace {
+			&.empty {
+				color: tokens.color-var("workspace-empty-color");
+			}
+
+			&.focus {
+				color: tokens.color-var("workspace-focus-color");
+			}
+
+			&:hover {
+				color: tokens.color-var("workspace-hover-color");
+			}
+		}
+	}
+
+	.menu {
+
+		.battery,
+		.icon {
+			&:hover {
+				color: tokens.color-var("button-accent-color");
+			}
+		}
+	}
+
+	.icon {
+		color: tokens.color-var("fg-color");
+
+		&:hover {
+			opacity: 0.8;
+			color: tokens.color-var("button-accent-color");
+		}
+	}
+}

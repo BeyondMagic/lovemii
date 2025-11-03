@@ -3,7 +3,7 @@ import { Gtk } from "ags/gtk4";
 import { For, This } from "ags"
 import GLib from "gi://GLib";
 
-import style from "./style.scss"
+import style from "./styles.scss"
 import config from "./config.json";
 
 import { monitors as get_hypr_monitors } from "./services/hyprland";

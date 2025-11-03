@@ -249,6 +249,12 @@
 				"virt-viewer"
 			],
 			"replace": "virtual-machine"
+		},
+		{
+			"find": [
+				"java"
+			],
+			"replace": "java-icon"
 		}
 	]
 }

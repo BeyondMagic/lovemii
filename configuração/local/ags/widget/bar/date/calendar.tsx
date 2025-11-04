@@ -1,6 +1,7 @@
 import GLib from "gi://GLib";
 import { Gtk } from "ags/gtk4"
-import { For, createState } from "ags"
+import { For, createState, onCleanup } from "ags"
+import { interval } from "ags/time"
 
 type DayCell = {
 	label: string;
@@ -62,6 +63,10 @@ function build_weeks(first_day: GLib.DateTime): DayCell[][] {
 	return weeks;
 }
 
+function is_same_month(a: GLib.DateTime, b: GLib.DateTime) {
+	return a.get_year() === b.get_year() && a.get_month() === b.get_month();
+}
+
 function build_calendar_view(date: GLib.DateTime): CalendarView {
 	const first_day = ensure_date(date.get_year(), date.get_month(), 1);
 	const month_label = first_day.format("%B") ?? "Month";
@@ -84,6 +89,22 @@ export function Calendar() {
 	const [calendar_view, set_calendar_view] = createState(
 		build_calendar_view(GLib.DateTime.new_now_local()),
 	);
+
+	const refresh_today_highlight = () => {
+		print("Refreshing today's highlight");
+		set_calendar_view((current_view: CalendarView) => {
+			const now = GLib.DateTime.new_now_local();
+			if (!is_same_month(current_view.base, now))
+				return current_view;
+			return build_calendar_view(now);
+		});
+	};
+
+	const refresh_tick = interval(60_000, refresh_today_highlight);
+
+	onCleanup(() => {
+		refresh_tick?.cancel();
+	});
 
 	function shift_month(delta: number) {
 		set_calendar_view((current_view: CalendarView) => {

@@ -3,6 +3,7 @@
 vim.lsp.config("nushell", {
 	cmd = {
 		"nu",
+		"--no-config-file",
 		"--include-path",
 		"/home/dream/.config/nushell/scripts",
 		"--include-path",

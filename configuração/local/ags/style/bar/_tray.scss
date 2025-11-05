@@ -1,15 +1,21 @@
 @use "../tokens";
 
 window.bar {
+
 	.tray-button {
 
 		.items {
 
 			>menubutton {
-				// background-color: green;
+
+				padding: tokens.$spacing-small;
+				border-radius: tokens.$radius-small;
+
+				&:hover {
+					background-color: tokens.color-var("overlay-darker-2");
+				}
 
 				>button {
-					// background-color: blue;
 
 					>box {
 						// background-color: red;
@@ -25,19 +31,27 @@ window.bar {
 				}
 
 				>popover {
-					// background-color: red;
 					margin-top: calc(#{tokens.color-var("popover-margin")} * 3);
 
-					>arrow {
-						// background-color: blue;
-					}
+					/**
+					* Popover arrow indicator.
+					*/
+					>arrow {}
 
+					/**
+					* Popover content container.
+					*/
 					>contents {
-						// background-color: blue;
 
+						/**
+						* ...
+						*/
 						>scrolledwindow {
 							// background-color: yellow;
 
+							/**
+							* ...
+							*/
 							>scrollbar {
 								// background-color: green;
 
@@ -54,87 +68,52 @@ window.bar {
 								}
 							}
 
+							/**
+							* ...
+							*/
 							>viewport {
-								// background-color: palevioletred;
 
+								/**
+								 * ...
+								*/
 								>stack {
-									// background-color: orange;
 
+									/**
+									 * Container for main menu and title.
+									*/
 									>box {
-										// background-color: purple;
 
-										>modelbutton {
-											// background-color: red;
-
-											opacity: 0.8;
-
-											>box {
-												>arrow {
-													background-color: white;
-												}
-											}
-
-											>label {
-												// background-color: black;
-											}
-										}
-
+										/**
+										 * Main menu container.
+										*/
 										>box {
 											// background-color: pink;
 
+											/**
+											 * Menu container itself (can be the main, or be accessed through submenu items).
+											*/
 											>box {
-												// background-color: brown;
 
+												/*
+												 * Separator between menu sections.
+												*/
 												>separator {
 													background-color: tokens.color-var("overlay-darker-2");
 													min-height: 2px;
+													margin: tokens.$spacing-small 0;
 												}
 
+												/*
+												 * Menu section container with multiple items.
+												*/
 												>box {
-													// background-color: gray;
+													// background-color: blue;
 
+													/*
+													 * Individual menu item button.
+													*/
 													>modelbutton {
-														// background-color: cyan;
-
-														>accelerator {
-															opacity: 0.75;
-														}
-
-
-														>box {
-
-															>check {
-
-																border-width: 2px;
-																border-style: solid;
-																border-color: red;
-
-																&:checked {
-																	border-color: green;
-																}
-															}
-														}
-
-														>arrow {
-															background-color: red;
-
-															&.left {
-																background-color: blue;
-															}
-
-															&.right {
-																color: black;
-																background-color: white;
-															}
-														}
-
-														>label {
-															// background-color: blue;
-
-															&:hover {
-																// background-color: blue;
-															}
-														}
+														// background-color: red;
 
 														&:disabled {
 															opacity: 0.5;
@@ -147,9 +126,102 @@ window.bar {
 																color: tokens.color-var("button-hover-color");
 															}
 														}
+
+														/*
+														 * Left container of the menu item.
+														*/
+														>box {
+
+															padding: 0 tokens.$spacing-medium;
+
+															/*
+															 * Check icon itself.
+															*/
+															>check {
+																border-radius: 100%;
+
+																&:not(:checked) {
+																	-gtk-icon-source: -gtk-icontheme("unchecked-circle-symbolic");
+																	opacity: 0.75;
+																}
+
+																&:checked {
+																	-gtk-icon-source: -gtk-icontheme("check-circle-symbolic");
+																}
+															}
+														}
+
+														/*
+														 * Menu item label container explaining action.
+														*/
+														>label {
+															// background-color: blue;
+
+															&:hover {
+																// background-color: blue;
+															}
+														}
+
+														/*
+														* Menu item keybind display alongside the label.
+														*/
+														>accelerator {
+															opacity: 0.75;
+														}
+
+														/*
+														 * Rightside arrow icon container for submenu items.
+														*/
+														>arrow {
+															&.left {
+																-gtk-icon-source: -gtk-icontheme("arrow-prev-small-symbolic");
+															}
+
+															&.right {
+																-gtk-icon-source: -gtk-icontheme("arrow-next-symbolic");
+															}
+														}
 													}
 												}
 											}
+										}
+
+										/**
+										* Extra menu title (accessible via main menu items with arrows).
+										*/
+										>modelbutton {
+											opacity: 0.8;
+
+											&:hover {
+												opacity: 1;
+												background-color: tokens.color-var("overlay-darker");
+
+												>label {
+													color: tokens.color-var("button-hover-color");
+												}
+											}
+
+											/*
+											 * Leftside arrow icon container for submenu items.
+											*/
+											>box {
+												padding: 0 tokens.$spacing-small;
+
+												>arrow {
+													&.left {
+														-gtk-icon-source: -gtk-icontheme("arrow-prev-small-symbolic");
+													}
+
+													&.right {
+														-gtk-icon-source: -gtk-icontheme("arrow-next-symbolic");
+													}
+												}
+											}
+
+											/*
+											 * Menu item label container containing title of this extra menu.
+											*/
+											>label {}
 										}
 									}
 								}

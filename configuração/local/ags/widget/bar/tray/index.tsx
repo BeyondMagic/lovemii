@@ -88,6 +88,7 @@ export function Tray() {
 	const trays = (
 		<box
 			class={'items'}
+			spacing={4}
 		>
 			<For each={items}>
 				{(item) => (

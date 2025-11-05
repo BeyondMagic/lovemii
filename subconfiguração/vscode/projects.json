@@ -300,6 +300,13 @@
 		"enabled": true
 	},
 	{
+		"name": "ANAC: DEP_SAR_DOCS",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/anac/dep_sar_docs",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
 		"name": "ANAC: Robo SCDP (Selenium)",
 		"rootPath": "/mnt/kaguya/projetos/contribuindo/anac/scdp_selenium",
 		"paths": [],

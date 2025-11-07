@@ -29,6 +29,9 @@ $env.CARGO_HOME = $env.XDG_CONFIG_HOME + '/cargo'
 # Python: set virtual environment.
 $env.VIRTUAL_ENV = $env.XDG_CONFIG_HOME + '/python/packages/'
 
+# Python: package installation path.
+$env.IPYTHONDIR = $env.XDG_CONFIG_HOME + '/python/ipython'
+
 # Bun: home and configuration files.
 $env.BUN_INSTALL = $env.XDG_CONFIG_HOME + '/bun'
 
@@ -84,6 +87,12 @@ $env.XDG_DATA_HOME = $env.HOME + '/.local/share'
 
 # XDG cache folder.
 $env.XDG_CACHE_HOME = $env.HOME + '/.cache'
+
+# XDG state folder.
+$env.XDG_STATE_HOME = $env.HOME + '/.local/state'
+
+# Python: MYPY cache directory.
+$env.MYPY_CACHE_DIR = $env.XDG_CACHE_HOME + '/mypy/'
 
 # To put trash files in here instead of removing them out of existence.
 $env.TRASH = $env.HOME + '/.local/trash'
@@ -150,9 +159,63 @@ if (sys cpu | get brand | any { $in =~ 'Intel' }) {
 }
 
 # For gnupg configuration files.
-#$env.GNUPGHOME = $env.XDG_CONFIG_HOME + '/gnupg'
+$env.GNUPGHOME = $env.XDG_CONFIG_HOME + '/gnupg'
 
-# Load the environment variables of dune.
-#export def dune_ocaml []: nothing -> any {
-#	exec /home/dream/.opam/opam-init/init.sh
-#}
+# Path for .NET SDK runtime packs.
+$env.DBTOOLS_HOME = $env.XDG_CACHE_HOME + '/dbtools'
+
+# Path for .NET SDK runtime packs.
+$env.DOTNET_ROOT = $env.XDG_CACHE_HOME + '/dotnet'
+
+# Path for Docker certificates and config files.
+$env.DOCKER_CERT_PATH = $env.XDG_CONFIG_HOME + '/docker/'
+
+# Java: user home for Java configuration files.
+$env._JAVA_OPTIONS = [
+  $'-Djava.util.prefs.userRoot="($env.XDG_CONFIG_HOME)/java"'
+  $'-Djavafx.cachedir="($env.XDG_CACHE_HOME)/openjfx"'
+] | str join (char space)
+
+$env.JAVA_HOME = '/usr/lib/jvm/java-17-openjdk/'
+
+# NPM: Node.js package manager home and configuration.
+$env.NPM_CONFIG_USERCONFIG = $env.XDG_CONFIG_HOME + '/npm/npmrc'
+
+# OPAM: OCaml package manager home and configuration.
+$env.OPAMROOT = $env.XDG_CONFIG_HOME + '/opam'
+
+# WINE: configuration files.
+$env.WINEPREFIX = $env.XDG_CONFIG_HOME + '/wine/default'
+
+# Elixir: package manager home and configuration.
+$env.MIX_XDG = 'true'
+
+# Oracle SQL Developer: configuration files.
+$env.IDE_USER_DIR = $env.XDG_CACHE_HOME + '/sqldeveloper/'
+
+# GTK 2.0: configuration files.
+$env.GTK2_RC_FILES = [
+  $env.XDG_CONFIG_HOME + '/gtk-2.0/gtkrc-2.0'
+  $env.XDG_CONFIG_HOME + '/gtk-2.0/gtkrc.mine'
+] | str join (char esep)
+
+# WDM: configuration files.
+$env.WDM_DIR = $env.XDG_CONFIG_HOME + '/wdm/'
+
+# Lean: home and configuration.
+$env.ELAN_HOME = $env.XDG_CONFIG_HOME + '/elan/'
+
+# OpenSSL: random seed file.
+$env.RANDFILE = $env.XDG_CACHE_HOME + '/openssl/.rnd'
+
+# Claude: AI CLI tool configuration.
+$env.CLAUDE_CONFIG_DIR = $env.XDG_CONFIG_HOME + '/claude'
+
+# Junie: AI CLI cache folder.
+$env.EJ_FOLDER_WORK = $env.XDG_CACHE_HOME + '/junie/'
+
+# Gradle: configuration files.
+$env.GRADLE_USER_HOME = $env.XDG_CONFIG_HOME + '/gradle/'
+
+# Kotlin: configuration files.
+$env.KOTLIN_HOME = $env.XDG_CONFIG_HOME + '/kotlin/'

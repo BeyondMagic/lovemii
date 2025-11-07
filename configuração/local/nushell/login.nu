@@ -48,7 +48,7 @@ $env.LESSHISTFILE = '/dev/null'
 # Supress accessibility warning from GNOME bus.
 $env.NO_AT_BRIDGE = 1
 
-# Defualt text editor.
+# Default text editor.
 $env.EDITOR = 'nvim'
 
 # Default visual editor.

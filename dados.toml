@@ -114,6 +114,12 @@ para = "~/.config/"
 
 [["ligações"]]
 administrador = false
+de = "./configuração/cache/sqldeveloper/"
+para = "~/.cache/sqldeveloper"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = "./configuração/cache/sqlcl/"
 para = "~/.cache/sqlcl"
 "único" = true

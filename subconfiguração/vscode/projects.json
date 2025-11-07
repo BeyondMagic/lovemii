@@ -326,5 +326,19 @@
 		"paths": [],
 		"tags": [],
 		"enabled": true
+	},
+	{
+		"name": "-----------------------",
+		"rootPath": "/home/dream/armazenamento/.compartilhado/projetos",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "ROUTER: APP",
+		"rootPath": "/mnt/kaguya/projetos/contribuindo/router/app",
+		"paths": [],
+		"tags": [],
+		"enabled": true
 	}
 ]

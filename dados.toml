@@ -172,6 +172,12 @@ de = "./scripts/zoom.nu"
 para = "~/.local/bin/zoom.nu"
 "único" = true
 
+[["ligações"]]
+administrador = false
+de = "./subconfiguração/npm/npmrc"
+para = "~/.config/npm/npmrc"
+"único" = true
+
 # GTK:
 # Only file sthat that can be system-shared.
 [["ligações"]]

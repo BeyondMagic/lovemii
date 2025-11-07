@@ -11,6 +11,9 @@
 **/package-lock.json
 **/node_modules/
 
+# cache
+/configuração/cache
+
 # 1. removing logs-or-history related files.
 # zsh
 /configuração/local/zsh/.zsh_history
@@ -60,6 +63,12 @@
 !/configuração/local/GIMP/3.0/themes/**
 !/configuração/local/GIMP/3.0/splashes
 !/configuração/local/GIMP/3.0/splashes/**
+
+# android
+/configuração/local/android
+
+# sqldeveloper
+/configuração/global/sqldeveloper
 
 # Ignore SSH.
 /configuração/local/ssh

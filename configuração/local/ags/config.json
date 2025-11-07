@@ -133,7 +133,8 @@
 		{
 			"find": [
 				"Code",
-				"code"
+				"code",
+				"jetbrains-idea"
 			],
 			"replace": "code-editor"
 		},

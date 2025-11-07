@@ -55,7 +55,13 @@ para = "~/armazenamento/"
 [["ligações"]]
 administrador = false
 de = "~/armazenamento/.compartilhado/sistema/subconfiguração/vscode/projects.json"
-para = "~/.config/Code/User/globalStorage/alefragnani.project-manager/projects.json"
+para = "~/.config/vscode/general/User/globalStorage/alefragnani.project-manager/projects.json"
+"único" = true
+
+[["ligações"]]
+administrador = false
+de = "~/.config/vscode/"
+para = "~/.vscode"
 "único" = true
 
 [["ligações"]]

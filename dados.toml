@@ -114,6 +114,18 @@ para = "~/.config/"
 
 [["ligações"]]
 administrador = false
+de = "./configuração/cache/sqlcl/"
+para = "~/.cache/sqlcl"
+"único" = true
+
+[["ligações"]]
+administrador = false
+de = "~/.cache/sqlcl"
+para = "~/.sqlcl"
+"único" = true
+
+[["ligações"]]
+administrador = false
 de = "./magick.nu"
 para = "~/.config/nushell/scripts/external/magick.nu"
 "único" = true

@@ -64,6 +64,9 @@
 !/configuração/local/GIMP/3.0/splashes
 !/configuração/local/GIMP/3.0/splashes/**
 
+# nushell
+/configuração/local/nushell/scripts/external/magick.nu
+
 # android
 /configuração/local/android
 

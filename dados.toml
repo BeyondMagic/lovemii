@@ -1,41 +1,28 @@
-[["ligações"]]
-administrador = false
-de = "~/armazenamento/.compartilhado/armazenamento/android/downloads"
-para = "~/armazenamento/baixados/android"
-"único" = true
+[links.defaults]
+requires_admin = false
+target_mode = "directory"
+link_mode = "direct"
 
-[["ligações"]]
-administrador = false
-de = "~/armazenamento/.compartilhado/sistema"
-para = "~/projetos/pessoal/desktop"
-"único" = true
+[[links.entries]]
+sources = ["~/armazenamento/.compartilhado/armazenamento/android/downloads"]
+target = "~/armazenamento/baixados/android"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = [
+[[links.entries]]
+sources = ["~/armazenamento/.compartilhado/sistema"]
+target = "~/projetos/pessoal/desktop"
+target_mode = "exact"
+
+[[links.entries]]
+sources = [
 	"~/armazenamento/.compartilhado/projetos",
 	"~/armazenamento/.compartilhado/aplicativos",
 ]
-para = "~/"
-"único" = false
+target = "~/"
 
-[["ligações"]]
-administrador = false
-de = [
-	"~/armazenamento/.compartilhado/contas.json",
-	"~/armazenamento/.compartilhado/emojis.json",
-	"~/armazenamento/.compartilhado/filmes.json",
-	"~/armazenamento/.compartilhado/geral.json",
-	"~/armazenamento/.compartilhado/jogos.json",
-	"~/armazenamento/.compartilhado/kaomojis.json",
-	"~/armazenamento/.compartilhado/livros.json",
-	"~/armazenamento/.compartilhado/materias.json",
-	"~/armazenamento/.compartilhado/people.json",
-	"~/armazenamento/.compartilhado/rotina.json",
-	"~/armazenamento/.compartilhado/series.json",
-	"~/armazenamento/.compartilhado/techniques.json",
-	"~/armazenamento/.compartilhado/youtube_creators.json",
-	"~/armazenamento/.compartilhado/android_apps.json",
+[[links.entries]]
+sources = [
+	"~/armazenamento/.compartilhado/*.json",
 	"~/armazenamento/.compartilhado/livros",
 	"~/armazenamento/.compartilhado/jogos",
 	"~/armazenamento/.compartilhado/citações",
@@ -49,296 +36,293 @@ de = [
 	"~/armazenamento/.compartilhado/armazenamento/sudoku",
 	"~/armazenamento/.compartilhado/armazenamento/unb",
 ]
-para = "~/armazenamento/"
-"único" = false
+target = "~/armazenamento/"
 
-[["ligações"]]
-administrador = false
-de = "~/armazenamento/.compartilhado/sistema/subconfiguração/vscode/projects.json"
-para = "~/.config/vscode/general/User/globalStorage/alefragnani.project-manager/projects.json"
-"único" = true
+[[links.entries]]
+sources = [
+	"~/armazenamento/.compartilhado/sistema/subconfiguração/vscode/projects.json",
+]
+target = "~/.config/vscode/general/User/globalStorage/alefragnani.project-manager/projects.json"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "~/.config/vscode/"
-para = "~/.vscode"
-"único" = true
+[[links.entries]]
+sources = ["~/.config/vscode/"]
+target = "~/.vscode"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "~/armazenamento/.compartilhado/armazenamento/videos"
-para = "~/armazenamento/videos/compartilhado"
-"único" = true
+[[links.entries]]
+sources = ["~/armazenamento/.compartilhado/armazenamento/videos"]
+target = "~/armazenamento/videos/compartilhado"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "~/armazenamento/.compartilhado/armazenamento/entreterimento"
-para = "~/armazenamento/entreterimento/compartilhado"
-"único" = true
+[[links.entries]]
+sources = ["~/armazenamento/.compartilhado/armazenamento/entreterimento"]
+target = "~/armazenamento/entreterimento/compartilhado"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = true
-de = ["./configuração/global/profile", "./configuração/global/environment", "./configuração/global/locale.conf", "./configuração/global/keyd"]
-para = "/etc/"
-"único" = false
+[[links.entries]]
+requires_admin = true
+sources = [
+	"./configuração/global/profile",
+	"./configuração/global/environment",
+	"./configuração/global/locale.conf",
+	"./configuração/global/keyd",
+]
+target = "/etc/"
 
-[["ligações"]]
-administrador = true
-de = "./subconfiguração/icons/"
-para = "/usr/share/icons/"
-"único" = false
+[[links.entries]]
+requires_admin = true
+sources = ["./subconfiguração/icons/*"]
+target = "/usr/share/icons/"
 
-[["ligações"]]
-administrador = true
-de = "./subconfiguração/temas/"
-para = "/usr/share/themes/"
-"único" = false
+[[links.entries]]
+requires_admin = true
+sources = ["./subconfiguração/temas/*"]
+target = "/usr/share/themes/"
 
-[["ligações"]]
-administrador = true
-de = "./serviços/global/*"
-para = "/run/runit/service/"
-"único" = false
+[[links.entries]]
+requires_admin = true
+sources = ["./serviços/global/*"]
+target = "/run/runit/service/"
+link_mode = "contents"
 
-[["ligações"]]
-administrador = true
-de = "./subconfiguração/aplicativos/"
-para = "/usr/share/applications/"
-"único" = false
+[[links.entries]]
+requires_admin = true
+sources = ["./subconfiguração/aplicativos/*"]
+target = "/usr/share/applications/"
 
-[["ligações"]]
-administrador = false
-de = "./serviços/local/*"
-para = "~/.local/services/"
-"único" = false
+[[links.entries]]
+sources = ["./serviços/local/*"]
+target = "~/.local/services/"
+link_mode = "contents"
 
-[["ligações"]]
-administrador = false
-de = "./configuração/local/"
-para = "~/.config/"
-"único" = false
+[[links.entries]]
+sources = ["./configuração/local/*"]
+target = "~/.config/"
 
-[["ligações"]]
-administrador = false
-de = "./configuração/cache/sqldeveloper/"
-para = "~/.cache/sqldeveloper"
-"único" = true
+[[links.entries]]
+sources = ["./configuração/cache/sqldeveloper"]
+target = "~/.cache/sqldeveloper"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./configuração/cache/sqlcl/"
-para = "~/.cache/sqlcl"
-"único" = true
+[[links.entries]]
+sources = ["./configuração/cache/sqlcl"]
+target = "~/.cache/sqlcl"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "~/.cache/sqlcl"
-para = "~/.sqlcl"
-"único" = true
+[[links.entries]]
+sources = ["~/.cache/sqlcl"]
+target = "~/.sqlcl"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./magick.nu"
-para = "~/.config/nushell/scripts/external/magick.nu"
-"único" = true
+[[links.entries]]
+sources = ["./magick.nu"]
+target = "~/.config/nushell/scripts/external/magick.nu"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/fontes"
-para = "~/.local/share/fonts"
-"único" = true
+[[links.entries]]
+sources = ["./subconfiguração/fontes"]
+target = "~/.local/share/fonts"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/sioyek"
-para = "~/.local/share/sioyek"
-"único" = true
+[[links.entries]]
+sources = ["./subconfiguração/sioyek"]
+target = "~/.local/share/sioyek"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/nushell"
-para = "~/.local/share/nupm"
-"único" = true
+[[links.entries]]
+sources = ["./subconfiguração/nushell"]
+target = "~/.local/share/nupm"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/clipboard"
-para = "~/.cache/cliphist"
-"único" = true
+[[links.entries]]
+sources = ["./subconfiguração/clipboard"]
+target = "~/.cache/cliphist"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./scripts/minimize.nu"
-para = "~/.local/bin/minimize.nu"
-"único" = true
+[[links.entries]]
+sources = ["./scripts/minimize.nu"]
+target = "~/.local/bin/minimize.nu"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./scripts/organize-fav.nu"
-para = "~/.local/bin/organize-fav.nu"
-"único" = true
+[[links.entries]]
+sources = ["./scripts/organize-fav.nu"]
+target = "~/.local/bin/organize-fav.nu"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./scripts/xdg-open.nu"
-para = "~/.local/bin/xdg-open.nu"
-"único" = true
+[[links.entries]]
+sources = ["./scripts/xdg-open.nu"]
+target = "~/.local/bin/xdg-open.nu"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./scripts/dbus.nu"
-para = "~/.local/bin/dbus.nu"
-"único" = true
+[[links.entries]]
+sources = ["./scripts/dbus.nu"]
+target = "~/.local/bin/dbus.nu"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./scripts/zoom.nu"
-para = "~/.local/bin/zoom.nu"
-"único" = true
+[[links.entries]]
+sources = ["./scripts/zoom.nu"]
+target = "~/.local/bin/zoom.nu"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "~/.config/android/"
-para = "~/.android"
-"único" = true
+[[links.entries]]
+sources = ["~/.config/android/"]
+target = "~/.android"
+target_mode = "exact"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/npm/npmrc"
-para = "~/.config/npm/npmrc"
-"único" = true
+[[links.entries]]
+sources = ["./subconfiguração/npm/npmrc"]
+target = "~/.config/npm/npmrc"
+target_mode = "exact"
 
-# GTK:
-# Only file sthat that can be system-shared.
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/gtk/2.0/"
-para = "~/.config/gtk-2.0/"
-"único" = false
+# GTK: Only files that can be shared with the current user.
+[[links.entries]]
+sources = ["./subconfiguração/gtk/2.0/*"]
+target = "~/.config/gtk-2.0/"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/gtk/3.0/"
-para = "~/.config/gtk-3.0/"
-"único" = false
+[[links.entries]]
+sources = ["./subconfiguração/gtk/3.0/*"]
+target = "~/.config/gtk-3.0/"
 
-[["ligações"]]
-administrador = false
-de = "./subconfiguração/gtk/4.0/"
-para = "~/.config/gtk-4.0/"
-"único" = false
+[[links.entries]]
+sources = ["./subconfiguração/gtk/4.0/*"]
+target = "~/.config/gtk-4.0/"
 
 [[packages]]
-comments = ["cp and mv with progress bar."]
+description = ["cp and mv with progress bar."]
 names = ["advcpmv"]
 
 [[packages]]
-comments = ["Keyboard manager in Japanese."]
-names = ["fcitx5-configtool", "fcitx5-gtk", "fcitx5-material-color", "fcitx5-qt", "fcitx5-mozc-ut"]
+description = ["Keyboard manager in Japanese."]
+names = [
+	"fcitx5-configtool",
+	"fcitx5-gtk",
+	"fcitx5-material-color",
+	"fcitx5-qt",
+	"fcitx5-mozc-ut",
+]
 
 [[packages]]
-comments = ["Qalculate! is an arbitrary precision cross-platform software calculator. It supports complex mathematical operations and concepts such as derivation, integration, data plotting, and unit conversion."]
+description = [
+	"Qalculate! is an arbitrary precision cross-platform software calculator. It supports complex mathematical operations and concepts such as derivation, integration, data plotting, and unit conversion.",
+]
 names = ["qalculate"]
 
 [[packages]]
-comments = ["Sound and music creator."]
+description = ["Sound and music creator."]
 names = ["lmms"]
 
 [[packages]]
-comments = ["To learn a lot of things."]
+description = ["To learn a lot of things."]
 names = ["anki"]
 
 [[packages]]
-comments = ["Manage multiple emails."]
+description = ["Manage multiple emails."]
 names = ["thunderbind"]
 
 [[packages]]
-comments = ["To manage LBRY and Odysee."]
+description = ["To manage LBRY and Odysee."]
 names = ["lbry-app-bin"]
 
 [[packages]]
-comments = ["Identify playing song."]
+description = ["Identify playing song."]
 names = ["songrec"]
 
 [[packages]]
-comments = ["Dynamic Menu for X11."]
+description = ["Dynamic Menu for X11."]
 names = ["fuzzel"]
 
 [[packages]]
-comments = ["Common fonts."]
-names = ["ttf-jetbrains-mono 2.304-1", "ttf-jetbrains-mono-nerd 3.1.1-1", "ttf-roboto 2.138-4", "ttf-opensans 1.101-2", "ttf-unifont 15.1.04-1"]
+description = ["Common fonts."]
+names = [
+	"ttf-jetbrains-mono 2.304-1",
+	"ttf-jetbrains-mono-nerd 3.1.1-1",
+	"ttf-roboto 2.138-4",
+	"ttf-opensans 1.101-2",
+	"ttf-unifont 15.1.04-1",
+]
 
 [[packages]]
-comments = ["Polkit manager."]
+description = ["Polkit manager."]
 names = ["polkit", "polkit-gnome"]
 
 [[packages]]
-comments = ["Editor of text."]
+description = ["Editor of text."]
 names = ["neovim-nightly-bin"]
 
 [[packages]]
-comments = ["Sound manager."]
-names = ["libpipewire", "pipewire", "pipewire-alsa", "pipewire-audio", "pipewire-pulse", "pipewire-session-manager"]
+description = ["Sound manager."]
+names = [
+	"libpipewire",
+	"pipewire",
+	"pipewire-alsa",
+	"pipewire-audio",
+	"pipewire-pulse",
+	"pipewire-session-manager",
+]
 
 [[packages]]
-comments = ["Read source-code of software."]
+description = ["Read source-code of software."]
 names = ["tokei"]
 
 [[packages]]
-comments = ["Download videos from many internet providers."]
+description = ["Download videos from many internet providers."]
 names = ["yt-dlp"]
 
 [[packages]]
-comments = ["Video viewer."]
+description = ["Video viewer."]
 names = ["mpv"]
 
 [[packages]]
-comments = ["Telegram Desktop"]
+description = ["Telegram Desktop"]
 names = ["telegram-desktop"]
 
 [[packages]]
-comments = ["Image editor."]
+description = ["Image editor."]
 names = ["gimp"]
 
 [[packages]]
-comments = ["Digital art maker."]
+description = ["Digital art maker."]
 names = ["krita"]
 
 [[packages]]
-comments = ["Image viewer."]
+description = ["Image viewer."]
 names = ["nsxiv"]
 
 [[packages]]
-comments = ["Take screenshot."]
+description = ["Take screenshot."]
 names = ["scrot"]
 
 [[packages]]
-comments = ["File manager."]
+description = ["File manager."]
 names = ["nnn"]
 
 [[packages]]
 depends = ["glfw", "clang"]
-comments = ["Zoom-in application for desktop.", "Inspired from tscoding/boomer."]
+description = [
+	"Zoom-in application for desktop.",
+	"Inspired from tscoding/boomer.",
+]
 names = ["coomer"]
 
 [[packages]]
 depends = []
 plugins = []
-comments = ["Record/stream/edit audio."]
+description = ["Record/stream/edit audio."]
 names = ["tenacity"]
 
 [[packages]]
 depends = []
 plugins = ["https://github.com/Jenrykster/animeo"]
-comments = ["Watch stremings."]
+description = ["Watch streams."]
 names = ["stremio"]
 
 # [[packages]]
-# comments = ["Selection graphical."]
+# description = ["Selection graphical."]
 # names = ["slop"]
 
 # [[packages]]
-# comments = ["Check spelling mistakes."]
+# description = ["Check spelling mistakes."]
 # names = ["aspell"]
 
 #[[packages]]
@@ -347,60 +331,66 @@ names = ["stremio"]
 
 
 # [[packages]]
-# comments = ["Preview-editor for latex."]
+# description = ["Preview-editor for latex."]
 # names = ["gummi"]
 
 [[packages]]
 names = ["latex-mk", "texlab", "perl-yaml-tiny", "perl-file-homedir"]
-comments = ["For latex (which means everything related to documents."]
+description = ["For LaTeX and related document tooling."]
 
 [[packages]]
 names = ["paru"]
-comments = ["Package manager for AUR."]
+description = ["Package manager for AUR."]
 
 [[packages]]
 names = ["dash", "dashbinsh"]
-comments = "Faster shell."
+description = "Faster shell."
 
 [[packages]]
 names = ["vscode-json-languageserver"]
-comments = "JSON language server."
+description = "JSON language server."
 
 [[packages]]
 names = ["vscode-html-languageserver"]
-comments = "HTML language server."
+description = "HTML language server."
 
 [[packages]]
 names = ["vscode-css-languageserver"]
-comments = "CSS language server."
+description = "CSS language server."
 
 [[packages]]
 names = ["typescript-language-server"]
-comments = "Typescript/Javascript language server."
+description = "Typescript/Javascript language server."
 
 [[packages]]
-names = ["python-lsp-server", "python-lsp-all", "python-lsp-black", "python-pylint", "flake8"]
-comments = "Python language server."
+names = [
+	"python-lsp-server",
+	"python-lsp-all",
+	"python-lsp-black",
+	"python-pylint",
+	"flake8",
+]
+description = "Python language server."
 
 [[packages]]
 names = ["biome-bin"]
-comments = "Javascript language server (linter)."
+description = "Javascript language server (linter)."
 
 [[packages]]
 names = ["typescript"]
-comments = "Typescript programming language."
+description = "Typescript programming language."
 
 [[packages]]
 names = ["selectdefaultapplication"]
-comments = ["Select default application for xdg."]
+description = ["Select default application for xdg."]
 
 [[packages]]
 names = ["hyprpicker-git"]
-comments = ["Pick colour of the screen."]
+description = ["Pick colour of the screen."]
 
 [[packages]]
 names = ["foliate", "sioyek"]
-comments = ["To read PDF, EPUB, among other documents."]
+description = ["To read PDF, EPUB, among other documents."]
 
 # section ["libreoffice"]
 # text    ["To simply convert DOCX files to PDF... "]
@@ -410,21 +400,31 @@ comments = ["To read PDF, EPUB, among other documents."]
 
 [[packages]]
 names = ["unifont-jp", "noto-fonts-cjk-jp"]
-comments = ["For Japanese characters."]
+description = ["For Japanese characters."]
 
 [[packages]]
 names = ["ttf-joypixels"]
-comments = ["For emojis characters."]
+description = ["For emojis characters."]
 
 [[packages]]
 names = ["ncmpcpp"]
-comments = ["MPD  player viewer."]
+description = ["MPD player viewer."]
 
 [[packages]]
 names = ["mpd", "mopidy"]
-pip = ["Mopidy-Listenbrainz", "Mopidy-Autoplay", "Mopidy-Iris", "Mopidy-Listenbrainz", "Mopidy-Local", "Mopidy-MPD", "Mopidy-Scrobbler", "Mopidy-Spotify", "Mopidy-YouTube"]
-comments = ["Music server."]
+pip = [
+	"Mopidy-Listenbrainz",
+	"Mopidy-Autoplay",
+	"Mopidy-Iris",
+	"Mopidy-Listenbrainz",
+	"Mopidy-Local",
+	"Mopidy-MPD",
+	"Mopidy-Scrobbler",
+	"Mopidy-Spotify",
+	"Mopidy-YouTube",
+]
+description = ["Music server."]
 
 [[packages]]
 names = ["vscode-css-language-server"]
-comments = ["Language servers for editors."]
+description = ["Language servers for editors."]

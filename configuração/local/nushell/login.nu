@@ -23,6 +23,8 @@ $env.DESKTOP_NAME = 'lovemii'
 # XDG default folder for configuration files.
 $env.XDG_CONFIG_HOME = $env.HOME + '/.config'
 
+$env.XDG_DOWNLOAD_DIR = $env.HOME + '/armazenamento/baixados'
+
 # Rust: package manager home and configuration.
 $env.CARGO_HOME = $env.XDG_CONFIG_HOME + '/cargo'
 

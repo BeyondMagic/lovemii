@@ -232,7 +232,8 @@
 		},
 		{
 			"find": [
-				"hyprland-donate-screen"
+				"hyprland-donate-screen",
+				"selectdefaultapplication"
 			],
 			"replace": "love-heart"
 		},

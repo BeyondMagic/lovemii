@@ -17,6 +17,7 @@ export use ./external/anac.nu
 export use ./external/oracle.nu
 export use ./external/gcal.nu *
 export use ./external/steam.nu
+export use ./external/pacman.nu
 #export use ./external/python.nu
 
 export use miscelanous.nu *

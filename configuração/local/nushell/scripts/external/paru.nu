@@ -39,25 +39,18 @@ export def remove [
 
 # List files of a package.
 export def list-paths [
-	...packages: string # Name of the package.
+	package: string # Name of the package.
 	--long = true # Get all available columns for each entry (slower; columns are platform-dependent).
 ]: nothing -> table<any> {
 
-	$packages | par-each {|package|
-		let files = main [
-			-Ql $package
-		] | lines | par-each {|item|
-			let data = $item
-				| split row ' '
-			
-			ls --long=$long --directory $data.1
-			| first
-		}
-
-		{
-			name : $package
-			files : $files
-		}
+	main [
+		-Ql $package
+	] | lines | par-each {|item|
+		let data = $item
+			| split row ' '
+		
+		ls --long=$long --directory $data.1
+		| first
 	}
 }
 

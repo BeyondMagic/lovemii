@@ -13,7 +13,7 @@ require 'options'
 -- To adminstrate packages:
 require 'plugin-manager'
 
--- Autocmd commands from Vimscript
+-- Autocmd
 require 'autocmd'
 
 -- LSP for editing.

@@ -7,12 +7,13 @@ local set                      = vim.api.nvim_set_var
 
 vim.o.foldcolumn               = '0' -- '0' is not bad
 vim.wo.foldlevel               = 99
-vim.o.foldlevel                = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevel                = 99  -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart           = 99
 vim.o.foldenable               = false
+-- vim.o.foldmethod               = 'marker' -- 'manual', 'indent', 'expr', 'syntax', 'diff', 'marker'
 
 -- Fix moving through lines 'gk' and 'gj'
-vim.wo.linebreak               = true
+-- vim.wo.linebreak               = true
 
 -- Use the new FileType system of Neovim.
 -- let g:do_filetype_lua = 1
@@ -152,3 +153,9 @@ option('foldmethod', 'manual', {})
 
 -- File format for neovim reading
 option('fileformat', 'unix', {})
+
+-- Max column for syntax highlight
+option('synmaxcol', 200, {})
+
+-- lazyredraw
+option('lazyredraw', true, {})

@@ -23,7 +23,7 @@ export def main [
 				^hyprctl clients -j 
 			)
 			| from json
-			| where { $in.class == 'thunderbird' }
+			| where { $in.class == $class }
 			| get 0.workspace.id
 
 			if $workspace <= 0 {

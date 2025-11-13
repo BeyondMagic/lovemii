@@ -123,6 +123,7 @@ export def download [
 		-S $format
 		--recode mp4
 		--download-archive $archive
+		--js-runtimes bun
 		#--extractor-arg "youtube:player_client=tv"
 		--add-metadata
 		--embed-thumbnail

@@ -62,9 +62,10 @@ export def download [
 		--embed-metadata
 		--embed-chapters
 		--cookies-from-browser firefox
-		--extractor-args youtubetab:skip=authcheck
-		--extractor-args youtube:player_js_version=actual
-		--no-embed-info-json
+		--js-runtimes bun
+		# --extractor-args youtubetab:skip=authcheck
+		# --extractor-args youtube:player_js_version=actual
+		# --no-embed-info-json
 		--sub-langs 'all'
 		--embed-subs
 		--playlist-end $max

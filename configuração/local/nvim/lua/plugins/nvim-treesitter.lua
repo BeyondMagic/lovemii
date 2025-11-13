@@ -4,10 +4,10 @@ return {
 	'nvim-treesitter/nvim-treesitter',
 	build = ':TSUpdate',
 	depedencies = {
-        -- Additional Nushell parser
-        { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
+		-- Additional Nushell parser
+		{ "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
 	},
-	config = function ()
+	config = function()
 		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 		parser_config.nu = {
@@ -26,12 +26,14 @@ return {
 
 			highlight = {
 				enable = true,
-				disable = {},
+				disable = function(lang, bufnr) -- Disable in files with more than 5K
+					return vim.api.nvim_buf_line_count(bufnr) > 5000
+				end,
 				--injections = {
-					--  python = {
-						--    docstrings: "markdown",
-						--  },
-						--}
+				--  python = {
+				--    docstrings: "markdown",
+				--  },
+				--}
 			},
 			--ensure_installed = { "nu" }, -- Ensure the "nu" parser is installed
 			---- OPTIONAL!! These enable ts-specific textobjects.

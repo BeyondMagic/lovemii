@@ -51,11 +51,9 @@ local function disable_highlight_on_long_lines(event)
 
 	vim.b[bufnr].__long_line_highlight_checked = true
 
-	local has_long_line = vim.api.nvim_buf_call(bufnr, function()
-		return vim.fn.search("\\%>" .. LONG_LINE_THRESHOLD .. "v", "nW") ~= 0
-	end)
+	local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
 
-	if not has_long_line then
+	if #first_line < LONG_LINE_THRESHOLD then
 		return
 	end
 

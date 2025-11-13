@@ -1,4 +1,4 @@
-# João Farias © BeyondMagic 2024 <beyondmagic@mail.ru>
+# João Farias © BeyondMagic 2024-2025 <beyondmagic@mail.ru>
 
 def log-with [style: string, message: string]: nothing -> nothing {
 	let colorized = ansi $style

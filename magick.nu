@@ -124,6 +124,13 @@ def link-symlink [
 			} else {
 				^rm $expanded_target
 			}
+		} else if $target_type == 'file' {
+			log-warn $"link-symlink: existing file at target; replacing with symlink -> ($expanded_target)"
+			if $requires_admin {
+				^doas rm $expanded_target
+			} else {
+				^rm $expanded_target
+			}
 		} else {
 			log-warn $"link-symlink: existing non-symlink at target; manual intervention required -> ($expanded_target)"
 			return {

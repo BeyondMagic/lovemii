@@ -3,6 +3,7 @@ import { Astal, Gtk } from "ags/gtk4"
 import AstalNotifd from "gi://AstalNotifd"
 import Notification from "./util"
 import { createBinding, For, createState, onCleanup } from "ags"
+import { persistNotification } from "./storage"
 
 export function NotificationPopups({ monitor }: { monitor: number }) {
 
@@ -14,6 +15,10 @@ export function NotificationPopups({ monitor }: { monitor: number }) {
 
 	const notifiedHandler = notifd.connect("notified", (_, id, replaced) => {
 		const notification = notifd.get_notification(id)
+		if (!notification)
+			return
+
+		persistNotification(notification)
 
 		if (replaced && notifications.get().some(n => n.id === id)) {
 			setNotifications((ns) => ns.map((n) => (n.id === id ? notification : n)))

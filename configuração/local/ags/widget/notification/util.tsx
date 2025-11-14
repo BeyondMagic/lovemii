@@ -5,12 +5,12 @@ import GLib from "gi://GLib"
 import AstalNotifd from "gi://AstalNotifd"
 import Pango from "gi://Pango"
 
-function isIcon(icon?: string | null) {
+function is_icon(icon?: string | null) {
 	const iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default()!)
 	return icon && iconTheme.has_icon(icon)
 }
 
-function fileExists(path: string) {
+function file_exists(path: string) {
 	return GLib.file_test(path, GLib.FileTest.EXISTS)
 }
 
@@ -52,7 +52,7 @@ export default function Notification({
 					onLeave={onHoverLost}
 				/> */}
 				<box class="header">
-					{(n.appIcon || isIcon(n.desktopEntry)) && (
+					{(n.appIcon || is_icon(n.desktopEntry)) && (
 						<image
 							class="app-icon"
 							visible={Boolean(n.appIcon || n.desktopEntry)}
@@ -77,10 +77,10 @@ export default function Notification({
 				</box>
 				<Gtk.Separator visible />
 				<box class="content">
-					{n.image && fileExists(n.image) && (
+					{n.image && file_exists(n.image) && (
 						<image valign={Gtk.Align.START} class="image" file={n.image} />
 					)}
-					{n.image && isIcon(n.image) && (
+					{n.image && is_icon(n.image) && (
 						<box valign={Gtk.Align.START} class="icon-image">
 							<image
 								iconName={n.image}

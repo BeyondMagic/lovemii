@@ -57,3 +57,8 @@ require 'lsp.biome'
 
 -- elixir
 -- require 'lsp.elixir'
+
+-- copilot
+require 'lsp.copilot'
+
+

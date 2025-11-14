@@ -2,6 +2,9 @@ return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
 	event = "InsertEnter",
+	dependencies = {
+		"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+	},
 	config = function()
 		require("copilot").setup({
 			panel = {

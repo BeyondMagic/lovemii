@@ -1,23 +1,23 @@
 local root = COLOURSCHEME_ACCESS .. '.highlights.groups.'
 local colourscheme = require(COLOURSCHEME_ACCESS)
 
-function read (file_names)
-	for _, name in pairs(file_names) do
+function read(file_names)
+  for _, name in pairs(file_names) do
     colourscheme.highlight_all(require(root .. name))
-	end
+  end
 end
 
 read {
   --[[ Default highlights of n/vim. ]]
   'defaults',
 
-	--[[ Editor UI ]]
+  --[[ Editor UI ]]
   'editor-ui',
 
   --[[ Extra stuff for other highlights ]]
   'extra',
 
-	--[[ Programming Languages
+  --[[ Programming Languages
 		Everything in this section is OPTIONAL. Feel free to remove everything
 		here if you don't want to define it, or add more if there's something
 		missing. ]]
@@ -58,7 +58,7 @@ read {
   'filetypes.xxd',
   'filetypes.yaml',
 
-	--[[ Plugins
+  --[[ Plugins
 		Everything in this section is OPTIONAL. Feel free to remove everything
 		here if you don't want to define it, or add more if there's something
 		missing. ]]
@@ -90,5 +90,6 @@ read {
   'plugins.vim-jumpmotion',
   'plugins.vim-sandwhich',
   'plugins.vim-signify',
+  'plugins.blink-cmp'
 
 }

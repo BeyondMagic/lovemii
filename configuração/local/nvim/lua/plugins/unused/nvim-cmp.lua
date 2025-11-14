@@ -39,13 +39,13 @@ local icons = {
 
 -- Load loaders from VSCode.
 --require("luasnip.loaders.from_vscode").lazy_load({
-	--  paths = { "~/.local/share/lazy/friendly-snippets" }
-	--})
+--  paths = { "~/.local/share/lazy/friendly-snippets" }
+--})
 
 local has_words_before = function()
-  if vim.api.nvim_get_option_value("buftype", { buf = 0}) == "prompt" then return false end
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+	if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then return false end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
 return {
@@ -83,7 +83,6 @@ return {
 		{ "hrsh7th/cmp-emoji" },
 	},
 	config = function()
-
 		local cmp = require 'cmp'
 
 		local luasnip = require 'luasnip'
@@ -115,16 +114,18 @@ return {
 
 			-- Mapping each keybind.
 			mapping = {
-				["<C-d>"]     = cmp.mapping.scroll_docs(-4),
-				["<C-f>"]     = cmp.mapping.scroll_docs(4),
+				["<C-d>"]   = cmp.mapping.scroll_docs(-4),
+				["<C-f>"]   = cmp.mapping.scroll_docs(4),
 				--["<C-Space>"] = cmp.mapping.complete(),
-				["<C-e>"]     = cmp.mapping.close(),
-				["<CR>"]      = cmp.mapping.confirm {
+				["<C-e>"]   = cmp.mapping.close(),
+				["<CR>"]    = cmp.mapping.confirm {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select   = true,
 				},
-				["<Tab>"] = vim.schedule_wrap(function(fallback)
-					if cmp.visible() and has_words_before() then
+				["<Tab>"]   = vim.schedule_wrap(function(fallback)
+					if require("sidekick").nes_jump_or_apply() then
+						return -- jumped or applied
+					elseif cmp.visible() and has_words_before() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					else
 						fallback()
@@ -148,7 +149,6 @@ return {
 					elseif luasnip.jumpable(-1) then
 						luasnip.jump(-1)
 						-- vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-
 					else
 						fallback()
 					end
@@ -159,7 +159,6 @@ return {
 			formatting = {
 				fields = { 'kind', 'abbr', 'menu' },
 				format = function(entry, vim_item)
-
 					vim_item.menu = vim_item.kind
 
 					-- load lspkind icons

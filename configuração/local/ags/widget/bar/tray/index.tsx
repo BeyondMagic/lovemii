@@ -1,6 +1,5 @@
 import { For, createBinding, onCleanup } from "ags"
 import AstalTray from "gi://AstalTray"
-import { config } from "../../../app"
 import { Gtk } from "ags/gtk4"
 import { clone_menu_model } from "./util"
 
@@ -73,8 +72,6 @@ export function Tray() {
 	return (
 		<menubutton
 			class="tray-button"
-			width_request={config.corner}
-			height_request={config.corner}
 			$={self => self.set_popover(popover)}
 		>
 			<image

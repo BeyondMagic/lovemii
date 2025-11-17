@@ -8,17 +8,17 @@ window.bar {
 
 			>menubutton {
 
-				padding: tokens.$spacing-small;
-				border-radius: tokens.$radius-small;
-
-				&:hover {
-					background-color: tokens.color-var("overlay-darker-2");
-				}
 
 				>button {
 
 					>box {
-						// background-color: red;
+						padding: tokens.$spacing-medium;
+
+						border-radius: tokens.$radius-small;
+
+						&:hover {
+							background-color: tokens.color-var("overlay-darker-2");
+						}
 
 						>contents {
 							// background-color: yellow;

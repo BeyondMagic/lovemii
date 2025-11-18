@@ -2,8 +2,27 @@ import Gtk from "gi://Gtk?version=4.0"
 import Gdk from "gi://Gdk?version=4.0"
 import Adw from "gi://Adw"
 import GLib from "gi://GLib"
-import AstalNotifd from "gi://AstalNotifd"
 import Pango from "gi://Pango"
+
+export type NotificationAction = {
+	id: string
+	label: string
+}
+
+export type NotificationLike = {
+	id: number
+	time: number
+	appName: string
+	appIcon?: string | null
+	desktopEntry?: string | null
+	summary: string
+	body?: string | null
+	image?: string | null
+	actions: NotificationAction[]
+	urgency: number
+	dismiss: () => void
+	invoke: (actionId: string) => void
+}
 
 function is_icon(icon?: string | null) {
 	const iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default()!)
@@ -18,14 +37,13 @@ function time(time: number, format = "%H:%M") {
 	return GLib.DateTime.new_from_unix_local(time).format(format)!
 }
 
-function urgency(n: AstalNotifd.Notification) {
-	const { LOW, NORMAL, CRITICAL } = AstalNotifd.Urgency
+function urgency(n: NotificationLike) {
 	switch (n.urgency) {
-		case LOW:
+		case 0:
 			return "low"
-		case CRITICAL:
+		case 2:
 			return "critical"
-		case NORMAL:
+		case 1:
 		default:
 			return "normal"
 	}
@@ -35,7 +53,7 @@ export default function Notification({
 	notification: n,
 	onHoverLost,
 }: {
-	notification: AstalNotifd.Notification
+	notification: NotificationLike
 	onHoverLost: () => void
 }) {
 
@@ -56,7 +74,7 @@ export default function Notification({
 						<image
 							class="app-icon"
 							visible={Boolean(n.appIcon || n.desktopEntry)}
-							iconName={n.appIcon || n.desktopEntry}
+							iconName={n.appIcon ?? n.desktopEntry ?? undefined}
 						/>
 					)}
 					<label

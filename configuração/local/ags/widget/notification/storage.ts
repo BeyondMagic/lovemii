@@ -29,6 +29,9 @@ const imagesDir = GLib.build_filenamev([cacheRoot, "images"])
 const soundsDir = GLib.build_filenamev([cacheRoot, "sounds"])
 const dataFile = GLib.build_filenamev([cacheRoot, "notifications.json"])
 
+type PersistedListener = (notifications: PersistedNotification[]) => void
+const listeners = new Set<PersistedListener>()
+
 let dirsReady = false
 
 function ensureDirectories() {
@@ -70,7 +73,7 @@ function copyBinaryAsset(sourcePath: string | null, targetDir: string, prefix: s
 	}
 }
 
-function loadPersisted(): PersistedNotification[] {
+function readPersisted(): PersistedNotification[] {
 	ensureDirectories()
 	if (!GLib.file_test(dataFile, GLib.FileTest.EXISTS)) return []
 	try {
@@ -90,6 +93,25 @@ function savePersisted(entries: PersistedNotification[]) {
 	} catch (error) {
 		printerr(`Failed to save notifications history: ${error}`)
 	}
+}
+
+function emitPersisted(entries: PersistedNotification[]) {
+	for (const listener of listeners) {
+		try {
+			listener(entries)
+		} catch (error) {
+			printerr(`Persisted notifications listener error: ${error}`)
+		}
+	}
+}
+
+export function getPersistedNotifications() {
+	return readPersisted()
+}
+
+export function subscribeToPersistedNotifications(listener: PersistedListener) {
+	listeners.add(listener)
+	return () => listeners.delete(listener)
 }
 
 export function persistNotification(notification: AstalNotifd.Notification) {
@@ -119,7 +141,8 @@ export function persistNotification(notification: AstalNotifd.Notification) {
 		})),
 	}
 
-	const data = loadPersisted()
+	const data = readPersisted()
 	data.unshift(entry)
 	savePersisted(data)
+	emitPersisted(data)
 }

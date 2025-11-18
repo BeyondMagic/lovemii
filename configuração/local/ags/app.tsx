@@ -11,10 +11,12 @@ import { monitors as get_hypr_monitors } from "./services/hyprland";
 import { Bar } from "./widget/bar";
 import { Corner } from "./widget/corner";
 import { Launcher } from "./widget/launcher";
+import { MenuWindow } from "./widget/menu";
 
 import { NotificationPopups } from "./widget/notification"
 
 let app_launcher: Gtk.Window;
+let menu_window: Gtk.Window;
 
 print("Astal Desktop starting...");
 const dbus_address = GLib.getenv("DBUS_SESSION_BUS_ADDRESS") ?? "unix:path=/tmp/dbus";
@@ -32,6 +34,9 @@ function main() {
 
 	app_launcher = Launcher() as Gtk.Window;
 	app.add_window(app_launcher);
+
+	menu_window = MenuWindow() as Gtk.Window;
+	app.add_window(menu_window);
 
 	return (
 		<For each={hypr_monitors} >

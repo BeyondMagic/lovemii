@@ -27,6 +27,7 @@ export function NotificationPopups({ monitor }: { monitor: number }) {
 		}
 	})
 
+	// If a notification expires, or is dismissed, or replaced, we remove it from our state.
 	const resolvedHandler = notifd.connect("resolved", (_, id) => {
 		setNotifications((ns) => ns.filter((n) => n.id !== id))
 	})

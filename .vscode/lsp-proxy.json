@@ -1,0 +1,9 @@
+[
+  {
+    "languageId": "qml",
+    "command": "qml-language-server",
+    "fileExtensions": [
+      ".qml"
+    ]
+  }
+]

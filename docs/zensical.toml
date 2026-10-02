@@ -1,0 +1,100 @@
+[project]
+site_url = "https://beyondmagic.github.io/lovemii/"
+site_name = "lovemii"
+site_description = "A long-desired attempt into creating a new way to use a desktop environment."
+site_author = "João V. Farias"
+docs_dir = "./"
+
+copyright = "BeyondMagic 2026 <beyondmagic@mail.ru>"
+
+repo_url = "https://github.com/BeyondMagic/lovemii"
+repo_name = "BeyondMagic/lovemii"
+edit_uri = "edit/main/docs/"
+
+extra_css = [
+	"stylesheets/ui.css"
+]
+extra_javascript = [
+  # "javascript/extra.js"
+]
+
+nav = [
+  { "General" = "index.md" },
+  { "Decision Record" = [
+      { "General" = "decision-record/README.md" },
+      { "001: Name" = "decision-record/001-name-decision.md" },
+	  { "002: UI Design" = "decision-record/002-ui-design-decision.md"}
+  ]},
+]
+
+[project.extra]
+generator = false
+
+[project.theme]
+language = "pt"
+features = [
+  "announce.dismiss",
+  "content.action.edit",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Follow system preference"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.arithmatex.generic = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}

@@ -1,4 +1,4 @@
-# 2. UI design system
+# 002: UI design system
 
 - **Status:** Accepted
 - **Date:** 2026-09-26
@@ -35,6 +35,7 @@ I am setting the visual design rules for `lovemii` as follows:
 Use a clean, neutral sans-serif with strong legibility at small sizes (Inter or SF Pro, falling back to the system sans font).
 
 The type scale has four tiers:
+
 - Title: 18px to 20px (clock, main headers)
 - Body: 13px to 14px (standard labels, menu rows)
 - Caption: 11px to 12px (subtitles, secondary info, timestamps)
@@ -43,6 +44,7 @@ The type scale has four tiers:
 ### Opacity and hierarchy
 
 White text opacity against the black background indicates priority:
+
 - Primary (100% white, #FFFFFF): Active headers, primary labels, current time.
 - Secondary (70% white, rgba(255, 255, 255, 0.70)): Standard body text and unhighlighted labels.
 - Tertiary (45% white, rgba(255, 255, 255, 0.45)): Subtitles, timestamps, and secondary hints.
@@ -51,6 +53,7 @@ White text opacity against the black background indicates priority:
 ### Clickable elements
 
 Interactive text needs to stand out without cluttering the screen with button boxes:
+
 - Font weight: Static labels use normal weight (400). Clickable items use medium (500) or semibold (600).
 - Idle state: Clickable items rest at secondary opacity (around 75%) with medium weight.
 - Hover state: Brightens to full white (100%) on hover for immediate feedback.

@@ -1,4 +1,4 @@
-# 1. Name selection
+# 001: Name selection
 
 - **Status:** Accepted
 - **Date:** 2026-09-25 - 2026-09-26

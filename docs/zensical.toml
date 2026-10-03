@@ -31,7 +31,7 @@ nav = [
 generator = false
 
 [project.theme]
-language = "pt"
+language = "en"
 features = [
   "announce.dismiss",
   "content.action.edit",

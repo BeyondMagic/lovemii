@@ -10,7 +10,7 @@ Technical, architectural, design decisions, and the reasoning behind them, are d
 | 001 | 2026-09-25 | [Name selection](./001-name-decision.md) | **Accepted** |
 | 002 | 2026-09-26 | [UI design system](./002-ui-design-decision.md) | **Accepted** |
 | 003 | - | UX behavior and interaction flows | Proposed |
-| 004 | - | Development of features and widgets | Proposed |
+| 004 | - | [Development of features and widgets](./004-development-features-widgets.md) | Proposed |
 | 005 | - | [Engine and Compositor](./005-engine-compositor.md) | Proposed |
 | 006 | - | [AI usage and privacy](./006-ai-usage-privacy.md) | Proposed |
 

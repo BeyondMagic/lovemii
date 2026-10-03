@@ -27,7 +27,12 @@ nav = [
       { "001: Name" = "decision-record/001-name-decision.md" },
       { "002: UI Design" = "decision-record/002-ui-design-decision.md" },
       { "004: Features & Widgets" = "decision-record/004-development-features-widgets.md" },
-      { "007: License" = "decision-record/007-license-selection.md" },
+  ]},
+  { "Features" = [
+      { "General" = "feature/README.md" },
+      { "000: Template" = "feature/000-template.md" },
+      { "001: Plymouth" = "feature/001-plymouth.md" },
+      { "002: Login" = "feature/002-login.md" },
   ]},
 ]
 

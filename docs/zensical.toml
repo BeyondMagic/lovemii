@@ -5,7 +5,7 @@ site_description = "A long-desired attempt into creating a new way to use a desk
 site_author = "João V. Farias"
 docs_dir = "./"
 
-copyright = "BeyondMagic 2026 <beyondmagic@mail.ru>"
+copyright = "BeyondMagic © 2026"
 
 repo_url = "https://github.com/BeyondMagic/lovemii"
 repo_name = "BeyondMagic/lovemii"

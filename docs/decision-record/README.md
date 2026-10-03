@@ -13,6 +13,7 @@ Technical, architectural, design decisions, and the reasoning behind them, are d
 | 004 | - | [Development of features and widgets](./004-development-features-widgets.md) | Proposed |
 | 005 | - | [Engine and Compositor](./005-engine-compositor.md) | Proposed |
 | 006 | - | [AI usage and privacy](./006-ai-usage-privacy.md) | Proposed |
+| 007 | - | License selection | Proposed |
 
 Legend:
 

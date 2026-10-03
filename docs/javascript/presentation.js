@@ -188,7 +188,7 @@
 
 		const btn = document.createElement('button');
 		btn.id = 'pres-toggle-btn';
-		btn.innerHTML = '&#9654; Apresentar';
+		btn.innerHTML = '&#9654; Show';
 		btn.title = 'Entrar no modo apresentacao (tecla P)';
 		btn.addEventListener('click', () => {
 			presentationActive ? exitPresentation() : enterPresentation();

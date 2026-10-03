@@ -7,8 +7,8 @@ Specifications, interaction flows, and implementation notes for shell features a
 | ID  | Date | Feature | Status |
 |-----|------|---------|--------|
 | 000 | 2026-10-03 | [Template](./000-template.md) | **Accepted** |
-| 001 | 2026-10-03 | [Plymouth](./001-plymouth.md) | **Proposed** |
-| 002 | 2026-10-03 | [Login](./002-login.md) | **Proposed** |
+| 001 | 2026-10-03 | [Plymouth](./001-plymouth.md) | Proposed |
+| 002 | 2026-10-03 | [Login](./002-login.md) | Proposed |
 
 Legend:
 

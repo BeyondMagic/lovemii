@@ -10,6 +10,16 @@ Plymouth is a graphical boot animation.
 
 It is meant to provide a visually appealing experience during the boot process, hiding the underlying text output and presenting a smooth transition from the bootloader to the desktop environment.
 
+## Examples
+
+- [Linux Distro Logos - macOS Boot Style](https://www.opendesktop.org/p/2106821)
+
+It has the logo of a distro in the center and bar of progress below.
+
+- [Dynamic Miku](https://www.reddit.com/r/unixporn/comments/1tlfaou/plymouth_dynamic_miku_plymouth_theme_that/)
+
+It features a dynamic Miku character (37 variants) that dances in a MP3 player style.
+
 ## Interaction Flow
 
 1. Turn on the computer;

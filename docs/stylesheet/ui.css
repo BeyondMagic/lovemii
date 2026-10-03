@@ -1,5 +1,5 @@
 :root {
-	--md-text-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--md-text-font: "Inter", sans-serif;
 	--md-typeset-font-size: 14px;
 	--md-typeset-line-height: 1.7;
 }
@@ -7,7 +7,8 @@
 body,
 .md-typeset {
 	text-rendering: optimizeLegibility;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
 	font-size: 14px;
 	letter-spacing: 0.2px;
 	line-height: 1.7;

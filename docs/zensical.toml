@@ -12,10 +12,11 @@ repo_name = "BeyondMagic/lovemii"
 edit_uri = "edit/main/docs/"
 
 extra_css = [
-	"stylesheets/ui.css"
+	"stylesheet/ui.css",
+  "stylesheet/presentation.css"
 ]
 extra_javascript = [
-  # "javascript/extra.js"
+  "javascript/presentation.js"
 ]
 
 nav = [

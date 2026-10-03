@@ -32,6 +32,8 @@ nav = [
 generator = false
 
 [project.theme]
+logo = "assets/logo.svg"
+favicon = "assets/logo.svg"
 language = "en"
 features = [
   "announce.dismiss",

@@ -15,7 +15,7 @@ Technical, architectural, design decisions, and the reasoning behind them, are d
 
 Legend:
 
-- **Accepted**: The decision has been made and is being implemented.
-- **Proposed**: The decision is under discussion and has not been finalized yet.
-- **Rejected**: The decision was considered but ultimately not chosen.
-- **Deprecated**: The decision was once accepted but is no longer in use or recommended.
+- **Accepted**: the decision has been made and is being implemented;
+- **Proposed**: the decision is under discussion and has not been finalized yet;
+- **Rejected**: the decision was considered but ultimately not chosen;
+- **Deprecated**: the decision was once accepted but is no longer in use or recommended.

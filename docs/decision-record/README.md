@@ -6,5 +6,10 @@ Technical, architectural, design decisions, and the reasoning behind them, are d
 
 | ID | Date | Decision | Status |
 |----|------|----------|--------|
-| [001](./001-name-decision.md) | 2026-09-25 | [Name selection](./001-name-decision.md) | Accepted |
-| [002](./002-ui-design-decision.md) | 2026-09-26 | [UI design system](./002-ui-design-decision.md) | Accepted |
+
+Legend:
+
+- **Accepted**: The decision has been made and is being implemented.
+- **Proposed**: The decision is under discussion and has not been finalized yet.
+- **Rejected**: The decision was considered but ultimately not chosen.
+- **Deprecated**: The decision was once accepted but is no longer in use or recommended.

@@ -16,7 +16,7 @@ It is meant to provide a visually appealing experience during the boot process, 
 
 It has the logo of a distro in the center and bar of progress below.
 
-- [Dynamic Miku](https://www.reddit.com/r/unixporn/comments/1tlfaou/plymouth_dynamic_miku_plymouth_theme_that/)
+- [Dynamic Miku](https://github.com/Thang1191/MikuPlymouth)
 
 It features a dynamic Miku character (37 variants) that dances in a MP3 player style.
 

@@ -8,6 +8,10 @@
 
 <span style="color: #666666">Provide context for what this feature is about, the motivation behind it, and the goal it aims to achieve.</span>
 
+## Examples
+
+<span style="color: #666666">Provide examples of this feature implemented by other developers or in similar applications.</span>
+
 ## Interaction Flow
 
 <span style="color: #666666">Describe the interaction flow of the feature in a use-case format.</span>

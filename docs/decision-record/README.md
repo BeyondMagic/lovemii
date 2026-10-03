@@ -11,6 +11,7 @@ Technical, architectural, design decisions, and the reasoning behind them, are d
 | 003 | - | UX behavior and interaction flows | Proposed |
 | 004 | - | Development of features and widgets | Proposed |
 | 005 | - | [Engine and Compositor](./005-engine-compositor.md) | Proposed |
+| 006 | - | [AI usage and privacy](./006-ai-usage-privacy.md) | Proposed |
 
 Legend:
 

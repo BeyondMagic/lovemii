@@ -23,8 +23,10 @@ nav = [
   { "General" = "index.md" },
   { "Decision Record" = [
       { "General" = "decision-record/README.md" },
+      { "000: Template" = "decision-record/000-template.md" },
       { "001: Name" = "decision-record/001-name-decision.md" },
-	  { "002: UI Design" = "decision-record/002-ui-design-decision.md"}
+      { "002: UI Design" = "decision-record/002-ui-design-decision.md" },
+      { "004: Features & Widgets" = "decision-record/004-development-features-widgets.md" },
   ]},
 ]
 

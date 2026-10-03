@@ -1,29 +1,42 @@
 # 004: Development of features and widgets
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-10-03
 - **Deciders:** João V. Farias
 - **Decision:** What is the development process for features and widgets? How will they be designed, implemented, and maintained?
 
 ## Context
 
-The development of features and widgets is a critical aspect of the software development lifecycle. It involves the creation, design, implementation, and maintenance of various functionalities and user interface elements.
+In my previous shell, widgets and features were built ad-hoc. I often started by writing code directly, which meant figuring out interaction rules and visual layouts halfway through implementation. That led to wasted effort, awkward edge cases, and having to rewrite components after discovering that a flow did not work well in practice.
+
+For this rewrite in Quickshell, I want a disciplined workflow. Deciding how a user interacts with a feature before writing code keeps components focused, prevents bloated widgets, and makes sure visual designs match actual use cases.
 
 ## Requirements and restrictions
 
-- The interaction process/flow must be the first priority, written in a use-case format.
-- The visual design must be the second priority, following the interaction flow.
-- The implementation must be the third priority, following the visual design.
-- All the above must be documented in a single markdown file in the given respective order in the `docs/feature/` directory with the `XXX-feature-name.md` format, where `XXX` is the feature number and `feature-name` is a descriptive name for the feature.
+- The interaction flow is the first priority, written step-by-step in a use-case format;
+- The visual design is the second priority, translating the interaction steps into Figma mockups and wireframes;
+- The implementation plan is the third priority, detailing dependencies, performance budgets, and technical constraints;
+- Every feature must be documented in a single file inside `docs/feature/` using the `XXX-feature-name.md` naming format, following the [template](../feature/000-template.md).
 
 ## Decision
+
+I am adopting a three-stage development process for all features and widgets in `lovemii`:
+
+1. **Interaction flow:** Before creating graphics or writing code, write down the complete user flow in `docs/feature/XXX-feature-name.md`, follow [003](./003-ux-behavior-interaction-flows.md);
+2. **Visual design:** Once the flow is clear, create Figma wireframes or mockups that fit the steps and follow the visual design rules in [002](./002-ui-design-decision.md);
+3. **Implementation plan:** Outline the technical details, required Quickshell or QtQuick APIs, external system tools, and performance limits;
+4. **Lifecycle tracking:** The feature proposal starts as **Proposed**. Development begins only after the flow and design are settled and marked as **Accepted** in the [feature list](../feature/README.md).
 
 ## Consequences
 
 ### Positives
 
-<span style="color: #666666">List the positive consequences of the decision. This section should highlight the benefits and advantages of the chosen solution.</span>
+- Planning the interaction flow first prevents rewriting code when edge cases appear;
+- UI components stay consistent because mockups follow settled user steps instead of guesswork;
+- Technical constraints and missing dependencies are caught before implementation begins;
+- Clear documentation makes it easy to review why a feature works the way it does.
 
 ### Negatives
 
-<span style="color: #666666">List the negative consequences of the decision. This section should highlight any potential drawbacks or risks associated with the chosen solution.</span>
+- Small adjustments and quick experiments take longer because of the extra documentation step;
+- Documentation files must be kept up to date as features evolve over time.

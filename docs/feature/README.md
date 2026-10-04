@@ -9,6 +9,9 @@ Specifications, interaction flows, and implementation notes for shell features a
 | 000 | 2026-10-03 | [Template](./000-template.md) | **Accepted** |
 | 001 | 2026-10-03 | [Plymouth](./001-plymouth.md) | Proposed |
 | 002 | 2026-10-03 | [Login](./002-login.md) | Proposed |
+| 003 | 2026-10-03 | Power Management | Proposed |
+| 003 | 2026-10-03 | System Tray | Proposed |
+| 003 | 2026-10-03 | Workspace Tray | Proposed |
 
 Legend:
 

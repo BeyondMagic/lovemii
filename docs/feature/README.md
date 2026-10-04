@@ -4,15 +4,23 @@ Specifications, interaction flows, and implementation notes for shell features a
 
 ## Features
 
-| ID  | Proposed At | Feature | Status |
-|-----|------|---------|--------|
-| 000 | 2026-10-03 | [Template](./000-template.md) | **Accepted** |
-| 001 | 2026-10-03 | [Plymouth](./001-plymouth.md) | Proposed |
-| 002 | 2026-10-03 | [Login](./002-login.md) | Proposed |
-| 003 | 2026-10-03 | Power Management | Proposed |
-| 004 | 2026-10-03 | System Tray | Proposed |
-| 005 | 2026-10-03 | Workspace Tray | Proposed |
-| 006 | 2026-10-03 | [Time Tracker](./006-time-tracker.md) | Proposed |
+| ID     | Date                    | Feature                             | Status   |
+| :----- | :---------------------- | :---------------------------------- | :------- |
+| 000    | 2026-10-03 - 2026-10-03 | [Template](./000-template.md) | **Accepted** | 
+| 001    | 2026-10-03 -            | [Plymouth](./001-plymouth.md) | Proposed |
+| 002    | 2026-10-03 -            | [Login](./002-login.md) | Proposed |
+| 003    | 2026-10-03 -            | Power Management | Proposed |
+| 004    | 2026-10-03 -            | System Tray | Proposed |
+| 005    | 2026-10-03 -            | Workspace Tray | Proposed |
+| 006    | 2026-10-03 -            | [Time Tracker](./006-time-tracker.md) | Proposed |
+| 007    | 2026-10-03 -            | Notifications | Proposed |
+| 008    | 2026-10-03 -            | Overview | Proposed |
+| 009    | 2026-10-03 -            | [Search](./009-search.md) | Proposed |
+| 010    | 2026-10-03 -            | Habit Tracker | Proposed |
+| 011    | 2026-10-03 -            | Task Tracker | Proposed |
+| 012    | 2026-10-03 -            | [OCR](./012-ocr.md) | Proposed |
+
+<!-- Task Tracker will supersede habit tracker -->
 
 Legend:
 

@@ -115,3 +115,7 @@ Interactive text needs to stand out without cluttering the screen with button bo
 
 - Low-opacity text (45% and 25%) might be hard to read on low-end displays or under bright glare;
 - A strictly monochrome interface means spacing and type weights have to do all the heavy lifting, which leaves less room for sloppy layouts.
+
+### References
+
+- [dotfiles_nothing_os](https://github.com/0xbbuddha/dotfiles_nothing_os): A minimal, monochrome desktop shell for Linux with a similar aesthetic.

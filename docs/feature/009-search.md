@@ -1,4 +1,4 @@
-# 012: OCR
+# 009: Search
 
 - **Status:** <span style="color: #666666">Proposed</span>
 - **Proposal date:** <span style="color: #666666">Date of proposal</span>
@@ -10,21 +10,7 @@
 
 ## Benchmark
 
-<span style="color: #666666">Provide examples of this feature implemented by other developers or in similar applications.</span>
-
-### Tesseract
-
-- Simple shell script: [grim] -> [tesseract] -> [wl-copy].
-
-This is what I use today.
-
-### PaddleOCR
-
-### EasyOCR
-
-### Doclicng/RapidOCR (derived from PaddleOCR)
-
-### Qwen-VL
+<span style="color: #666666">Provide examples of this feature implemented by other developers or in similar applications, with leading features highlighted.</span>
 
 ## Interaction Flow
 

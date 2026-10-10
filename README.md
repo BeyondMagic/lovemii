@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="documentation/assets/dark/logotype.svg">
-    <source media="(prefers-color-scheme: light)" srcset="documentation/assets/light/logotype.svg">
-    <img alt="lovemii logotype" src="documentation/assets/light/logotype.svg" width="360">
+    <source media="(prefers-color-scheme: dark)" srcset="documentation/content/assets/dark/logotype.svg">
+    <source media="(prefers-color-scheme: light)" srcset="documentation/content/assets/light/logotype.svg">
+    <img alt="lovemii logotype" src="documentation/content/assets/light/logotype.svg" width="360">
   </picture>
 </p>
 
@@ -19,10 +19,8 @@ A minimalist desktop shell for Wayland, built with [Quickshell](https://quickshe
 Full project documentation, architectural decision records, and feature specifications are available on the documentation site:
 
 - **Site:** [https://beyondmagic.github.io/lovemii/](https://beyondmagic.github.io/lovemii/)
-- **Decision records:** [docs/decision-record/](documentation/content/decision-record/index.mdindex.md)
-- **Feature specifications:** [docs/feature/](documentation/content/feature/index.md)
-
-## Local preview
+- **Decision records:** [docs/decision-record/](documentation/content/decision-record/index.md)
+- **Feature specifications:** [docs/feature/](documentdocumentation/content/feature/index.mdcal preview
 
 To run the documentation server locally:
 

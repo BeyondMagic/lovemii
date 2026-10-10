@@ -63,24 +63,28 @@ features = [
   "search.highlight",
 ]
 
-# [[project.theme.palette]]
-# media = "(prefers-color-scheme)"
-# toggle.icon = "lucide/sun-moon"
-# toggle.name = "Follow system preference"
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+primary = "pink"
+accent = "custom"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
-# toggle.icon = "lucide/sun"
-# toggle.name = "Switch to dark mode"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
 primary = "pink"
-accent = "pink"
+accent = "custom"
 
-# [[project.theme.palette]]
-# media = "(prefers-color-scheme: dark)"
-# scheme = "slate"
-# toggle.icon = "lucide/moon"
-# toggle.name = "Switch to light mode"
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+primary = "pink"
+accent = "custom"
 
 [project.markdown_extensions]
 abbr = {}

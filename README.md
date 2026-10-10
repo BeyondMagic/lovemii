@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dark/logotype.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/assets/light/logotype.svg">
+    <img alt="lovemii logotype" src="docs/assets/light/logotype.svg" width="360">
+  </picture>
+</p>
+
 # lovemii
 
 A minimalist desktop shell for Wayland, built with [Quickshell](https://quickshell.org/) and designed to run alongside [Hyprland](https://hypr.land/).

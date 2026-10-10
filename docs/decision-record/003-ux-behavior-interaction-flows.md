@@ -1,21 +1,29 @@
 # 003: UX behavior and interaction flows
 
-- **Status:** <span style="color: #666666">Proposed</span>
-- **Date:** <span style="color: #666666">Date of decision</span>
-- **Deciders:** <span style="color: #666666">List of people who made the decision</span>
+- **Status:** Planned
+- **Date:** 2026-10-10
+- **Deciders:** João V. Farias
 - **Decision:** <span style="color: #666666">Summary of the decision being made</span>
 
 ## Context
 
 <span style="color: #666666">Provide context for the decision being made. This section should explain why the decision is necessary and what problem it aims to solve.</span>
 
-<!--
-This describes what triggers the feature, what steps follow, and what happens at the end.
--->
+**What triggers the feature?**: a frustrated user or a need for a faster workflow.
+
+### Glossary
+
+**Intuitive:** an interface in which the process of learning how to use it has largely been eliminated.
 
 ## Requirements and restrictions
 
 <span style="color: #666666">List the requirements and restrictions that must be considered when making this decision.</span>
+
+- Familiarity is key, it should try to resemble established physical or digital patterns of interaction.
+
+- The goal should never to completely eliminate the need for learning, learning never truly disappears.
+
+- Never sacrifice new paradigms that are more capable, efficient, and effective for the sake of familiarity.
 
 ## Decision
 

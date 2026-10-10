@@ -2,8 +2,8 @@
 
 `lovemii` is a very personal desktop shell for Wayland, built with [Quickshell](https://quickshell.org/) and designed to run alongside [Hyprland](https://hypr.land/).
 
-![lovemii logotype](./assets/light/logotype.svg){: .center-image .only-light }
-![lovemii logotype](./assets/dark/logotype.svg){: .center-image .only-dark }
+![lovemii logotype](../assets/light/logotype.svg){: .center-image .only-light }
+![lovemii logotype](../assets/dark/logotype.svg){: .center-image .only-dark }
 
 It replaces my earlier shell of the same name, which was built with [Aylurs GTK Shell (AGS)](https://aylur.github.io/ags/). While the old shell worked for daily use, it grew organically without structured design rules or interaction specs. This rewrite restarts the project on Quickshell with a cleaner architecture, better performance, and a consistent visual style.
 

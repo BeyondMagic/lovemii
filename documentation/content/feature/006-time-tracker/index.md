@@ -26,7 +26,7 @@
 
 A pointer that indicates the current month, with the others being grayed out. As a way to visualize the passage of time, inflict the feelingt that the user is either losing time or that time is passing by, and that the user should be aware of it.
 
-![Concept: Month Pointer](./assets/concept-months-pointer.jpg)
+![Concept: Month Pointer](assets/concept-months-pointer.png)
 
 ## Interaction Flow
 

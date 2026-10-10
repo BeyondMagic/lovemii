@@ -8,9 +8,9 @@
 
 <span style="color: #666666">Provide context for what this feature is about, the motivation behind it, and the goal it aims to achieve.</span>
 
-## Examples
+## Benchmark
 
-<span style="color: #666666">Provide examples of this feature implemented by other developers or in similar applications.</span>
+<span style="color: #666666">Provide examples of this feature implemented by other developers or in similar applications, with leading features highlighted.</span>
 
 ## Interaction Flow
 

@@ -12,7 +12,7 @@
 ## Decision
 
 - what is committed to the repository, regardless of being created entirely by a human or assisted by an AI model, is of full responsibility of the person who sent it;
-- the [registry of decision records](./README.md) serve as a must-know guide for any AI model that is used to generate content for the project;
+- the [registry of decision records](index.md) serve as a must-know guide for any AI model that is used to generate content for the project;
 
 ## Consequences
 

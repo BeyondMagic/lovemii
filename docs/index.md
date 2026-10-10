@@ -13,11 +13,11 @@ The documentation tracks the development of the shell across two main sections:
 
 ### Decision records
 
-Technical and architectural decisions are logged in [Decision Records](./decision-record/README.md) using the ADR format.
+Technical and architectural decisions are logged in [Decision Records](decision-record/index.md) using the ADR format.
 
 ### Feature specifications
 
-Planned and in-progress components are documented in the [Feature List](./feature/README.md).
+Planned and in-progress components are documented in the [Feature List](feature/index.md).
 
 ## Project status
 

@@ -22,7 +22,7 @@ extra_javascript = [
 nav = [
   { "General" = "index.md" },
   { "Decision Record" = [
-      { "General" = "decision-record/README.md" },
+      { "General" = "decision-record/index.md" },
       { "000: Template" = "decision-record/000-template.md" },
       { "001: Name" = "decision-record/001-name-decision.md" },
       { "002: UI Design" = "decision-record/002-ui-design-decision.md" },
@@ -33,7 +33,7 @@ nav = [
       { "007: License" = "decision-record/007-license-selection.md" },
   ]},
   { "Features" = [
-      { "General" = "feature/README.md" },
+      { "General" = "feature/index.md" },
       { "000: Template" = "feature/000-template.md" },
       { "001: Plymouth" = "feature/001-plymouth.md" },
       { "002: Login" = "feature/002-login.md" },

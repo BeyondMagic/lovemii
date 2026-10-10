@@ -25,7 +25,7 @@ I am adopting a three-stage development process for all features and widgets in 
 1. **Interaction flow:** Before creating graphics or writing code, write down the complete user flow in `docs/feature/XXX-feature-name.md`, follow [003](./003-ux-behavior-interaction-flows.md);
 2. **Visual design:** Once the flow is clear, create Figma wireframes or mockups that fit the steps and follow the visual design rules in [002](./002-ui-design-decision.md);
 3. **Implementation plan:** Outline the technical details, required Quickshell or QtQuick APIs, external system tools, and performance limits;
-4. **Lifecycle tracking:** The feature proposal starts as **Proposed**. Development begins only after the flow and design are settled and marked as **Accepted** in the [feature list](../feature/README.md).
+4. **Lifecycle tracking:** The feature proposal starts as **Proposed**. Development begins only after the flow and design are settled and marked as **Accepted** in the [feature list](../feature/index.md).
 
 ## Consequences
 

@@ -19,8 +19,8 @@ A minimalist desktop shell for Wayland, built with [Quickshell](https://quickshe
 Full project documentation, architectural decision records, and feature specifications are available on the documentation site:
 
 - **Site:** [https://beyondmagic.github.io/lovemii/](https://beyondmagic.github.io/lovemii/)
-- **Decision records:** [docs/decision-record/](./docs/decision-record/README.md)
-- **Feature specifications:** [docs/feature/](./docs/feature/README.md)
+- **Decision records:** [docs/decision-record/](docs/decision-record/index.md)
+- **Feature specifications:** [docs/feature/](docs/feature/index.md)
 
 ## Local preview
 

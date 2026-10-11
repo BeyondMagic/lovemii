@@ -16,6 +16,8 @@
 
 <span style="color: #666666">Provide visual design mockups or wireframes of the feature in Figma.</span>
 
+- Identify if there is fingerprint authentication support and is enabled in the system, if there is, show a visual indicator of the fingerprint reader and allow the user to use it to authenticate.
+
 ## Implementation
 
 <!--

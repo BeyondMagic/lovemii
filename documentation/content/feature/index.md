@@ -15,7 +15,7 @@ Specifications, interaction flows, and implementation notes for shell features a
 | 006    | 2026-10-03 -            | [Time Tracker](006-time-tracker/index.md) | Proposed |
 | 007    | 2026-10-03 -            | [Notifications](007-notifications.md) | Proposed |
 | 008    | 2026-10-03 -            | [Overview](008-overview.md) | Proposed |
-| 009    | 2026-10-03 -            | [Search](009-search.md) | Proposed |
+| 009    | 2026-10-03 -            | [Launcher](009-launcher/index.md) | Proposed |
 | 010    | 2026-10-03 -            | [Habit Tracker](010-habit-tracker.md) | Proposed |
 | 011    | 2026-10-03 -            | [Task Tracker](011-task-tracker.md) | Proposed |
 | 012    | 2026-10-03 -            | [OCR](012-ocr.md) | Proposed |

@@ -1,4 +1,4 @@
-# 009: Search
+# 009: Launcher
 
 - **Status:** <span style="color: #666666">Proposed</span>
 - **Proposal date:** <span style="color: #666666">Date of proposal</span>
@@ -12,9 +12,19 @@
 
 <span style="color: #666666">Provide examples of this feature implemented by other developers or in similar applications, with leading features highlighted.</span>
 
+### [PowerToys Command Palette](https://learn.microsoft.com/en-us/windows/powertoys/command-palette/overview)
+
+![alt text](./assets/cmdpal-overview1.gif)
+
+### [PowerToys Run utility](https://learn.microsoft.com/en-us/windows/powertoys/run)
+
+![alt text](./assets/powerrun-demo.gif)
+
 ## Interaction Flow
 
 <span style="color: #666666">Describe the interaction flow of the feature in a use-case format.</span>
+
+1. `Meta key` + `D` triggers the launcher to open.
 
 ## Visual Design
 

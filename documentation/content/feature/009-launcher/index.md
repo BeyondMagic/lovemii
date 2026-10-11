@@ -26,6 +26,21 @@
 
 1. `Meta key` + `D` triggers the launcher to open.
 
+<!--
+
+enable/disable dinit services (this can be just predefined commands, but with a check before showing which one)
+manage other widgets (can be predefined commands).
+run extensisiable predefined commands:
+    get dictionary from word, like dict.nu
+    list emoji, kaomojis
+calculate mathematical expressions using Qalculate:
+    set up own service (libcalculate running on background with AGS and only read commands when sent to it)
+run desktop apps.
+Make schema.
+Change from JSON to TOML with additional script.
+
+-->
+
 ## Visual Design
 
 <span style="color: #666666">Provide visual design mockups or wireframes of the feature in Figma.</span>

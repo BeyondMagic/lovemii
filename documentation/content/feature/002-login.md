@@ -18,4 +18,9 @@
 
 ## Implementation
 
+<!--
+- [ ] Transform [`python-validity`, `fprintd-clients`](https://github.com/vowstar/vowstar-overlay) at commit `a967650c76ac438e05bdca8bd369213ccd7a4f24` ebuild to PKGBUILD.
+- [ ] Transform [`sys-auth/fprintd`](https://anongit.gentoo.org/git/repo/gentoo.git) ebuild to PKGBUILD.
+-->
+
 <span style="color: #666666">Provide a detailed description of how the feature will be implemented, including any technical considerations, dependencies, and potential challenges.</span>

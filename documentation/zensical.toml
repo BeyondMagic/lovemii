@@ -48,6 +48,7 @@ nav = [
       { "011: Task Tracker" = "feature/011-task-tracker.md" },
       { "012: OCR" = "feature/012-ocr.md" },
       { "013: Music Manager" = "feature/013-music-manager/index.md" },
+      { "014: Service Manager" = "feature/014-service-manager/index.md" },
   ]},
 ]
 

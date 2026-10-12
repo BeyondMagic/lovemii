@@ -78,6 +78,7 @@ flowchart TD
 | 011    | 2026-10-03 -            | [Task Tracker](011-task-tracker.md) | Proposed |
 | 012    | 2026-10-03 -            | [OCR](012-ocr.md) | Proposed |
 | 013    | 2026-10-11 -            | [Music Manager](013-music-manager/index.md) | Planned |
+| 014    | 2026-10-12 -            | [Service Manager](014-service-manager/index.md) | Proposed |
 
 <!-- Task Tracker will supersede habit tracker -->
 

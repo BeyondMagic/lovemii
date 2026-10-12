@@ -10,7 +10,7 @@ Plymouth is a graphical boot animation.
 
 It is meant to provide a visually appealing experience during the boot process, hiding the underlying text output and presenting a smooth transition from the bootloader to the desktop environment.
 
-## Examples
+## Benchmark
 
 - [Linux Distro Logos - macOS Boot Style](https://www.opendesktop.org/p/2106821)
 

@@ -19,6 +19,10 @@
 
 <span style="color: #666666">List the requirements and restrictions that must be considered when making this decision.</span>
 
+- The button label communicates the state the system will move to; we tend to see color and icons as status, not actions. That's how objects in the real world works: if the stove is red, it is hot right now, not in the future.
+
+- True intution is a myth. Everything becomes learnt behaviour. But using existing paradigms will save users time and effort.
+
 - Familiarity is key, it should try to resemble established physical or digital patterns of interaction.
 
 - The goal should never to completely eliminate the need for learning, learning never truly disappears.
